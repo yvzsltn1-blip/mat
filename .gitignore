@@ -1,0 +1,6 @@
+# Büyük kaynak kitap ve yerel/geçici dosyalar
+*.pdf
+tmp/
+.firebase/
+node_modules/
+*.log

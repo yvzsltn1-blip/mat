@@ -1,0 +1,825 @@
+===============================================================================
+MEB 5. SINIF MATEMATİK DERS KİTABI (1. KİTAP, 2024) — ETKİLEŞİMLİ EĞİTSEL
+WEB SİTESİ GELİŞTİRME PROMPTU
+===============================================================================
+Kaynak : C:\Users\YAVUZ\Documents\Game\matematik\matematik5-1.pdf
+         (Ortaokul ve İmam Hatip Ortaokulu Matematik 5. Sınıf Ders Kitabı,
+         1. Kitap, MEB Yayınları 2024, 171 sayfa, ISBN 978-975-11-8013-1)
+Amaç   : Bu müfredatı 10-11 yaşındaki 5. sınıf öğrencilerine oyunlar, görseller
+         ve etkileşimlerle öğreten, Türkçe, web tabanlı bir eğitim platformu
+         geliştirmek. Bu belge, siteyi kodlayacak üst modele verilecek TÜM
+         müfredat + tasarım + oyunlaştırma gereksinimlerini içerir.
+
+===============================================================================
+1. PROJE ÖZETİ VE GENEL KURALLAR
+===============================================================================
+- HEDEF KİTLE: 5. sınıf öğrencileri (10-11 yaş). Dil mutlaka sade, olumlu,
+  cesaretlendirici Türkçe olmalı. Sarkastik/karmaşık ifadeler yasak.
+- DİL: Arayüzün tamamı Türkçe (Türkçe karakterler: ç, ğ, ı, i, ö, ş, ü
+  tam desteklenmeli). Matematiksel gösterimler doğru kullanılmalı:
+  açı için "∠ABC", ölçü için "m(∠ABC) = 45°", diklik "⊥", paralellik "//",
+  doğru parçası "[AB]", uzunluk "|AB| = 5 cm", çap "R", yarıçap "r",
+  alan "A(ABCD)", çevre "Ç(ABCD)", birimler "cm, m, cm², m², br (birim)".
+- MATERYAL POLİTİKASI: Kitaptaki metinler telifli olduğu için BİREBİR
+  KOPYALANMAYACAK; kitabın KAVRAMLARI, KAZANIMLARI ve SORU TİPLERİ örnek
+  alınarak ÖZGÜN sorular, senaryolar ve etkinlikler üretilecektir.
+- KİTAPTAKİ YAPININ EŞLEŞTİRİLMESİ: Kitap her temada şu akışı izler; site
+  de her tema için aynı akışı sunmalıdır:
+  1) "Hazır mıyız?" → ön değerlendirme (ön bilgi yoklama, kısa quiz)
+  2) "Başlayalım" → gerçek yaşam bağlamlı giriş senaryosu (hikâyeli giriş)
+  3) Konu bölümleri → anlatım + örnekler + etkinlikler (sitede ders kartları
+     + interaktif etkinlikler)
+  4) "Performans Görevi" → yaratıcı proje (sitede yaratıcı atölye)
+  5) "Ölçme ve Değerlendirme Soruları" → tema sonu sınavı
+  Ayrıca kitapta "İzleme Testi" (konu ortası kontrol), "Zihin Haritası",
+  "Akran Değerlendirme Formu", "Öğrenme Günlüğü", "Kontrol Listesi" vardır;
+  bunların dijital karşılıkları aşağıda verilmiştir.
+
+===============================================================================
+2. GENEL YAPI: 3 DÜNYA (TEMA) MANTIĞI
+===============================================================================
+Kitap 3 temadan oluşur. Site bir "macera haritası" üzerine kurulmalı; her
+tema bir DÜNYA, her konu bir BÖLÜM/ETAP, her etap 3-4 zorluk seviyesi
+içermeli:
+
+  DÜNYA 1: GEOMETRİK ŞEKİLLER   (Kitap s. 14-91)  → tema: "Geometri Diyarı"
+  DÜNYA 2: DOĞAL SAYILAR VE İŞLEMLER (Kitap s. 92-137) → tema: "Sayı Kulesi"
+  DÜNYA 3: GEOMETRİK NİCELİKLER (Kitap s. 138-166) → tema: "Çevre-Alan Şehri"
+
+MASGOT: Kitapta "Anka" adlı kuş karakter vardır. Sitede de Anka kuşu rehber
+olarak kullanılmalı: talimatlar verir, ipuçları söyler, hata yapınca
+teşvik eder.
+
+Her dünya için:
+- Harita üstünde etaplar kilitli/açık (sıralı ilerleme; ipucu parasıyla
+  (yapıldıysa) erken açılma opsiyonu).
+- Her etap: (a) mini ders (animasyonlu anlatım), (b) 3 seviyeli oyun,
+  (c) etap sonu mini quiz.
+- Dünya sonu: "Ölçme ve Değerlendirme" sınavı → dünya kupası/rozet.
+
+OYUNLAŞTIRMA SİSTEMİ (tüm dünyalarda ortak):
+- XP puanı + seviye sistemi (Seviye adları okul temalı olabilir: Çırak,
+  Kalfa, Usta, Matematik Kahramanı...).
+- Her oyun sonunda 1-3 yıldız (hatasız=3 yıldız).
+- Rozetler: "Açı Avcısı", "Çember Ustası", "Basamak Dedektifi",
+  "Problem Çözücü", "Çevre-Şerit" vb. (rozetteler kazanımlara bağlı).
+- Seri (streak) bonusu, günlük görevler, kullanıcı ilerlemesi
+  localStorage'da saklanmalı (girişsiz çalışmalı; hesap sistemi opsiyonel).
+- Hata yapınca: ceza YOK, sadece yönlendirici geri bildirim
+  ("Şu adımı tekrar dene: köşeyi açıölçerin merkezine getir.").
+- Öğretmen paneli (opsiyonel, bonus): sınıf kodu ile ilerleme raporu.
+
+SORU TİPLERİ (sitede karışık kullanılmalı):
+1) Çoktan seçmeli (A-B-C-D), 2) Doğru/Yanlış, 3) Sürükle-bırak
+   (eşleştirme/sıralama/etiketleme), 4) Sayısal cevap girişi,
+   5) Ekranda çizim/işaretleme (açı işaretleme, nokta koyma),
+   6) Kaydırıcıyla değer ayarlama (açı ölçüsü, kenar uzunluğu),
+   7) Sıralama (sayıları küçükten büyüğe),
+   8) Boşluk doldurma (basamak tablosu, işlem adımları).
+
+ZORLUK SEVİYELERİ (her konu için standart 4 kademe):
+- SEVİYE 1 "Keşif": Kavram tanıtımı, rehberli denemeler (ipucu açık).
+- SEVİYE 2 "Alıştırma": Standart sorular, kısa ipuçları.
+- SEVİYE 3 "Problem": Gerçek yaşam problemleri, çok adımlı sorular
+  (kitaptaki "Problem Çözme Adımları" mantığıyla).
+- SEVİYE 4 "Meydan Okuma": Kitaptaki Ölçme-Değerlendirme tarzı karma,
+  ustalık soruları (zaman kısıtlı olabilir).
+
+===============================================================================
+3. DÜNYA 1 — TEMA 1: GEOMETRİK ŞEKİLLER (Kitap s. 14-91)
+===============================================================================
+Tema kazanımları (kitabın tema giriş sayfasından):
+ ► Temel geometrik çizimleri yapabilme,
+ ► Açı ölçme ve çokgen özelliklerini incelemede matematiksel araç ve
+   teknolojiden yararlanabilme,
+ ► Düzlemde kesişen iki çemberin merkezleri ve kesişim noktalarından biri
+   ile inşa edilen üçgenlere yönelik muhakeme yapabilme.
+ANAHTAR KAVRAMLAR (sitede küçük "kavram sözlüğü" olarak da sunulmalı):
+nokta, doğru, doğru parçası, ışın, açı, çember, daire, merkez, çap,
+yarıçap, dikme, düzlem, paralellik, tam açı, doğru açı, dik açı, derece,
+eş açı, çakışık doğrular, kesen, komşu açı, ters açı, tümler açılar,
+bütünler açılar, iç açı, dış açı, çokgen, düzgün çokgen, dar açılı üçgen,
+dik üçgen, geniş açılı üçgen.
+
+--- ETAP 1.1: TEMEL GEOMETRİK ŞEKİLLER (Nokta, Doğru Parçası, Işın, Doğru) ---
+Kavramlar ve öğretim hedefleri:
+- Nokta: eni, boyu, derinliği yoktur; kalem ucu izi modeldir; büyük harfle
+  isimlendirilir (A noktası).
+- Doğru parçası: iki nokta arasında hizalanmış noktalar dizisi; iki ucu
+  belli; [AB] veya [BA] gösterimi; UZUNLUĞU ÖLÇÜLEBİLİR; |AB| = 5 cm.
+- Işın: bir başlangıç noktasından bir yönde sonsuza gider; [BC gösterimi.
+- Doğru: iki ucu da sonsuza gider; AB doğrusu veya "d doğrusu".
+- Ölçüsüz cetvel (çizgeç) kavramı; cetvelle mm-cm ölçme.
+- Fark: doğru-ışın sonsuz (ölçülemez), doğru parçası ölçülebilir.
+Seviye/oyun önerileri:
+- S1: "Nokta Gömü" — ekranda nokta tıklama, noktayı harfle isimlendirme.
+- S1: Kalem ucu animasyonu: kalem ekranda kayar → izden doğru/ışın/parça
+  çıkar; öğrenci hangisi olduğunu tahmin eder.
+- S2: "Şekil Avcısı": verilen şekilde doğru, doğru parçası, ışınları tıkla-
+  yak işaretleme (kitaptaki Örnek 2 tarzı).
+- S2: Cetvel simülatörü: doğru parçasını mm hassasiyetiyle ölçme
+  (sürüklenebilir cetvel).
+- S3: "|AB| = 4 cm olan doğru parçasını cetvelle çiz" — serbest çizim
+  tuvali + otomatik kontrol.
+- S4: D/Y karma testi ("Doğrunun uzunluğu ölçülebilir." → Y gibi).
+
+--- ETAP 1.2: AÇI KAVRAMI ---
+Kavramlar:
+- Açı, başlangıç noktaları aynı olan iki ışının oluşturduğu şekildir;
+  aynı zamanda bir ışının dönme miktarıdır.
+- Açının kolları (ışınlara), köşesi (ortak başlangıç noktası).
+- İsimlendirme: ∠BAC, ∠CAB veya ∠A; ölçü gösterimi m(∠BAC) = 45°.
+- Açı çeşitleri (ön bilgi): dar açı (<90°), dik açı (=90°), geniş açı (>90°).
+Seviye/oyun önerileri:
+- S1: İki ışını döndürerek açı oluşturma deneyi (köşe sabit, kollar döner).
+- S2: Açı etiketleme oyunu: köşeyi, kolları tıklayarak işaretleme.
+- S2: "Açı Sınıflandırıcı": kayan açıyı dar/dik/geniş kutusuna sürükleme.
+- S3: Kitaptaki makas/cımbız/dolap kapağı bağlamı: günlük nesne görselinde
+  açı bulma ve ölçüsünü tahmin etme.
+
+--- ETAP 1.3: ÇEMBER VE DAİRE (Pergel) ---
+Kavramlar:
+- Çember: merkezden EŞİT uzaklıktaki noktaların oluşturduğu şekil
+  (kalem ucu izleri); Daire: çember + iç bölge.
+- Merkez, yarıçap (r), çap (R); R = 2r.
+- Pergel kullanımı: açıklık = yarıçap; sivri uç merkezde sabitlenir.
+- Gerçek modeller: hulahop/yüzük → çember; bozuk para/masa yüzeyi → daire.
+Seviye/oyun önerileri:
+- S1: Kitaptaki "şerit metre" etkinliği dijitali: sabit merkez noktasından
+  eşit uzaklıkta öğrenci/nokta dizme → çember oluşumunu görselleştirme.
+- S1: PERGEL SİMÜLATÖRÜ: fareyle ayak açıklığı (yarıçap) ayarlanır, döndürül-
+ erek çember çizilir; yarıçap değişince çemberin değişimi gözlenir.
+- S2: "Yarıçap mı Çap mı?": şekildeki doğru parçalarını doğru kutuya sürükleme.
+- S2: Verilen merkez ve yarıçapla çember çizme görevleri ("O merkezli,
+  2 br yarıçaplı çember çiz." — kitap Örnek 3 tarzı).
+- S3: Verilen çemberde R ve r ilişkisi soruları.
+- S4: Pergel hızı oyunu: belirli yarıçaplı çemberi süre içinde "çizme"
+  (draggable pergel, tolerans kontrollü).
+
+--- ETAP 1.4: DİKME VE DÜZLEM ---
+Kavramlar:
+- Dikme: bir doğruya, dışındaki bir noktadan DİK çizilen doğru parçası;
+  ⊥ sembolü; [AB] ⊥ CD okunuşu; gönye ile çizilir.
+- Dikme = noktadan doğruya EN KISA yol (boru/atık su problemi bağlamı:
+  hangi boru en kısası?).
+- Bir doğruya dışındaki bir noktadan yalnız BİR dikme çizilebilir.
+- Düzlem: kenarsız, kalınlıksız, her yönde sonsuz düz yüzey modeli
+  (kâğıt, masa yüzeyi örnekleri).
+Seviye/oyun önerileri:
+- S1: "En Kısa Boru" problemi: 3 boru seçeneğinden diğ olana tıklama.
+- S2: Gönye simülatörü: gönyeyi doğruya yaslayıp noktadan dikme çizme;
+  açı kontrolü 90° ise kabul.
+- S2: Noktadan verilen doğruya dikme çizme (sürükle-bırak).
+- S3: D/Y: "Bir doğruya dışındaki bir noktadan birden fazla dikme
+  çizilebilir." (Y).
+
+--- ETAP 1.5: TEMEL GEOMETRİK ÇİZİM ÖZELLİKLERİ ---
+Kavramlar (kitap s. 32-38):
+- Bir noktadan SONSUZ doğru geçer; İKİ noktadan yalnız BİR doğru geçer.
+- İki nokta arasındaki en kısa yol doğru parçasıdır (köprü/yol yapımı
+  problemi: nehir iki yakası, köprü modelleri).
+- Pergelle ışın üzerinde EŞ UZUNLUKTA doğru parçaları kesme (çemberin
+  yarıçapı sabit kalır → eş parçalar): pergelin taşıyıcı rolü.
+- Açının kolları üzerinde eş uzunlukta parçalar kesme (aynı mantık).
+- PARALEL DOĞRULAR: bir doğruya eşit uzaklıktaki ve aynı doğrultudaki
+  noktalar bir doğru oluşturur; bu doğru ile verilen doğru arasındaki
+  uzaklık değişmez → paralel; "//" sembolü; AB // KL okunuşu; tren rayı,
+  elektrik teli, kaldırım taşı örnekleri.
+Seviye/oyun önerileri:
+- S1: "Kaç doğru geçer?" interaktif deneyi: bir noktaya tıkla → sonsuz
+  doğru animasyonu; iki noktaya tıkla → tek doğru.
+- S2: Köprü problemi (nehir + A, B, C noktaları): köprüleri çizme,
+  en kısa yolu seçme.
+- S2: Pergelle eş parçalama: ışın üzerinde pergel simülatörüyle eş
+  uzunlukta parçalar işaretleme.
+- S3: "Paralel çiftleri bul": karma doğru görüntülerinde AB // CD olanları
+  seçme; günlük hayattan paralel örnek eşleştirme (ray-teleferik vb.).
+- S4: Kitaptaki "ismi geometrik şekillerle yazma" (EREN/ÇİĞDEM örneği)
+  → yaratıcı atölye: kareli zeminde nokta/doğru parçası/ışın/çember/
+  dikme kullanarak kendi adını ya da bir logo tasarlama (tasarım
+  kaydedilir, galeride sergilenir — kitaptaki "Tasarım Yapıyorum"
+  performans görevinin dijital hâli).
+
+--- ETAP 1.6: AÇILARI ÖLÇME (Açıölçer ve Derece) ---
+Kavramlar:
+- Derece kavramı: tam açı 360 eş açıya bölünür → her biri 1 derece (°).
+- Tam açı = 360°, doğru açı = 180°, dik açı = 90°.
+- Açıölçer (iletki) kullanımı: köşe merkezle hizalanır, bir kol 0°'ye
+  getirilir, diğer kolun gösterdiği değer ölçüdür; kollar uzatılırsa
+  ölçü DEĞİŞMEZ.
+- Ölçüsü verilen açıyı çizme (20°, 45°, 60°, 75°, 80°, 90°, 110°, 135°,
+  150°, 160°, 180°, 360° gibi değerlerle çalışma).
+- Eş açılar: ölçüleri eşit açılar.
+- Alternatif ölçü birimi tartışması (kitabın "can" birimi sorusu:
+  tam açı 36 "can" olsaydı doğru açı kaç "can" olurdu? — ölçü birimi
+  göreliliği). Sitede bu bir mini-meydan okuma olarak sunulmalı.
+Seviye/oyun önerileri:
+- S1: DAİRE KATLAMA ETKİNLİĞİ DİJİTALİ: daire kâğıdı 2-4-8 katlanarak
+  eş açılar elde etme animasyonu (1/2 → 180°, 1/4 → 90°...).
+- S1-2: AÇIÖLÇER SİMÜLATÖRÜ (bu dünyanın vitrin oyunu): sürüklenebilir
+  açıölçer; öğrenci köşeyi merkeze getirir, 0° çizgisini kola hizalar,
+  ölçümü okur. Hem ölçme hem verilen ölçüde açı çizme modu.
+- S2: "Açı Kur": verilen ölçüde açıyı kaydırıcıyla/ışın döndürerek oluşturma
+  (±1° tolerans).
+- S2: Açıları dar/dik/geniş/eş olarak sınıflandırma + ölçü sıralama.
+- S3: Tahmin oyunu: açıyı ölçmeden tahmin et → gerçek ölçüyle karşılaştır
+  (puan tahmine yakınken yüksek).
+- S4: Kitaptaki "hatalı açıölçer yazılımı" problemi: dar açıda +20°, geniş
+  açıda −20° hata veren sanal açıölçer → gerçek değeri çıkarma
+  (örn. 40° → yazılım 60° gösterir; 90° ise doğru gösterir).
+
+--- ETAP 1.7: DOĞRULARIN BİRBİRİNE GÖRE DURUMLARI ---
+Kavramlar (kitap "Doğruların Yolculuğu" s. 45-56):
+- Kesişen doğrular: düzlemde yalnız bir ortak noktası olan doğrular;
+  kesişimde iki dar + iki geniş açı VEYA dört dik açı oluşur; oluşan
+  komşu açı ölçüleri toplamı 180°.
+- Dik doğrular: kesişim açıları 90° ise; AB ⊥ CD.
+- Paralel doğrular: kesişmeyenler; açı oluşturmaz.
+- Çakışık doğrular: tüm noktaları ortak.
+- Üç doğrunun durumları: (a) üçü paralel (Türk Yıldızları "kol uçuşu"
+  bağlamı), (b) bir noktada kesişim (kavşak örneği: 6 dar veya 2 geniş
+  + 4 dar, ya da dik durumlar), (c) ikişer ikişer kesişim (üçgen
+  reflektör örneği: 6 dar + 6 geniş ya da 4 dik + 4 dar + 4 geniş).
+- Kesen: iki doğruyu farklı noktalarda kesen üçüncü doğru; iki paralel
+  doğruyu kesen kesenle 8 açı oluşur (4 dar + 4 geniş veya 8 dik);
+  asetat kâğıdı üst üste koyma deneyi ile eş açılar keşfi.
+Seviye/oyun önerileri:
+- S1: ASESTAT DENEYİ DİJİTALİ: iki saydam katman; üstteki döndürülerek
+  alttaki doğruyla ilişkisi değiştirilir; oluşan açılar canlı güncellenir.
+- S2: "Doğru Durum Dedektifi": verilen çizimlerde kesişen/dik/paralel/
+  çakışık çiftleri işaretleme (kitap Örnek 2'deki kareli zemin tarzı).
+- S2: Üç doğrunun 3 durumunu sürükle-bırakla eşleştirme + her durumda
+  oluşan açı sayılarını sayma.
+- S3: Kesen oyunu: paralel iki doğru + kesen ekleyerek 8 açının
+  ölçülerini okuma; dar/geniş açıları renklendirme (kitap Etkinlik 5).
+- S4: Trafik/kavşak problemi: kavşak görselinde doğruları modelleme.
+
+--- ETAP 1.8: AÇI ÇİFTLERİ (Ters, Komşu, Tümler, Bütünler) ---
+Kavramlar:
+- Ters açılar: kesişen doğrularda zıt yönlere bakan açılar; ölçüleri EŞİT.
+- Komşu açılar: köşeleri ve birer kolları ortak, diğer kolları ortak
+  kolun farklı taraflarında olan açılar.
+- Tümler açılar: ölçüleri toplamı 90°; komşu tümler (18° + 72° gibi).
+- Bütünler açılar: ölçüleri toplamı 180°; komşu bütünler (134° + 46° vb.).
+- Bilinmeyen açı bulma: m(∠PRS) = 90° − 18° = 72° gibi işlemler.
+Seviye/oyun önerileri:
+- S1: "Açı Eşleştirme": aynı görüntüde ters açı çiftlerini tıkla-eşleştir.
+- S2: Tümler/bütünler tamamla: "30°'nin tümleri? bütünleri?" hızlı
+  cevap kartları (flashcard modu).
+- S2: Şekilde verilen bir açıdan komşu tümlerin/bütünlerin ölçüsünü bulma
+  (kitap Örnek 5-6 tarzı 18°, 43°, 71°, 134°, 44°, 38° değerleri).
+- S3: Öğrenci eşleştirme problemi (kitap Ölçme sorusu 6 tarzı): 30°, 70°,
+  150°, 60° çizen 4 karakter; kim kiminle tümler/bütünler eşleşir?
+- S4: ZİHİN HARİTASI OLUŞTURUCU: sürükle-bırak ile "iki/üç doğrunun
+  durumları + oluşan açılar" zihin haritası doldurma (kitap s. 54
+  etkinliğinin dijitali) + otomatik akran değerlendirme formu.
+
+--- ETAP 1.9: ÇOKGENLER ---
+Kavramlar (kitap s. 57-69):
+- Çokgen tanımı: en az üç doğrunun (ilk doğru son doğruyla kesişecek
+  şekilde) ardışık kesişimiyle oluşan KAPALI şekil; kenar sayısıyla
+  isimlendirilir (üçgen, dörtgen, beşgen, altıgen, yedigen...).
+- Temel elemanlar: kenar, köşe, iç açı, dış açı (iç açının komşu bütünler
+  açısı); kenar sayısı = köşe sayısı = iç açı sayısı.
+- İsimlendirme: köşeler ardışık okunarak (BCDEFA altıgeni vb.).
+- Düzgün çokgen: bütün kenar uzunlukları ve iç açı ölçüleri eşit
+  (eşkenar üçgen ve kare en bilinen örnekler).
+- Köşegen: ardışık olmayan iki köşeyi birleştiren doğru parçası;
+  üçgenin köşegeni YOKTUR.
+- Kültürel bağlam: halı-kilim desenleri, çini; Atatürk'ün "Geometri"
+  kitabında üçgen/dikdörtgen/kare/beşgen Türkçe kavramları (bilgi kutusu
+  olarak sitede kültür köşesi yapılabilir).
+Seviye/oyun önerileri:
+- S1: "Doğrudan Çokgene": adım adım doğru çizdikçe kapalı şekil oluşan
+  animasyon; kenar sayısıyla isim eşleştirme.
+- S1: ÇOKGEN ARAMA OYUNU (kitap Etkinlik 1): şeffaf dosya + fener etkile-
+  şimi dijitali: karmşık doğru yığını içinde feneri gezdirip çokgenleri
+  bulup renklendirme.
+- S2: Çokgen elemanlarını etiketleme (kenar/köşe/iç açı/dış açı tıklama).
+- S2: Düzgün çokgen seçme: aynı boyutta verilen çokgenler içinden
+  "düzgün" olanları işaretleme (kenar+açı ölçüm cetveli kullanılabilir).
+- S2: Köşegen çizme: sürükleyerek köşegen çiz; üçgende köşegen çizile-
+  me_diğini keşfettirme.
+- S3: "Süsleme Atölyesi" (kitap Etkinlik 2): eşkenar üçgen/kare/düzgün
+  beşgen/altıgen parçalarla döşeme (tesellasyon) tasarımı — İlkay
+  (tek çeşit) ve Eren (en az iki çeşit) senaryoları; tasarım kaydedilir.
+- S3: Daire katlama → üçgen/altıgen keşfi (kâğıt katlama simülasyonu).
+- S4: Yedigen D/Y tablosu sorusu (kitap Örnek 6 tarzı, 8 ifadeli).
+
+--- ETAP 1.10: ÜÇGENLER ---
+Kavramlar (kitap s. 70-76):
+- Açılarına göre: dar açılı (tüm açılar <90°), dik açılı (bir açı =90°),
+  geniş açılı (bir açı >90°).
+- Üçgende en fazla bir dik VEYA bir geniş açı olabilir; iki dik/geniş
+  açılı üçgen çizilemez.
+- İç açıların ölçüleri toplamı 180° (kâğıt kesme-yapıştırma kanıt
+  etkinliği; eksik açı bulma: 45°+45°→90°, 30°+70°→80°, 120°+35°→25° vb.).
+- Kenarlarına göre: eşkenar (tüm kenarlar eş; tüm açılar 60°),
+  ikizkenar (iki kenar eş; eş kenarları gören iç açılar eş), çeşitkenar.
+- Karışık sınıflandırma: dar açılı çeşitkenar, dik açılı ikizkenar,
+  geniş açılı ikizkenar (var mı? tartışma) vb.
+Seviye/oyun önerileri:
+- S1: Açı ölçümlerini gösteren üçgenleri dar/dik/geniş kutusuna sürükleme.
+- S1: Kâğıt KESME KANITI SİMÜLASYONU: üçgenin iç açıları kesilip bir
+  doğru üzerinde birleştirilir → 180° düz açı görünür (kitap Etkinlik 2).
+- S2: Eksik açı bulma halkası (10+ soru; hem sayısal giriş hem seçmeli).
+- S2: "Üçgen Kemiyatçısı": 9 kutuluk üçgen galerisinde (kitap Örnek 3)
+  eşkenar/ikizkenar/çeşitkenar/dik/dar/geniş açılı olanları seçme.
+- S3: Şema doldurma: "Açılarına göre üçgenler / kenarlarına göre üçgenler"
+  sınıflama şemasını sürükle-bırak tamamlama (kitap Örnek 4).
+- S4: Diyalog tabanlı muhakeme sorusu (kitap Ölçme sorusu 11: "Bir iç
+  açısı dar ise üçgen dar açılıdır" iddialarını değerlendirme — Anka,
+  Selvi, Hakan diyalogu tarzı) + öğrencinin kendi diyalogunu yazması.
+- S4: İkili koşul oyunu: "dik açılı ikizkenar üçgen bul" gibi etiket
+  kombinasyonları.
+
+--- ETAP 1.11: ÜÇGEN İNŞASI (Pergel + Ölçüsüz Cetvel) ---
+Kavramlar (kitap s. 77-85):
+- İNŞA kavramı: yalnızca pergel ve ölçüsüz cetvel kullanarak şekil oluşturma.
+- Kesişen iki çemberin merkezleri ile kesişim noktalarından biri
+  birleştirilerek üçgen inşa edilir:
+  • Yarıçaplar eşit + birbirinin merkezinden geçmeyen → İKİZKENAR
+    (aslında: iki yarıçap eşitse üçgenin iki kenarı eşit çıkar → ikizkenar)
+  • Yarıçaplar eşit + her çemberin merkezi diğerinin ÜZERİNDE → EŞKENAR
+  • Yarıçaplar farklı → ÇEŞİTKENAR
+- Öklid kültür köşesi: "Elemanlar" kitabı, 3 temel çizim kuralı
+  (noktadan noktaya parça; parçayı uzatma; merkez+yarıçapla çember),
+  verilen kenarla eşkenar üçgen inşası.
+- Logo tasarımı: çemberlerle özgün logo çizme (Olimpiyat halkaları bağlamı).
+Seviye/oyun önerileri:
+- S1: ÇEMBER ÇİFTLERİ LABORATUVARI: iki çemberin merkezini ve yarıçap-
+  larını kaydırıcılarla değiştir; oluşan üçgenin türü canlı etiketlenir
+  (kitap Etkinlik 1'in interaktif hâli — bu dünyanın ikinci vitrin oyunu).
+- S2: Görev kartları dizisi (kitap Örnek 3): "A merkezli 2 br çember,
+  B merkezli 2 br çember, kesişim + merkezleri birleştir → türü söyle"
+  zincirleri; her adım otomatik kontrol.
+- S2: D/Y seti (kitap Örnek 2'nin 5 ifadesi).
+- S3: ÖKLİD SİMÜLASYONU: verilen doğru parçası üzerinde eşkenar üçgen
+  inşa etme adımları (çember 1 → merkez A; çember 2 → merkez B; kesişim
+  noktası → birleştir).
+- S4: LOGO TASARIM ATÖLYESİ: kareli zemin + çember araçlarıyla logo çizme,
+  galeriye kaydetme (Performans görevi dijitali; puanlama anahtarı:
+  araç kullanımı, çember/ışın/doğru parçası kullanımı, özgünlük).
+
+--- DÜNYA 1 FİNAL: ÖLÇME VE DEĞERLENDİRME (Kitap s. 86-91) ---
+Kitaptaki 11 soruluk karma sınav tipiyle eşleştirilmiş SİNAV (soru tipleri):
+- Araç eşleştirme (kim hangi araçlarla çizimi tamamlayabilir? Mert-Taylan-
+  Öykü-Beyza senaryosu), paralel-dik örnek açık uçlu,
+- Kayak pisti çokgen bulmacası (izlerden çokgen tespiti),
+- Alternatif ölçü birimi "can" problemi,
+- D/Y tablosu + öğrenci cevaplarını karşılaştırma (I-II-III yargı sorusu),
+- Tümler/bütünler eşleştirme (Deniz-Ali-Ezgi-Özge 30°/70°/150°/60°),
+- Doğru sayısı-çokgen yargı soruları, hatalı açıölçer problemi,
+- Diyalog-değerlendirme sorusu.
+Sınav sonunda: dünya kupası, hatalı konulara "tekrar çalış" bağlantıları.
+
+===============================================================================
+4. DÜNYA 2 — TEMA 2: SAYILAR VE NİCELİKLER (1): DOĞAL SAYILAR VE İŞLEMLER
+   (Kitap s. 92-137)
+===============================================================================
+Tema kazanımları:
+ ► Doğal sayılara ilişkin ön bilgileri çok basamaklı sayılara genelleme,
+ ► Doğal sayılarla ilgili gerçek yaşam problemlerini çözme,
+ ► Dört işlem becerilerini çok basamaklı işlemlere genişletme.
+ANAHTAR KAVRAMLAR: basamak değeri, bölme, bölük, çarpma, çıkarma,
+doğal sayılar, toplama.
+
+--- ETAP 2.1: ÇOK BASAMAKLI SAYILARI OKUMA VE YAZMA ---
+Kavramlar ve öğretim hedefleri:
+- Basamak tablosu: birler bölüğü (birler, onlar, yüzler), binler bölüğü
+  (binler, on binler, yüz binler), milyonlar bölüğü (milyonlar, on
+  milyonlar, yüz milyonlar), milyarlar bölüğü (milyarlar, on milyarlar,
+  yüz milyarlar).
+- Bölük adı = bölüğün en büyük basamağının adı; birler bölüğünün adı
+  okunuşta söylenmez.
+- Okunuş ↔ rakamla yazım (çift yönlü): 149 597 890 → "yüz kırk dokuz
+  milyon beş yüz doksan yedi bin sekiz yüz doksan".
+- Bağlam örnekleri: gezegenlerin Güneş'e uzaklıkları (Merkür 57 909 175
+  km ... Neptün 4 498 252 900 km), TÜİK turist sayıları, fidan sayıları.
+- Abaküs modeli: boncuklarla sayı kurma/okuma; eksik boncuk ekleme
+  ("472 589 872'yi elde etmek için kaç boncuk eklenmeli?" tarzı).
+- Rakam kartlarıyla sayı kurma: verilen rakamları birer kez kullanarak
+  en büyük/en küçük sayı, en büyük tek/en küçük çift sayı, hedef
+  sayıdan büyük en küçük sayı vb.
+Seviye/oyun önerileri:
+- S1: BASAMAK TABLOSU SİMÜLATÖRÜ: rakamları yerleştir, tablo okunuşu
+  anında sesli/yazılı gösterir (gezegen uzaklıkları içerik havuzu).
+- S1: "Sayıyı Söyle": okunuşu verilen sayıyı rakamla yazma (tersi de var).
+- S2: ABAKÜS OYUNU: boncukları çekerek/yaklaşarak verilen sayıyı kurma;
+  bölük ayırıcı çubukları yerleştirme.
+- S2: Bölükleri renklendirme/kesme: 5 908 001 783 sayısında birler bölüğü
+  = 783 gibi bölük soruları.
+- S2: "Basamağı Bul": "45 007 846 sayısındaki 7 hangi basamakta?" hızlı
+  soru serisi; verilen basamaktaki rakamı bulma.
+- S3: Rakam kartları oyunu (kitap İzleme Testi tarzı): 8 basamaklı en
+  büyük sayı; bölük toplamları; milyarlar bölüğüne yazılacak sayıyı
+  bulma (okunuştan geriye çalışma).
+- S4: "Uçan Sayılar" hız oyunu: doğru okunuşa sahip buluta sayıyı atma.
+
+--- ETAP 2.2: BASAMAK DEĞERİ VE ÇÖZÜMLEME ---
+Kavramlar:
+- Basamak değeri = rakam × basamağın değeri; bir sayının basamak
+  değerleri toplamı sayının kendisidir (7 806 015 239 örneği, hesap
+  makinesi ile toplama deneyi).
+- ÇÖZÜMLEME (genişletilmiş yazım): 2 140 503 = (2×1 000 000) + (1×100 000)
+  + (4×10 000) + (5×100) + (3×1) veya 2 000 000 + 100 000 + 40 000 + 500 + 3.
+- Çözümlenmiş hâli verilen sayıyı rakamla yazma (ters işlem).
+- Eski Mısır sembolleri bağlamı (1, 10, 100, ... 1 000 000 sembolleriyle
+  sayı yazma/çözümleme — tarihsel etkinlik).
+Seviye/oyun önerileri:
+- S1: "Basamak Değeri Katmanları": 8 sayısının 8 / 80 / 800 / ... / 8
+  milyar hâlleri arasında geçiş yapan görsel animasyon.
+- S2: Çözümleme yapbozu: parçaları (2 000 000 + 100 000 + ...) sürükleyip
+  doğru sayıyı oluşturma; tersi: sayıyı parçalara ayırma.
+- S2: "Mısır Yazısı" mini oyunu: sembollere tıklayarak sayı kurma/
+  çözümleme (kitap Etkinlik 4).
+- S3: Görev kartları (kitap Etkinlik 3): üç farklı sayının basamak değer-
+  leri toplamını bulup kendisiyle karşılaştırma sonucunu yorumlama.
+- S4: Eksikli çözümleme: "70 000 000 000 + 5 000 000 000 + ... + 10 000
+  = ?" birleştirme; verilen çözümlü sayıdan sayıyı yazma (kitap Örnek 8-9).
+
+--- ETAP 2.3: DOĞAL SAYILARI KARŞILAŞTIRMA VE SIRALAMA ---
+Kavramlar:
+- Karşılaştırma kuralı: önce basamak sayısı; basamak sayısı eşitse soldan
+  ilk farklı basamağa bakılır; >, <, = sembolleri.
+- Sıralama: küçükten büyüğe / büyükten küçüğe.
+- Basamak yer değiştirme etkisi: birler ile binler bölüğü yer değiştiren
+  sayının değeri (13 791 435 ↔ 435 791 013 gibi — fidan sayısı bağlamı).
+- Kartlarla: rakamları birer kez kullanarak 9 basamaklı en büyük tek
+  sayı, en küçük çift sayı; 0 ile başlayan sayı problemleri (12 basamaklı
+  "□083 653 928" okunuşundan milyarlar bölüğünü bulma).
+Seviye/oyun önerileri:
+- S1: "Büyük/Deniz Yarışı": iki sayıdan büyüğüne tıklayarak karakter
+  yarıştırma (>, < sembolü ağza yerleşir).
+- S2: Sıralama oyunu: 3-4 sayıyı sürükleyerek sıralama (fidan/rüzgâr
+  türbini/TEKNOFEST tabloları bağlamları).
+- S2: Boşluk sembol doldurma (1 450 000 000 □ 1 400 000 000 gibi).
+- S3: KART KURMA OYUNU (kitap Örnek 12 + İzleme Testi): rakam kartları
+  birer kez kullanılır; "9 basamaklı en büyük sayı", "10 basamaklı en
+  küçük sayı", "3 000 000'dan büyük en küçük" hedefleri.
+- S4: Yer değiştirme stratejisi problemleri (2019 fidan sayısı basamak
+  yer değişimi + karşılaştırma).
+
+--- ETAP 2.4: TOPLAMA VE ÇIKARMA (Çok Basamaklı) ---
+Kavramlar ve öğretim hedefleri:
+- Altmış binlere/on milyarlara kadar toplama-çıkarma; taşon/borçlanma
+  adımları (basamak tablosu üzerinde görsel adım adım).
+- Zihinden işlem (56+19, 82+15, 78−27, 57−14 gibi).
+- TAHMİN stratejisi: yuvarlayarak tahmin → gerçek sonuç → karşılaştırma
+  (kitabın "önce tahmin ediniz" yaklaşımı HER problem oyununda standart
+  akış olmalı: 1) tahmin, 2) işlem, 3) karşılaştır).
+- Verilmeyen bileşen: 12 414 + □ = 21 213 (toplamdan toplananı çıkarma
+  VEYA basamak basamak tamamlama — 2 yol öğretimi); □ + 12 085 = 63 904.
+- Silinen eksilen/çıkan bulma (90523 − □ = 68805; □ − 57641 = ...).
+Seviye/oyun önerileri:
+- S1: "İşlem Makinesi": basamak tablosu animasyonlu taşon görselleri;
+  adım adım rehberli.
+- S2: Zihinden hız turu (30 soruluk kısa süreli seri; seri bonusu).
+- S2: Tahmin → Hesapla → Karşılaştır 3 aşamalı mini oyunlar (175+88,
+  871−372, 7643−5312 gibi).
+- S3: "Boş Kutu Dedektifi": eksik toplanan/eksilen/çıkan bulma (2 yol
+  gösterimiyle; cevaptan sonra 1. yol/2. yol karşılaştırma ekranı).
+- S4: Atık kâğıt kampanyası problemi (7000 kg kâğıt → 17×7 ağaç gibi),
+  dağ yüksekliği maksimum problemi (7450 m tavanı), futbol seyirci
+  problemi (99 000 − 33 004 − 35 670).
+
+--- ETAP 2.5: ÇARPMA VE BÖLME (Çok Basamaklı) ---
+Kavramlar ve öğretim hedefleri:
+- Kısa yoldan çarpma örüntüsü: 32×20=640, 320×20=6400, 32×300=9600,
+  320×5000=1 600 000 → çarpanda sıfırların işleme etkisi.
+- Kısa yoldan bölme örüntüsü: 6000÷20=300, 6000÷300=20, 6000÷1500=4 →
+  bölünen-bölen sıfır ilişkileri (48 000÷20, 84 000÷4000, 9000÷250 vb.).
+- Çarpmanın bileşenleri (çarpan×çarpan=çarpım): verilmeyen çarpan
+  (75×□=7500, □×36=1296); bölmenin bileşenleri (bölünen, bölen, bölüm):
+  □÷1000=6, 2970÷□=90, 859÷□=1.
+- Bölme işlemi ve yuvarlama: teleferik problemi (250÷11 → 23 sefer,
+  yukarı yuvarlama gerekliliği!), taksit planı (9875÷900 → 11 ay).
+- Tahmin etme-yuvarlama: 475×9, 24×55, 486÷6, 384÷24.
+Seviye/oyun önerileri:
+- S1: "Sıfır Kaydıran" animasyonu: 32 → 320 → 3200 çarpanda gözlenen
+  değişim; bölende ters yön (orijinal örüntü deneyi kitap Etkinlik 1-2).
+- S2: Kısa yoldan işlem halkaları (karışık çarpma/bölme; süreli).
+- S2: "Bileşen Kutuları": işlem üçgeninde (çarpan-çarpan-çarpım /
+  bölünen-bölen-bölüm) gizleneni bulma (kitap Etkinlik 3-4, Örnek 3-4).
+- S3: "Taksit Planı Tasarla": 9875 TL'yi aylık en çok 900 TL ile kapatma
+  planı; taksit sayısı tartışması (10 mu 11 mi? — kitap Etkinlik 4).
+- S3: Teleferik/yazıcı mürekkebi yukarı yuvarlama problemleri.
+- S4: NAPIER'IN KEMİKLERİ İNTERAKTİFİ (kitabın Performans Görevi): Napier
+  çubukları dijital sürüklenip hizalanarak çok basamaklı çarpma yapma;
+  araştırma kartları (Napier'in hayatı) + tasarım ekranı + otomatik
+  puanlama anahtarı (5 derecelik gösterge tablosu kitapta mevcut).
+
+--- ETAP 2.6: GERÇEK YAŞAM PROBLEMLERİ (Problem Çözme Atölyesi) ---
+Kavramlar:
+- Kitabın 10 ADIMLI PROBLEM ÇÖZME SÜRECİ (sitede "Adım Kartları" olarak
+  her problemde kullanılmalı): 1) sayı ve işlemleri belirle, 2) verilen-
+  istenen ilişkisini belirle, 3) matematiksel gösterime dönüştür,
+  4) gösterimlerle açıkla, 5) tahmin ve strateji geliştir, 6) uygula,
+  7) kontrol et/değiştir, 8) kısa yolları değerlendir, 9) benzer
+  problemlere genelle, 10) genellemeyi örneklerle değerlendir.
+- Problem tipleri (kitapta 25+ problem; sitede her tipin özgün karşılığı):
+  a) Tablolu toplama-çıkarma (TEKNOFEST başvuruları 4333/17 373/20 197/
+     44 912; rüzgâr türbini 1732/1583/875 ev),
+  b) Maksimum/minimum problemleri (dağ yüksekliği; en fazla fidan alma:
+     6500 TL, 4 fidan türü, her birinden ≥10 adet → tahmin + gerçek),
+  c) Bütçe/indirim (çorap fabrikası 32/24/19 TL; kargo tarifeleri
+     150+12 kg vs 40+13 kg vs 14 kg; bisiklet seçimi 2460-2940 TL),
+  d) Çok adımlı günlük yaşam (zeytin hasadı 115×40 + 35×35; damacana su
+     takvimi 80→85 TL zamlı; adım sayısı 34 850/45 920),
+  e) Zaman problemleri (ders çalışma planı 50+50+40 dk + 15 dk molalar;
+     doğum tarihi hesabı 1 yaş 4 ay 18 gün; tiyatro 12.35-13.28 +
+     13.40-14.30),
+  f) Birikim planlaması (bisiklet için aylık/haftalık tasarruf).
+Seviye/oyun önerileri:
+- S1-2: "Problemi Çöz" kart desteği: her problem 10 adımda açılır; her
+  adımda öğrenci mini karar verir (hangi işlem? ne kadar? kontrol
+  et) → adım tamamlandıkça ışıldar.
+- S2: "Alışveriş Stratejisti": ürünlerden en uygun kombinasyonu seçme
+  (Nil Hanım 30 000 TL bütçe: ütü 9750/11 250 + robot 15 499/16 999 +
+  kahve makinesi 5550/4299 — hangi markalar, yeterli mi?).
+- S3: Tablo okuma + işlem zincirleri (4 yıllık TEKNOFEST: toplam, fark,
+  en çok artış yılı).
+- S3: "Maksimum Alışveriş" optimizasyonu (Vahdettin Bey fidan problemi:
+  önce her türden 10'ar adet, kalan parayla en ucuzdan → 67 adet).
+- S4: Şifre problemi (kitap Ölçme sorusu 1): 0/5/8 rakamlarıyla bölük
+  kurallarına uygun şifreler; en büyük/en küçük şifre; okunuş seçimi.
+- S4: Kargo şirketi karşılaştırma (adres alım + kg fiyatı; 40/100/150 kg
+  senaryoları — çoktan seçmeli).
+
+--- DÜNYA 2 FİNAL: ÖLÇME VE DEĞERLENDİRME (Kitap s. 135-137) ---
+Şifre oluşturma problemi, kargo şirketi problemleri, elektrikli bisiklet
+problemi (7 km × 2 × 150 gün; şarj gün/saat; batarya dolum maliyeti
+407-440 TL seçenekleri) tarzında karma sınav + kupalar.
+
+===============================================================================
+5. DÜNYA 3 — TEMA 3: GEOMETRİK NİCELİKLER (Kitap s. 138-166)
+===============================================================================
+Tema kazanımları:
+ ► Dikdörtgenin çevre uzunluğunu ve alanını yorumlama,
+ ► Dikdörtgenin çevre uzunluğu ve alanıyla ilgili problemleri çözme.
+ANAHTAR KAVRAMLAR: alan, çevre, dikdörtgen. SEMBOLLER: cm², m²,
+Ç(ABCD), A(ABCD). (Ön bilgi: uzunluk birimleri mm-cm-m-km, birim
+dönüşümleri, tahmin etme-ölçme.)
+
+--- ETAP 3.1: DİKDÖRTGENİN ÇEVRE UZUNLUĞU ---
+Kavramlar:
+- Çevre uzunluğu: dikdörtgenin tüm kenarlarının toplamı; Ç(ABCD) = 2×(a+b).
+- Kareli zeminde çevre ölçme (1 br birimle); cetvelle cm cinsinden ölçme.
+- Çerçeve kültürü bağlamı (çarçube = dört çubuk: tablo çerçevesi hangi
+  uzunlukta korniş ister?).
+- Aynı çevreye sahip FARKLI dikdörtgenler çizilebilir (16 cm çevre:
+  1×7, 2×6, 3×5, 4×4... kenarlar doğal sayı); farklı kare çizilemez
+  (kare özel dikdörtgendir).
+- Ters problem: çevresi bilinen dikdörtgenin olası kenarları.
+Seviye/oyun önerileri:
+- S1: "Çit Çek": kareli zemini çitle çevirme oyunu; kenar toplamı otomatik
+  sayılır; çözüm kaç adım alıyor → 2(a+b) keşfi.
+- S2: "Aynı Çevre Farklı Şekil": çevresi 16 cm olan tüm doğal sayılı
+  dikdörtgenleri bul-boya (eksiksizlik kontrolü).
+- S2: Ters kutu problemleri: "çevre 30, bir kenar 6 → diğer kenar?"
+- S3: Kitap Örnek 2 oyununun dijitali: sayı bandında parmağı gezdirir,
+  "DUR!" dediğinde çevreyi sayı yapan dikdörtgeni kareli zemine çizme
+  (kenarlar doğal sayı + çizim kontrolü).
+- S4: Kenar uzunluğu cm cinsinden doğal sayı olan, çevresi verilen
+  dikdörtgen sayma problemi (hepsi yoksa "çizilemez" tuzağı dahil).
+
+--- ETAP 3.2: DİKDÖRTGENİN ALANI ---
+Kavramlar:
+- ALAN = yüzeyi kaplayan birim kare sayısı; birim kare (1 cm², 1 m², 1 br).
+- Alan = satırdaki birim kare sayısı × sütundaki birim kare sayısı
+  (A = a×b); saymadan çarpma keşfi.
+- Yüzey kaplama mantığı: kare, daire, düzgün beşgen not kâğıtlarından
+  hangisi boşluksuz kaplar? → neden KARE? (günlük yaşam: parke, fayans,
+  karne).
+- Ters problemler: A = 84 m², 7 m → 12 m; A = 121, 11 → 11; A = 104,
+  13 → 8.
+- Bileşik figür alanı: kareli zeminde boyalı bölgenin alanı (parçalara
+  ayırma/tamamlama).
+- Eş alan eşleştirme: birim kare görünümlü farklı boyutlu dikdörtgenleri
+  eşleştirme.
+Seviye/oyun önerileri:
+- S1: "Kaplayıcı": defter yüzeyini 1 birim karelerle boşluksuz kaplama,
+  sayarak alan bulma; sonra "saymadan bul" modu (satır×sütun).
+- S2: ALAN KAPLAMA OYUNU (kitap Etkinlik 2 — vitrin oyunu): tetris
+  benzeri temel şekiller (L, T, U, dikdörtgen bloklar) verilen
+  dikdörtgeni boşluksuz doldursun; döndürme serbest; doldurunca alan
+  karşılaştırması yapılır.
+- S2: Ters kenar bulma kutuları (84/121/104 m² serisi).
+- S3: Bileşik bölge boyama: kareli zeminde mavi bölgenin alanı + kendi
+  deseni çizip alanını hesaplama.
+- S4: "Kaç Farklı Dikdörtgen?": 18 birim kareyle kurulabilecek TÜM
+  dikdörtgenler (1×18, 2×9, 3×6) — çarpan çiftleri bağıntısı.
+
+--- ETAP 3.3: ÇEVRE VE ALANIN İLİŞKİSİ ---
+Kavramlar (kitap s. 150-154):
+- Aynı ALAN, farklı ÇEVRE: 24 m² halı → 4×6 (Ç=20), 2×12 (Ç=28),
+  3×8 (Ç=22); halı firması senaryosu (Mete'nin halı problemi).
+- Aynı ÇEVRE, farklı ALAN: çevresi 20 m → 2×8 (A=16), 5×5 (A=25),
+  7×3 (A=21), 4×6 (A=24)...; kenarlar birbirine yaklaştıkça alan büyür
+  (kare maksimum — üst düzey gözlem).
+- 18 birim kare + 40 cm ip deneyleri (kâğıt kareler ve ip simülasyonu).
+- Alan-çevre tablolarını doldurma-yorumlama.
+Seviye/oyun önerileri:
+- S1: "Halı Galerisi": kaydırıcılarla kenar değiştir; alan ve çevre
+  değerleri canlı güncellenir; 24 m² hedefini koru gibi görevler
+  (DİNAMİK DİKDÖRTGEN — bu dünyanın vitrin aracı).
+- S2: "Hedef Avı": alanı 24 m² VE çevresi 20 m olan dikdörtgeni bulma
+  (Mete'nin senaryosu); ardından 18 m² / 18 m ikilisi (dijital yazılım
+  görevi kitapta mevcut).
+- S2: Tablo doldurma yarışması (alan sabit → çevre değişken; çevre sabit
+  → alan değişken tabloları).
+- S3: "Çit Milyoneri": 40 cm ip → maksimum alan dikdörtgenini bul
+  (stratejik düşünme; kenarları doğal sayılı).
+- S4: Kavram D/Y seti: "Alanları eşit dikdörtgenlerin çevreleri eşittir"
+  (Y), "Çevre 20 m olan farklı kareler çizilebilir" (Y) vb.
+
+--- ETAP 3.4: UYGULAMALI PROBLEMLER VE PERFORMANS ---
+Kitap problemlerinin dijital karşılıkları (özgün senaryolarla):
+- P1 "Arsa-Ev Yerleştirici": 12×18 m arsaya 36 m² tabanlı ev → kaç farklı
+  tasarım (1×36 hariç sığmaz! 2×18, 3×12, 4×9, 6×6 — sığdırma kontrolü
+  oyunlaştırılmış; sürükle-bırak yerleştirme).
+- P2 "Parke Seçimi": 400×500 cm salon; parke türleri (20×20 cm 24 TL +
+  3000 TL işçilik; 50×20 cm 50 TL + 2800 TL) → toplam maliyet, en
+  ekonomik seçim (problem çözme adımları rehberli).
+- P3 "Şehir Planla": kareli krokiye yol/bisiklet yolu/evler/park/AVM/
+  okul/huzurevi yerleştirme; huzurevi çevresi, park alanı, güneş paneli
+  maliyeti (2×3 panel 1000 TL) hesaplama (kitap Problem 3).
+- P4 "Voleybol Sahası": 24×18 saha + 9 m/15 m serbest bölge → serbest
+  bölge alanı; 3 m reklam panosu kiralama maliyeti (750 TL/dak, 2 sa 30
+  dk, 2 maç — kitap Problem 4).
+- P5 "Kaykay Pisti": alanı 30 m², kenarları doğal sayılı pist + 1125 TL/m
+  çit → tüm modeller, maliyet tablosu, en uygun pist (kitap Problem 5).
+- SİNAV tarzı: metrekare fiyat karşılaştırma (A 1233 TL/2 m²... tarzı),
+  güvenlik şeridi maksimum alan (46 m çevre → maksimum alan seçenekleri
+  126/130/132/144), boya kapları (taban alanı × 15 kat boyama;
+  120 m² duvar; kap seçimi; minimum çevre duvarı), park krokisi
+  (karma alanlar, sıralama) — kitap Ölçme s. 164-166.
+- PERFORMANS GÖREVİ "PİKSEL BOYAMA" (kitap s. 155): kareli alanda aynı
+  çevreye VEYA aynı alana sahip farklı dikdörtgenlerden piksel sanatı
+  oluşturma; sanal sergi modu (tasarımlar galeride sergilenir; puanlama:
+  kriterlere uygunluk, özgünlük, estetik). Bu etkinlik sitenin yaratıcı
+  vitrini olmalı.
+
+===============================================================================
+6. EK DİJİTAL ÖZELLİKLER (kitap yapısıyla eşleşen)
+===============================================================================
+- ÖZ DEĞERLENDİRME FORMU (EK-1): her etap/tema sonunda 6 soruluk
+  yansıtıcı anket ("Neler öğrendim? Neyi iyi yaptım? Hangi konuda
+  zorlandım?...") — profil sayfasında tutulur.
+- ÖĞRENME GÜNLÜĞÜ: her dünya sonunda çocuk dostu günlük girişi
+  (yazı + emoji seçimi + yıldız oylaması), kronolojik saklanır.
+- AKRAN DEĞERLENDİRME: iki oyunculu/karşılıklı kontrol etkinlikleri
+  (aynı ekranda ya da kod ile eşleşen arkadaşla) — zihin haritası
+  kontrol listeleri otomatik puanlanır.
+- KONTROL LISTELERİ: açı ölçme etabı için kitaptaki 9 maddelik kontrol
+  listesi (açıölçeri doğru konumlandırdı mı vb.) oyuncu ilerlemesiyle
+  otomatik işaretlenir.
+- KAVRAM SÖZLÜĞÜ: kitaptaki sözlük terimleri (asetat, gönye, iletki,
+  pergel, kroki, çizgeç, dikme, çözümleme, bölük, düzgün çokgen vb.)
+  ikonlu kartlar hâlinde her an açılabilir.
+- E-İÇERİK BUTONLARI: kitapta karekodla verilen "dinamik matematik
+  yazılımı etkinlikleri" yerine, sitedeki simülatörler zaten dinamik
+  olmalı (açıölçer, pergel, gönye, dinamik dikdörtgen, çember çiftleri,
+  asetat katmanları).
+- KÜLTÜR VE DEĞERLER KÖŞESİ: kitaptaki bağlamlar (halı-kilim dokuma,
+  Topkapı/Süleymaniye geometrik süslemeleri, Atatürk'ün Geometri kitabı,
+  Öklid, Napier, TEKNOFEST, Millî Ağaçlandırma Günü, Paris 2024 voleybol)
+  "Keşfet" kartları olarak siteye serpiştirilmeli — oyun ilerlemesiyle
+  açılan koleksiyon kartları olarak gamlaştırılabilir.
+
+===============================================================================
+7. TEKNİK GEREKSİNİMLER (üst modele öneriler)
+===============================================================================
+- TEKNOLOJİ: Tek sayfa uygulama (SPA). Öneri: React + Vite (veya Next.js),
+  durum yönetimi için Zustand/Context; oyun tuvali için Canvas/SVG
+  (açıölçer, pergel, çizim simülasyonları SVG + pointer events ile);
+  animasyon için CSS/Framer Motion; ses için Web Audio (opsiyonel,
+  kapatılabilir).纯 HTML/CSS/JS tek dosya da kabul edilebilir minimum
+  sürüm için.
+- MATEMATİK GÖRSELLERİ: Tüm geometrik çizimler vektörel (SVG) çizilmeli;
+  bitmap kullanılmayacak. Derece işareti "°", açı yayı, köşe noktası
+  etiketleri (A, B, C) gibi detaylar doğru ve tutarlı.
+- ÇİZİM TAHAMMÜLÜ: açı çizim kontrollerinde ±1-2°, uzunluk kontrollerinde
+  ±2 mm tolerans.
+- DURUM VE KAYIT: localStorage anahtarları (ilerleme, XP, yıldızlar,
+  rozetler, günlük, tasarımlar). "Sıfırla" butonu.
+- RESPONSIVE: masaüstü + tablet (okul tabletleri); dokunmatik jestler
+  (sürükleme, döndürme) fareyle eşdeğer çalışmalı.
+- ERİŞİLEBİLİRLİK: yeterli renk kontrastı, renk körü dostu kodlama
+  (renk + şekil birlikte), sesli yönlendirme opsiyonu, büyük dokunma
+  alanları (min 44px).
+- PERFORMANS: görseller lazy-load; oyunlar 60 FPS hedef.
+- YAPILANDIRMA: Sorular/etkinlikler veri dosyalarında (JSON) tutulmalı
+  (soru metni, seçenekler, doğru cevap, ipucu, seviye, kazanım etiketi);
+  yeni soru eklemek kod değişikliği gerektirmemeli.
+- KOD DÜZENİ: bileşen yapısı (Map/Harita, LessonCard, GameEngine, Quiz,
+  Simulator:Protractor, Simulator:Compass, Simulator:Ruler, Progress,
+  Badges, Journal...), kazanım etiketleri her soruya iliştirilmeli
+  (örn. "M5-1.1-nokta").
+
+===============================================================================
+8. GÖRSEL TASARIM YÖNERGELERİ
+===============================================================================
+- STİL: parlak, oyunlu ama dikkat dağıtmayan; yuvarlatılmış köşeler,
+  yumuşak gölgeler; her dünya farklı renk teması (Dünya 1: mavi-geometrik,
+  Dünya 2: turuncu-sayı, Dünya 3: yeşil-mimari).
+- TİPOGRAFİ: çocuk okuryazarlığına uygun yuvarlak hatlı yazı tipi
+  (örn. Nunito/Baloo tarzı, Türkçe karakter destekli), başlık-gövde
+  kontrastı, 16px+ gövde.
+- ANKA REHBERİ: konuşma balonuyla konuşan, yeri sabit (sağ alt) rehber;
+  her ekranda 1-2 cümle yönlendirme; ipucu butonu.
+- GERİ BİLDİRİM: doğru → kısa konfeti + sıcak mesaj + neden doğrusu;
+  yanlış → nazik düzeltme + ipucu + tekrar deneme hakkı (ceza yok).
+- MİKRO-EĞLENCE: yıldız toplanınca Anka takla atar, rozet alınca parıltı.
+- SAYFA AKIŞI: Ana Menü → Dünya Haritası → Etap → (Ders → Oyun → Quiz)
+  → Ödül → Haritaya Dön. Maksimum 2 tıklamada her konuya ulaşılmalı.
+- SES: opsiyonel; doğru/yanlış/rozet sesleri; arka plan müziği
+  kapama düğmesi görünür.
+
+===============================================================================
+9. İÇERİK HAZIRLAMA KURALLARI (SORU HAVUZU)
+===============================================================================
+- Her etap için en az: 8 adet Seviye 1, 10 adet Seviye 2, 8 adet
+  Seviye 3, 6 adet Seviye 4 soru + 10 soruluk etap quizi.
+- Sayısal değerler: gezegen uzaklıkları, turist sayıları, fidan/adım/
+  fiyat gibi GERÇEKÇİ ve müfredat bağlamıyla uyumlu olmalı; sayılar
+  kitaptaki aralıklarla uyumlu (okuma-yazmada milyarlara kadar; işlemlerde
+  çok basamaklı; ölçmede mm hassasiyeti).
+- Her soruda: kazanım etiketi + ipucu + yanlış şıklar için ayırt edici
+  çeldiriciler (örn. basamak değeri − basamak adı karışıklığı, çevre-alan
+  karışıklığı, r-R karışıklığı).
+- Açık uçlu/çizimli sorularda otomatik doğrulama kriterleri tanımlanmalı
+  (örn. dikme çiziminde 90°±2°, dikdörtgen çiziminde kenarlar ızgaraya
+  hizalı).
+- Tüm metinler büyük/küçük harf Türkçe kurallarına uygun; açıklamalarda
+  kısa cümleler; her ekranda en fazla 2-3 cümle yönlendirme.
+
+===============================================================================
+10. MİNİMUM UYGULANABİLİR SÜRÜM (MVP) VE GENİŞLEME
+===============================================================================
+MVP (önce bunu üret):
+1) Ana harita + 3 dünya girişi + XP/yıldız kaydı (localStorage).
+2) Her dünyadan 1 vitrin simülatör: (D1) Açıölçer simülatörü,
+   (D2) Basamak tablosu + abaküs, (D3) Dinamik dikdörtgen (alan-çevre).
+3) Her dünyada 2 konu × 4 seviye oyun + etap quizi.
+4) Bir dünya finali sınavı + rozet sistemi + Anka rehberi.
+Genişleme: kalan tüm etaplar, performans atölyeleri (logo, piksel,
+Napier), günlük/öz değerlendirme, öğretmen paneli, iki oyunculu akran
+etkinlikleri, seslendirme.
+
+KABUL KRİTERLERİ:
+- 3 temanın tüm alt konuları (aşağıda listesi) en az bir oyunla
+  karşılanıyor; her kazanımın etiketi sorularda izlenebilir.
+- Siteyi 10 yaşındaki bir çocuk ebeveyn yardımı olmadan kullanabiliyor.
+- Türkçe karakterler ve matematik gösterimleri hatasız görünüyor.
+- İlerleme yenilemede korunuyor.
+
+EK A — KONU LİSTESİ (sitede karşılığı olan tüm konular, sırayla):
+T1.1 Nokta, doğru parçası, ışın, doğru + uzunluk ölçme
+T1.2 Açı kavramı (köşe, kol, isimlendirme) + açı çeşitleri (ön bilgi)
+T1.3 Çember-daire (merkez, yarıçap, çap) + pergel kullanımı
+T1.4 Dikme (⊥) ve düzlem
+T1.5 Temel çizim özellikleri (1 nokta→∞ doğru; 2 nokta→1 doğru; en kısa
+     yol; pergle eş parçalama; paralel doğrular //)
+T1.6 Açı ölçme (derece, açıölçer, tam 360° / doğru 180° / dik 90°, eş açı)
+T1.7 Doğruların durumları (kesişen, dik, paralel, çakışık; üç doğrunun
+     3 durumu; kesen)
+T1.8 Açı çiftleri (ters, komşu, tümler 90°, bütünler 180°)
+T1.9 Çokgenler (tanım, kenar/köşe/iç-dış açı, isimlendirme, düzgün çokgen,
+     köşegen)
+T1.10 Üçgenler (açılarına göre; kenarlarına göre; iç açılar toplamı 180°)
+T1.11 Üçgen inşası (kesişen çemberler; eşkenar-ikizkenar-çeşitkenar; Öklid)
+T2.1  Çok basamaklı sayıları okuma-yazma (bölük, basamak, abaküs,
+      milyarlar bölüğü)
+T2.2  Basamak değeri + çözümleme (genişletilmiş yazım, Mısır sembolleri)
+T2.3  Karşılaştırma-sıralama (>, <, kartlarla en büyük/en küçük)
+T2.4  Toplama-çıkarma (zihinden, tahmin, eksik bileşen)
+T2.5  Çarpma-bölme (kısa yollar, bileşenler, yuvarlama-yukarı yuvarlama)
+T2.6  Gerçek yaşam problemleri (10 adımlı problem çözme süreci)
+T3.1  Dikdörtgenin çevre uzunluğu Ç(ABCD)
+T3.2  Dikdörtgenin alanı A(ABCD) = a×b (birim kare, ters problemler)
+T3.3  Çevre-alan ilişkisi (aynı alan/farklı çevre, tersi)
+T3.4  Uygulamalı problemler (arsa, parke, çit, reklam, kroki) + piksel
+      sanatı performans görevi
+
+EK B — KİTAPTAKİ OYUN/ETKİNLİK → DİJİTAL KARŞILIK TABLOSU:
+Geombala (geometrik tombala)        → çok oyunculu eşleştirme oyunu
+Çokgen arama (fener+dosya)          → ışık hüzmesiyle şekil bulmaca
+Daire katlama (üçgen/altıgen)       → kâğıt katlama simülasyonu
+Kübik resim çizimi                  → geometrik sanat tuvali
+Alan kaplama oyunu (temel şekiller) → tetris tarzı kaplama bulmacası
+Sayı üstüne dikdörtgen çizme        → şanslı sayı çizim oyunu
+Asetat deneyleri                    → katman kaydırma laboratuvarı
+Pergelle çember/üçgen inşaları      → pergel simülatörü görev zinciri
+Zihin haritası                      → sürükle-bırak harita kurucu
+Piksel boyama                       → piksel sanat atölyesi + sanal sergi
+Napier'ın Kemikleri                 → çubuk hizalama çarpma aracı
+Performans görevleri (4 adet)       → atölye + puanlama anahtarı + galeri
+
+--- BİTİŞ NOTU (modele) ---
+Bu belgede her kazanım, seviye ve oyun önerisi doğrudan kaynak kitabın
+bölümlerinden çıkarılmıştır. Kodlamaya başlarken: (1) veri şemasını
+(ETAP → SEVİYE → OYUN/SORU) kur, (2) MVP'yi çalışır hâle getir,
+(3) kalan etapları EK A sırasıyla tamamla. Tüm metinler özgün olacak;
+kitaptan birebir cümle kopyalanmayacak.
+===============================================================================

@@ -1,0 +1,6548 @@
+
+===== SAYFA 1 =====
+Ortaokul ve İmam Hatip Ortaokulu
+MMateatematikmatik
+5.Sınıf
+DERS KİTABI
+Yazarlar
+Dr. Elif ALBAYRAK
+Adem ESATOĞLU
+Alim ALTUNKAYNAK
+Büşra YÜKSAL SARAY
+İbrahim KARASU
+Lütfü TUNÇ
+Mehmet KAVURMACI
+Menekşe BULAT
+Turgay KUMRU
+Yusra Nur KORKMAZ
+1. KİTAP
+===== SAYFA 2 =====
+EDİTÖR
+Prof. Dr. Çiğdem ARSLAN
+Doç. Dr. Candaş UYGAN
+Doç. Dr. Gamze KURT BİREL
+DİL UZMANI
+Vedat EĞİLMEZ
+GÖRSEL TASARIMCI
+Fatih GÜNDÜZ
+Selçuk YAKIŞAN
+Vildan ŞİMŞEK
+ÇOKLU ORTAM TASARIMCISI
+Fatma KAHYAOĞLU
+Gökhan KAHYAOĞLU
+Hafize AÇAR KAŞTAN
+Şerife KAÇMAZ
+PROGRAM GELİŞTİRME UZMANI
+Doç.Dr. Adnan TAŞGIN
+ÖLÇME VE DEĞERLENDİRME UZMANI
+Dr. Öğrt. Üyesi Mehtap AKTAŞ
+REHBERLİK UZMANI
+Dursun DAYAPOĞLU
+MİLLÎ EĞİTİM BAKANLIĞI YAYINLARI .......................................................................: 2024
+DERS KİTAPLARI DİZİSİ ............................................................................................: 9603
+Her hakkı saklıdır ve Millî Eğitim Bakanlığına aittir. Kitabın metin, soru ve şekilleri kısmen 
+de olsa hiçbir surette alınıp yayımlanamaz.
+ISBN: 978-975-11-8013-1
+Millî Eğitim Bakanlığı, Talim ve Terbiye Kurulu Başkanlığının 17.07.2024 tarih ve 
+110460159 sayılı yazısı ile eğitim aracı olarak kabul edilmiştir.
+ 
+Kurulca bu kitabın kabul edilmiş olması ders kitabından yayınevi ve yazarın/yazarların 
+sorumluluğunu kaldırmaz.
+===== SAYFA 3 =====
+Korkma, sönmez bu şafaklarda yüzen al sancak;  
+Sönmeden yurdumun üstünde tüten en son ocak.  
+O benim milletimin yldzdr, parlayacak;  
+O benimdir, o benim milletimindir ancak.  
+Çatma, kurban olaym, çehreni ey nazl hilâl! 
+Kahraman rkma bir gül! Ne bu şiddet, bu celâl? 
+Sana olmaz dökülen kanlarmz sonra helâl. 
+Hakkdr Hakk’a tapan milletimin istiklâl. 
+Ben ezelden beridir hür yaşadm, hür yaşarm. 
+Hangi çlgn bana zincir vuracakmş? Şaşarm! 
+Kükremiş sel gibiyim, bendimi çiğner, aşarm. 
+Yrtarm dağlar, enginlere sğmam, taşarm. 
+Garbn âfâkn sarmşsa çelik zrhl duvar,  
+Benim iman dolu göğsüm gibi serhaddim var. 
+Ulusun, korkma! Nasl böyle bir iman boğar, 
+Medeniyyet dediğin tek dişi kalmş canavar? 
+Arkadaş, yurduma alçaklar uğratma sakn; 
+Siper et gövdeni, dursun bu hayâszca akn. 
+Doğacaktr sana va’dettiği günler Hakk’n; 
+Kim bilir, belki yarn, belki yarndan da yakn
+Bastğn yerleri toprak diyerek geçme, tan:  
+Düşün altndaki binlerce kefensiz yatan. 
+Sen şehit oğlusun, incitme, yazktr, atan: 
+Verme, dünyalar alsan da bu cennet vatan. 
+Kim bu cennet vatann uğruna olmaz ki feda? 
+Şüheda fşkracak toprağ sksan, şüheda! 
+Cân, cânân, bütün varm alsn da Huda, 
+Etmesin tek vatanmdan beni dünyada cüda. 
+Ruhumun senden İlâhî, şudur ancak emeli: 
+Değmesin mabedimin göğsüne nâmahrem eli. 
+Bu ezanlar -ki şehadetleri dinin temeli-  
+Ebedî yurdumun üstünde benim inlemeli. 
+O zaman vecd ile bin secde eder -varsa- taşm, 
+Her cerîhamdan İlâhî, boşanp kanl yaşm, 
+Fşkrr ruh- mücerret gibi yerden na’şm; 
+O zaman yükselerek arşa değer belki başm. 
+Dalgalan sen de şafaklar gibi ey şanl hilâl! 
+Olsun artk dökülen kanlarmn hepsi helâl. 
+Ebediyyen sana yok, rkma yok izmihlâl; 
+Hakkdr hür yaşamş bayrağmn hürriyyet;  
+Hakkdr Hakk’a tapan milletimin istiklâl! 
+      Mehmet Âkif Ersoy 
+===== SAYFA 4 =====
+GENÇLİĞE HİTABE 
+Ey Türk gençliği! Birinci vazifen, Türk istiklâlini, Türk Cumhuriyetini, 
+ilelebet muhafaza ve müdafaa etmektir. 
+Mevcudiyetinin ve istikbalinin yegâne temeli budur. Bu temel, senin en 
+kymetli hazinendir. İstikbalde dahi, seni bu hazineden mahrum etmek 
+isteyecek dâhilî ve hâricî bedhahlarn olacaktr. Bir gün, istiklâl ve cumhuriyeti 
+müdafaa mecburiyetine düş ersen, vazifeye at lmak için, içinde bulunaca ğn 
+vaziyetin imkân ve ş eraitini dü şünmeyeceksin! Bu imkân ve şerait, çok 
+namüsait bir mahiyette tezahür edebilir. İstiklâl ve cumhuriyetine kastedecek 
+düşmanlar, bütün dünyada emsali görülmemi ş bir galibiyetin mümessili 
+olabilirler. Cebren ve hile ile aziz vatan n bütün kaleleri zapt edilmi ş, bütün 
+tersanelerine girilmiş, bütün ordular dağtlmş ve memleketin her köşesi bilfiil 
+işgal edilmiş olabilir. Bütün bu şeraitten daha elîm ve daha vahim olmak üzere, 
+memleketin dâhilinde iktidara sahip ol anlar gaflet ve dalâlet ve hattâ h yanet 
+içinde bulunabilirler. Ha ttâ bu iktidar sahipleri şahsî menfaatlerini, 
+müstevlîlerin siyasî emelleriyle tevhit edeb ilirler. Millet, fakr u zaruret içinde 
+harap ve bîtap düşmüş olabilir. 
+Ey Türk istikbalinin evlâd ! İşte, bu ahval ve ş erait içinde dahi vazifen, 
+Türk istiklâl ve cu mhuriyetini kurtarmakt r. Muhtaç oldu ğun kudret, 
+damarlarndaki asil kanda mevcuttur. 
+Mustafa Kemal Atatürk 
+===== SAYFA 5 =====
+GENÇLİĞE HİTABE 
+Ey Türk gençliği! Birinci vazifen, Türk istiklâlini, Türk Cumhuriyetini, 
+ilelebet muhafaza ve müdafaa etmektir. 
+Mevcudiyetinin ve istikbalinin yegâne temeli budur. Bu temel, senin en 
+kymetli hazinendir. İstikbalde dahi, seni bu hazineden mahrum etmek 
+isteyecek dâhilî ve hâricî bedhahlarn olacaktr. Bir gün, istiklâl ve cumhuriyeti 
+müdafaa mecburiyetine düş ersen, vazifeye at lmak için, içinde bulunaca ğn 
+vaziyetin imkân ve ş eraitini dü şünmeyeceksin! Bu imkân ve şerait, çok 
+namüsait bir mahiyette tezahür edebilir. İstiklâl ve cumhuriyetine kastedecek 
+düşmanlar, bütün dünyada emsali görülmemi ş bir galibiyetin mümessili 
+olabilirler. Cebren ve hile ile aziz vatan n bütün kaleleri zapt edilmi ş, bütün 
+tersanelerine girilmiş, bütün ordular dağtlmş ve memleketin her köşesi bilfiil 
+işgal edilmiş olabilir. Bütün bu şeraitten daha elîm ve daha vahim olmak üzere, 
+memleketin dâhilinde iktidara sahip ol anlar gaflet ve dalâlet ve hattâ h yanet 
+içinde bulunabilirler. Ha ttâ bu iktidar sahipleri şahsî menfaatlerini, 
+müstevlîlerin siyasî emelleriyle tevhit edeb ilirler. Millet, fakr u zaruret içinde 
+harap ve bîtap düşmüş olabilir. 
+Ey Türk istikbalinin evlâd ! İşte, bu ahval ve ş erait içinde dahi vazifen, 
+Türk istiklâl ve cu mhuriyetini kurtarmakt r. Muhtaç oldu ğun kudret, 
+damarlarndaki asil kanda mevcuttur. 
+Mustafa Kemal Atatürk 
+
+===== SAYFA 6 =====
+
+===== SAYFA 7 =====
+İÇİNDEKİLER
+  1.TEMA: GEOMETRİK ŞEKİLLER
+HAZIR MIYIZ? ......................................................................................................... 14
+BAŞLAYALIM ...........................................................................................................15
+TEMEL GEOMETRİK ŞEKİLLER VE ÖZELLİKLERİ .............................................. 17 
+       Nokta ................................................................................................................17
+       Çember .............................................................................................................26
+       Dikme ............................................................................................................... 29
+TEMEL GEOMETRİK ÇİZİMLERİN ÖZELLİKLERİ .................................................32
+       Performans Görevi ........................................................................................... 37
+AÇILARI ÖLÇME .....................................................................................................39
+AÇI NASIL ÖLÇÜLÜR? ...........................................................................................41
+DOĞRULARIN YOLCULUĞU ................................................................................. 45
+       İki Doğrunun Kesişimi .......................................................................................46
+       Düzlemde Açı Oluşturmayan Doğrular .............................................................48
+       İki Doğrunun Çakışması ...................................................................................48
+       Üç Doğrunun Paralelliği ....................................................................................51
+       Üç Doğrunun Bir Noktada Kesişimi ..................................................................52
+       Zihin Haritası Oluşturma ...................................................................................54
+       Üç Doğrunun İkişer İkişer Kesişimi ...................................................................55
+       İki Paralel Doğru ve Bir Kesen.......................................................................... 55
+DOĞRULARDAN ÇOKGENLERE........................................................................... 57
+ÇOKGENLERİN TEMEL ELEMANLARI ..................................................................62
+ÜÇGEN .................................................................................................................... 70
+ÜÇGEN İNŞASI .......................................................................................................77
+ÖLÇME VE DEĞERLENDİRME SORULARI .......................................................... 86
+12
+KİTABIMIZI TANIYALIM ...........................................................................................10
+7
+===== SAYFA 8 =====
+HAZIR MIYIZ? ......................................................................................................... 140
+BAŞLAYALIM ...........................................................................................................141
+DİKDÖRTGENİN ÇEVRE UZUNLUĞU ...................................................................142
+DİKDÖRTGENİN ALANI ..........................................................................................145
+DİKDÖRTGENDE ÇEVRE UZUNLUĞU VE ALAN ................................................. 150
+       Performans Görevi ........................................................................................... 155
+ÖLÇME VE DEĞERLENDİRME SORULARI .......................................................... 164
+  3.TEMA: GEOMETRİK NİCELİKLER
+  2.TEMA: SAYILAR VE NİCELİKLER (1):DOĞAL SAYILAR VE İŞLEMLER
+HAZIR MIYIZ? ......................................................................................................... ..94
+BAŞLAYALIM .............................................................................................................95
+DOĞAL SAYILAR VE İŞLEMLER............................................................................ ..97
+       Çok Basamaklı Doğal Sayıları Okuma ve Yazma ............................................ ..97
+       İzleme Testi .......................................................................................................108 
+HAZIR MIYIZ? ......................................................................................................... 110
+       Gerçek Yaşam Problemlerini Çözebilme ..........................................................111
+       Performans Görevi ........................................................................................... 124
+ÖLÇME VE DEĞERLENDİRME SORULARI .......................................................... 135
+92
+138
+8
+===== SAYFA 9 =====
+EK-1- ÖZ DEĞERLENDİRME FORMU ...................................................................167
+SÖZLÜK .................................................................................................................. 168
+CEVAP ANAHTARI KAREKODU .............................................................................168
+KAYNAKÇA ............................................................................................................. 169
+GÖRSEL VE GENEL AĞ KAYNAKÇASI KAREKODU ............................................169
+TÜRKİYE'NİN MÜLKİ İDARE BÖLÜMLERİ İLE KARA VE DENİZ 
+KOMŞULARI HARİTASI. ..........................................................................................170
+TÜRK DÜNYASI HARİTASI .....................................................................................171
+9
+===== SAYFA 10 =====
+KİTABIMIZI TANIYALIM
+Bu görselin bulunduğu 
+bölüm içeriğinde ilgili 
+değer işlenmiştir.
+Bu görselin bulunduğu 
+bölüm içeriğinde ilgili 
+eğilim işlenmiştir.
+Bu görselin bulunduğu 
+bölüm içeriğinde ilgili 
+okuryazarlık becerisi 
+işlenmiştir.
+Kitap genelinde kullanılan görseller ve açıklamaları aşağıda verilmiştir.
+Bu görselin bulundu-
+ğu bölüm içeriğinde 
+ilgili sosyal duygusal 
+öğrenme becerileri 
+işlenmiştir.
+Bu bölümde ön değerlendirme 
+çalışmasına yer verilmiştir.
+Bu bölümde temanın adına ve
+ içerdiği konulara yer verilmiştir.
+Bu bölümde tema sonunda öğrenil-
+mesi beklenen içeriğe yer verilmiştir.
+10
+===== SAYFA 11 =====
+KİTABIMIZI TANIYALIM
+95
+2. TEMA
+BAŞLAY ALIM
+Türkiye İstatistik Kurumundan (TÜİK) alı-
+nan verilere göre 2023 yılının son ayında 
+bazı ülkelerden İstanbul’u ziyarete gelen 
+turist sayısı yandaki tabloda verilmiştir.
+Ülkeler Turist Sayısı
+Almanya 97 577
+İngiltere 49 961
+İran 88 056
+Rusya 148 016
+Türkmenistan 9496
+1) Almanya’dan gelen turistlerin sayısını basamak tablosuna yerleştiriniz. Bölük ve 
+basamak adlarını belirleyiniz. Basamak değerlerini bulup sayının okunuşunu yazınız.
+2) Tabloya göre en az turistin geldiği ülkeyi belirleyiniz ve turist sayısını aşağıdaki 
+basamak tablosuna yerleştiriniz. Sayının bölük ve basamak adlarını belirleyiniz. Ba -
+samak değerlerini bulup sayının okunuşunu yazınız.
+Bölük Adları Binler Bölüğü Birler Bölüğü
+Sayı 9 7 5 7 7
+Basamak 
+Adları
+On binler 
+basamağı
+Binler   
+basamağı
+Yüzler 
+basamağı
+O n l a r         
+basamağı
+Birler           
+basamağı
+Basamak 
+Değeri 90 000 7000 500 70 7
+Okunuşu Doksan yedi bin beş yüz yetmiş yedi
+Bölük Adları
+Sayı
+Basamak 
+Adları
+Basamak 
+Değeri
+Okunuşu
+Tablo: Ülkeler ve Turist Sayıları
+(Genel ağdan alınmıştır.)
+Bu bölümde ön bilgiler kullanılarak 
+yeni konuya giriş etkinliklerine yer 
+verilmiştir.
+97
+2. TEMA
+Emre, fen bilimleri dersinde Güneş’e en yakın gezegenin Merkür, en uzak gezegenin Nep-
+tün, Dünya ile Ay arasındaki uzaklığın ise 384 400 km olduğunu öğrendi ve bu bilgiyi kardeşi 
+Merve ile paylaştı. Merve, “Acaba Dünya'mızın Güneş’e olan uzaklığı ne kadardır?” diye 
+düşündü.  Güneş'in Ay'dan daha uzak olduğunu bilen Merve, bu uzaklığın 600 000 km ola-
+bileceği tahmininde bulundu. Dünya’nın Güneş’e olan uzaklığını araştırmaya karar veren 
+Emre ve Merve’ye yardım ediniz. 
+Sizce Dünya’nın Güneş’e uzaklığı hakkında doğru ve güvenilir bilgiye ulaşmak için nasıl bir 
+araştırma süreci yürütülmelidir? Fikirlerinizi arkadaşlarınızla paylaşarak tartışınız.
+Emre ve Merve, Dünya’nın Güneş’e olan uzaklığını araştırırken diğer gezegenlerin de Gü-
+neş’e uzaklığını buldular. Buldukları sonuçları bir tabloda gösterdiler.
+Gezegenin İsmi Güneşe Uzaklığı
+Merkür 57 909 175 km
+Venüs 108 208 930 km
+Dünya 149 597 890 km
+Mars 227 936 640 km
+Jüpiter 778 412 020 km
+Satürn 1 426 725 400 km
+Uranüs 2 870 972 200 km
+Neptün 4 498 252 900 km
+Dünya’nın Güneş’e uzaklığını bulduk ama bu sayıyı okuyamıyorum. Bunun 
+için basamak tablosunu kullanabiliriz. Fakat ben yüz binler basamağından 
+sonra hangi basamağın geldiğini bilmiyorum. 
+... BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+...
+...
+Milyonlar 
+basamağı
+Yüz binler 
+basamağı
+On binler 
+basamağı
+Binler   
+basamağı
+Yüzler 
+basamağı
+Onlar   
+basamağı
+Birler    
+basamağı
+1 4 9 5 9 7 8 9 0
+Etkinlik 1Etkinlik 1 Çok Basamaklı Sayıları Okuyabiliyorum
+1. BÖLÜM: DOĞAL SAYILAR VE İŞLEMLER
+Çok Basamaklı Doğal Sayıları Okuma ve Yazma
+Yüz binler basamağından sonra milyonlar basamağı gelmektedir. O hâlde 
+basamak tablosunun soluna bir bölük daha ekleyerek okumaya çalışalım.
+Tablo: Gezegenlerin Güneşe Uzaklıkları
+(Genel ağdan alınmıştır.)
+Bu bölümde etkinliğin numarasına 
+ve adına yer verilmiştir.
+1. TEMA
+17
+Nokta
+Bir kâğıda kaleminizin ucunu değdirip kaldırınız.
+Oluşan iz ile günlük hayatınızda nerelerde karşılaştınız?
+Noktanın eni, boyu ve derinliği yoktur. Kalemin kâğıda veya tahtaya bir 
+defa dokunması ile meydana gelen iz bir nokta modelidir.
+1. BÖLÜM: TEMEL GEOMETRİK ŞEKİLLER VE ÖZELLİKLERİ
+GEOMETRİK GÖSTERİM SEMBOLLE GÖSTERİM OKUNUŞU
+A A A noktası 
+B B B noktası
+Aşağıda iki nokta arasını düz bir şekilde noktalarla doldurmaya çalışan öğrencilerin diyalo -
+ğunu inceleyiniz.
+Verilen diyaloğa göre aşağıdaki soruları cevaplandırınız.
+........ ...............................
+Aralarda boşluk 
+kalmamalı.
+Meydana gelen 
+şekli fark 
+edebildin mi? 
+Aynı hizada 
+yapmak çok zor.
+Etkinlik 1Etkinlik 1 İki Nokta Arasını Noktalarla Doldurma
+1) İki nokta arasını düz ve hiç boşluk kalmayacak biçimde noktalarla doldurursanız ortaya 
+nasıl bir şekil çıkar? Düşüncelerinizi yazarak arkadaşlarınızla tartışınız. 
+Bu bölümde kavramlarla ilgili bilgilere 
+yer verilmiştir.
+124
+SAYILAR VE NİCELİKLER
+Performans Görevi
+"Napier’ın Kemikleri"
+Sevgili öğrenciler, bu çalışmada "Napier’ın (Neypiyır) Kemikleri" ile ilgili araştırma yapa-
+rak ulaştığınız bilgileri panoda sergilemeniz ve "Napier’ın Kemikleri" tasarımı yapmanız 
+beklenmektedir.  Yapacağınız araştırmada güvenilir bilgiye ulaşma yollarını belirlemeniz 
+ve özgün tasarımlar oluşturmanız önemlidir.
+Çalışma öncesinde şu noktalara dikkat etmelisiniz.
+• Napier’ın hayatı ve çalışmaları ile ilgili araştırma yapınız.
+• "Napier’ın Kemikleri" ile ilgili görseller toplayınız.
+• "Napier’ın Kemikleri" ile ilgili yapılan tasarımları inceleyiniz.
+• Hazırlayacağınız panoda ve yapacağınız tasarımda kullanacağınız araç ve teknolojileri 
+belirleyiniz. 
+• Hazırlayacağınız tasarımın verilen tablodaki puanlama anahtarı ile değerlendirileceğine 
+dikkat etmelisiniz.
+Çalışma sırasında şu noktalara dikkat etmelisiniz.
+• Araştırma sırasında ulaştığınız bilgileri sade, anlaşılır, dikkat çekici bir şekilde düzenle-
+meye özen gösteriniz.
+• Düzenlediğiniz bilgileri panoya aktarırken görsellerden yararlanmayı unutmayınız. 
+• Tasarımınızı hazırlarken belirlediğiniz araç ve teknolojileri kullanınız.
+• Tasarımınızın estetik bir görünüme sahip özgün bir tasarım olmasına dikkat ediniz.
+Çalışma sonrasında
+Ekte verilen öz değerlendirme formunu doldurunuz (EK1).
+Bu bölümde öğrenciyi araştırma 
+yapmaya yönlendiren göreve yer 
+verilmiştir.
+11
+===== SAYFA 12 =====
+GEOMETRİ
+B
+B
+D
+A
+BA
+A
+C
+BA
+BC
+OA
+Çember�n merkez�
+Yarıçap
+r
+Çap
+R
+M
+1. TEMA
+GEOMETRİK ŞEKİLLER
+• Temel Geometrik Çizimler ve İnşalar 
+• Açı Ölçme 
+• Çokgenler ve Çember
+Bu temada
+ ►temel geometrik çizimleri yapabilmeniz,
+ ►açı ölçme ve çokgenin özelliklerini incelemede mate-
+matiksel araç ve teknolojiden yararlanabilmeniz,
+ ►düzlemde kesişen iki çemberin merkezleri ve kesişim 
+noktalarından biri ile inşa edilen üçgenlere yönelik 
+muhakeme yapabilmeniz
+beklenmektedir.
+Anahtar Kavramlar
+nokta, doğru, doğru parçası, ışın, açı, çember, daire, merkez, çap, yarıçap, dik -
+me, düzlem, paralellik, tam açı, doğru açı, dik açı, derece, eş açı, çakışık doğrular, 
+kesen, komşu açı, ters açı, tümler açılar, bütünler açılar,  iç açı, dış açı, çokgen, 
+düzgün çokgen, dar açılı üçgen, dik üçgen, geniş açılı üçgen
+Sembol ve Gösterimler
+⊥ , // , AB, d, [AB], |AB|, [AB, ()mA W , ()mA BC\ , ABC& , r, R, ˚
+Karekodu okutarak özet içeriğe 
+ulaşabilirsiniz.
+Karekodu okutarak tema içeriğine 
+ulaşabilirsiniz.
+12
+===== SAYFA 13 =====
+GEOMETRİ
+B
+B
+D
+A
+BA
+A
+C
+BA
+BC
+OA
+Çember�n merkez�
+Yarıçap
+r
+Çap
+R
+M
+13
+===== SAYFA 14 =====
+HAZIR MIYIZ?
+1) Aşağıdaki şekillerin kenar uzunluklarını milimetre cinsinden cetvelle ölçünüz ve üzerine 
+yazınız.
+Daha önce açıların dar, dik ve geniş açı olarak sınıflandırıldığını görmüştünüz. Bunu yapar-
+ken de yüzeyi dikdörtgen şeklinde olan bir kitabın köşesini dik açı olarak referans almıştınız. 
+Şimdi de yüzeyi dikdörtgen şeklinde olan bir kapının veya masanın köşesini örnek alarak 
+aşağıda gösterilen açıları dar, dik ve geniş açı olarak sınıflandırınız.
+2) Aşağıda Türk mimarisinde önemli yere sahip bazı eserlerden görseller verilmiştir. Görsel-
+lerdeki geometrik şekilleri inceleyiniz. Hangi geometrik şekillerle karşılaştınız? 
+Sizce incelediğiniz eserlerin mimarları, bu şekilleri oluşturmak için hangi matematiksel araç-
+ları kullanmış olabilirler? Arkadaşlarınızla tartışınız.
+Süleymaniye Camii’nin 
+tavan süslemelerinden 
+bir örnek
+Sultanahmet Camii'nin 
+kapı süslemelerinden bir 
+örnek
+Topkapı Sarayı’nın iç 
+kapı süslemelerinden bir 
+örnek
+14
+
+===== SAYFA 15 =====
+BAŞLAY ALIM
+1) Matematik dersinde geometrik şekilleri çizmek için birçok araç kullanıyorsunuz. 
+Geçmiş yıllarda çizimler için kullandığınız araçlara örnekler verebilir misiniz? 
+2) Bu araçlarla hangi geometrik şekilleri çizebiliyordunuz? 
+3) Verdiğiniz örneklerden farklı olarak geometrik şekilleri çizmek ya da verilen bir açının çeşi -
+dinin ne olduğunu belirlemek için hangi araçlar kullanılabilir? 
+4) Üçgen, kare ve dikdörtgenin oluşturulmasında farklı araç veya yöntemler kullanabilir miyiz?
+5) Dijital ortamlarda bu çizimler için kullanılan araçları hiç gördünüz mü?
+15
+
+===== SAYFA 16 =====
+GEOMETRİK ŞEKİLLER
+16
+7) Uçakla Tekirdağ’dan Hatay’a ve Muğla’dan Ağrı’ya seyahat ettiğinizi düşününüz. Uçaklar 
+her zaman düz bir rota izlemez fakat siz uçakların düz gittiğini varsayınız. Bu durumda han-
+gi illerin üzerinden geçerdiniz? 
+8) Her iki yolculukta da üzerinden geçeceğiniz ortak bir il var mı? 
+9) Uçuş takip sistemlerinde uçağın izlediği rota görülebilmektedir. Siz de uçuşlar sırasında 
+uçakların izleyeceği rotayı harita üzerine noktalar koyarak belirleyiniz.
+6) Aşağıdaki Türkiye'nin Mülki İdare Bölümleri ile Kara ve Deniz Komşuları Haritasını inceleyi-
+niz. Haritadaki illerden hangilerini ziyaret etmek isterdiniz.
+ÖĞRENME GÜNLÜĞÜ
+Tema boyunca öğrenme sürecinizi daha iyi görebilmek için bir öğrenme günlüğü tutunuz. 
+Günlüğünüzü aşağıdaki soruları düşünerek yazabilirsiniz.
+•  Neleri yeni öğrendim?
+•  Öğrendiklerimi başka yerlerde veya durumlarda nasıl kullanabilirim?
+•  Öğrendiklerimden yola çıkarak neleri merak ettim?
+•  Öğrendiklerim içinde benim için en önemli yer neresiydi?
+•  Öğrendiklerim arasında hangi kısımları anlamakta zorlandım?
+•  Öğrendiklerimden en çok hangi kısımda keyif aldım?
+!
+!
+!!
+!
+!
+!
+!
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!!
+!
+!
+!!
+!
+! !
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+! !
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+Adana
+Adıyaman
+Afyonkarahisar
+Ağrı
+Amasya
+Ankara
+Antalya
+Artvin
+Aydın
+Balıkesir
+Bilecik
+Bingöl
+Bitlis
+Bolu
+Burdur
+Bursa
+Çanakkale
+Çankırı
+Çorum
+Denizli
+Diyarbakır
+Edirne
+Elâzığ
+Erzincan
+Erzurum
+Eskişehir
+Gaziantep
+Giresun
+Gümüşhane
+Hakkâri
+Hatay
+Isparta
+Mersin
+İstanbul
+İzmir
+Kars
+Kastamonu
+Kayseri
+Kırklareli
+Kırşehir
+Kocaeli
+Konya
+Kütahya
+Malatya
+Manisa
+Kahramanmaraş
+MardinMuğla
+Muş
+Nevşehir
+Niğde
+Ordu Rize
+Sakarya
+Samsun
+Siirt
+Sinop
+Sivas
+Tekirdağ
+Tokat
+Trabzon
+Tunceli
+Şanlıurfa
+Uşak Van
+Yozgat
+Zonguldak
+Aksaray
+  Bayburt
+Karaman
+Kırıkkale
+Batman
+Şırnak
+Bartın
+Ardahan
+Iğdır
+Yalova
+Karabük
+Kilis
+Osmaniye
+Düzce
+Kızılırmak N.
+Kura N.
+Aras N.
+Fırat N.
+EG
+E
+D
+ENİZİ
+K      A      R      A       D      E     N     İ       Z
+A K D E N İ Z
+Tiflis
+Erivan
+Lefkoşa
+G Ü R C İ S T A N
+ERMENİSTAN
+NAHÇIVAN Ö.C.
+(AZERBAYCAN)
+İ R A N
+I R A K
+LÜBNAN
+B U L G A R İ S T A N
+YUN A N İ S T A N
+Erenköy
+GÜNEY KIBRIS RUM YÖNETİMİ
+KUZEY KIBRIS
+TÜRK CUMHURİYETİ
+Fırat N.
+Meriç N.
+Aras N.
+Van
+Gölü
+Gediz N.
+Sakarya N.
+Kızılırmak N.
+Dicle N.
+S U R İ Y E
+Asi N.
+ACARA Ö.C.
+Sofya
+Bükreş
+R O M A N Y A
+Beyrut
+U K R A Y N A
+R U S Y A F E D E R A S Y O N U
+Şam
+Doğu
+Kudüs
+FİLİSTİN
+Tel Aviv
+İSRAİLM I S I R
+L İ B Y A
+FİLİSTİN
+AZERBAYCAN
+Bağdat
+Atina
+Tuna N.
+Tuz
+Gölü
+Urumiye
+Gölü
+Gazze Şeridi
+Batı Şeria
+MARMARA
+DENİZİ
+HAZAR
+DENİZİ
+Gökçeada
+Ceyhan N.
+Nil N.
+Süveyş K.
+Dicle N.
+Kura N.
+Çoruh N.
+Yeşilırmak N.
+Büyük Menderes N.
+Bakırçay N.
+Küçük Menderes N.
+Seyhan N.
+Göksu N.
+Bozcaada
+50°D
+45°D
+45°D
+40°D
+40°D
+35°D
+35°D
+30°D
+30°D
+25°D
+25°D
+40°K 40°K
+35°K 35°K
+TÜRKİYE'NİN MÜLKİ İDARE BÖLÜMLERİ İLE
+KARA VE DENİZ KOMŞULARI HARİTASI
+BAŞKENT
+İL MERKEZİ Elâzığ!
+GÖL
+!
+AKARSU
+ÜLKE SINIRI
+ÖZERK BÖLGE SINIRI
+Ankara
+Harita Genel Müdürlüğü tarafından üretilmiştir.
+0 100 200 300 40050
+km
+!
+!
+!!
+!
+!
+!
+!
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!!
+!
+!
+!!
+!
+! !
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+! !
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+Adana
+Adıyaman
+Afyonkarahisar
+Ağrı
+Amasya
+Ankara
+Antalya
+Artvin
+Aydın
+Balıkesir
+Bilecik
+Bingöl
+Bitlis
+Bolu
+Burdur
+BursaÇanakkale
+Çankırı
+Çorum
+Denizli
+Diyarbakır
+Edirne
+Elazığ
+Erzincan
+Erzurum
+Eskişehir
+Gaziantep
+Giresun
+Gümüşhane
+Hakkâri
+Hatay
+Isparta
+Mersin
+İstanbul
+İzmir
+Kars
+Kastamonu
+Kayseri
+Kırklareli
+Kırşehir
+Kocaeli
+Konya
+Kütahya
+Malatya
+Manisa
+Kahramanmaraş MardinMuğla
+Muş
+Nevşehir
+Niğde
+Ordu Rize
+Sakarya
+Samsun
+Siirt
+Sinop
+Sivas
+T ekirdağ
+T okat
+Trabzon
+Tunceli
+Şanlıurfa
+Uşak Van
+Yozgat
+Zonguldak
+Aksaray
+  Bayburt
+Karaman
+Kırıkkale
+Batman
+Şırnak
+Bartın
+Ardahan
+Iğdır
+Yalova
+Karabük
+Kilis
+Osmaniye
+Düzce
+Kızılırmak N.
+Kura N.
+Aras N.
+Fırat N.
+EG
+E
+D
+EN
+İZİ
+K      A      R      A       D      E     N     İ       Z
+A K D E N İ Z
+Tiflis
+Erivan
+Lefkoşa
+G Ü R C İ S T A N
+ERMENİSTAN
+NAHÇIVAN Ö.C.
+(AZERBAYCAN)
+İ R A N
+I R A K
+LÜBNAN
+B U L G A R İ S T A N
+YUN A N İ S T A N
+Erenköy
+GÜNEY KIBRIS RUM YÖNETİMİ
+KUZEY KIBRIS
+TÜRK CUMHURİYETİ
+Fırat N.
+Meriç N.
+Aras N.
+V an
+Gölü
+Gediz N.
+Sakarya N.
+Kızılırmak N.
+Dicle N.
+S U R İ Y E
+Asi N.
+ACARA Ö.C.
+Sofya
+Bükreş
+R O M A N Y A
+Beyrut
+U K R A Y N A
+R U S Y A F E D E R A S Y O N U
+Şam
+Doğu
+Kudüs
+FİLİSTİNT el Aviv
+İSRAİLM I S I R
+L İ B Y A
+FİLİSTİN
+AZERBAYCAN
+Bağdat
+Atina
+Tuna N.
+Tuz
+Gölü
+Urumiye
+Gölü
+Gazze Şeridi
+Batı Şeria
+MARMARA
+DENİZİ
+HAZAR
+DENİZİ
+Gökçeada
+Ceyhan N.
+Nil N. Süveyş K.
+Dicle N.
+Kura N.
+Çoruh N.Yeşilırmak N.
+Büyük Menderes N.
+Bakırçay N.
+Küçük Menderes N.
+Seyhan N.
+Göksu N.
+50°48°
+46°
+46°
+44°
+44°
+42°
+42°
+40°
+40°
+38°
+38°
+36°
+36°
+34°
+34°
+32°
+32°
+30°
+30°
+28°
+28°
+26°
+26°
+24°
+24°22°
+44° 44°
+42° 42°
+40° 40°
+38° 38°
+36° 36°
+34° 34°
+32° 32°
+TÜRKİYE'NİN MÜLKİ İDARE BÖLÜMLERİ İLE 
+KARA VE DENİZ KOMŞULARI HARİTASI
+0 100 200 300 40050
+Km
+BAŞKENT
+İL MERKEZİ Elazığ!
+GÖL
+!
+AKARSU
+ÜLKE SINIRI
+ÖZERK BÖLGE SINIRI
+Ankara
+Bozcaada
+===== SAYFA 17 =====
+1. TEMA
+17
+Nokta
+Bir kâğıda kaleminizin ucunu değdirip kaldırınız.
+Oluşan iz ile günlük hayatınızda nerelerde karşılaştınız?
+Noktanın eni, boyu ve derinliği yoktur. Kalemin kâğıda veya tahtaya bir 
+defa dokunması ile meydana gelen iz bir nokta modelidir. Noktalar her 
+zaman büyük harf ile isimlendirilir.
+GEOMETRİK GÖSTERİM SEMBOLLE GÖSTERİM OKUNUŞU
+A A A noktası 
+B B B noktası
+Aşağıda iki nokta arasını düz bir şekilde noktalarla doldurmaya çalışan öğrencilerin diyalo -
+ğunu inceleyiniz.
+Verilen diyaloğa göre aşağıdaki soruları cevaplandırınız.
+........ .. .. .. .. .......................
+Aralarda boşluk 
+kalmamalı.
+Meydana gelen 
+şekli fark 
+edebildin mi? 
+Aynı hizada 
+yapmak çok zor.
+Etkinlik 1Etkinlik 1 İki Nokta Arasını Noktalarla Doldurma
+1) İki nokta arasını düz ve hiç boşluk kalmayacak biçimde noktalarla doldurursanız ortaya 
+nasıl bir şekil çıkar? Düşüncelerinizi yazarak arkadaşlarınızla tartışınız. 
+TEMEL GEOMETRİK ŞEKİLLER VE ÖZELLİKLERİ
+===== SAYFA 18 =====
+GEOMETRİK ŞEKİLLER
+18
+İki nokta arasında düz bir şekilde hizalanmış  noktaların oluşturduğu 
+şekle doğru parçası denir.
+............................. .
+2) Aşağıdaki boş alanda iki nokta belirleyerek aralarını noktalarla düz bir şekilde doldurunuz.
+3) Noktaları tek tek koymak yerine bunun için nasıl bir araç kullanabilirsiniz? Düşüncelerinizi 
+yazarak arkadaşlarınızla tartışınız. 
+Uzunluğunu dikkate almadan düz bir çizgi çizmeniz gerektiğinde üze -
+rinde birimlerin yer almadığı ölçüsüz cetveli kullanabilirsiniz. Bu araç 
+çizgeç olarak da isimlendirilir. Günlük hayatta kalem, uç kutusu gibi 
+nesnelerin düz kenarlarını da çizgeç yerine kullanabilirsiniz. 
+GEOMETRİK GÖSTERİM SEMBOLLE GÖSTERİM OKUNUŞU
+BA [AB] veya [BA] AB doğru parçası veya
+BA doğru parçası
+===== SAYFA 19 =====
+1. TEMA
+19
+Yaptığınız işlemin sonunda ortaya çıkan şekli arkadaşlarınızla karşılaştırarak düşünceleri -
+nizi paylaşınız.
+Yaptığınız işlemin sonunda ortaya çıkan şekli arkadaşlarınızla karşılaştırarak düşünceleri -
+nizi paylaşınız.
+Aşağıdaki alana bir doğru parçası çiziniz. 
+Daha sonra doğru parçasının bir ucundan itibaren çizgeç yardımıyla aynı hizada noktalar 
+koymaya başlayarak noktaları devam ettiriniz. 
+Aşağıdaki alana bir ışın çiziniz. 
+Daha sonra çizgeç yardımıyla ışının tersi yönde ve aynı hizada noktalar koymaya başlaya-
+rak noktaları devam ettiriniz.
+Bir noktadan başlayarak aynı hizada sonsuza kadar giden noktaların 
+oluşturduğu şekle ışın denir. 
+Etkinlik 2Etkinlik 2 Doğru Parçasından Işına
+Etkinlik 3Etkinlik 3 Işından Doğruya
+GEOMETRİK GÖSTERİM SEMBOLLE GÖSTERİM OKUNUŞU
+CB [BC BC ışını
+===== SAYFA 20 =====
+GEOMETRİK ŞEKİLLER
+20
+İki ucu da sonsuza kadar giden düz bir şekilde hizalanmış noktaların 
+oluşturduğu şekle doğru denir. 
+GEOMETRİK GÖSTERİM SEMBOLLE GÖSTERİM OKUNUŞU
+BA AB AB doğrusu
+d d d doğrusu
+Aşağıdaki geometrik çizim, gösterim ve okunuşları doğru bir şekilde eşleştiriniz.
+LK
+BA
+M N
+[KL]
+KL ışını
+KL doğru parçası
+AB doğrusu
+AB doğru parçası
+NM
+NM ışını
+KL
+[NM
+[AB
+AB
+NM doğru parçası
+Örnek 1
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı etkinliğine 
+ulaşabilirsiniz.
+===== SAYFA 21 =====
+1. TEMA
+21
+Yukarıdaki şekilde doğru, doğru parçası ve ışınları belirleyiniz. Bunların sembolle gösterim-
+lerini aşağıdaki ilgili alana yazınız.
+BA C
+Aşağıdaki noktaları harflerle isimlendirerek istenen şekilleri çiziniz ve sembolle gösteriniz.
+Doğru Parçası
+Sembolle Gösterim
+    .......................
+Işın DoğruIşın
+Örnek 2
+Örnek 3
+Etkinlik 4Etkinlik 4 Uzunluğu Ölçülebilen Geometrik Çizimler
+Doğru, doğru parçası ve ışından hangilerinin uzunlukları ölçülebilir? Düşüncelerinizi aşağı-
+daki alana yazınız.
+Doğru Doğru Parçası Işın
+Sembolle Gösterim
+    .......................
+Sembolle Gösterim
+    .......................
+Sembolle Gösterim
+    .......................
+===== SAYFA 22 =====
+GEOMETRİK ŞEKİLLER
+22
+[AB] ve [BA] aynı doğru parçasının gösterimi için kullanılabilir. 
+Doğru parçasının uzunluğu |AB| şeklinde gösterilir.
+IABI = 5 cm
+BA
+“AB doğru 
+parçasının uzun-
+luğu 5 santimetre-
+dir (cm).” yazmak 
+çok yorucu!
+AB doğru parçasının uzunluğu 5 cm’dir.
+IABI = 5 cm 
+Uzun yazmana gerek yok. 
+“IABI = 5 cm” 
+şeklinde yazabilirsin.
+Örnek 4
+4 cm
+DOĞRU PARÇASI SEMBOLLE GÖSTERİM UZUNLUĞUN GÖSTERİMİ
+L
+K
+[KL] IKLI = 4 cm
+2 cm
+D
+C
+3 cm R
+T
+Aşağıdaki tabloyu örnekteki gibi doldurunuz.
+===== SAYFA 23 =====
+1. TEMA
+23
+Aşağıdaki her bir görselde birer doğru parçası modeli belirleyiniz. Belirlediğiniz doğru par -
+çası modellerini isimlendirerek sembolle gösteriniz. Bu doğru parçalarının uzunluklarını mi-
+limetre cinsinden cetvel ile ölçüp sonuçlarını doğru parçalarının altına yazınız.
+Aşağıdaki noktaları isimlendiriniz. Daha sonra ilk kutuda kırmızı noktadan, diğer kutularda 
+da sizin seçtiğiniz herhangi bir noktadan diğer noktalara ayrı ayrı ışınlar çiziniz. 
+Etkinlik 5Etkinlik 5 Açı Oluşturma
+Yaptığınız işlemin sonunda ortaya çıkan şekli arkadaşlarınızla karşılaştırarak düşün-
+celerinizi paylaşınız.
+Örnek 5
+===== SAYFA 24 =====
+GEOMETRİK ŞEKİLLER
+24
+AÇI SEMBOLLE 
+GÖSTERİM İSİMLENDİRME
+C
+B
+A
+,,BAC CABA W%% BAC açısı, CAB açısı ya 
+da A açısı
+E
+D
+F
+K
+L M
+R
+P
+S
+Bir ışının dönme miktarı olarak tanımla -
+nan açı başlangıç noktaları aynı olan iki 
+ışının oluşturduğu şekil olarak da tanım -
+lanabilir.
+Açıyı oluşturan ışınlara açının kolları, ışın-
+ların başlangıç noktasına da açının köşesi 
+denir.
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı etkinliğine 
+ulaşabilirsiniz.
+Örnek 6
+Aşağıdaki tabloyu örnekteki gibi doldurunuz.
+Köşe
+Açının 
+kolu
+Açının 
+koluA
+C
+B
+a)
+b)
+c)
+ç)
+===== SAYFA 25 =====
+1. TEMA
+25
+Geombala iki kişiyle oynanan bir oyundur. 
+Gerekli olan malzemeler: kalem, makas ve torba.
+Malzemelerin hazırlanışı: 
+• Eşit büyüklükte 20 adet kâğıt parçası kesilir (Makas kullanırken dikkatli olunuz.).
+• Şekil 1'de verilen temel geometrik kavramlara ait çizimler veya gösterimler, bu kâğıt 
+parçalarına yazılarak torbaya atılır. 
+• Şekil 2 ve Şekil 3'teki kartlar hazırlanır. 
+Oynanışı: 
+• Şekil 2 ve Şekil 3’teki kartlar oyunculara dağıtılır. 
+• Bir kişi (Oyunculardan biri de olabilir.) torbayı alır ve sırayla kâğıt çekmeye başlar. 
+• Torbadan çekilen kâğıt tüm oyunculara gösterilir. 
+• Kartında, gösterilen temel geometrik kavrama ait çizim veya gösterim bulunan oyuncu, 
+kartındaki ilgili bölümün üstünü boş bir kâğıt parçası ile kapatır. 
+• Kartlardan birindeki tüm gösterimlerin üstü kâğıtla kaplandığında oyun biter ve bu kartın 
+sahibi oyunu kazanır.
+AB doğru 
+parçası B noktası CD doğrusu KLM açısı MN ışını
+AB doğru 
+parçasının 
+uzunluğu
+KL doğrusu C noktası CD ışını MN doğru 
+parçası
+ABC açısı AB doğrusu CD doğru 
+parçası
+YZ doğru 
+parçasının 
+uzunluğu
+Z noktası
+AB ışını YZ doğrusu KL doğru 
+parçası MN doğrusu KL ışını
+Şekil-1
+Etkinlik 6Etkinlik 6 Geombala
+===== SAYFA 26 =====
+GEOMETRİK ŞEKİLLER
+26
+[AB YZ [KL] B
+KLM% [MN]
+[CD [KL IYZI AB
+Şekil-3
+Etkinlik 7Etkinlik 7 Noktalardan Çembere
+Canan öğretmen 5/B sınıfını pikniğe götürmüştür. Öğretmen, rastgele bir noktaya geçip  şe-
+rit metreyi 3 metre açarak öğrencilerine “Herkes bu şerit metreyi kullanarak benden 3 metre 
+uzaklıkta olacak şekilde yerleşsin ve el ele tutuşsun.” demiştir. Sizce öğretmen çocuklarla 
+hangi geometrik şekli oluşturmaya çalışmıştır? Oluşan şekilde öğretmenin ve öğrencilerin 
+bulunduğu yerler neyi temsil etmektedir? Düşüncelerinizi aşağıya yazınız ve arkadaşları -
+nızla tartışınız.
+Çember
+[AB] MN IABI
+[CD] [MN CD Z
+KL C ABC%
+Şekil-2
+===== SAYFA 27 =====
+1. TEMA
+27
+Etkinlik 8Etkinlik 8 Pergel Kullanımı
+Canan öğretmenin öğrencileri ile oluştur -
+maya çalıştığı geometrik şekli aşağıdaki 
+kutuya çizmeye çalışınız. Bunun için cetvel 
+kullanarak verilen noktaya eşit uzaklıkta 
+olabildiğince fazla sayıda nokta koyunuz. 
+Koyduğunuz noktaların sayısı arttıkça şekil 
+daha da belirginleşecektir.
+Noktaları tek tek işaretleyerek oluşturmak yerine araç yardımıyla bu şekli daha düzgün ve 
+kolay bir biçimde çizilebilir misiniz? Düşüncelerinizi yazınız. Daha sonra arkadaşlarınızla  
+paylaşarak tartışınız.
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı 
+etkinliğine ulaşabilirsiniz.
+A
+4
+A
+5
+A
+2
+A
+3
+OA
+1
+O O O O
+Pergel kullanılırken önce pergelin kolları arasında rastgele bir açıklık oluşturulur. Daha son-
+ra pergelin sivri ucu herhangi bir noktaya konur ve sabitlenir. Pergelin kalem takılan diğer 
+ucu bu sivri uç etrafında döndürülür. Böylece çember oluşturulur. 
+Sizler de pergelin kolları arasındaki açıklığı değiştirerek aşağıdaki kareli zemine farklı çem-
+berler çiziniz ve bunları arkadaşlarınızın çizimleriyle karşılaştırınız. 
+(Pergel kullanırken dikkatli olunuz.)
+===== SAYFA 28 =====
+GEOMETRİK ŞEKİLLER
+28
+Düz bir yüzeyde merkez olarak belirlenen bir noktaya eşit uzaklıkta -
+ki noktaların oluşturduğu geometrik şekle çember denir. Merkez ile 
+çember üzerindeki herhangi bir noktayı birleştiren doğru parçasına 
+yarıçap denir ve “r” ile gösterilir. Çemberin iki noktasını merkezden 
+geçecek şekilde birleştiren doğru parçasına çap denir ve “R” ile gös-
+terilir. 
+Pergelle bir çember çizilirken pergelin sivri ucu çemberin merkezine 
+yerleştirildiğinde kolların uçları arasındaki mesafe çemberin yarıçapı-
+nın uzunluğuna eşittir. 
+Çemberin merkezi
+Yarıçap (r)
+Çap (R)
+M
+Dairenin merkezi
+Yarıçap (r)
+Çap (R)
+M
+Bir çember ile bu çemberin iç kısmındaki tüm noktaların oluşturduğu 
+geometrik şekle daire denir.  Çemberde olduğu gibi dairede de mer-
+kez, yarıçap ve çap bulunur.
+Hulahop ve yüzük birer çember modelidir. Bozuk para ve yuvarlak 
+masanın üst yüzeyi ise birer daire modelidir.
+===== SAYFA 29 =====
+1. TEMA
+29
+Mühendis Zeynep Hanım, atık sula -
+rı binanın çatısından zemine en kısa 
+yoldan taşımak istiyor. Sizce numara-
+landırılmış borulardan hangisi bu iş 
+için en uygundur?
+ 1 2 3
+Örnek 8
+Örnek 7
+Sizce ahşap bloklar zemine nasıl ko-
+numlandırılmıştır? 
+Düşüncelerinizi arkadaşlarınızla 
+paylaşarak tartışınız.
+Etkinlik 9Etkinlik 9 Ahşap Bloklar
+Dikme
+Pergel kullanarak yarıçap uzunlukları eşit olan çemberler çiziniz.
+===== SAYFA 30 =====
+GEOMETRİK ŞEKİLLER
+30
+Alttaki alana bir doğru çiziniz ve doğrunun dışında bir nokta belirleyiniz. Belirlediğiniz nokta-
+yı doğru ile birleştiren farklı doğru parçaları çiziniz. Bu doğru parçalarının çizdiğiniz doğruya 
+olan uzaklıkları için ne söyleyebilirsiniz? 
+En kısa doğru parçası sizce nasıl çizilir?
+Bu doğru parçasını çizmek ve onun en kısa olduğundan emin olmak için nasıl bir araç kul -
+lanmanız gerekir?
+Aşağıda gönye kullanılarak doğrular çizilmiştir. Hangi numaralı doğruların birbirine 
+dik olduğunu görsellerin altındaki noktalı yere yazınız.
+..... numaralı doğru ile ..... numaralı doğru ..... numaralı doğru ile ..... numaralı doğru
+1
+4
+5
+6
+2
+3
+Bir doğruya dışındaki bir noktadan dik çizilen doğru 
+parçasına dikme denir. Diklik “┴” sembolü ile gösterilir 
+ve [AB] ┴ CD yazılır. Bir doğruya dışındaki bir nokta -
+dan dikme çizebilmek için “gönye” kullanılabilir.
+Örnek 9
+Etkinlik 10Etkinlik 10 Doğruya Dikme Çizme
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı etkinliğine 
+ulaşabilirsiniz.
+A
+C DB
+===== SAYFA 31 =====
+1. TEMA
+31
+Düzlem, kenarları ve kalınlığı olmayan düz bir yüzeyin geometrik 
+modelidir. Her yönden sonsuza kadar uzanır.
+Etkinlik 11Etkinlik 11 En Kısa Doğru Parçasını Çizme
+Etkinlik 12Etkinlik 12 Nereye Çiziyoruz?
+Aşağıdaki noktalardan verilen doğrulara en kısa doğru parçalarını uygun araç ile çiziniz. 
+Yaptığınız çizimleri arkadaşlarınızla paylaşınız.
+Nokta, doğru parçası, ışın, doğru ve açıyı araç ve teknoloji kullanarak çizmeyi öğrendiniz. 
+Bu çizimleri yaptığınız yüzeyleri yazınız.
+Bu çizimleri gerçekleştirdiğiniz yüzeylerin ortak özelliği nedir?
+a) b)
+c) ç)
+A
+d
+n
+C
+D
+r
+m
+B
+===== SAYFA 32 =====
+GEOMETRİK ŞEKİLLER
+32
+TEMEL GEOMETRİK ÇİZİMLERİN ÖZELLİKLERİ
+Merhaba arkadaşlar! Ben Anka. Size bir sanat akımından bahsetmek istiyorum. Geçtiğimiz 
+ay bir sanal müzeyi ziyaret ettim. Kandinsky (Kandinski) ve Picasso (Pikasso)’nun resimleri 
+ile karşılaştım. Geometrik şekillerden oluşan resimlere kübik resim deniyormuş. Ülkemizde 
+de bu akımda eserler ortaya koyan sanatçılar varmış. Nurul-
+lah Berk, Cemal Tollu, Abidin Dino, Maide Arel bu ressamlar-
+dan bazılarıymış. Matematik derslerinden birinde geometrik 
+çizimler yaparken aklıma bu resimler gelmişti. Sonra ben de 
+bir kübik resim yapıp sizlerle paylaşmak istedim. Siz de be -
+nim gibi bu tarz eserleri merak ederseniz T.C. Kültür ve Tu -
+rizm Bakanlığının sanal müze sayfasını ziyaret edebilirsiniz. 
+Görsel 1.1'deki resimde, matematik derslerinde öğrendiğiniz 
+geometrik çizimlerden hangilerini görüyorsunuz?
+Çizim araçları kullanarak aşağıdaki alana kübik bir resim çiziniz. Hangi geometrik çizimleri 
+kullandığınızı arkadaşlarınızla paylaşınız.
+Resmi yaparken hangi geometrik şekilleri çizmek için hangi matematiksel araçları kullandınız? 
+(Genel ağdan alınmıştır.)
+Görsel 1.1
+===== SAYFA 33 =====
+1. TEMA
+33
+Etkinlik 1Etkinlik 1 Köprü ve Yol Yapımı
+Nehrin iki yakasını birbirine bağlamak için doğru modeli şeklinde yol ve köprü yapılmak 
+isteniyor. 
+a) A noktasından geçip nehrin karşı yakasına uzanan kaç farklı köprü yapılabilir? Çizerek 
+gösteriniz. Arkadaşlarınızın çizdiği köprü modellerini inceleyiniz.
+A
+b) B ve C noktasından nehre kadar en kısa yol nasıl yapılır? Çizerek gösteriniz. Arkadaşla-
+rınızın çizdiği yolları inceleyiniz. Çizdiğiniz yolların uzunluklarını karşılaştırınız.
+BC
+===== SAYFA 34 =====
+GEOMETRİK ŞEKİLLER
+34
+Etkinlik 2Etkinlik 2
+Çemberle Eşit Uzunlukta Doğru Parçaları 
+Oluşturma
+MALZEMELER
+Ölçüsüz cetvel
+Kâğıt
+Pergel
+Kalem
+A B
+a) Betül, pergelin açıklığını değiştirmeden KL ışınını kesen dört 
+çember çizimi yapmıştır. Ardından bu çemberlerin ışını kestiği nok -
+taları P, R, S, T olarak isimlendirmiştir. Betül bu çizimler sonucunda 
+ışının başlangıç noktasından itibaren yan yana eşit uzunlukta [KP], 
+[PR], [RS] ve [ST]'nın oluştuğunu fark etmiştir. Daha sonra KL ışının-
+dan yan yana eşit uzunlukta doğru parçaları kesen çemberleri nasıl 
+çizdiğini merak etmemiz için 2, 3 ve 4. çember çizimlerini silmiştir. 
+Betül'ün bu çemberleri nasıl çizdiğini nedenleriyle tartışınız. 
+c) Köprü, görseldeki D ve E noktalarından geçecek şekilde yapılmak istenseydi kaç farklı köp-
+rü modeli çizimi yapılabilirdi? Çizerek gösteriniz. Arkadaşlarınızın yaptığı çizimleri inceleyiniz.
+E
+D
+• Bir noktadan sonsuz doğru geçer.
+• İki noktadan sadece bir doğru geçer.
+• Bir doğruya dışındaki bir noktadan yalnız bir dikme çizilebilir.
+• Bir doğruya dışındaki farklı noktalardan eşit veya farklı uzunluklar-
+da dikmeler çizilebilir.
+K R TSP L
+Aynı çizimi A noktasını merkez alarak AB ışını üzerinde yapınız ve çizdiğiniz ilk çemberin AB 
+ışını ile kesişim noktasını isimlendiriniz. İkinci çemberi çizerken pergelin sivri ucunu nereye 
+yerleştirdiğinizi açıklayınız. Çizdiğiniz her yeni çemberin ışını kestiği noktaları isimlendiriniz. 
+Çizdiğiniz çemberlerin neden AB ışınının başlangıç noktasından itibaren yan yana eş doğru 
+parçaları oluşturduğunu açıklayınız.
+===== SAYFA 35 =====
+1. TEMA
+35
+b) Zeynep pergel kullanarak ABC açısının kollarını kesen bir çember çizmiştir. Ardından 
+çemberin açının kollarını kestiği noktaları K ve L olarak isimlendirmiş ve açının kolları 
+üzerinde eşit uzunlukta [BK] ve [BL]'nın oluştuğunu fark etmiştir. Zeynep çemberi nasıl 
+çizdiğini merak etmemiz için çember çizimini silmiştir. Zeynep’in bu çemberi nasıl çizdi-
+ğini nedenlerinizle birlikte tartışınız. Pergel kullanarak aşağıdaki DEF açısının kolların -
+dan eşit uzunlukta doğru parçaları kesen bir çember çiziniz.
+D
+B
+C
+E
+K
+L
+F
+A
+Gönye ile aşağıdaki doğruya 3 cm uzaklıkta olan birden fazla 
+nokta belirleyiniz. Doğruya göre aynı taraftaki noktaları ölçüsüz 
+cetvelle birleştiriniz. Oluşan doğrunun aşağıdaki doğruyla nasıl 
+bir ilişkisi olduğunu arkadaşlarınızla tartışınız.
+Etkinlik 3Etkinlik 3
+Bir Doğruya Eşit Uzaklıktaki 
+Noktalar
+MALZEMELER
+Gönye,
+ölçüsüz cetvel
+Yanda AD doğrusuna eşit uzaklıktaki 
+noktaların oluşturduğu BC doğrusu 
+çizilmiştir. Günlük hayattan AD ve BC 
+doğrularının birbirlerine göre durumla-
+rına benzeyen örnekler veriniz.
+Örnek 1
+B C
+DA
+===== SAYFA 36 =====
+GEOMETRİK ŞEKİLLER
+36
+Aşağıda “nokta, doğru parçası, çember ve dikme” kullanılarak EREN ve ÇİĞDEM isimleri 
+yazılmıştır.
+Örnek 3
+Yandaki kitap görselinin sayfa kenarları üzerine çizili doğru -
+lardan paralel olanları belirleyiniz. Belirlediğiniz paralel doğ -
+ruları paralellik sembolü ile gösteriniz ve bu gösterimlerin 
+okunuşunu karşılarına yazınız.
+A
+D
+B
+E
+C
+F
+Sembolle 
+Gösterimi Okunuşu
+Örnek 2
+Bir doğruya eşit uzaklıkta ve aynı doğrul-
+tudaki tüm noktalar bir doğru oluşturur. AB 
+ve KL doğruları arasındaki uzaklık değiş-
+mediği için bu doğrulara paralel doğrular 
+denir. “//” paralellik sembolüdür. Sembolle 
+AB // KL şeklinde yazılır. “AB doğrusu, KL 
+doğrusuna paraleldir.” şeklinde okunur. 
+Tren rayları ve elektrik telleri paralel doğ-
+rulara örnek olarak verilebilir.
+A
+K L
+B
+===== SAYFA 37 =====
+1. TEMA
+37
+Buna göre siz de aşağıdaki kareli zemine aynı geometrik şekilleri kullanarak adınızı yazınız.
+Performans Görevi
+Tasarım Yapıyorum
+Bu çalışmada belirlediğiniz bir alanda (logo, kitap kapağı, halı veya kilim deseni, çini gibi) 
+tasarım yapmanız ve tasarımınızı panoda sergilemeniz beklenmektedir. Yapacağınız ta -
+sarımda araç ve teknolojileri etkin kullanarak kişisel tasarım sürecinize uygun bir planlama 
+yapmanız ve özgün bir tasarım ortaya çıkarmanız önemli olacaktır.
+Çalışma öncesinde şu noktalara dikkat etmelisiniz.
+• Tasarım süreçleri bireyin yaratıcılık yeteneği ile bağlantılı olarak estetik zevklerin ön 
+planda olduğu bir süreçtir. Bunun için hayal gücünüzü kullanmalı ve çalışmak istediğiniz 
+bir alanı seçmelisiniz.
+• Tasarım süreci öncesinde ilgilendiğiniz alanda yapılmış örnek çalışmaları incelemelisiniz.
+• Yapacağınız tasarımda kullanmayı planladığınız araç ve teknolojileri belirlemeli ve bu 
+araçlarla alıştırmalar yapmalısınız.
+• Hazırlayacağınız tasarımın Tablo 1'deki puanlama anahtarı ile değerlendirileceğine dik-
+kat etmelisiniz.
+===== SAYFA 38 =====
+GEOMETRİK ŞEKİLLER
+38
+Tablo 1: Tasarım Yapıyorum Performans Görevi İçin Bütüncül Dereceli Puanlama Anahtarı
+Seviye Gösterge
+5
+(Çok İyi)
+Öğrenci araç ve teknolojiyi kullanmış; çember, doğru, doğru parçası, ışın 
+modellerinin hepsini kullanmış; özgün ve estetik bir tasarım oluşturmuş 
+ve panoda sergilemiştir.
+4
+(İyi)
+Öğrenci araç ve teknolojiyi kullanmış; çember, doğru, doğru parçası, ışın 
+modellerinin hepsini kullanmış; özgün ve estetik bir tasarım oluşturmuş 
+fakat panoda sergilememiştir.
+3
+(Orta)
+Öğrenci araç ve teknolojiyi kullanmış; çember, doğru, doğru parçası, ışın 
+modellerinin hepsini kullanmış fakat özgün ve estetik bir tasarım oluştu-
+ramamıştır.
+2
+(Zayıf)
+Öğrenci araç ve teknolojiyi kullanmış fakat çember, doğru, doğru parça-
+sı, ışın modellerinin yalnızca bazılarını kullanmıştır.
+1
+(Çok 
+Zayıf)
+Öğrenci araç ve teknolojiyi kullanmadan tasarım yapmıştır.
+0
+(Yetersiz) Öğrenci hiç tasarım yapmamış veya tasarımı hiçbir kriteri karşılamamıştır.
+Çalışma sırasında şu noktalara dikkat etmelisiniz.
+• Tasarımınızda çember, doğru, doğru parçası ve ışın modellerini kullanmalısınız.
+• Tasarımınızda araç ve teknolojileri uygun şekilde kullanmalısınız.
+• Tasarımınızda düzgün ve estetik bir görünüme sahip olmak için akılda kalıcılık, renk 
+uyumu, özgünlük gibi kriterleri göz önünde bulundurunuz.
+• Tamamladığınız tasarımlarınızı arkadaşlarınızla beraber dikkatli bir şekilde panoya asınız.
+Çalışma sonrasında;
+• Ek - 1'de verilen öz değerlendirme formunu doldurunuz.
+===== SAYFA 39 =====
+1. TEMA
+39
+AÇILARI ÖLÇME
+Yukarıdaki görselde verilen dolabın kapağının ne kadar açık olduğunu nasıl ifade edersiniz? 
+Benzer şekilde makasın, pergelin veya cımbızın kollarının ne kadar açık olduğu hakkında 
+ne söyleyebilirsiniz? Bu aletlerin kolları arasındaki açıklığı tam olarak ölçebilir misiniz? Bu 
+ölçme işlemini yapmak için hangi araçları kullanırsınız?
+Açıları ölçmek için daire şeklinde bir kâğıdı katlayarak kendi ölçme biriminizi oluşturabi -
+lirsiniz. Bunun için daire şeklinde bir kâğıt kesiniz ve bu kâğıdı aşağıdaki adımları takip 
+ederek katlayınız.
+Etrafınızda belirlediğiniz birkaç açıyı bu birimle ölçünüz ve sonuçları defterlerinize yazıp 
+arkadaşlarınızın sonuçlarıyla karşılaştırınız. Arkadaşlarınızla ölçtüğünüz aynı açı için so -
+nuçlarınız aynı çıktı mı? Sizce ortak bir açı ölçme birimine ihtiyaç yok mu?
+4. Adım3. Adım2. Adım1. Adım
+
+===== SAYFA 40 =====
+GEOMETRİK ŞEKİLLER
+40
+Bir tam açı 360 eş açıya bölündüğünde oluşan her bir açının ölçüsüne 1 derece denir ve "o" 
+sembolü ile gösterilir. Açıları ölçmek için kullanılan araç, standart ölçü birimlerinden oluş -
+muş açıölçerlerdir. 
+Daireyi daha fazla sayıda 
+eş parçaya bölebilir miyiz?
+Olabilir, belki de 
+200’e bölmeliyiz.
+100’e bölsek olur mu?
+Belki de başka bir 
+sayıya bölmeliyiz.
+Arkadaşlar, yaptığım araştırmalara 
+göre eski bir uygarlık daireyi 360 eş 
+dilime bölüyormuş. 
+Açının aynı zamanda bir ışının dönme miktarı olduğunu öğrenmiştiniz. Bir ışının bir tam 
+dönüşü ile oluşan açıya tam açı, bir tam açının yarısına da doğru açı denir. 
+Tam açı ve doğru açı, açıölçerler kullanılarak aşağıda gösterilmiştir. Sizce açı ölçme biri-
+mi bir tam açının 360 eş diliminden biri olabilir mi? Fikirlerinizi nedenleriyle açıklayınız.
+===== SAYFA 41 =====
+1. TEMA
+41
+AÇI NASIL ÖLÇÜLÜR?
+Etrafınızda belirlediğiniz açıları kendi oluşturduğunuz açı ölçme birimleriyle ölçmüştünüz. 
+Şimdi bu açıları açıölçerle ölçünüz ve elde ettiğiniz değerleri arkadaşlarınızın ölçümleriyle 
+karşılaştırınız.
+Açının kolları uzatılsa da ölçüsünde herhangi bir değişiklik olmaz.
+Aşağıdaki açıları isimlendirerek açıölçerle ölçünüz ve açı ölçülerini sembolle gösteriniz.
+Açıölçer kullanılarak bir 
+açının ölçüsü belirlenirken 
+açının köşesi açıölçerin 
+merkezine yerleştirilir. 
+Daha sonra açının kolla-
+rından biri 0
+o
+ yi gösterecek 
+şekilde ayarlanır. Bu du-
+rumda açının diğer kolu-
+nun açıölçer de gösterdiği 
+değer, açının ölçüsüdür.
+A
+B
+C
+SEMBOLLE GÖSTERİM
+AÇININ ÖLÇÜSÜNÜN GÖSTERİMİ
+,,ABC CB AB W%%
+m ABC 45
+o
+=]g%
+m CBA 45
+o
+=]g%
+m B 45
+o
+=^hW
+a) b) c)
+ç) d) e)
+Örnek 1
+===== SAYFA 42 =====
+GEOMETRİK ŞEKİLLER
+42
+Aşağıdaki ölçüye uygun açıları verilen açıölçeri kullanarak oluşturunuz.
+a) 20
+o
+b) 110
+o
+c) 135
+o
+d) 75
+o
+e) 160
+o
+ç) 80
+o
+Örnek 2
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı 
+etkinliğine ulaşabilirsiniz.
+===== SAYFA 43 =====
+1. TEMA
+43
+Aşağıda ölçüsü verilen açıyı açıölçer kullanarak çiziniz.
+a) 180
+o
+b) 90
+o
+c) 45
+o
+ç) 60
+o
+d) 360
+o
+e) 150
+o
+Örnek 3
+Dik açının ölçüsü 90
+o
+,
+ 
+doğru açının ölçüsü 180
+o
+ ve
+  
+tam açının ölçüsü 
+360
+o 
+dir.
+===== SAYFA 44 =====
+GEOMETRİK ŞEKİLLER
+44
+Ölçüleri birbirine eşit olan açılara eş açılar denir.
+Evet Hayır
+Derece kavramını tam açıyla ilişkilendirerek açıkladı.
+Dik açının ölçüsünü belirledi.
+Doğru açının ölçüsünü belirledi.
+Tam açının ölçüsünü belirledi.
+Dar açıların ölçülerinin hangi aralıkta olduğunu söyledi.
+Geniş açıların ölçülerinin hangi aralıkta olduğunu söyledi.
+Açıölçeri açı üzerinde doğru konumlandırdı.
+Verilen bir açıyı ölçtü.
+Ölçüsü verilen açıyı oluşturdu.
+Verilen bir açıya eş bir açı oluşturdu.
+Kontrol Listesi
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı 
+etkinliğine ulaşabilirsiniz.
+Aşağıdaki açıları açıölçerle ölçerek aynı ölçüye sahip yeni bir açı çiziniz.
+Örnek 4
+c) 
+b) 
+a) 
+===== SAYFA 45 =====
+1. TEMA
+45
+DOĞRULARIN YOLCULUĞU
+Elektrik telleri birbirlerine temas etmez. 
+Sizce bu tellerin birbirine göre durumu nasıl ifade 
+edilebilir?
+Kaldırım taşlarının birleşme yerindeki çizgilerde ha-
+reket eden karıncalar, belli noktalarda karşılaşabilir. 
+Sizce karıncaların karşılaşmasının sebebi nasıl ifa-
+de edilebilir?
+Etkinlik 1Etkinlik 1 İki Doğrunun Yolculuğu
+Asetat kâğıtlarının üzerine yandaki gibi 
+birer doğru çizerek aşağıdaki adımları 
+uygulayınız.
+a) İki asetat kâğıdını rastgele üst üste koyunuz. Doğrular arasında oluşan açıların çeşidini 
+tahmin ediniz.
+b) Asetat kâğıtlarını farklı şekillerde üst üste koyduğunuzda doğruların birbirine göre durum-
+larına bağlı olarak oluşabilecek farklı açılar hakkında arkadaşlarınızla tartışınız.
+c) Oluşabilecek tüm farklı durumların çizimlerini aşağıdaki kutulara yapınız.
+MALZEMELER
+İki adet şeffaf
+asetat kâğıdı,
+asetat kalemi,
+cetvel,
+açıölçer
+1. Durum 2. Durum 3. Durum 4. Durum
+===== SAYFA 46 =====
+GEOMETRİK ŞEKİLLER
+46
+İki doğrunun bir noktada ke -
+sişmesi ile oluşan iki ayrı du -
+rum yanda verilmiştir. 
+Buna göre aşağıdaki soruları 
+cevaplandırınız.
+İki Doğrunun Kesişimi
+A F
+M
+HC
+D
+KL
+B
+E
+a) İki ayrı durumdaki bu doğruların ortak noktasını belirleyiniz.
+b) Belirlediğiniz ortak noktada oluşan açıları çeşitlerine göre aşağıdaki tabloya yazınız.
+Dar Açı Dik Açı Geniş Açı
+Düzlemde yalnız bir ortak noktası bulunan 
+doğrulara kesişen doğular denir.
+İki doğrunun kesişiminde iki dar ve iki geniş 
+açı veya dört dik açı meydana gelir.
+İki doğrunun kesişiminde ölçüleri toplamı 
+180
+o
+ olan açılar oluşur.
+Kesişim Noktası
+ç) Çizimlerini yaptığınız her bir durumda oluşan açıları ölçerek isimlendiriniz. Daha sonra 
+tahminlerinizle karşılatırarak aşağıdaki tabloyu doldurunuz.
+d) Belirlediğiniz açıları tahminlerinizle karşılaştırarak ulaştığınız sonucu arkadaşlarınızla 
+paylaşınız.
+Eş olan 
+açılar
+Ölçüleri 
+toplamı 180
+o
+ 
+olan açılar
+Oluşan dar 
+açılar
+Oluşan dik 
+açılar
+Oluşan geniş 
+açılar
+1. Durum
+2. Durum
+3. Durum
+4. Durum
+Durumlar
+Açılar
+A
+B C
+E
+D
+===== SAYFA 47 =====
+1. TEMA
+47
+Etkinlik 2Etkinlik 2
+Kâğıt Katlayarak Açı 
+Belirleme
+1. Adım: Kısa kenarları çakışacak şekilde A4 kâğıdını ikiye katla-
+yınız. Katladığınız kâğıdı açarak oluşan katlama izine cetvel yar -
+dımı ile bir doğru modeli çiziniz.
+2. Adım: Uzun kenarları çakışacak şekilde A4 kâğıdını ikiye katlayınız. Katladığınız kâğıdı 
+açarak oluşan katlama izine cetvel yardımı ile bir doğru modeli çiziniz.
+A
+B
+C DE
+Bu doğru modellerini göz önünde bulundurarak aşağıdaki soruları cevaplandırınız.
+a) Köşesi AB ve CD doğrularının ortak noktası olan aşağıdaki açıların ölçülerini yazınız.
+MALZEMELER
+Bir adet A4 kâğıdı, 
+kalem, cetvel, 
+açıölçer
+m CEA =^h% m DEA =^h% m DEB =^h% m CEB =^h%
+b) Belirlediğiniz açı ölçülerine göre AB doğrusu ile CD doğrusu arasında nasıl bir ilişki oldu-
+ğunu açıklayınız.
+A
+B
+İki doğrunun keşistiği noktada oluşan açıların öçü-
+sü 90
+o
+ ise bu doğrulara dik doğrular denir. 
+Sembolle AB ┴ CD yazılır. “AB doğrusu, CD doğ-
+rusuna diktir.” diye okunur.
+A
+C D
+B
+Aşağıdaki adımları uygulayınız.
+===== SAYFA 48 =====
+GEOMETRİK ŞEKİLLER
+48
+Yandaki kareli zeminde, iki doğrunun birbirine göre durumların -
+dan biri verilmiştir. Bu durumları göz önünde bulundurarak aşa -
+ğıdaki soruları cevaplandırınız.
+a) AB ve CD doğrularının kesiştiği bir nokta var mıdır?
+b) Bu doğrular ile bir açı oluşturulabilir mi?
+c) Açı oluşturmayan doğruların birbirine göre durumları nasıl ifa-
+de edilebilir?
+AC
+BD
+Düzlemde Açı Oluşturmayan Doğrular
+Paralel doğrular düzlemde kesişmeyen doğru-
+lardır. Ortak noktası olmadığından paralel doğ-
+rular açı oluşturmaz. 
+A
+C D
+B
+Yanda birbirine bitişik dizilmiş özdeş 
+kaldırım taşları modeli verilmiştir. Bu 
+kaldırım taşları modeli üzerine çizil -
+miş AB, CD ve EF doğrularının birbir-
+lerine göre durumlarını belirleyerek 
+aşağıdaki noktalı yerlere yazınız.
+ a) AB ile EF doğrusu ................    b) CD ile EF doğrusu ................
+Örnek 1
+Yandaki şekilde iki doğrunun üst üste çizildiği bir durum 
+verilmiştir. Bu doğruları oluşturan tüm noktalar ortak 
+mıdır? 
+İki Doğrunun Çakışması
+Tüm noktaları ortak olan doğrulara çakışık doğrular  denir.
+Bu doğrular çakışıktır.
+A B C D
+FE
+===== SAYFA 49 =====
+1. TEMA
+49
+Yandaki kareli zemin üzerine doğrular çizil -
+miştir. Buna göre bu doğruların birbirlerine 
+göre durumlarını belirleyiniz.
+a) AN doğrusu ile BC doğrusu ...............      b) AN doğrusu ile ED doğrusu ............... 
+c) ED doğrusu ile LM doğrusu ...............      ç) BC doğrusu ile FH doğrusu ............... 
+d) GK doğrusu ile LM doğrusu ...............      e) FH doğrusu ile AN doğrusu ............... 
+Örnek 2
+B
+CA
+D
+E
+Etkinlik 3Etkinlik 3 Açı Çeşitleri
+MALZEMELER
+ Kalem, 
+açıölçer
+Yukarıda bir makasın açık hâli üzerine doğrular çizilmiştir. Doğruların kesiştiği noktadaki 
+açıları açıölçer yardımıyla ölçerek aşağıdaki soruları cevaplandırınız.
+a) Doğruların kesiştiği noktadaki açılardan kaç tanesi dar, kaç tanesi geniş açıdır? 
+b) Belirlediğiniz açı çeşitlerinden ters yöne bakan açı çiftleri hangileridir?
+c) Belirlediğiniz açı çeşitlerinden ters yöne bakan açıların ölçülerini karşılaştırarak ulaştığı -
+nız sonucu yazınız.
+ç) Belirlediğiniz açılardan köşeleri ve birer kolları ortak olan açı çiftlerini yazınız.
+B
+N
+C D
+E
+FH
+M
+L
+K
+G
+A
+===== SAYFA 50 =====
+GEOMETRİK ŞEKİLLER
+50
+a) Ters açı çiftlerini belirleyerek bu açıları sembolle gösteriniz.
+b) Komşu açı çiftlerini belirleyerek bu açıları sembolle gösteriniz.
+ 
+Etkinlik 4Etkinlik 4 Üç Doğrunun Yolculuğu
+Örnek 3
+Yandaki doğruların kesişimi ile oluşan açıları isim -
+lendiriniz. 
+İsimlendirdiğiniz açıların ölçülerini açıölçer ile 
+belirleyerek aşağıdaki soruları cevaplandırınız.
+En az iki doğrunun kesişmesi ile oluşan ve zıt yönlere bakan açılara 
+ters açılar denir. Ters açıların ölçüleri birbirine eşittir. 
+Köşeleri ile birer kolları ortak olan ve ayrıca diğer kolları ortak kolun 
+farklı tarafında bulunan açılara komşu açılar denir.
+A D
+E
+CB
+AC ve BD doğrularının kesişiminde AED 
+ile BEC ve AEB ile DEC açıları ters açı -
+lardır.
+AC ve BD doğrularının kesişiminde AED 
+ile DEC, DEC ile CEB, CEB ile BEA, 
+BEA ile AED açıları komşu açılardır.
+Üç doğrunun bir noktada kesişmesi ile oluşan üç ayrı durum aşağıda verilmiştir.
+a) Doğruların arasında oluşan açıların çeşidini tahmin ediniz. 
+b) Oluşan açıları isimlendirip, ölçülerini açıölçer ile belirleyerek bu açıların sembolle göste-
+rimlerini yazınız. 
+1. Durum 2. Durum 3. Durum
+===== SAYFA 51 =====
+1. TEMA
+51
+İki veya daha fazla uçağın birbirilerine eşit mesafede 
+uçuşuna “kol uçuşu” denir. Yandaki görsel 1.2'de Türk 
+Yıldızları'nın kol uçuşu ve arkalarında bıraktığı egzoz 
+izi görülmektedir. 
+Buna göre aşağıdaki soruları cevaplandırınız.
+a) Uçakların arkalarında bıraktığı egzoz izini doğru olarak düşününüz ve bu izlerin birbirle -
+rine göre durumlarını yorumlayınız.
+b) Uçakların egzoz izleri üzerine doğrular çizip isimlendiriniz. Bu doğruların birbirlerine göre 
+durumlarını sembolle ifade ediniz.
+Üç Doğrunun Paralelliği
+Yandaki doğrular sembolle AB // CD // EF 
+şeklinde yazılır. C
+E
+A
+D
+F
+B
+c) Bu iki durumu inceleyerek aşağıdaki tabloyu doldurunuz.
+ç) Bu iki durumda oluşan açı çeşitlerinin sayısına göre ulaştığınız çıkarımları ayrı ayrı yazınız.
+d) Üç doğrunun oluşturduğu açıları göz önünde bulundurarak üçten fazla doğrunun oluştura-
+bileceği açıların çeşidi hakkındaki fikirlerinizi yazıp arkadaşlarınızla tartışınız.
+Oluşan dar açı 
+sayısı
+Oluşan dik açı 
+sayısı
+Oluşan geniş açı 
+sayısı
+1. Durum
+2. Durum
+3. Durum
+Durumlar
+Açı Çeşidi
+Görsel 1.2
+Üç doğrunun aynı noktada kesiştiği durumda iki geniş ve dört dar açı,  
+iki dik ve dört dar açı veya 6 dar açı oluşur.
+
+===== SAYFA 52 =====
+GEOMETRİK ŞEKİLLER
+52
+Yanda üç ana yolun buluştuğu kavşak görseli veril -
+miştir. Bu yolların üzerine birer doğru modeli çizilmiş-
+tir. Sizce çizilen model üzerinde kavşak neyi temsil 
+eder? Yorumlayınız. 
+Üç Doğrunun Bir Noktada Kesişimi
+Asaf, defterine B noktasında kesişen AC, DF ve EH doğrularını yukarıdaki gibi çizmiştir. 
+m FBC =^h%  32
+O
+ olduğuna göre aşağıdaki soruları cevaplandırınız.
+a) Ölçüleri toplamı 90
+o
+ olan komşu açı çiftlerini yazınız.
+b) Ölçüleri toplamı 180
+o
+ olan komşu açı çiftlerini yazınız.
+c) Komşu olmayıp ölçüleri toplamı 90
+o
+ olan  açı çiftlerini yazınız.
+ç) Komşu olmayıp ölçüleri toplamı 180
+o
+ olan  açı çiftlerini yazınız.
+Ölçüleri toplamı 90
+o
+ olan iki açıya tümler açılar denir.
+Ölçüleri toplamı 90
+o
+ olan komşu açılara komşu tümler açılar denir.
+Ölçüleri toplamı 180
+o
+ olan iki açıya bütünler açılar denir.
+Ölçüleri toplamı 180
+o
+ olan komşu açılara komşu bütünler açılar denir.
+Örnek 4
+A B C
+D
+E
+FH
+===== SAYFA 53 =====
+1. TEMA
+53
+Aşağıdaki açılar, komşu tümler açıdır. Verilenlerden yararlanarak istenen açının ölçüsünü 
+bulunuz.
+P
+Ş
+S
+R
+18
+O
+a) c)
+43
+O71
+O
+b) A
+C
+B
+D
+N
+L
+K
+M
+m PRS =^h%
+m TYZ =^h% m VUS =^h% m PSO =^h%
+m ABC =^h% m MLN =^h%
+Aşağıdaki açılar, komşu bütünler açıdır. Verilenlerden yararlanarak istenen açının ölçüsünü 
+bulunuz.
+134
+O
+44
+O
+38
+O
+X
+Y
+Z
+T
+Ü
+S
+U V
+O
+Ş S P
+Aşağıdaki açıların tümler ve bütünler açı ölçülerini bulunuz.
+Açı Tümler Açı 
+Ölçüsü
+Bütünler Açı 
+Ölçüsü
+38
+O
+87
+O
+69
+O
+12
+O
+a) b) c)
+Örnek 5
+Örnek 6
+Örnek 7
+Karekodu okutarak e-içeriğe 
+ulaşabilirsiniz.
+===== SAYFA 54 =====
+GEOMETRİK ŞEKİLLER
+54
+Zihin Haritası Oluşturma
+1) Düzlemde iki veya üç doğrunun birbirine göre durumuna bağlı olarak oluşabilecek açı -
+ların özelliklerine dair bir zihin haritası çiziniz. Sayfanın altındaki karekodu okutarak zihin 
+haritası örneğine ulaşabilirsiniz.
+2) Düzlemde iki veya üç doğrunun birbirine göre durumlarını kendi oluşturduğunuz zihin 
+haritasında göstererek oluşan açılarla ilişkilendiriniz.
+3) Arkadaşınızla aşağıdaki formu kullanarak birbirinizi değerlendiriniz.
+4) Eksik kaldığını düşündüğünüz, eklemek istediğiniz bir değerlendirme sorusu varsa ekle- 
+yiniz.
+5) Yaptığınız yanlışların üzerinde düşünerek sebeplerini sınıfça tartışınız.
+AKRAN DEĞERLENDİRME FORMU
+Evet Kısmen Hayır
+Düzlemde iki doğrunun birbirine göre durumlarını çizer.
+Düzlemde iki doğrunun birbirine göre durumuna bağlı ola-
+rak oluşabilecek açıları belirler.
+Düzlemde üç doğrunun birbirine göre durumlarını çizer.
+Düzlemde üç doğrunun birbirine göre durumuna bağlı ola-
+rak oluşabilecek açıları belirler.
+Düzlemde iki veya üç doğrunun birbirine göre durumuna 
+bağlı olarak oluşabilecek açıların çeşitlerini belirler.
+Dar, dik ve geniş açıları gösterir.
+Ters açıları gösterir.
+Tümler açıları gösterir.
+Bütünler açıları gösterir.
+Karekodu okutarak konu ile ilgili 
+zihin haritası örneğine ulaşabilirsiniz.
+===== SAYFA 55 =====
+1. TEMA
+55
+Üç Doğrunun İkişer İkişer Kesişimi
+Yansıtıcı yüzeye sahip reflektörler, kaza veya arıza 
+sonrası diğer sürücüleri uyararak olası yeni kaza -
+ların engellenmesi amacıyla kullanılır. Araçlardaki 
+trafik setlerinin içinde mutlaka bulunması gerekir. 
+Yandaki görsel 1.3'te üçgen reflektörünün kenar -
+ları ile çakışık doğrular verilmiştir. Bu doğruların 
+kesişim noktalarındaki açıları isimlendirerek aşa -
+ğıdaki soruları cevaplandırınız.
+a) Bu üç doğrunun birbirlerine göre durumlarını nasıl ifade edersiniz?
+b) Oluşan ters, komşu ve komşu bütünler açıları isimlendirerek yazınız.
+c) Doğruların kesişim noktalarında oluşan açıların çeşidine göre sayılarını belirleyiniz.
+İki Paralel Doğru ve Bir Kesen
+Aşağıda demir yolu köprü görselleri verilmiştir. 
+Bu köprü görsellerinin üst kısmında bulunan çelik yapılar üzerine çizilmiş doğru modelle -
+rinin birbirlerine göre durumlarını nasıl ifade edersiniz? Doğruların kesişim noktalarında 
+oluşan açıların çeşidine göre sayılarını belirleyiniz.
+İki doğruyu farklı birer noktada kesen üçüncü bir doğruya iki doğru-
+nun keseni denir. 
+Üç doğrunun ikişerli kesiştiği durumda altı dar ve altı geniş açı ya 
+da dört dik, dört dar ve dört geniş açı oluşur. 
+İki paralel doğruyu kesen bir doğrunun oluşturduğu durumda dört 
+geniş ve dört dar açı ya da sekiz dik açı oluşur.
+Görsel 1.3
+===== SAYFA 56 =====
+GEOMETRİK ŞEKİLLER
+56
+Etkinlik 5Etkinlik 5 İki Paralel Doğru ve Bir Kesen
+Asetat kâğıdına cetvelle iki paralel ve onları kesen bir doğru çizi-
+niz. Asetat kâğıdını kareli veya çizgili defterinizin üzerine koyarak 
+da çiziminizi yapabilirsiniz.
+Yandaki gibi açıları belirleyerek isim -
+lendiriniz ve açıölçer ile açıların ölçü -
+lerini bulup üzerine yazınız. Dar açıları 
+bir renge, geniş açıları başka bir renge 
+boyayınız. Buna göre kaç tane dar, kaç 
+tane geniş açı elde ettiğinizi yazınız.
+Asetat kâğıdını verilen doğrultuya göre makasla kesi-
+niz (Makas kullanırken dikkatli olunuz.).
+Kestiğiniz parçalardan birini, diğer parçanın üzerine kesi -
+şim noktaları üst üste gelecek şekilde yerleştiriniz.
+Üst üste gelen açıların eş olduğunu görebildiniz mi?
+Oluşan dar ve geniş açılarlardan eş, komşu ve ters açı çiftlerini yazınız.
+Eş Açılar Komşu Açılar Ters Açılar
+MALZEMELER
+Şeffaf asetat kâğıdı, 
+cetvel, çeşitli renkler-
+de asetat kalemi
+Yandaki görsel 1.4'te bir kitaplık modelinin dikey ve ya-
+tay kısımları üzerine doğrular çizilmiştir.
+Verilen doğruların kesişim noktalarındaki açıları 
+isimlendirerek aşağıdaki soruları cevaplandırınız.
+a) Doğruların kesişim noktalarında dar ve geniş açılar 
+oluşur mu?
+b) Doğruların kesişim noktalarında oluşan açıların çeşidini belirleyiniz.
+Örnek 8
+Görsel 1.4
+===== SAYFA 57 =====
+1. TEMA
+57
+Geometrik desenli halılar, modern görünümlerinin yanı sıra yaşam alanlarına sanatsal 
+bir dokunuş katar. Bu halılarda üçgen, kare ve dikdörtgen gibi farklı geometrik şekil -
+ler düzenli ve dengeli bir biçimde kullanılarak yaşam alanlarında estetik bir görünüm 
+oluşturulabilir.
+Yukarıdaki görsel 1.5'te halı üzerindeki desenler kapalı şekillerdir. Siz de doğruları kullana-
+rak kendi halı deseninizi tasarlayabilirsiniz.
+DOĞRULARDAN ÇOKGENLERE
+Oluşan kapalı şekilleri inceleyiniz. Doğru sayısı ile son adımda oluşan kapalı şeklin kenar 
+sayısı arasında nasıl bir ilişki vardır?
+1. Adım 2. Adım 3. Adım
+Örnek 1
+Aşağıda son çizilen doğru, ilk çizilen doğru ile kesişecek biçimde doğruların çizimine adım 
+adım yer verilerek iki farklı kapalı şekil oluşturulmuştur.
+1. Adım 3. Adım2. Adım 4. Adım
+Görsel 1.5
+===== SAYFA 58 =====
+GEOMETRİK ŞEKİLLER
+58
+Aşağıdaki kareli zemine en fazla altı doğru kullanarak oluşturulabilecek çokgenleri 
+çiziniz.
+En az üç doğrunun (ilk doğrunun son doğruyla kesişmesi koşuluy -
+la) ardışık kesişimi sonucu oluşturduğu kapalı şekle çokgen denir. 
+Çokgenler, doğruların kesişmesi sonucu oluşan kenar sayısına göre 
+isimlendirilir.
+Üçgen
+Dörtgen
+Örnek 2
+===== SAYFA 59 =====
+1. TEMA
+59
+İbrahim, bilgisayar programı kullanarak halı deseni tasarlamaktadır. Yeni halı deseni tasa -
+rımı için aşağıdaki dikdörtgen bölge üzerine doğrular çizmiş ve her bir kapalı bölgeyi bir 
+renge boyamıştır. 
+Buna göre doğruların hepsini isimlendirerek numaralandırılmış çokgenlerin çeşitleri-
+ni ve hangi doğruların kesişimi ile oluştuğunu tabloya yazınız.
+Çokgen 
+Numarası Çokgen Çeşidi Çokgeni Oluşturan Doğrular
+Örnek 3
+1
+2
+3
+4
+7
+5
+6
+===== SAYFA 60 =====
+GEOMETRİK ŞEKİLLER
+60
+Etkinlik 1Etkinlik 1 Çokgen Arama
+• Şeffaf dosyanın beyaz kısmını makas kullanarak şeffaf kısmından 
+ayırınız (Makas kullanırken dikkatli olunuz.).
+• Şeffaf dosyanın bir yüzüne çizgeç kullanarak farklı yönlerde doğru 
+parçaları çizerek çokgenler oluşturunuz.
+• Siyah kartonu dosyanın içine yerleştiriniz ve dosyanızı arkadaşınızın hazırladığıyla değiştiriniz.
+• Aşağıdaki gibi bir el feneri çizip bu feneri boyayınız ve kesiniz.
+MALZEMELER
+Şeffaf dosya, 
+siyah karton, makas, 
+renkli kalemler, çizgeç
+• Fenerinizi siyah karton ile doğrular çizilmiş ön yüzün arasına girecek şekilde dosyaya yer-
+leştirip çokgen arayınız. Bulduğunuz çokgenleri farklı renklere boyayınız.
+===== SAYFA 61 =====
+1. TEMA
+61
+• Belirlediğiniz çokgenleri cetvel kullanarak aşağıdaki kutulara çiziniz.
+• Arkadaşlarınızın oluşturduğu çokgenlerden hangilerini bulabildiniz? Kendi oluştur -
+duğunuz çizimlerinizi arkadaşlarınızın çizimleriyle karşılaştırınız ve yorumlayınız.
+===== SAYFA 62 =====
+GEOMETRİK ŞEKİLLER
+62
+ÇOKGENLERİN TEMEL ELEMANLARI
+Çokgenlerin doğruların kesişimi ile oluştuğunu göz önünde bulundurarak kenar ve açı özel-
+likleri hakkında fikirlerinizi yazıp, arkadaşlarınızla paylaşarak tartışınız.
+Aşağıdaki şekilde işaretlenmiş açıları sembolle gösteriniz.
+A B
+CD
+A B
+CD
+Köşe
+Kenar
+Çokgenleri oluşturan doğruların kesişim noktalarına köşe denir. Yuka-
+rıdaki dörtgenin köşeleri A, B, C, D noktalarıdır. Bir çokgenin isimlendi-
+rilmesi o çokgeni oluşturan doğru sayısına bağlı olarak yapılır. Yukarı-
+daki çokgen dört doğrudan oluştuğu için dörtgen şeklinde isimlendirilir. 
+Çokgenleri oluşturan doğru parçalarının her birine kenar denir. Yukarı-
+daki dörtgeni oluşturan AB, BC, CD, DA doğru parçaları bu dörtgenin 
+kenarlarıdır.
+Aşağıdaki çokgenin kenarlarına karşılık gelen doğru parçalarını sembolle gösteriniz. 
+===== SAYFA 63 =====
+1. TEMA
+63
+Aşağıdaki kareli zemine bir çokgen çiziniz. Çizdiğiniz çokgenin kenarlarını, köşeleri -
+ni, iç açılarını ve dış açılarını belirleyerek sembolle gösteriniz.
+Kenarların çokgenin iç bölgesinde oluş -
+turduğu açılara iç açı denir. Yandaki dört-
+genin iç açıları ,, ,DA BA BC BC DC DA\ \ \ \ dır.
+Bir çokgende kenar, köşe sayısı ve iç açı 
+sayısı eşittir.
+Yandaki dörtgenin dört kenarı, dört köşe-
+si ve dört iç açısı vardır. 
+A
+E
+B
+G
+C HDF
+A B
+CD
+Çokgenlerde iç açının komşu bütün -
+ler açısına dış açı denir. 
+Yandaki dörtgenin dış açıları 
+,, ,EABG BA HC BF DA\ \ \ \ dır. 
+Bir çokgende dış açıların sayısı iç 
+açıların sayısına eşittir.
+Örnek 1
+Çokgenlerde kenar, köşe, iç açı ve dış açı temel elemandır.
+===== SAYFA 64 =====
+GEOMETRİK ŞEKİLLER
+64
+Çokgenler adlandırılırken köşe noktalarının isimleri kullanılır. Herhangi bir köşesi seçilip 
+köşe noktalarının isimleri ardışık okunur. 
+B
+C
+DE
+F
+A
+Örneğin yukarıdaki çokgen, B köşesinden başlandığında ardışık noktalar okunarak 
+BCDEFA altıgeni diye isimlendirilebilir. D köşesinden başlandığında ise ardışık noktalar 
+okunarak DCBAFE altıgeni diye de isimlendirilebilir.
+Bir köşe seçerek bir isimlendirme de siz yapınız.
+…………………………………………………….
+Aşağıdaki örnekte verildiği gibi çokgenlerin köşe noktalarını isimlendiriniz ve tabloyu 
+örnekteki gibi doldurunuz.
+[AB]
+[BC]
+[CA]
+3
+A Noktası
+B Noktası
+C Noktası
+3 3 ABC 
+üçgeni
+Çokgen Kenarları Kenar 
+Sayısı Köşeleri Köşe 
+Sayısı İç Açıları İç Açı 
+Sayısı
+İsimlendi-
+rilişi
+A
+BC
+. .
+. AW
+BW
+CW
+Örnek 2
+===== SAYFA 65 =====
+1. TEMA
+65
+Aşağıdaki çokgenlerin kenar uzunluklarını cetvelle, açılarını açıölçerle ölçünüz. Bul -
+duğunuz sonuçları aşağıdaki noktalı yerlere yazınız.
+AB ..........
+BC ..........
+CD ..........
+DE ..........
+EA ..........
+mm
+mm
+mm
+mm
+mm
+=
+=
+=
+=
+=
+m. .........
+m. .........
+m. .........
+m. .........
+m. .........
+A
+B
+C
+D
+E
+=
+=
+=
+=
+=
+^
+^
+^
+^
+^h
+h
+h
+h
+h
+W
+W
+W
+W
+W
+KL ..........
+LM ..........
+MN ..........
+NO ..........
+OK ..........
+mm
+mm
+mm
+mm
+mm
+=
+=
+=
+=
+=
+m. .........
+m. .........
+m. .........
+m. .........
+m. .........
+K
+L
+M
+N
+O
+=
+=
+=
+=
+=
+^
+^
+^
+^
+^
+h
+h
+h
+h
+h
+W
+V
+X
+W
+X
+Yukarıdaki ABCDE beşgeninin kenar uzunlukları ve iç açılarının ölçüleri eşit olduğundan 
+düzgün çokgendir. “ABCDE düzgün beşgeni” şeklinde okunur.
+Düzgün çokgenlerin dış açı ölçülerinin eşit olup olmadığını tartışınız.
+Aşağıdaki eşkenar üçgenin iç açılarını ölçerek düzgün çokgen olup olmadığı hakkın-
+daki düşüncelerinizi arkadaşlarınızla paylaşınız.
+a) b)
+B
+CD
+E
+A K
+L
+MN
+O
+Kare ve dikdörtgen çizimi yaparak çizdiklerinizin düzgün 
+çokgen olup olmadıklarını inceleyiniz.
+Bütün kenar uzunlukları ve iç açılarının ölçüleri eşit olan çokgene 
+düzgün çokgen denir. Düzgün çokgenler de kenar sayısına göre isim-
+lendirilir ve okunur.
+Örnek 3
+Örnek 4
+===== SAYFA 66 =====
+GEOMETRİK ŞEKİLLER
+66
+Etkinlik 2Etkinlik 2 Düzgün Çokgenlerle Süsleme
+Kadriye Hanım, mutfak dolaplarını düzgün çokgen şeklindeki yapışkanlı kâğıtlarla kapla -
+mak istiyor. Yukarıdaki gibi birkaç örnek baktıktan sonra kâğıtların tasarımını çocuklarına 
+yaptırmaya karar veriyor. Bu amaçla keserek ve yapıştırarak çalışabilmeleri için eşkenar 
+üçgen, kare, düzgün beşgen, düzgün altıgen çizimlerini içeren çok sayıda çıktı alıyor. Kızı 
+İlkay’dan tek çeşit düzgün çokgen, oğlu Eren’den ise iki veya daha çok çeşit düzgün çokgen 
+kullanarak tasarım yapmasını istiyor. 
+Aşağıdaki kareli zeminlerde İlkay ve Eren'e fikir verecek tasarımlar oluşturunuz.
+Aşağıda düzgün çokgenlerle oluşturulmuş bazı süsleme örnekleri verilmiştir.
+İlkay’ın tasarımı:
+Eren’in tasarımı:
+===== SAYFA 67 =====
+1. TEMA
+67
+Etkinlik 3Etkinlik 3 Daireden Üçgen ve Altıgen Yapalım
+1) Pergelinizi istediğiniz kadar açarak kâğıt üzerine bir çember çiziniz ve çemberin merkez 
+noktasını belirginleştiriniz.
+2) Çizdiğiniz çember üzerinden kâğıdı keserek bir daire oluşturunuz.
+3) Dairenizi, aşağıdaki görselleri sırayla takip ederek çevresi üzerindeki bir nokta, merkez 
+noktaya değecek şekilde katlayınız.
+4) Elde ettiğiniz üçgenin kenarlarını ve açılarını ölçünüz. Hangi üçgeni yaptığınızı bulabildi-
+niz mi? Ölçme sonuçlarını arkadaşlarınızla tartışınız.
+5) Yaptığınız üçgeni aşağıdaki görselleri sırayla takip ederek dikkatli bir şekilde katlayınız.
+6) Elde ettiğiniz altıgenin kenarlarını ve açılarını ölçünüz. Ölçme sonuçlarını arkadaşlarınız-
+la tartışınız.
+===== SAYFA 68 =====
+GEOMETRİK ŞEKİLLER
+68
+Etkinlik 4Etkinlik 4 Köşegen
+Çizdiğiniz doğru parçalarını sembolle gösteriniz. Bu çalışmayı diğer çokgenlerle de 
+yapınız. Elde ettiğiniz doğru parçalarının sayısı değişti mi? Sınıfça tartışınız.
+• Bir A4 kâğıdına cetvelle istediğiniz büyüklükte bir dörtgen çiziniz.
+• Bu dörtgenin köşe noktalarını belirginleştirip isimlendiriniz.
+• Kâğıdı, ardışık olmayan iki köşeden geçen kat çizgisi oluşacak şekilde katlayarak kat çiz-
+gilerinin üzerinden kalemle geçiniz.
+Bunları Bilelim
+Türkiye Cumhuriyeti’nin kurucusu Başöğretmen 
+Ulu Önder Mustafa Kemal Atatürk, yazdığı "Geo -
+metri" kitabında öğren cilerin geometri kavramlarını 
+daha uzun süre akıllarında tutabilmeleri ve bunla -
+rın adı geçtiğinde anlamını zihinlerinde daha kolay 
+canlandırabilmeleri için geometrik kavramları Türk-
+çeleştirmiştir. 
+Mustafa Kemal Atatürk'ün yazdığı "Geometri" kita-
+bı incelendiğinde "üçgen", "dikey dörtgen" (dikdört-
+gen), "kare" ve "beşgen" gibi çokgenlerin tanımlandığı görülür. 
+Görsel 1.6
+===== SAYFA 69 =====
+1. TEMA
+69
+4. etkinlikte dörtgene ait kaç köşegen buldunuz? Köşegenleri sembolle gösteriniz.
+Elde ettiğiniz sonuçları arkadaşlarınızın sonuçlarıyla karşılaştırınız. 
+B
+CD
+E
+A A noktasıyla aynı kenarlarda olan noktalar E ve B noktalarıdır. 
+A noktasından bu noktalara köşegen çizilmez çünkü çizilen 
+doğru parçaları kenar olur.
+A noktasıyla aynı kenarda olmayan noktalar C ve D noktasıdır. 
+A noktasından bu noktalara doğru parçası çizilebilir. [AD] ve 
+[AC] yandaki beşgenin köşegenlerinden bazılarıdır.
+B, C, D ve E noktalarından çizilebilecek köşegenleri de cetvel 
+yardımıyla siz çiziniz.
+Çokgenlerde ardışık olmayan iki köşeyi birleştiren doğru parçasına 
+köşegen denir.
+İsmi verilen çokgenleri ve onlara ait köşegenleri çizerek aşağıdaki tabloyu doldurunuz.
+Çokgenin Çizimi
+Köşegenleri
+DEFGHI Altıgeni PRSŞT Beşgeni ABCD Dörtgeni VYZ Üçgeni
+Köşegeni olmayan çokgen hangisidir? Bu çokgenin neden köşegeni olmadığını açıklayınız.
+Örnek 5
+Karekodu okutarak e-içeriğe 
+ulaşabilirsiniz.
+===== SAYFA 70 =====
+GEOMETRİK ŞEKİLLER
+70
+Aşağıdaki yedigen için sıralanan ifadelerden doğru olanların başına “D”, yanlış olan-
+ların başına “Y” yazınız. Doğru olan ifadelere alternatif doğru ifadeler yazınız. Yanlış 
+olan ifadeleri düzeltiniz.
+A
+B
+C
+D
+E
+F
+H
+G
+1. (…..) BCDEFHA yedigeni şeklinde isimlendirilir.
+…………………………………………………….
+2. (…..) Yedigenin köşegenlerinden biri [CG]’dır.
+…………………………………………………….
+3. (…..) Yedigenin iç açılarından biri ABC% dır.
+…………………………………………………….
+4. (…..) Yedigenin 10 tane iç açısı vardır.
+…………………………………………………….
+5. (…..) HGC%  bu yedigenin bir iç açısıdır.
+…………………………………………………….
+6. (…..) Yedigenin 7 köşesi vardır.
+…………………………………………………….
+7. (…..) [FB] yedigenin köşegenlerinden biridir.
+…………………………………………………….
+8. (…..) [EF] yedigenin köşegenlerinden biridir.
+…………………………………………………….
+Aşağıda üçgenler verilmiştir.  
+ÜÇGEN
+Örnek 6
+....... ..........................................
+....... ..........................................
+....... ..........................................
+m A
+m B
+m C
+=
+=
+=
+^
+^
+^
+h
+h
+h
+W
+W
+W
+....... ..........................................
+....... ..........................................
+....... ..........................................
+m D
+m E
+m F
+=
+=
+=
+^
+^
+^h
+h
+hW
+W
+V
+a) Bu üçgenlerin iç açılarını açıölçerle ölçünüz. Açıların çeşidini yanına yazınız.
+Buna göre aşağıdaki soruları cevaplayınız.
+Etkinlik 1Etkinlik 1 Açılarına Göre Üçgenler
+A
+C
+B D
+E
+F
+L
+K
+M R
+P
+S
+===== SAYFA 71 =====
+1. TEMA
+71
+b) Bu üçgenlerin iç açılarının çeşitlerini birbiriyle karşılaştırarak bunlardan ortak olanlarını 
+belirleyiniz.
+Bir iç açısının ölçüsü 90° olan üçgene dik açılı üçgen denir.
+Tüm iç açılarının ölçüsü 90° den küçük olan üçgene dar açılı üçgen denir.
+Bir iç açısının ölçüsü 90° den büyük olan üçgene geniş açılı üçgen denir.
+Aşağıdaki soruları sınıfça tartışınız.
+• İki dik açısı olan üçgen çizilebilir mi?
+• İki geniş açısı olan üçgen çizilebilir mi?
+• Bir üçgenin iç açılarından herhangi iki tanesi neden dik veya geniş açı olamaz? 
+Örnek 1
+....... ..........................................
+....... ..........................................
+....... ..........................................
+m K
+m L
+m M
+=
+=
+=
+^
+^
+^
+h
+h
+h
+W
+V
+X
+....... ..........................................
+....... ..........................................
+....... ..........................................
+m P
+m R
+m S
+=
+=
+=
+^
+^
+^
+h
+h
+h
+W
+W
+W
+===== SAYFA 72 =====
+GEOMETRİK ŞEKİLLER
+72
+Etkinlik 2Etkinlik 2
+Tüm Üçgenlerin İç Açıları 
+Ölçüleri Toplamı Aynı mı?
+MALZEMELER
+Beyaz kâğıt, kalem, 
+cetvel ya da çizgeç, 
+makas, yapıştırıcı
+• Beyaz kâğıda istediğiniz büyüklükte bir üçgen ve üçgenin  
+ dışında kalan bölgeye de bir doğru parçası çiziniz.
+• Üçgeninizin köşe noktalarını isimlendiriniz.
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+• Üçgeninizi boyayınız ve üçgeninizin iç açılarını gösteriniz.
+• Üçgeninizin köşe noktalarına verdiğiniz harfleri üçgenin içinde iç açılarına karşılık ge -
+len yere yazınız.
+• İç açıları üçgen içindeki harfleri de içine alacak ve üçgeni bozmayacak şekilde kesiniz 
+(Makas kullanırken dikkatli olunuz.).
+• Kestiğiniz açıları doğru parçasının üzerine yerleştiriniz.
+• Üçgenin üç iç açısı bir araya geldiğinde oluşan açı kaç derecedir? Arkadaşlarınızın ça -
+lışmalarıyla kendi sonuçlarınızı karşılaştırıp sınıfça tartışınız. Bu durumda üçgenlerin iç 
+açıları için ne söyleyebilirsiniz?
+ETKİNLİK X. TÜM ÜÇGENLERİN İÇ AÇILARI ÖLÇÜLERİ TOPLAMI AYNI MI?
+Malzemeler:
+Beyaz kâğõt, kalem, cetvel ya da çizgeç, makas, yapõştõrõcõ
+• Beyaz kağõda istediğiniz bŸyŸklŸkte bir Ÿçgen ve Ÿçgenin dõşõnda kalan bir bšlgeye de bir doğru çiziniz.
+• †çgeninizin kšşe noktalarõnõ isimlendiriniz.
+• †çgeninizi boyayõnõz ve iç açõlarõnõ gšsteriniz.
+• †çgeninizin kšşe noktalarõna verdiğiniz harßeri Ÿçgenin içinde iç açõlarõna karşõlõk gelen yere 
+yazõnõz.
+• İç açõlarõ Ÿçgen içindeki harßeri de içine alacak ve Ÿçgeni bozmayacak şekilde 
+kesiniz.
+• Kestiğiniz açõlarõ doğrunun Ÿzerine yerleştiriniz.
+• †çgenin Ÿç iç açõsõ bir araya geldiğinde oluşan açõ kaç derecedir? Arkadaşlarõnõzõn 
+çalõşmalarõyla kendi sonuçlarõnõzõ karşõlaştõrõp sõnõfça tartõşõnõz. Bu durumda Ÿçgenlerin iç açõlarõ 
+için ne sšyleyebilirsiniz?
+
+===== SAYFA 73 =====
+1. TEMA
+73
+Üçgenlerin iç açıları ölçüleri toplamı 180
+o
+ dir.
+Aşağıda verilen soruları sınıfça tartışınız.
+• Dik açılı eşkenar üçgen çizilebilir mi?
+• Dik açılı ikizkenar üçgen çizilebilir mi?
+• Geniş açılı eşkenar üçgen çizilebilir mi?
+• Geniş açılı ikizkenar üçgen çizilebilir mi?
+Aşağıda bir üçgenin iç açılarından ikisinin ölçüsü verilmiştir. Verilmeyen üçüncü açının ölçü-
+sünü bularak noktalı yerlere yazınız.
+a) 45
+o
+, 45
+o
+, .......  b) 30
+o
+, 70
+o
+, .......  c) 55
+o
+, 12
+o
+, .......  
+ç) 120
+o
+, 35
+o
+, .......  d) 90
+o
+, 60
+o
+, .......  e) 15
+o
+, 45
+o
+, ....... 
+ 
+f) 130
+o
+, 20
+o
+, .......  g) 100
+o
+, 45
+o
+, .......  ğ) 70
+o
+, 20
+o
+, .......  
+Örnek 2
+===== SAYFA 74 =====
+GEOMETRİK ŞEKİLLER
+74
+Aşağıda çeşitli üçgenlerin yer aldığı kutular ve onların altında sorular verilmiştir. Üçgenlerin 
+kenar uzunluklarını ve iç açılarını ölçünüz. Kutulardaki numaraları kullanarak soruları cevapla-
+yınız. Aynı kutuyu birden fazla sorunun cevabı olarak kullanabilirsiniz.
+A
+A
+A
+A A A
+AA
+B
+B
+B
+B B B
+BB
+C
+C
+C
+C C
+C
+C
+C
+.
+.
+.
+.
+..
+.
+. .
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+..
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+A
+B
+C
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+Örnek 3
+a) Kutulardan hangisinde veya hangilerin-
+de eşkenar üçgen yer almaktadır?
+b) Kutulardan hangisinde veya hangilerin-
+de ikizkenar üçgen yer almaktadır?
+c) Kutulardan hangisinde veya hangilerin-
+de çeşitkenar üçgen yer almaktadır?
+ç) Kutulardan hangisinde veya hangilerin-
+de dik açılı üçgen yer almaktadır?
+d) Kutulardan hangisinde veya hangilerin -
+de dar açılı üçgen yer almaktadır?
+e) Kutulardan hangisinde veya hangilerin -
+de geniş açılı üçgen yer almaktadır?
+f) Kutulardan hangisinde veya hangilerinde 
+dar açılı çeşitkenar üçgen yer almaktadır?
+g) Kutulardan hangisinde veya hangilerinde 
+dik açılı çeşitkenar üçgen yer almaktadır?
+1
+4
+7
+2
+5
+8
+3
+6
+9
+===== SAYFA 75 =====
+1. TEMA
+75
+Aşağıdaki şemayı uygun şekilde doldurunuz.
+Açılarına Göre Üçgenler
+Kenarlarına göre
+Kenarlarına göre
+Kenarlarına göre
+Örnek 4
+İkizkenar üçgende eşit uzunluktaki kenarları gören iç açıların ölçüleri 
+eşittir. Eşkenar üçgenin tüm iç açılarının ölçüleri 60° dir.
+
+===== SAYFA 76 =====
+GEOMETRİK ŞEKİLLER
+76
+BUNLARI YAPALIM
+1) Çokgenler konusunda öğrendiğiniz bilgileri bir zihin haritasında özetleyiniz. 
+2) Bir çokgen çizip isimlendiriniz. Çizdiğiniz çokgenin üzerinde öğrendiğiniz kavramları gös-
+teriniz. 
+3) Arkadaşınızla aşağıdaki formu kullanarak birbirinizi değerlendiriniz. 
+4) Yaptığınız yanlışların üzerinde düşünerek sebeplerini sınıfça tartışınız.
+ÇOKGENLER VE TEMEL ÖZELLİKLERİNE YÖNELİK AKRAN DEĞERLENDİRME FORMU
+Evet Kısmen Hayır
+Çizilen çokgenin temel elemanları doğru belirlenmiş mi?
+Çizilen çokgen doğru şekilde isimlendirilmiş mi?
+Çizilen çokgene ait köşegenler doğru çizilmiş mi? Yoksa 
+çokgene ait köşegen olmadığı belirtilmiş mi?
+Zihin haritasında düzgün çokgen doğru tanımlanmış mı?
+Zihin haritasında eşkenar üçgen ve karenin düzgün çok -
+gen olduğu belirtilmiş mi?
+Zihin haritasında açılarına göre üçgenler doğru yazılmış 
+mı?
+Zihin haritasında geniş açılı eşkenar üçgenin çizilemeyeceği 
+ifade edilmiş mi?
+Zihin haritasında dik açılı eşkenar üçgenin çizilemeyeceği 
+ifade edilmiş mi?
+Aşağıda çokgenler ve temel özelliklerine yönelik bir akran değerlendirme formu verilmiştir.
+Akran değerlendirme formunu doldururken, arkadaşınızın çalışmasını objektif ve dikkatli bir 
+şekilde inceleyerek verilen kriterlere uygun puanlama yapınız. Değerlendirmeleriniz, arka -
+daşınızın güçlü yönlerini ve gelişime açık alanlarını anlamasına yardımcı olacaktır.
+===== SAYFA 77 =====
+1. TEMA
+77
+ÜÇGEN İNŞASI
+Olimpiyat Oyunları’nın bayrağı, beyaz zemin üzerine iç içe geçmiş farklı renkteki beş hal -
+kadan ibarettir. Dünyanın beş kıtasını dostluk ve sevgi duyguları içinde birbirine bağlamayı 
+simgeleyen bu halkalardan üçü üstte, ikisi alttadır. Üstteki üç halka soldan sırasıyla mavi, 
+siyah ve kırmızı; alttakiler ise yine aynı sırayla sarı ve yeşildir. 
+Aşağıda çemberleri kullanarak açı oluşturmaya çalışan Ahmet'in sınıf arkadaşlarıyla yaptığı 
+konuşma verilmiştir. Metni okuyunuz ve Ahmet'in yaptığı çizimleri inceleyiniz. Arkadaşların-
+dan yapmalarını istediği çizimleri yapmaya çalışınız.
+"Arkadaşlar Olimpiyat Oyunları'nın logosu ne kadar sade ve güzel değil mi? Aynı hulahoplar 
+gibi. Geçtiğimiz beden eğitimi dersinde hulahoplarla bir etkinlik yapacaktık. Hepiniz kutudan 
+birer tane aldınız. Ben de aldıktan sonra kutuda iki tane hulahop kaldı. Kalanlara son kez 
+bakınca kesişen çemberler fikri geldi. Aklıma bu çemberlerin kesişim noktaları ve merkez -
+lerini kullanırsam üçgenler oluşturabilirim gibi geldi. Ne dersiniz, iki noktada kesişen çem -
+berlerin merkez ve kesişim noktalarından birini birleştirerek kenarlarına göre farklı üçgen 
+çeşitleri oluşturabilir miyiz? Çemberler aynı ya da farklı yarıçaplara sahip olabilir ve farklı 
+şekillerde kesişebilirler."
+Yalnızca pergel ve ölçüsüz cetvel kullanarak 
+bir geometrik şekli oluşturmaya o geomet-
+rik şekli inşa etmek denir.
+(Genel ağdan alınmıştır.)
+===== SAYFA 78 =====
+GEOMETRİK ŞEKİLLER
+78
+Daha önce kesişen doğrular çizmiştiniz. Şimdi aşağıdaki kutuların her birine iki noktada 
+kesişen çember çiftlerinden birer tane çiziniz. Her kutudaki çember çifti farklı bir durumda 
+olsun.
+Etkinlik 1Etkinlik 1 Kesişen Çemberler
+Kesişen çemberleri nasıl 
+çizdin?
+Pergelimin açıklığını değiştirmeden çiz-
+meyi tercih ettim. Bil bakalım hangi üçgen 
+oluştu?
+Çizdiğiniz kesişen çember çiftlerinin kesişim noktalarını ve merkezlerini belirleyiniz. Her bir 
+çember çiftinin merkezlerini ve kesişim noktalarından birini birleştiren doğru parçalarını çi -
+zerek üçgenler oluşturunuz. Bu üçgenler kenarlarına göre üçgen çeşitlerinden hangileridir?
+===== SAYFA 79 =====
+1. TEMA
+79
+Çember çiftini, sağdaki gibi pergel açıklığını değiştirmeden 
+çizmeniz durumunda oluşturduğunuz üçgen, kenarlarına 
+göre üçgen çeşitlerinden hangisi olur? Neden?
+Siz de pergelin açıklığını değiştirip değiştirmediğinizi ve hangi üçgenlerin oluştuğunu arka -
+daşlarınızla paylaşarak tartışınız.
+Çember çiftini, sağdaki gibi pergel açıklığını değiştirerek  ve 
+çemberlerden biri diğerinin merkezinden geçecek şekilde çiz-
+meniz durumunda oluşturduğunuz üçgen kenarlarına göre 
+üçgen çeşitlerinden hangisi olur? Neden?
+Çember çiftini, sağdaki gibi pergel açıklığını değiştirerek çiz -
+meniz durumunda oluşturduğunuz üçgen kenarlarına göre 
+üçgen çeşitlerinden hangisi olur? Neden?
+Çember çiftini, sağdaki gibi birbirlerinin merkezlerinden ge -
+çecek şekilde çizmeniz durumunda oluşturduğunuz üçgen 
+kenarlarına göre üçgen çeşitlerinden hangisi olur? Neden?
+Karekodu okutarak e-içeriğe 
+ulaşabilirsiniz.
+===== SAYFA 80 =====
+GEOMETRİK ŞEKİLLER
+80
+Oluşturmak istediğiniz üçgenleri inşa edebildiniz mi? 
+Peki; ikizkenar, eşkenar ya da çeşitkenar üçgenler oluş-
+tu mu? Oluştuğunu umuyorum çünkü az önce bir arka -
+daşımdan mesaj geldi. Çemberleri kullanarak ikizkenar, 
+eşkenar ya da çeşitkenar üçgenleri inşa edememiş. Ona 
+nasıl bir mesaj yazmalıyım? İkizkenar, eşkenar ya da çe-
+şitkenar üçgen inşasında ona nasıl yardım edebilirim?
+"Arkadaşlar ikizkenar, eşkenar veya çeşitkenar üçgenin na-
+sıl yapılacağına dair yaptığım çizimleri arkadaşıma gönder-
+dim. Yaptığım inşaları beraber kontrol edelim mi? 
+Aşağıya hiçbir ölçme aracı kullanmadan, yalnızca çember-
+lerin yarıçap uzunluklarını göz önünde bulundurarak hangi 
+üçgenin ikizkenar, hangi üçgenin eşkenar ve hangi üçgenin 
+çeşitkenar olduğunu yazalım."
+AHMET ..
+.
+..
+.
+AHMET
+Tab�� k� hemen cevap 
+yazacağım.
+Çemberler yardımıyla �nşa ede-
+b�ld�ğ�m üçgenler ya �k�zkenar 
+ya da çeş�tkenar üçgen oldu.  
+B�r türlü eşkenar üçgen oluştu-
+ramadım. Bana yardım edeb�l�r 
+m�s�n?
+===== SAYFA 81 =====
+1. TEMA
+81
+• Yarıçap uzunlukları aynı olan ve birbirinin merkezinden geçme -
+yecek biçimde iki noktada kesişen çember çiftinin merkezleri ve 
+kesişim noktalarından biri birleştirildiğinde ortaya ikizkenar üçgen 
+çıkar.
+• Yarıçap uzunlukları aynı olan iki çember, birinin merkezi diğer çem-
+berin üzerinde olacak şe kilde kesiştiğinde; çemberlerin merkezleri 
+ve kesişim noktalarından biri birleştirildiğinde ortaya eşkenar üç -
+gen çıkar.
+Karekodu okutarak konu ile ilgili 
+dinamik matematik yazılımı 
+etkinliğine ulaşabilirsiniz.
+Aşağıdaki kareli zemin üzerinde merkezleri sırasıyla A, B, C ve D olan çemberler verilmiştir.
+Sırasıyla A ile B, B ile C ve C ile D merkezli çember çiftlerinin merkez noktalarını ve bu çem-
+ber çiftlerinin kesişim noktalarından birini köşe kabul eden üç farklı üçgen çiziniz.
+Buna göre çizdiğiniz üçgenlerin isimlerini ve kenarlarına göre çeşitlerini nedenleriyle 
+yazınız.
+Örnek 1
+
+===== SAYFA 82 =====
+GEOMETRİK ŞEKİLLER
+82
+Sadece pergel ve ölçüsüz cetvel kullanarak belirli özelliklere sahip üçgenlerin nasıl çizi -
+lebileceği binlerce yıldır matematikçilerin üzerinde çalıştığı problemler arasındadır. Günü -
+müzden yaklaşık 2300 yıl önce Mı -
+sır’ın İskenderiye kentinde yaşayan 
+ve geometrinin kurucusu olarak bili -
+nen Öklid de bu matematikçilerden 
+biridir. Öklid’in geometrinin kurucusu 
+olarak anılmasının nedeni geometri -
+nin temel bilgilerini ve tanımlarını içe-
+ren “Elemanlar” isimli kitabı yazmış 
+olmasıdır. Bu kitap; çember, eşkenar 
+üçgen, ikizkenar üçgen ve çeşitkenar 
+üçgen gibi temel geometrik şekillerin 
+tanımları ile başlar. Ardından temel 
+geometrik şekillerin çizimlerine ve 
+özelliklerine yönelik beş kural açıklar. 
+Bu kurallardan ilk üç tanesi aşağıdaki 
+gibi özetlenebilir: 
+1. Bir noktadan başka bir noktaya doğru parçası çizilebilir.
+2. Bir doğru parçası uç noktalarından istenildiği kadar uzatılabilir.
+3. Bir nokta ve doğru parçası verildiğinde nokta merkez olacak biçimde ve doğru parçası da 
+yarıçap olacak biçimde çember çizilebilir.
+Bu kurallar, geometrik şekillerle ilgili temel çizim kuralları olarak düşünülebilir. İlk iki çizimi 
+yapmak için ölçüsüz cetvel, üçüncü çizimi yapmak için de pergelin kullanıldığını biliyorsu -
+nuz. Bu kuralların ardından Öklid, verilen bir doğru parçası kenar olacak biçimde bir eşke -
+nar üçgenin nasıl çizilebildiğini açıklamaktadır. 
+Öklid’in bu çizimi nasıl gerçekleştirdiğini araştırınız. Aşağıdaki alana ölçüsüz cetvel yardı -
+mıyla bir doğru parçası çiziniz. Ardından Öklid’in adımlarını uygulayarak pergel ve ölçüsüz 
+cetvel yardımıyla bir kenarı bu doğru parçası olan bir eşkenar üçgen çiziniz.
+Etkinlik 2Etkinlik 2 Öklid’in Geometri Çalışmaları
+(Genel ağdan alınmıştır.)
+===== SAYFA 83 =====
+1. TEMA
+83
+Aşağıdaki ifadelerden doğru olanların karşısına D (Doğru), yanlış olanların karşısına Y 
+(Yanlış) yazınız.
+a) Eşkenar üçgen oluşturmak için mutlaka ölçülü cetvel gereklidir.
+b) İki noktada kesişen iki çember kullanılarak eşkenar üçgen inşa edilebilir.
+c) Eşkenar üçgen inşa etmek için çemberler birbirinin merkezinden geçmelidir.
+ç) Çeşitkenar üçgen inşa etmek için kullanılan iki çemberin aynı yarıçaplı olması gerekir.
+d) Çemberler kullanılarak üçgen dışında farklı çokgenler de inşa edilebilir.
+e) Tek bir çemberin içinde ölçüsüz cetvel kullanılarak ikizkenar üçgen inşa edilebilir.
+Örnek 2
+Aşağıda her bir görevde istenen üçgenleri oluşturunuz ve oluşturduğunuz üçgenlerin kenar-
+larına göre türünü belirleyiniz.
+GÖREV 1 GÖREV 2 GÖREV 3
+A merkezli, 2 br yarıçaplı bir 
+çember çiziniz.
+C merkezli, 3 br yarıçaplı bir 
+çember çiziniz.
+E merkezli, 2 br yarıçaplı bir 
+çember çiziniz.
+B merkezli, 2 br yarıçaplı bir 
+çember çiziniz.
+D merkezli, 3 br yarıçaplı bir 
+çember çiziniz.
+F merkezli, 3 br yarıçaplı bir 
+çember çiziniz.
+Çemberlerin kesişim noktala-
+rından biri ile A ve B noktala-
+rını birleştiriniz.
+Çemberlerin kesişim noktala-
+rından biri ile C ve D noktala-
+rını birleştiriniz.
+Çemberlerin kesişim noktala-
+rından biri ile E ve F noktaları-
+nı birleştiriniz.
+A ve B noktalarını birleştiriniz. C ve D noktalarını birleştiriniz. E ve F noktalarını birleştiriniz.
+Ortaya çıkan üçgenin kenar-
+larına göre türünü belirleyiniz.
+Ortaya çıkan üçgenin kenarla-
+rına göre türünü belirleyiniz.
+Ortaya çıkan üçgenin kenarları-
+na göre türünü belirleyiniz.
+Örnek 3
+A B
+DC
+E F
+. .
+..
+. .
+1 br
+1 br
+===== SAYFA 84 =====
+GEOMETRİK ŞEKİLLER
+84
+Aşağıdaki kareli kâğıtta noktalar belirleyip bu noktalara göre çeşitkenar, ikizkenar ve eşke-
+nar üçgen çizme adımları oluşturunuz ve bu adımlara göre tabloyu doldurunuz.
+GÖREV 1 GÖREV 2 GÖREV 3
+Örnek 4
+===== SAYFA 85 =====
+1. TEMA
+85
+Aşağıdaki kareli zemine çemberleri kullanarak özgün bir logo tasarlayınız. 
+ÖĞRENME GÜNLÜĞÜ
+Tema boyunca öğrenme süreçleriniz ile ilgili günlük tutunuz. Tema boyunca tuttuğunuz gün-
+lüğü arkadaşlarınızla paylaşınız ve süreçteki eksikliklerinizi gözden geçiriniz.
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+Etkinlik 3Etkinlik 3 Logo Tasarlayalım
+===== SAYFA 86 =====
+GEOMETRİK ŞEKİLLER
+86
+1 Matematik öğretmeni Ayşegül Hanım öğrencilerinin matematiksel araçları kullanabilme 
+düzeylerini gözlemlemek için yukarıdaki çizimi sınıfa dağıtmıştır. Öğrencilerinden ikişerli 
+gruplara ayrılmalarını ve çizimin aynısını açılarına da dikkat ederek çizmelerini istemiştir. 
+Öğrencilerin yanında bulunan araçlar aşağıda verilmiştir. 
+  Mert: Çizgeç - Pergel - Gönye  
+  Taylan: Pergel - Açıölçer
+  Öykü: Gönye - Çizgeç - Açıölçer
+  Beyza: Çizgeç - Gönye 
+Buna göre hangi iki öğrenci grup olursa çizimi tamamlayamazlar? 
+A) Mert ve Taylan 
+B) Taylan ve Beyza
+C) Öykü ve Beyza
+D) Mert ve Öykü
+2 Günlük hayattan paralel ve dik doğruları gözlemleyebileceğiniz bir durum, nesne ya da 
+şekle örnek veriniz. Verdiğiniz örnekte paralel ve dik doğruları belirleyiniz ve neden paralel 
+ya da dik olduklarını açıklayınız. 
+ÖLÇME VE DEĞERLENDİRME SORULARI
+===== SAYFA 87 =====
+1. TEMA
+87
+Snowboard (sınovbord) yapan kayakçılar aşağıdaki kayak pistinde düz yollar izleyerek ve 
+iz bırakarak A noktasından B noktasına, C noktasından D noktasına, E noktasından F nok-
+tasına ve G noktasından H noktasına kayacaklardır.
+a) Bıraktığı izleri incelediğinizde hangi çokgenleri gözlemleyebiliyorsunuz?
+b) En çok kaç kenarlı çokgeni belirlediniz?
+c) Bu iz sayısıyla daha fazla kenara sahip bir çokgen elde edebilir miydiniz?
+ç) Hiç düzgün çokgenle karşılaştınız mı?
+3 
+A E
+B
+H
+D
+C
+G
+F
+Buna göre aşağıdaki soruları cevaplayınız.
+===== SAYFA 88 =====
+GEOMETRİK ŞEKİLLER
+88
+4 
+Bir tam açıyı 360 eş parçaya bölerek her birine de -
+rece dendiğini ve doğru açının 180°, dik açının da 
+90° olduğunu öğrenmiştiniz. Ayrıca dik açıyı referans 
+alarak açıları dar ve geniş açı olarak sınıflandırmıştı-
+nız. Şimdi bir tam açıyı 36 eş parçaya böldüğünüzü 
+ve her birine “can” ismini vermiş olduğunuzu hayal 
+edin.
+a) Bu yeni durumda doğru açının ve tam açının ölçüsü kaç “can” olacaktır? 
+b) Yeni belirlediğiniz durumda aşağıdaki ölçüleri verilen açıların çeşitlerini altındaki noktalı 
+yere yazınız.
+Mustafa öğretmenin söylediklerinden yola çıkarak aşağıdaki soruları cevaplayınız.
+5 can
+...........................................
+12 can
+...........................................
+9 can
+...........................................
+14 can
+...........................................
+7 can
+...........................................
+6 can
+...........................................
+===== SAYFA 89 =====
+1. TEMA
+89
+5 
+6
+İfade D / Y
+Dikme çizmek için sadece gönye kullanılır.
+Bir noktadan yalnız bir doğru geçer.
+Çember çizmek için pergel kullanılır.
+Doğrunun uzunluğu ölçülebilir.
+Yusuf Nergis Barış Derya
+D D Y Y
+D Y D Y
+Y D Y D
+Y D Y Y
+Yukarıdaki doğru yanlış tablosuna dört öğrenci aşağıdaki cevapları vermiştir.
+ I. En çok doğruyu Derya yapmıştır.
+ II. Barış, Nergis’ten daha çok doğru yapmıştır.
+ III. En az doğruyu Yusuf yapmıştır.
+Buna göre yukarıdaki ifadelerden hangileri doğrudur?
+A) Yalnız I  B) I ve II  C) I ve III  D) II ve III
+30
+o
+70
+o 150
+o
+60
+o
+Deniz Ali Ezgi Özge
+Öğretmen, öğrencilerden tümler ya da bütünler açı oluşturan açılara sahip öğrencilerin eş -
+leşmesini istemiştir. 
+Aşağıda öğrenciler birer açı çizmiş ve ölçülerini yazmıştır.
+a) Hangi öğrenci birden fazla kişiyle eşleşebilir?
+A) Deniz   B) Ali    C) Ezgi   D) Özge
+b) Hiç eşleşme yapamayan öğrenci hangisidir?
+A) Deniz   B) Ali    C) Ezgi   D) Özge
+c) Hangi öğrenciler yalnızca bir eşleşme yapabilir?
+Buna göre aşağıdaki soruları cevaplayınız.
+===== SAYFA 90 =====
+GEOMETRİK ŞEKİLLER
+90
+7 Aşağıda doğrular kullanılarak oluşturulan çokgenlerle ilgili bilgiler verilmiştir.
+ I. 3 doğru kullanılarak üçgen oluşturulabilir.
+ II. 4 doğru kullanılarak hem üçgen hem beşgen oluşturulabilir.
+ III. 5 doğru kullanılarak beşgen oluşturulabilir.
+Buna göre verilen bilgilerden hangileri doğrudur?
+A) Yalnız I    B) Yalnız III   C) I ve II    D) I ve III
+8, 9, 10 ve 11. soruları aşağıdaki açıklamaya göre cevaplayınız.
+8 40° lik bir açıyı ölçtüğünüzde yazılım hangi sonucu verecektir?
+A) 20°   B) 40°   C) 60°   D) 80° 
+9 105° lik bir açıyı ölçtüğünüzde yazılım hangi sonucu verecektir?
+A) 85°   B) 105°  C) 125°  D) 145°
+  65° lik bir açıyı ölçtüğünüzde yazılım hangi sonucu verecektir?
+A) 65°   B) 85°   C) 105°  D) 125°
+Dijital matematik yazılımındaki 
+açıölçer,  programlama sürecindeki 
+yanlış bir kodlamadan dolayı hatalı 
+sonuç vermektedir. 
+Ölçülen açı dar açı ise olması ge -
+reken açı değerinden 20° fazlasını, 
+ölçülen açı geniş açı ise olması ge-
+reken açı değerinden  20° eksiğini 
+vermektedir. Söz konusu dik açı ise 
+de doğru sonucu göstermektedir. 
+===== SAYFA 91 =====
+1. TEMA
+91
+ Üç arkadaş arasında geçen dar açılı üçgenler ile ilgili diyalog aşağıda verilmiştir.
+Hakan: Bir üçgenin bir iç açısı dar açıysa o üçgen dar açılı üçgendir.
+Selvi: Hayır Hakan, bir açısının dar açı olduğunu bilmek yeterli değildir. Bir üçgene dar açılı 
+üçgen demek için üç iç açı ölçüsünün de verilmesi gerekir.
+Anka: Evet Selvi haklısın. Bir iç açıyı bilmek yetmez fakat üç iç açı ölçüsünün de verilme -
+sine gerek yoktur. Eğer iki iç açı ölçüsünü biliyorsak üçgenin iç açıları ölçüleri toplamı 180° 
+olduğu için üçüncü açıyı da biz bulabiliriz ve üçgenin dar açılı üçgen olup olmadığını anla -
+yabiliriz.
+a)Verilen diyaloğu inceleyiniz ve hangi çocuğun haklı olduğuna karar veriniz.
+b) Benzer şekilde dik açılı üçgenler ve geniş açılı üçgenler ile ilgili birer diyalog da siz oluş-
+turunuz.
+ İki çemberin birbirlerinin merkezlerinden geçmesi için merkezlerinin konumu ve yarıçap 
+uzunlukları nasıl olmalıdır? Bir örnek üzerinden açıklayınız.
+ Yazılımdaki bu hatayı keşfeden Alper yazılım aracılığıyla bazı açıları ölçmüş ve yazılım-
+daki hata sebebiyle aşağıdaki değerleri elde etmiştir. 
+30°, 150°, 90°, 87°, 135°, 105°, 63°, 75°, 100°
+a) Alper, ölçülen açılardan hangisinin veya hangilerinin gerçek değerini bulabilir?
+b) Bu hatalı yazılım bir açının değerini 10° olarak ölçebilir mi?
+Karekodu okutarak ek örnek 
+sorulara ulaşabilirsiniz.
+===== SAYFA 92 =====
+SAYILAR
+35 x 27 = 945
+x_ x_
+12 414 + ........ = 21 213 ........ + 12 085 = 63 904
+CEVAPLA CEVAPLA
+B�nler
+bölüğü
+B�rler
+bölüğü
+[
+[
+7        5
+2        
+0       
+7
+On b�nler basamağı
+Yüzler basamağı
+B�rler basamağı
+B�nler basamağı
+Onlar basamağı
+945
+  135
+   72
+35    81
+135
+000
+3  0
+1  0
+0  0
+3  0  
+3  0  0
+X
++
+SAYILAR VE NİCELİKLER (1): 
+DOĞAL SAYILAR VE İŞLEMLER
+• Çok Basamaklı Sayıları Okuma ve Yazma
+• Basamak Değerlerini Çözümleme
+• Doğal Sayılarla Dört İşlem İçeren Problem Çözme 
+Bu temada
+ ► doğal sayılara ilişkin ön bilgilerinizi çok basamaklı sayılara genel-
+leyebilmeniz, 
+ ► doğal sayılarla ilgili gerçek yaşam problemlerini çözebilmeniz,
+ ► dört işlem becerilerinizi çok basamaklı işlemlere genişletebilmeniz 
+beklenmektedir.
+Anahtar Kavramlar
+basamak değeri, bölme, bölük, çarpma, 
+çıkarma, doğal sayılar, toplama
+2. TEMA
+Karekodu okutarak özet 
+içeriğe ulaşabilirsiniz.
+92
+Karekodu okutarak tema içeriğine 
+ulaşabilirsiniz.
+===== SAYFA 93 =====
+SAYILAR
+35 x 27 = 945
+x_ x_
+12 414 + ........ = 21 213 ........ + 12 085 = 63 904
+CEVAPLA CEVAPLA
+B�nler
+bölüğü
+B�rler
+bölüğü
+[
+[
+7        5
+2        
+0       
+7
+On b�nler basamağı
+Yüzler basamağı
+B�rler basamağı
+B�nler basamağı
+Onlar basamağı
+945
+  135
+   72
+35    81
+135
+000
+3  0
+1  0
+0  0
+3  0  
+3  0  0
+X
++
+93
+===== SAYFA 94 =====
+94
+SAYILAR VE NİCELİKLER
+1) Aşağıdaki doğal sayıların okunuşlarını yazınız.
+a) 12 805   ………………………………………………………………………………
+b) 562 349 ………………………………………………………………………………
+c) 5000     ………………………………………………………………………………
+ç) 70 300   ………………………………………………………………………………
+d) 630 000 ………………………………………………………………………………
+2) Aşağıda okunuşu verilen doğal sayıları rakamla yazınız.
+a) Yirmi sekiz bin iki yüz beş ……………………………………………………………..
+b) Bin üç yüz ……………………………………………………………………………..
+c) Yedi yüz on üç bin iki ………………………………………………………………….
+ç) Kırk bin beş yüz otuz iki ……………………………………………………………….
+d) Dokuz yüz bin ………………………………………………………………………….
+3) Aşağıdaki doğal sayıların bölük ve basamak adlarını yazınız.
+HAZIR MIYIZ?
+a) ..........
+bölüğü
+...........
+bölüğü
+[ [
+7        5 2        0       7
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+c) ..........
+bölüğü
+...........
+bölüğü
+[ [
+6        3 0        0       4
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+b) ..........
+bölüğü
+...........
+bölüğü[ [
+          7 3        4       8
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+ç) ..........
+bölüğü
+...........
+bölüğü [[
+5        9       81        7       0
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+........... basamağı
+===== SAYFA 95 =====
+95
+2. TEMA
+BAŞLAY ALIM
+Türkiye İstatistik Kurumundan (TÜİK) alı -
+nan verilere göre 2023 yılının son ayında 
+bazı ülkelerden İstanbul’u ziyarete gelen 
+turist sayısı yandaki tabloda verilmiştir.
+Ülkeler Turist Sayısı
+Almanya 97 577
+İngiltere 49 961
+İran 88 056
+Rusya 148 016
+Türkmenistan 9496
+1) Almanya’dan gelen turistlerin sayısını basamak tablosuna yerleştiriniz. Bölük ve 
+basamak adlarını belirleyiniz. Basamak değerlerini bulup sayının okunuşunu yazınız.
+2) Tabloya göre en az turistin geldiği ülkeyi belirleyiniz ve turist sayısını aşağıdaki 
+basamak tablosuna yerleştiriniz. Sayının bölük ve basamak adlarını belirleyerek, ba-
+samak değerlerini bulup sayının okunuşunu yazınız.
+Bölük Adları Binler Bölüğü Birler Bölüğü
+Sayı 9 7 5 7 7
+Basamak 
+Adları
+On binler 
+basamağı
+Binler   
+basamağı
+Yüzler 
+basamağı
+Onlar        
+basamağı
+Birler           
+basamağı
+Basamak 
+Değeri 90 000 7000 500 70 7
+Okunuşu Doksan yedi bin beş yüz yetmiş yedi
+Bölük Adları
+Sayı
+Basamak 
+Adları
+Basamak 
+Değeri
+Okunuşu
+Tablo: Ülkeler ve Turist Sayıları
+(Genel ağdan alınmıştır.)
+===== SAYFA 96 =====
+96
+SAYILAR VE NİCELİKLER
+5) Aynı dönemde tabloda belirtilen ülkelerin dışındaki üç ülkeden İstanbul’u ziyaret eden 
+turist sayılarının okunuşları aşağıdaki tabloda verilmiştir. 
+Okunuşu verilen turist sayılarını rakamla yazınız.
+Ülkeler Turist Sayısı Turist Sayısı (Rakamla)
+ABD Kırk dokuz bin dokuz yüz on bir
+Fransa Kırk altı bin
+Kırgızistan Sekiz bin kırk üç
+3) Tabloya göre en fazla turistin geldiği ülkeyi belirleyiniz ve turist sayısını aşağıdaki 
+basamak tablosuna yerleştiriniz. Sayının bölük ve basamak adlarını belirleyerek, ba-
+samak değerlerini bulup sayının okunuşunu yazınız.
+Bölük Adları
+Sayı
+Basamak 
+Adları
+Basamak 
+Değeri
+Okunuşu
+4) İran’dan gelen turistlerin sayısını basamak tablosuna yerleştiriniz. Bölük ve basa -
+mak adlarını belirleyiniz. Sayının basamak değerlerini bulup okunuşunu yazınız.
+Bölük Adları
+Sayı
+Basamak 
+Adları
+Basamak 
+Değeri
+Okunuşu
+===== SAYFA 97 =====
+97
+2. TEMA
+Emre, fen bilimleri dersinde Güneş’e en yakın gezegenin Merkür, en uzak gezegenin Nep-
+tün, Dünya ile Ay arasındaki uzaklığın ise 384 400 km olduğunu öğrendi ve bu bilgiyi kardeşi 
+Merve ile paylaştı. Merve, “Acaba Dünya'mızın Güneş’e olan uzaklığı ne kadardır?” diye 
+düşündü.  Güneş'in Ay'dan daha uzak olduğunu bilen Merve, bu uzaklığın 600 000 km ola-
+bileceği tahmininde bulundu. Dünya’nın Güneş’e olan uzaklığını araştırmaya karar veren 
+Emre ve Merve’ye yardım ediniz. 
+Sizce Dünya’nın Güneş’e uzaklığı hakkında doğru ve güvenilir bilgiye ulaşmak için nasıl bir 
+araştırma süreci yürütülmelidir? Fikirlerinizi arkadaşlarınızla paylaşarak tartışınız.
+Emre ve Merve, Dünya’nın Güneş’e olan uzaklığını araştırırken diğer gezegenlerin de Gü -
+neş’e uzaklığını buldular. Buldukları sonuçları bir tabloda gösterdiler.
+Gezegenin İsmi Güneşe Uzaklığı
+Merkür 57 909 175 km
+Venüs 108 208 930 km
+Dünya 149 597 890 km
+Mars 227 936 640 km
+Jüpiter 778 412 020 km
+Satürn 1 426 725 400 km
+Uranüs 2 870 972 200 km
+Neptün 4 498 252 900 km
+Dünya’nın Güneş’e uzaklığını bulduk ama bu sayıyı okuyamıyorum. Bunun 
+için basamak tablosunu kullanabiliriz. Fakat ben yüz binler basamağından 
+sonra hangi basamağın geldiğini bilmiyorum. 
+... BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+...
+...
+Milyonlar 
+basamağı
+Yüz binler 
+basamağı
+On binler 
+basamağı
+Binler   
+basamağı
+Yüzler 
+basamağı
+Onlar   
+basamağı
+Birler    
+basamağı
+1 4 9 5 9 7 8 9 0
+Etkinlik 1Etkinlik 1 Çok Basamaklı Sayıları Okuyabiliyorum
+1. BÖLÜM: DOĞAL SAYILAR VE İŞLEMLER
+Çok Basamaklı Doğal Sayıları Okuma ve Yazma
+Yüz binler basamağından sonra milyonlar basamağı gelmektedir. O hâlde 
+basamak tablosunun soluna bir bölük daha ekleyerek okumaya çalışalım.
+Tablo: Gezegenlerin Güneşe Uzaklıkları
+(Genel ağdan alınmıştır.)
+===== SAYFA 98 =====
+98
+SAYILAR VE NİCELİKLER
+Siz de Neptün gezegeninin Güneş’e uzaklığını aşağıdaki basamak tablosuna yerleştiriniz.
+Nasıl okunması gerektiği ile ilgili fikirlerinizi arkadaşlarınızla paylaşarak tartışınız.
+... MİLYONLAR BÖLÜĞÜ BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+...
+...
+Milyarlar          
+basamağı
+Yüz milyonlar 
+basamağı
+On milyonlar 
+basamağı
+Milyonlar        
+basamağı
+Yüz binler      
+basamağı
+On binler       
+basamağı
+Binler             
+basamağı
+Yüzler            
+basamağı
+Onlar                
+basamağı
+Birler                
+basamağı
+Tabloya göre aşağıdaki soruları cevaplandırınız. 
+1) Sizce basamaklar arasında nasıl bir ilişki vardır? Belirlediğiniz ilişkiden yola çıka-
+rak verilmeyen basamak isimlerini tabloya yazınız.
+2) Sizce bölük ismi ile bölüğün ilk basamağının ismi arasında nasıl bir ilişki vardır? 
+Belirlediğiniz ilişkiden yola çıkarak verilmeyen bölüğün ismini tabloya yazınız.
+Basamak tablosunda basamaklar arasındaki ilişkilere dikkat edecek olursak 
+verilmeyen basamaklar “on milyonlar basamağı” ve “yüz milyonlar basama-
+ğı” olmalı.
+O hâlde milyonlar bölüğünde 149 sayısı olduğu için “yüz kırk dokuz milyon”, 
+binler bölüğünde 597 sayısı olduğu için “beş yüz doksan yedi bin” şeklinde 
+okuyacağız. Birler bölüğündeki sayıyı okuduktan sonra bölüğün ismini söyle -
+meme gerek olmadığını biliyorum. 
+Evet, doğru. Ayrıca bölük ismi ile bölüğün ilk basamağının ismi de aynı. O 
+zaman verilmeyen bölüğün ismi “milyonlar bölüğü” olmalı.
+Yani Dünya’nın Güneş’e uzaklığını “yüz kırk dokuz milyon beş yüz doksan 
+yedi bin sekiz yüz doksan” şeklinde okuruz.
+
+===== SAYFA 99 =====
+99
+2. TEMA
+Gezegenin 
+İsmi
+Güneş’e 
+Uzaklığı Okunuşu
+Merkür 57 909 175 km
+Venüs 108 208 930 km
+Dünya 149 597 890 km Yüz kırk dokuz milyon beş yüz doksan yedi bin sekiz yüz doksan
+Mars 227 936 640 km
+Jüpiter 778 412 020 km
+Satürn 1 426 725 400 km
+Uranüs 2 870 972 200 km
+Neptün 4 498 252 900 km
+4) Ulaştığınız genellemeden yola çıkarak gezegenlerin Güneş’e olan uzaklıklarının 
+okunuşlarını aşağıdaki tabloya yazınız.
+Aşağıdaki soruları cevaplayınız. 
+1) Okunuşu verilen doğal sayıları, örnekteki gibi rakamlarla yazınız.
+a) Sekiz milyon beş yüz bin iki yüz doksan  
+b) Kırk üç milyon  
+c) Dört milyar altı milyon üç yüz  
+ç) Otuz iki milyar sekiz bin dört 
+d) Dokuz milyon altı yüz altı bin yedi 
+e) Beş yüz dokuz milyar 
+2) Rakamla yazdığınız sayıların bölükleri ile okunuşlarındaki bölük isimlerini belirleyerek 
+yazınız. Belirlediğiniz bölük isimlerindeki farklılaşan durumlarla ilgili fikirlerinizi arkadaşları-
+nızla tartışınız.
+3) Çok basamaklı sayıların okunuşu ile bölük isimleri arasında nasıl bir ilişki olduğunu 
+arkadaşlarınızla tartışınız. Çok basamaklı sayıların okunuşlarına yönelik nasıl bir genel -
+leme yapabilirsiniz? Genellemenizi yazınız. 
+5) Günlük hayatımızda çok basamaklı sayılar nerelerde kullanılabilir? Sınıfınızda 
+gruplar oluşturarak tahminlerinize ilişkin araştırmalar yapınız. Araştırmalarınızda di -
+jital araç-gereçlerden yararlanınız.
+Etkinlik 2Etkinlik 2 Çok Basamaklı Sayıları Yazabiliyorum
+8 500 290
+===== SAYFA 100 =====
+100
+SAYILAR VE NİCELİKLER
+Aşağıdaki abaküs modellerinde gösterilen sayıları örnekteki gibi bulup sayının oku -
+nuşunu altındaki kutuya yazınız.
+Otuz iki milyon dört yüz dört bin altı yüz yirmi iki
+Aşağıda okunuşu verilen sayıları örnekteki gibi abaküs modelinde gösteriniz.
+Sekiz milyon yüz yirmi üç bin altı yüz seksen dört
+Elli bir milyon iki yüz kırk beş bin üç yüz Yüz milyar dört yüz on milyon yetmiş üç bin bir
+Örnek 1
+Örnek 2
+a)
+b)
+b)
+a)
+===== SAYFA 101 =====
+101
+2. TEMA
+Aşağıdaki doğal sayıların bölüklerindeki sayıları örnekteki gibi yazınız.
+5 908 001 783
+Birler bölüğü: 783
+Binler bölüğü: 1
+Milyonlar bölüğü: 908
+Milyarlar bölüğü: 5
+2 103 082
+Birler bölüğü: 82
+Binler bölüğü: 103
+Milyonlar bölüğü: 2
+12 045 799
+Birler bölüğü:
+Binler bölüğü:
+Milyonlar bölüğü:
+Milyarlar bölüğü:
+…..........................
+Birler bölüğü: 104
+Binler bölüğü: 5
+Milyonlar bölüğü: 63
+Milyarlar bölüğü: 12
+150 900 458 000
+Milyonlar bölüğü:
+Milyarlar bölüğü:
+Birler bölüğü:
+Binler bölüğü:
+…..........................
+Binler bölüğü: 0
+Birler bölüğü: 78
+Milyonlar bölüğü: 632
+Aşağıda bölükleri verilen sayıları örnekteki gibi yazınız. 
+Aşağıdaki doğal sayıların istenilen basamağındaki rakamı örnekteki gibi yazınız.
+Aşağıdaki doğal sayılarda “4” rakamının bulunduğu basamağın ismini örnekteki gibi 
+yazınız.
+a) 105 478 600 258 sayısının on milyarlar basamağındaki rakam: 0
+b) 45 007 846 sayısının milyonlar basamağındaki rakam:   
+c) 5 951 876 000 sayısının yüz milyonlar basamağındaki rakam: 
+ç) 78 950 500 877 sayısının milyarlar basamağındaki rakam: 
+914 828 001
+M i l y o n l a r             
+basamağı
+47 035 40045 000 879 145 904 487 000 123
+Örnek 3
+Örnek 4
+Örnek 5
+Örnek 6
+a)
+a)
+a) b) c)
+b)
+b)
+===== SAYFA 102 =====
+102
+SAYILAR VE NİCELİKLER
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+7 
+4 
+1 
+8 
+5 
+2 
+9 
+6 
+3 
++ 
+- 
+1 
+0 
+ = 
+x 
+/ 
+1. Görev:
+7 806 015 239 
+sayısının basamak 
+değerleri toplamını 
+bulunuz.
+2. Görev:
+15 800 243 
+sayısının basamak 
+değerleri toplamını 
+bulunuz.
+3. Görev:
+610 478 923 
+sayısının basamak 
+değerleri toplamını 
+bulunuz.
+Kadir öğretmen, basamak değeri kavramına yönelik üç farklı görev hazırlamıştır. Öğren -
+cilerinden görev kartlarındaki sayıların basamak değerleri toplamını bulmalarını istemiştir. 
+Recep ve Suzan, 1. görevi yapmak için önce basamak tablosu üzerinde çalışmaya karar 
+vermişlerdir.
+1. görev kartındaki sayının basamak adlarını ve değerlerini belirleyen Recep ve Suzan, tüm 
+sayıların basamak değerlerini hesap makinesi kullanarak topladılar ve aşağıdaki sonucu 
+elde ettiler.
+Etkinlik 3Etkinlik 3 Doğal Sayılarda Basamak Değeri
+1. Görev
+MİLYARLAR BÖLÜĞÜ MİLYONLAR BÖLÜĞÜ BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+Yüz milyarlar          
+basamağı
+On milyarlar          
+basamağı
+M i l y a r l a r           
+basamağı
+Yüz milyonlar 
+basamağı
+On milyonlar 
+basamağı
+Milyonlar        
+basamağı
+Yüz binler      
+basamağı
+On binler       
+basamağı
+B i n l e r              
+basamağı
+Y ü z l e r             
+basamağı
+Onlar                
+basamağı
+B i r l e r                 
+basamağı
+7 8 0 6 0 1 5 2 3 9
+7 x 1 000 000 000 
+= 7 000 000 000
+8 x 100 000 000
+= 800 000 000
+0 x 10 000 000
+= 0
+6 x 1 000 000
+= 6 000 000
+0 x 100 000
+= 0
+1 x 10 000
+= 10 000
+5 x 1000
+= 5000
+2 x 100
+= 200
+3 x 10 
+= 30
+9 x 1
+= 9
+9 + 30 + 200 + 5000 + 10 000 + 0 + 
+6 000 000 + 0 + 800 000 000 + 
+7 000 000 000 = 
+7 806 015 239
+===== SAYFA 103 =====
+103
+2. TEMA
+a) Recep ve Suzan’ın hesap makinesiyle yaptığı işlemin sonucu ile 1. görev kartında-
+ki sayı arasında nasıl bir ilişki vardır? 
+2. Görev
+3. Görev
+MİLYARLAR BÖLÜĞÜ MİLYONLAR BÖLÜĞÜ BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+Yüz milyarlar          
+basamağı
+On milyarlar          
+basamağı
+M i l y a r l a r           
+basamağı
+Yüz milyonlar 
+basamağı
+On milyonlar 
+basamağı
+Milyonlar        
+basamağı
+Yüz binler      
+basamağı
+On binler       
+basamağı
+B i n l e r              
+basamağı
+Y ü z l e r             
+basamağı
+Onlar                
+basamağı
+B i r l e r                 
+basamağı
+MİLYARLAR BÖLÜĞÜ MİLYONLAR BÖLÜĞÜ BİNLER BÖLÜĞÜ BİRLER BÖLÜĞÜ
+Yüz milyarlar          
+basamağı
+On milyarlar          
+basamağı
+M i l y a r l a r           
+basamağı
+Yüz milyonlar 
+basamağı
+On milyonlar 
+basamağı
+Milyonlar        
+basamağı
+Yüz binler      
+basamağı
+On binler       
+basamağı
+B i n l e r              
+basamağı
+Y ü z l e r             
+basamağı
+Onlar                
+basamağı
+B i r l e r                 
+basamağı
+b) 1. görevde belirlediğiniz ilişkinin 2 ve 3. görevde de geçerli olup olmadığını yazınız.
+Basamak Değerlerinin Toplamı =
+Basamak Değerlerinin Toplamı =
+===== SAYFA 104 =====
+104
+SAYILAR VE NİCELİKLER
+Aşağıdaki doğal sayılarda istenen rakamların basamak değerlerini örnekteki gibi 
+bulunuz.
+52 007 256 721
+ 2 000 000 000
+1 053 951 405145 963 048 99 450 684
+Elif öğretmen, öğrencilerine eski çağlarda yaşayan insanların kullandığı sayılarla ilgili araş -
+tırma ödevi vermiştir. Yusuf, yaptığı araştırmada Eski Mısırlıların sayıları oluştururken kullan-
+dığı bazı sembollerin ve bunlara karşılık gelen sayıların aşağıdaki gibi olduğunu görmüştür.
+Yusuf, arkadaşlarına örnek olarak 2 140 503 sayısını sembolleri bir araya getirerek aşağı -
+daki gibi oluşturmuştur.
+Yusuf, bir sayının rakamlarının basamak değerlerinin toplamı şeklinde yazılmasına  
+çözümleme denildiğini söyleyerek 2 tane milyonluk, 1 tane yüz binlik, 4 tane on binlik, 
+5 tane yüzlük ve 3 tane birlikten oluşan 2 140 503 sayısını aşağıdaki gibi iki farklı şe -
+kilde çözümlemiştir.
+2 140 503 = (2 x 1 000 000) + (1 x 100 000) + (4 x 10 000) + (5 x 100) + (3 x 1)
+veya
+2 140 503 = 2 000 000 + 100 000 + 40 000 + 500 + 3
+Etkinlik 4Etkinlik 4 Basamak Değerlerini Çözümleme
+1
+10
+100
+1000
+10 000
+100 000
+1 000 000
+Örnek 7
+a) b) c)
+===== SAYFA 105 =====
+105
+2. TEMA
+Eski Mısırlıların sembollerle gösterdiği aşağıdaki sayıyı rakamla yazarak çözümleyiniz.
+Aşağıdaki doğal sayıları çözümleyiniz.
+Aşağıda çözümlenmiş hâlleri verilen sayıları yazınız.
+a) 15 702 436 
+b) 500 312 000 000 
+c) 806 015 444 
+ç) 2 400 568 000 
+a) 70 000 000 000 + 5 000 000 000 + 200 000 000 + 300 000 + 10 000 
+b) (1 x 100 000 000) + (7 x 10 000 000) + (5 x 100 000) + (5 x 1000) + (9 x 10) + (2 x 1) 
+c) 3 000 000 000 + 20 000 000 + 9 000 000 + 80 000 + 1000 + 900 + 40 
+ç) (9 x 1 000 000) + (9 x 1000) + (9 x1) 
+Örnek 8
+Örnek 9
+===== SAYFA 106 =====
+106
+SAYILAR VE NİCELİKLER
+2. TEMA
+Ülkemizde 2019 yılından itibaren her yıl 11 Kasım, 
+"Millî Ağaçlandırma Günü" olarak kutlanmaktadır. 
+Ülkemizin orman sahasını ve ağaç servetini ço -
+ğaltmak, çevre değerlerini korumak gibi pek çok 
+amaçla tüm yurtta eş zamanlı olarak fidan dikme 
+etkinliği düzenlenmektedir. Yıllara göre dikilen fi -
+dan sayısı yandaki tabloda gösterilmiştir:
+Tuğba ile Fatih, tablodaki bilgilerden yola çıkarak dikilen fidan sayısını sıralamak istemektedirler.
+Tuğba: 13 791 435 sayısı, diğer sayılardan daha fazla basamağa sahip olduğundan diğer 
+sayılardan büyüktür.
+Fatih: Yedi basamaklılar arasında en büyük sayı 5 200 000 ’dir. Çünkü milyonlar basama -
+ğındaki rakam, diğer sayıların aynı basamağındaki rakamdan daha büyüktür.
+Tuğba: Geriye 4 446 803 ile 4 200 000 sayısı kaldı. Her iki sayının milyonlar basamağındaki 
+rakam aynı olduğundan yüz binler basamağına bakarız. 
+4 446 803 ile 4 200 000 sayılarının yüz binler basamağındaki rakamdan hangisi büyük ise 
+o sayı daha büyüktür.
+Fatih: O hâlde dikilen fidan sayısını şu şekilde sıralayabiliriz:
+13 791 435 > 5 200 000 > 4 446 803 > 4 200 000
+Yıl Dikilen Fidan Sayısı (adet)
+2019 13 791 435
+2020 4 446 803
+2021 5 200 000
+2022 4 200 000
+Etkinlik 5Etkinlik 5 Doğal Sayıları Karşılaştırıyorum
+Tuğba ve Fatih’in konuşmalarından yola çıkarak doğal sayıları karşılaştırmak için iz -
+lenmesi gereken yolu belirleyiniz. Belirlediğiniz bu yolu kullanarak aşağıdaki soruları 
+cevaplandırınız.
+a) 2019 yılında dikilen fidan miktarını gösteren sayının birler ile binler bölüğü yer değiştirildi-
+ğinde elde edilecek sayıyı yazınız. Daha sonra 2019 yılında dikilen fidan miktarını gösteren 
+sayı ile bu sayıyı karşılaştırınız.
+b) 2020 yılında dikilen fidan miktarını gösteren sayının binler ile milyonlar basamağı yer 
+değiştirildiğinde elde edilecek sayıyı yazınız. Daha sonra 2020 yılında dikilen fidan miktarını 
+gösteren sayı ile bu sayıyı karşılaştırınız.
+(Genel ağdan alınmıştır.)
+Tablo: Yıllara Göre Dikilen Fidan Sayısı
+===== SAYFA 107 =====
+107
+2. TEMA
+Aşağıdaki doğal sayıları örnekteki gibi "<" veya ">" sembolünü kullanarak karşılaştırınız.
+Aşağıdaki doğal sayıları sembol kullanarak küçükten büyüğe doğru sıralayınız.
+a)   1 205 789       
+    10 758 456
+      1 204 999
+b) 57 156 985 000 
+    57 156 154 000
+      8 985 674 156
+c) 105 404 369
+    105 044 100
+    105 004 999
+}
+}
+}
+a) 78 005 456 > 77 500 654   b) 1 450 000 000 … 1 400 000 000
+c) 25 150 000 … 2 500 000   ç) 15 000 750 000 … 15 000 000 750
+d) 1 000 000 … 1 000 000 000  e) 12 999 999 … 13 000 000
+Örnek 10
+Örnek 11
+700 851 058 009 000
+Aşağıdaki kartlarda yazan sayıları birer kez kullanarak istenen sayıları örnekteki gibi 
+yazınız.
+Örnek 12
+a) 9 basamaklı en büyük sayı:   c) 10 basamaklı en küçük sayı:
+b) 11 basamaklı en büyük sayı:  ç) 12 basamaklı en küçük sayı:
+058 851 700
+58 851 700
+8 basamaklı en büyük sayıÖrnek:
+===== SAYFA 108 =====
+108
+SAYILAR VE NİCELİKLER
+İzleme Testi
+2) Aşağıdaki kartlarda yazan rakamlar birer defa kullanılarak sekiz basamaklı en büyük 
+doğal sayı yazılıyor.
+8 51 30 64 7
+1) Bir doğal sayı aşağıdaki abaküs modelinde gösterilmiştir. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Abaküs modelinde gösterilen sayının okunuşunu yazınız.
+b) Abaküs modelinde gösterilen sayının “dört yüz yetmiş iki milyon beş yüz seksen dokuz 
+bin sekiz yüz yetmiş iki” olması için bu abaküs modeline kaç boncuk daha eklenmelidir?
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Yazılan doğal sayının binler bölüğünü oluşturan sayıların toplamını bulunuz.
+b) Yazılan doğal sayının milyonlar basamağındaki sayının basamak değerini bulunuz.
+===== SAYFA 109 =====
+109
+2. TEMA
+4) 0, 1, 2, 3, 4, 5, 6, 7, 8 ve 9 rakamları birer defa kullanılarak 9 basamaklı doğal sayılar 
+yazılıyor. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) En büyük tek doğal sayıyı bulunuz.
+b) En küçük çift doğal sayıyı bulunuz.
+5) 1, 2, 3, 5, 6, 7 ve 9 rakamları birer kez kullanılarak 7 basamaklı doğal sayılar yazılıyor.
+Buna göre aşağıdaki soruları cevaplayınız.
+a) 3 000 000’dan büyük en küçük doğal sayıyı bulunuz.
+b) 9 000 000’dan küçük en büyük doğal sayıyı bulunuz.
+6) 36 463 786 069 doğal sayısındaki 6 rakamlarının basamak değerlerini bulunuz.
+3) On iki basamaklı “      083 653 928” doğal sayısının okunuşu “Dokuz yüz sekiz milyar 
+seksen üç milyon altı yüz elli üç bin dokuz yüz yirmi sekiz” dir.
+Buna göre milyarlar bölüğüne yazılması gereken sayıyı bulunuz.
+Karekodu okutarak e-içeriğe
+ulaşabilirsiniz.
+===== SAYFA 110 =====
+110
+SAYILAR VE NİCELİKLER
+HAZIR MIYIZ?
+1) Aşağıdaki işlemleri zihinden yaparak işlem sonuçlarını yazınız.
+a) 56 + 19 =      b) 82 + 15 =
+c) 78 – 27 =      ç) 57 – 14 =
+2) Aşağıdaki toplama ve çıkarma işlemlerinin sonucunu önce tahmin ediniz sonra 
+gerçek sonucu bulunuz. Tahminî sonuçlarınızla gerçek sonuçlarınızı karşılaştırınız. 
+Tahmin ederken izlediğiniz yolları arkadaşlarınızla paylaşınız.
+a) 175 + 88 =      b) 716 + 374 =
+c) 871 – 372 =      ç) 7643 – 5312=
+3) Aşağıdaki işlemleri zihinden yaparak işlem sonuçlarını yazınız.
+a) 44 x 10 =      b) 40 x 40 =
+c) 28 x 100=      ç) 250 ÷ 10=
+d) 800 ÷ 100=      e) 90 ÷ 30 =
+4) Aşağıdaki işlemlerin sonucunu önce tahmin ediniz sonra gerçek sonucu bulunuz. 
+Tahmin ederken izlediğiniz yolları arkadaşlarınızla paylaşarak tahminî sonuçlarınızla 
+gerçek sonuçlarınızı karşılaştırınız.
+a) 475 x 9 =      b) 24 x 55 =
+c) 486 ÷ 6 =      ç) 384 ÷ 24 =
+5) Bir depodaki 1567 litre suyun sulama için 234 litre ve yangın söndürmek için 1089 litresi 
+kullanılmıştır.
+Buna göre depoda kaç litre su kalmıştır?
+6) Ece, 60 gün boyunca günde 12 sayfa okuyarak bir kitabı bitirmiştir. 
+Ece, bu kitabı günde 40 sayfa okusaydı kaç günde bitirirdi?
+===== SAYFA 111 =====
+111
+2. TEMA
+Gerçek Yaşam Problemlerini Çözebilme
+Kâğıt tasarrufu ve kâğıt geri dönüşümüne destek olmak amacıyla bir ortaokul “Atık 
+Kâğıt Toplama Kampanyası” başlatmıştır. Okul bu kampanya ile ülke ekonomisine ve 
+enerji kaynaklarına katkı sağlamayı amaçlamıştır.
+Topladığı her 1000 kg kâğıtla 17 adet yetişkin ağacı kesilmekten kurtarmıştır.
+Buna göre 1 yılda 7000 kg atık kâğıt toplayan bu ortaokul, kaç adet yetişkin ağacı 
+kesilmekten kurtarmıştır?
+Yukarıdaki problemi inceleyiniz. Sizce ülkemizdeki  orman varlığının korunabilme-
+si için ne gibi çalışmalar yapılabilir? Fikirlerinizi arkadaşlarınızla paylaşarak tartı -
+şınız.
+UNUTMAYALIM, KÂĞIT ÇÖP DEĞİLDİR!
+Problem 1
+Bir bölgedeki beş dağdan dördünün yükseklikleri aşağıda verilmiştir:  
+1. Dağ: 1411 m    2. Dağ: 2185 m     3. Dağ: 1319 m     4. Dağ: 1277 m    
+Bu beş dağın yüksekliklerinin toplamı 7450 m’yi geçmemektedir. 
+Buna göre beşinci dağın yüksekliği en fazla kaç metre olabilir?
+Aşağıdaki adımları izleyerek problemi çözelim.
+1. Adım: Problem incelendiğinde bir bölgedeki dört dağın yüksekliklerinin verildiği görülür. 
+Bu beş dağın yüksekliklerinin toplamının en büyük değeri verilmiştir.
+2. Adım: Bu beş dağın yükseklikleri, verilen durumu karşılamalıdır. 5. dağın yüksekliği ile 
+diğer dağların yüksekliklerinin toplamı en fazla 7450 m olmalıdır.
+===== SAYFA 112 =====
+112
+SAYILAR VE NİCELİKLER
+4. Adım: 5. dağın yüksekliğinin alabileceği değerleri belirlerken bu dağların yüksekliklerinin 
+toplamının en fazla değeri dikkate alınmalıdır.
+5. Adım: Beş dağın yüksekliklerinin toplamının en fazla 7450 m olması gerektiğinden 5. 
+dağın yüksekliği diğer dağların yükseklikleri toplandığında 7450 m’yi geçmemelidir.
+6. Adım: Dört dağın yüksekliklerinin toplamı 1411 + 2185 + 1319 + 1277 = 6192 m’dir. Bu 
+beş dağın yüksekliklerinin toplamı 7450 m’yi geçmeyeceğinden 5. dağın yüksekliği en fazla 
+7450 – 6192 = 1258 m olmalıdır.
+7. Adım: 5. dağın yüksekliğinin en fazla 1258 m olabileceğini bulduk. Kontrol ettiğimizde 5. 
+dağın yüksekliği 1259 m olduğunda diğer dört dağın yüksekliği ile toplamı 7450 m’yi geçer. 
+O hâlde bulduğumuz değer doğrudur.
+8. Adım: Problemin çözümünde beş dağın toplam yüksekliğinden dört dağın yüksekliklerini 
+art arda çıkarmak yerine bu dört dağın toplam yüksekliği kullanılarak işlem yapıldı. Böyle -
+likle daha kısa bir yoldan sonuca ulaşılmış oldu. Toplama ve çıkarma işlemlerinde zihinden 
+işlemler yaparak da çözüme ulaşılabilir.
+9. Adım: Bu tarz problemlerde benzer yollar izlenebilir. Dağ sayısı daha fazla olsa da dağ-
+ların yüksekliklerinin toplamı kullanılarak sonuca ulaşılabilir.
+10. Adım: Verilen dağların sayısını artırarak yüksekliklerinin aşağıdaki gibi olduğunu var -
+sayalım.
+1277            1295              1319            1355              1411              2185
+Bu altı dağın yüksekliklerinin toplamının en fazla 10 000 m olduğu durumda 7. dağın yük -
+sekliği en fazla 1158 m olarak bulunur.
+3. Adım: Bu dağların yükseklikleri aşağıdaki gibi tablo ile gösterilerek 5. dağın yüksekliği 
+daha kolay belirlenebilir.
+Dağ Yükseklik
+1. Dağ 1411 m
+2. Dağ 2185 m
+3. Dağ 1319 m
+4. Dağ 1277 m
+5. Dağ ?
+Tablo: Dağlar ve Yükseklikleri
+Dağların toplam yüksekliği: 7450 m
+===== SAYFA 113 =====
+113
+2. TEMA
+Problem Çözme Adımları
+1. Adım: Problemin içerdiği sayı ve işlemler belirlenir.
+2. Adım: Problemde verilenler ile istenenlerin gerektirdiği işlemler arasındaki ilişki 
+belirlenir.
+3. Adım: Problemde verilenler matematiksel gösterimlere dönüştürülür.
+4. Adım: Problem, matematiksel gösterimler kullanılarak açıklanır.
+5. Adım: Problemin sonucuna ilişkin tahminde bulunulur ve işlemleri gerçekleştir-
+mek için stratejiler geliştirilir. 
+6. Adım: Belirlenen strateji veya stratejiler çözüm için uygulanır. 
+7. Adım: Çözüm yolları kontrol edilir ve çözüme ulaştırmayan strateji değiştirilir.
+8. Adım: Problemin çözümü için kullanılan veya geliştirilen stratejiler gözden geçi-
+rilerek kısa yollar değerlendirilir. 
+9. Adım: Kullanılan strateji veya stratejiler farklı problemlerin çözümlerine genellenir.
+10. Adım: Genellemenin geçerliliği matematiksel örneklerle değerlendirilir.
+Problem 2
+Ahmet, harcamalarını gelirine göre yapıp gereksiz yere para harcamamayı prensip hâline 
+getirmiştir. 2024 yılının ilk altı ayında 23 300 TL para biriktirmiştir. Yıl sonunda biriktirdiği 
+toplam para miktarı ise 38 800 TL olmuştur. 
+Ahmet, yıl boyunca her ay en az 2500 TL para biriktirdiğine göre kasım ayında en fazla 
+kaç TL para biriktirdiğini problem çözme adımlarını uygularak bulunuz.
+1. Adım:
+2. Adım:
+3. Adım:
+4. Adım:
+5. Adım:
+6. Adım:
+7. Adım:
+8. Adım:
+9. Adım:
+10. Adım:
+===== SAYFA 114 =====
+114
+SAYILAR VE NİCELİKLER
+Tablo: Rüzgâr Türbinlerine Göre Elektrik 
+           İhtiyacı Karşılanan Ev Sayısı
+Rüzgâr Türbini No Ev Sayısı
+1 1732
+2 1583
+3 875
+Rüzgâr türbinleri, rüzgâr enerjisiyle elektrik üreten araçlardır. Birçok ülkede enerji maliyetle-
+rini düşürmek ve fosil yakıtlara bağımlılığı azaltmak için kullanılmaktadır.
+Aşağıdaki tabloda bir ilçeye kurulması planlanan üç farklı rüzgâr türbininin aylık elektrik 
+ihtiyacını karşıladığı ev sayısı verilmiştir.
+Her bir ev, eşit miktarda elektrik tükettiğine göre aşağıdaki soruları cevaplandırınız.
+a) Bu üç rüzgâr türbini toplam kaç evin elektrik ihtiyacını karşılar?
+b) Ev sayısı 2620 olan bu ilçedeki tüm evlerin elektrik ihtiyacının karşılanması için hangi iki 
+rüzgâr türbininin birlikte yerleştirilmesi yeterlidir?
+1. 2. 3.
+Problem 3
+===== SAYFA 115 =====
+115
+2. TEMA
+TEKNOFEST, Türkiye’de millî teknolojinin ge -
+liştirilmesi konusunda kritik role sahip birçok 
+kuruluşun katkısıyla düzenlenen Türkiye’nin ilk 
+ve tek havacılık, uzay ve teknoloji festivalidir. 
+İlki 2018’de gerçekleştirilen TEKNOFEST Ha -
+vacılık, Uzay ve Teknoloji Festivali’nde yüzbin-
+lerce gencin hayallerini gerçekleştirmesi için 
+çeşitli disiplin ve kategorilerde teknoloji yarışmaları düzenlenmektedir. Bu teknoloji yarış -
+malarına 2022 yılında 154 000, 2023 yılında ise 330 000’den fazla takım başvurmuştur.
+Düzenlendiği ilk dört yılda TEKNOFEST’e başvuran takım sayısı aşağıdaki tabloda veril -
+miştir.
+Tablo: Yıllara Göre Teknofest’e Katılan Takım Sayıları
+Yıllar Takım Sayısı
+2018 4333
+2019 17 373
+2020 20 197
+2021 44 912
+Buna göre aşağıdaki soruları cevaplandırınız.
+a) 2018 ve 2019 yıllarında TEKNOFEST’e toplam kaç takım başvurmuştur?
+b) 2021 yılında TEKNOFEST’e başvuran takım sayısı, 2020 yılında başvuran takım sayı -
+sından kaç fazladır?
+c) Bu dört yılda TEKNOFEST’e toplam kaç takım başvurmuştur?
+ç) Tabloya göre TEKNOFEST’e katılan takım sayısının bir önceki yıla göre en fazla arttığı 
+yıl hangisidir?
+Problem 4
+(Genel ağdan alınmıştır.)
+===== SAYFA 116 =====
+116
+SAYILAR VE NİCELİKLER
+Daha sonra parçalardan birinde dört basamaklı ve diğerinde beş basamaklı bir sayı olacak 
+şekilde kâğıt şeritlerini keserek iki parçaya ayırmışlardır.
+1) Ahmet’in oluşturduğu beş basamaklı sayı, Akif’in oluşturduğu beş basamaklı sayı-
+dan büyük olduğuna göre aşağıdaki soruları cevaplandırınız.
+a) Ahmet’in oluşturduğu beş basamaklı sayı ile Akif’in oluşturduğu beş basamaklı sayı ara-
+sındaki fark kaçtır?
+b) Ahmet’in oluşturduğu dört basamaklı sayı ile Akif’in oluşturduğu dört basamaklı sayı ara-
+sındaki fark kaçtır?
+7 8 0 6 1 3 4 9 2 6 2 5 8 9 3 1 4 7
+Ahmet Akif
+2) Akif’in oluşturduğu beş basamaklı sayı ile Ahmet'in oluşturduğu beş basamaklı 
+sayı arasındaki farkın en fazla olduğu duruma göre aşağıdaki soruları cevaplandırınız.
+a) Akif'in oluşturduğu beş basamaklı sayı, Ahmet'in oluşturduğu beş basamaklı sayıdan kaç 
+fazladır?
+b) Ahmet’in oluşturduğu dört basamaklı sayı ile Akif’in oluşturduğu dört basamaklı sayı ara-
+sındaki fark kaçtır?
+Problem 5
+Ahmet ve Akif, kâğıt şeritlerini dokuz eş bölmeye ayırıp her bölmeye aşağıdaki gibi farklı bir 
+sayı yazmıştır. 
+===== SAYFA 117 =====
+117
+2. TEMA
+Sağlıklı yaşam için düzenli egzersiz yapma-
+nın önemini bilen Büşra Hanım, düzenli bir 
+şekilde yürüyüş yapmaya karar vermiştir. 
+Büşra Hanım’ın iki haftada attığı adım sayısı 
+yandaki tabloda verilmiştir.
+Tablo: Haftalara Göre Atılan Adım Sayısı
+Hafta Adım Sayısı
+1. Hafta 34 850
+2. Hafta 45 920
+3. Hafta ?
+1) Büşra Hanım’ın ikinci hafta attığı adım sayısının, ilk hafta attığı adım sayısından ne 
+kadar fazla olduğunu önce tahmin ediniz. Daha sonra gerçek sonucu bularak tahmi -
+ninizle karşılaştırınız.
+Problem 7
+2) Büşra Hanım’ın üçüncü hafta attığı toplam adım sayısının ikinci hafta attığı adım 
+sayısından 6500 az olduğu biliniyorsa üçüncü hafta attığı toplam adım sayısını önce 
+tahmin ediniz. Daha sonra gerçek sonucu bularak tahmininizle karşılaştırınız.
+Nil Hanım, TL cinsinden fiyatları verilen farklı markalara ait aşağıdaki eşyaların her birinden 
+bir tane satın alacaktır.
+Ütü
+A marka: 9750 TL
+B marka: 11 250 TL
+Robot Süpürge
+C marka: 15 499 TL
+D marka: 16 999 TL
+Kahve Makinesi
+E marka: 5550 TL
+F marka: 4299 TL
+Buna göre aşağıdaki soruları cevaplayınız. 
+a) Nil Hanım, alışverişini en uygun fiyata mal etmek isterse hangi ürünleri satın alması ge -
+rektiğini belirleyerek ödeyeceği tutarı hesaplayınız.
+Problem 6
+b) Nil Hanım’ın 30 000 TL bütçesi vardır. Bütçesi A, D ve E marka eşyaların hepsini almak 
+için yeterli midir? Önce tahminî ve gerçek sonucu bulunuz. Sonra bulduğunuz sonuçları 
+karşılaştırınız.
+===== SAYFA 118 =====
+118
+SAYILAR VE NİCELİKLER
+Bilgisayarlarında bir işlem oyunu oynayan Recep ve Ramazan’ın karşılaştıkları iki sorunun 
+görüntüsü aşağıda verilmiştir.
+A bilgisayarındaki işlem, “12 414 sayısı ile hangi sayıyı toplarsak sonuç 21 213 olur?” şek -
+linde bir probleme dönüştürülebilir. Bu problemin çözümü için iki farklı yol izlenebilir.
+1. Yol: Toplamdan toplanan çıkarılabilir.
+2 1 2 1 3 
+1 2 4 1 4 
+ 8 7 9 9
+2. Yol: Bilgisayar ekranında yan yana yazılan işlem alt alta yazılır. Verilmeyen toplananın 
+yeri boş bırakılarak verilen sayıların aynı basamaktaki rakamları karşılaştırılarak boşluğa 
+gelmesi gereken uygun sayı bulanabilir. 
+1 2 4 1 4 
+  8 7 9 9
+2 1 2 1 3
++
+A bilgisayarındaki işlemin çözüm yollarını inceleyerek B bilgisayarında verilmeyen sayıyı 
+bulunuz.
+x_
+ x_
+12 414 + ........ = 21 213 ........ + 12 085 = 63 904
+CEVAPLACEVAPLA CEVAPLACEVAPLA
+AA BB
+Problem 8
+===== SAYFA 119 =====
+119
+2. TEMA
+Problem 9
+Suzan, yapmış olduğu çıkarma işleminde eksileni silerek kardeşi Nazlı’dan silmiş olduğu 
+sayıyı bulmasını istemiştir. Nazlı ise yapmış olduğu çıkarma işleminde çıkanı silerek Su -
+zan’dan sildiği sayıyı bulmasını istemiştir. 
+Verilmeyen sayıları bulunuz.
+Suzan’ın Yaptığı İşlem Nazlı’nın Yaptığı İşlem
+ .  .  .  .  . 
+   6 4 0 8 
+ 6 8 8 0 5
+9 0 5 2 3
+ .  .  .  .  .
+ 5 7 6 4 1
+Problem 10
+Bir futbol takımının oynadığı ilk üç maçta stadyuma gelen toplam seyirci sayısı 99 000'dir.
+Bu futbol takımının oynadığı ilk iki maçta stadyuma gelen seyirci sayıları 33 004 ve 35 670'tir.
+Buna göre futbol takımının üçüncü maçta stadyuma gelen seyirci sayısı kaçtır?
+
+===== SAYFA 120 =====
+120
+SAYILAR VE NİCELİKLER
+Vahdettin Bey, bahçesine fidanlar dikecektir. Dikmeyi düşündüğü 
+fidanların türleri ve fiyatları aşağıdaki tabloda verilmiştir.
+6500 TL parası olan Vahdettin Bey, bu fidan çeşitlerinin her birinden en az 10 adet satın 
+alacaktır.
+Buna göre Vahdettin Bey'in en fazla kaç fidan dikebileceğini bulunuz.
+1. Adım: Problemde Vahdettin Bey'in para miktarı, fidanların fiyatları ve her fidandan en az 
+10 adet alacağı belirtilmiştir. 
+2. Adım: Her bir fidandan onar adet aldığında ödemesi gereken para miktarı belirlenmelidir. 
+Daha sonra kalan parası ile alabileceği en fazla fidan sayısı bulunmalıdır.
+3. Adım:         10 adet şeftali fidanının fiyatı  143 x 10
+  10 adet üzüm fidanı fiyatı       95 x 10
+  10 adet elma fidanı fiyatı        138 x 10
+  10 adet armut fidanı fiyatı       73 x 10
+4. Adım: Her bir fidanın fiyatını 10 ile çarparak harcanacak para miktarı bulunmalıdır. Daha 
+sonra kalan para miktarı kullanılarak alınabilecek en fazla fidan sayısı belirlenmelidir.
+5. Adım: Birer adet fidanın fiyatını onlar basamağına yuvarlayarak toplam ücreti tahmin 
+edelim.
+Problem 11
+Fidanın Çeşidi Bir Fidanın Fiyatı (TL)
+Şeftali 143
+Üzüm 95
+Elma 138
+Armut 73
+Tablo: Fidan Çeşitleri ve Fiyatları
+Fidanın 
+Çeşidi
+Bir Fidanın Fiyatının 
+Onlar Basamağına 
+Yuvarlanmış Hâli (TL)
+10 Adet Fidanın 
+Tahminî Fiyatı Tahminî Toplam Fiyat
+Şeftali 140 140 x 10 = 1400 TL
+1400 + 1000 + 1400 + 700 = 4500 TLÜzüm 100 100 x 10 = 1000 TL
+Elma 140 140 x 10 = 1400 TL
+Armut 70 70 x 10 = 700 TL
+Tablo: Fidan Çeşitlerinin Tahminî Toplam Fiyatı
+Aşağıdaki adımları izleyerek problemi çözelim.
+===== SAYFA 121 =====
+121
+2. TEMA
+Kalan para miktarı, 6500 TL - 4500 TL = 2000 TL olur. Alınabilecek fidan sayısının en fazla 
+olacak şekilde tahmin edebilmemiz için en ucuz fidanın fiyatını onlar basamağına yuvarla -
+yarak kalan para miktarını bu fiyata bölmeliyiz.
+En ucuz fidanın fiyatı 73 TL'dir. 73'ün onlar basamağına yuvarlanmış hâli ise 70'tir.
+2000
+0600
+7 0    
+28    140
+560
+040
+Kalan para miktarı ile en fazla 28 
+adet fidan daha alınabilir.
+Dolayısıyla tahminî olarak en fazla 
+40 + 28 = 68 adet fidan alabilir.
+Siz, Vahdettin Bey'in alabileceği en fazla fidan sayısını tahmin etmek için nasıl bir yol izler-
+siniz? Belirlediğiniz yolu kullanma nedeninizi ve bu yolun sağladığı kolaylıkları arkadaşları-
+nızla paylaşarak tartışınız.
+6. Adım: Bu fidanlardan onar adet almak için ödenmesi gereken tutarı belirleyelim.
+Toplam Tutar = 143 x 10 + 95 x 10 + 138 x 10 + 73 x 10 
+                      = 1430 + 950 + 1380 + 730 
+                      = 4490 TL
+Daha sonra kalan para miktarını belirleyelim.
+6500 - 4490 = 2010 TL
+Kalan para miktarını en ucuz fidanın fiyatına bölelim.
+2010
+0550
+7 3    
+27    146
+0511
+039
+Kalan parası ile en fazla 27 adet armut fidanı daha alınabilir.
+Dolayısıyla Vahdettin Bey en fazla 40 + 27 = 67 adet fidan alabilir.
+7. Adım: 
+Çözümümüzü kontrol edelim.
+27 adet armut fidanına ödenen tutar 27 x 73 = 1971 TL olup kalan tutar 6500 - 1971 = 4529 TL'dir.
+10 adet şeftali fidanının fiyatı 1430 TL olup kalan para miktarı 4529 - 1430 = 3099 TL'dir.
+10 adet üzüm fidanı fiyatı 950 TL olup kalan para miktarı 3099 -  950 = 2149 TL'dir.
+10 adet elma fidanı fiyatı 1380 TL olup kalan para miktarı 2149 - 1380 = 769 TL'dir.
+10 adet armut fidanı fiyatı 730 TL olup kalan para miktarı 769 - 730 = 39 TL'dir.
+39 TL ile başka bir fidan daha alamayacağından çözümümüz doğrudur.
+8. Adım: Problemin çözümünde kalan para miktarı ile en fazla kaç fidan alınabileceğini 
+belirlemek için tüm fidanların fiyatlarını kullanmak yerine en ucuz fidanın fiyatı kullanıldı. 
+Böylelikle daha kısa bir yoldan sonuca ulaşılmış oldu.
+9. Adım: En fazla ürün alınması istenen bu tarz problemlerde benzer yollar izlenebilir. Fiyatı 
+verilen ürün sayısı daha fazla olsa da en ucuz ürünün fiyatı kullanılarak sonuca ulaşılabilir.
+===== SAYFA 122 =====
+122
+SAYILAR VE NİCELİKLER
+Bir çorap fabrikası, çorapları çoklu alımlarda aşağıdaki fiyat tarifesine göre satmaktadır.
+Ziya Bey 10 tane, tuhafiyeci Zeynep Hanım 100 tane, toptancı Ahmet Bey ise 1000 tane 
+çorap almıştır.  
+Bu üç kişinin ödemesi gereken toplam tutarı problem çözme adımlarını uygularak 
+bulunuz.
+10 tane alındığında tanesi 32 TL
+100 tane alındığında tanesi 24 TL
+1000 tane alındığında tanesi 19 TL
+Problem 12
+Ürünler Kilogram Fiyatı (TL)
+Kiraz 52
+Böğürtlen 98
+Erik 49
+Kayısı 43
+Bir manavdan alınacak meyvelerin fiyatla -
+rının yanda verilen tablodaki gibi olduğunu 
+varsayalım.
+En ucuz meyve kayısı olduğundan problemin 
+çözümünde kayısının fiyatı kullanılmalıdır. 
+10. Adım: 
+1. Adım:
+2. Adım:
+3. Adım:
+4. Adım:
+5. Adım:
+6. Adım:
+7. Adım:
+8. Adım:
+9. Adım:
+10. Adım:
+Karekodu okutarak e-içeriğe
+ulaşabilirsiniz.
+===== SAYFA 123 =====
+123
+2. TEMA
+Etkinlik 1Etkinlik 1 Kısa Yoldan Çarpma İşlemi
+Yukarıdaki çarpma işlemlerinde çarpılan sayılar ile işlem sonucunu inceleyerek aşa-
+ğıdaki soruları cevaplayınız.
+1) Yukarıdaki kısa yoldan çarpma işlemlerinde gözlemlediğiniz özellikleri açıklayarak 
+yazınız.
+2) Aşağıdaki işlemlerin sonuçlarını kısa yoldan çarpma işleminin ulaştığınız özelliklerini kul-
+lanarak bulunuz.
+a) 3 x 20 =   b) 3 x 700 =   c) 3 x 9000 =    
+ç) 56 x 40 =   d) 56 x 200 =   e) 56 x 5000 =
+320 x 20 = 6400
+320 x 300 = 96 000
+320 x 5000 = 1 600 000
+32 x 20 = 640
+32 x 300 = 960
+32 x 5000 = 160 000
+Aşağıdaki çarpma işlemlerini kısa yoldan yapınız.
+a) 2000 x 6 =    b) 25 x 30 =
+c) 60 x 200 =    ç) 500 x 48 =
+d) 90 x 500 =    e) 102 x 70 =
+f) 58 x 3000 =    g) 172 x 300 =
+Örnek 1
+3) Kısa yoldan yapılan çarpma işlemlerine ait yöntemlerin işlem yapmayı nasıl kolaylaştır-
+dığını ifade ediniz.
+===== SAYFA 124 =====
+124
+SAYILAR VE NİCELİKLER
+Performans Görevi
+"Napier’ın Kemikleri"
+Sevgili öğrenciler, bu çalışmada "Napier’ın (Neypiyır) Kemikleri" ile ilgili araştırma yapa-
+rak ulaştığınız bilgileri panoda sergilemeniz ve "Napier’ın Kemikleri" tasarımı yapmanız 
+beklenmektedir.  Yapacağınız araştırmada güvenilir bilgiye ulaşma yollarını belirlemeniz 
+ve özgün tasarımlar oluşturmanız önemlidir.
+Çalışma öncesinde şu noktalara dikkat etmelisiniz.
+• Napier’ın hayatı ve çalışmaları ile ilgili araştırma yapınız.
+• "Napier’ın Kemikleri" ile ilgili görseller toplayınız.
+• "Napier’ın Kemikleri" ile ilgili yapılan tasarımları inceleyiniz.
+• Hazırlayacağınız panoda ve yapacağınız tasarımda kullanacağınız araç ve teknolojileri 
+belirleyiniz. 
+• Hazırlayacağınız tasarımın verilen tablodaki puanlama anahtarı ile değerlendirileceğine 
+dikkat etmelisiniz.
+Çalışma sırasında şu noktalara dikkat etmelisiniz.
+• Araştırma sırasında ulaştığınız bilgileri sade, anlaşılır, dikkat çekici bir şekilde düzenle-
+meye özen gösteriniz.
+• Düzenlediğiniz bilgileri panoya aktarırken görsellerden yararlanmayı unutmayınız. 
+• Tasarımınızı hazırlarken belirlediğiniz araç ve teknolojileri kullanınız.
+• Tasarımınızın estetik bir görünüme sahip özgün bir tasarım olmasına dikkat ediniz.
+Çalışma sonrasında;
+Ekte verilen öz değerlendirme formunu doldurunuz (EK1).
+===== SAYFA 125 =====
+125
+2. TEMA
+Puan Gösterge
+5
+(Çok İyi)
+Özgün ve estetik bir tasarım oluşturmuştur.
+Hazırladığı bilgileri sade, anlaşılır ve dikkat çekici bir şekilde görsel-
+ler kullanarak panoda sergilemiştir.
+Uygun araç ve teknoloji kullanmıştır.
+4
+(İyi)
+Hazırladığı tasarım özgün değildir.
+Hazırladığı bilgileri sade, anlaşılır ve dikkat çekici bir şekilde görsel-
+ler kullanarak panoda sergilemiştir.
+Uygun araç ve teknoloji kullanmıştır.
+3
+(Orta)
+Hazırladığı tasarım özgün değildir.
+Hazırladığı bilgileri sade ve anlaşılır bir şekilde panoda sergilemiştir.
+Uygun araç ve teknoloji kullanmıştır.
+2
+(Zayıf)
+Hazırladığı tasarım özgün değildir.
+Hazırladığı bilgiler sade ve anlaşılır değildir.
+Uygun araç ve teknoloji kullanmıştır.
+1
+(Çok Zayıf)
+Hazırladığı tasarım özgün değildir.
+Hazırladığı bilgiler sade ve anlaşılır değildir.
+Uygun araç ve teknoloji kullanmamıştır.
+0
+(Yetersiz) Performans görevini yerine getirmemiştir.
+Tablo: Napier’ın Kemikleri Performans Görevi İçin Hazırlanan Bütüncül Dereceli 
+ Puanlama Anahtarı
+===== SAYFA 126 =====
+126
+SAYILAR VE NİCELİKLER
+Bir ayakkabı atölyesinde günde 98 çift ayakkabı üretilmektedir. 
+Buna göre bu atölyede bir yılda toplam kaç ayakkabı üretileceğini önce tahmin ediniz. 
+Daha sonra gerçek sonucu bulup tahmininizle karşılaştırınız. (1 yıl = 365 gün)
+Fidan fiyatları aşağıdaki tabloda verilmiştir.
+Buna göre toplam kaç TL ödenmesi gerektiğini önce tahmin ediniz. Daha sonra ger -
+çek sonuçla tahmininizi karşılaştırınız.
+Problem 13
+Problem 14
+Fidanın Çeşidi Bir Fidanın Fiyatı (TL)
+Çam 209
+Elma 315
+Tablo: Fidan Çeşitleri ve Fiyatları
+Bir ortaokulun öğrencileri okul bahçesini güzelleştirmek için ağaç dikme kampanyası düzenle-
+miştir. Bu kampanya kapsamında okulun bahçesine toplam 175 adet çam ağacı, 30 adet elma 
+fidanı dikilecektir.
+===== SAYFA 127 =====
+127
+2. TEMA
+Bir zeytin bahçesinde toplam 150 zeytin ağacı bulunmaktadır. Bu ağaçların 115 tanesinin 
+her birinden ortalama 40 kg zeytin toplanmıştır. Kalan ağaçların her birinden ise ortalama 
+35 kg zeytin toplanmıştır. 
+Buna göre bu zeytin bahçesinden elde edilen toplam zeytin miktarı ortalama kaç ki -
+logramdır?
+Hüseyin Bey’in 2024 yılı Şubat ayında damacana su siparişi verdiği ilk dört gün aşağıdaki 
+takvim üzerinde işaretlenmiştir. Şubat ayının ilerleyen günlerinde de aynı aralıklarla sipariş 
+vermeye devam etmiştir.
+Bir damacana suyun fiyatı 80 TL iken 15 Şubat'ta zamlanarak 85 TL olmuştur. 
+Buna göre Hüseyin Bey, Şubat ayında sipariş verdiği sulara toplam kaç TL ödeme 
+yapmıştır?
+ŞUBAT
+Pt Sa Ça Pe Cu Ct Pz
+Problem 15
+Problem 16
+===== SAYFA 128 =====
+128
+SAYILAR VE NİCELİKLER
+Burak, 1120 sayfalık bir kitabı her gün 35 sayfa 
+okuyarak bitirmiştir. Merve ise 945 sayfalık bir kita-
+bı her gün 27 sayfa okuyarak bitirmiştir.
+Okuduğu kitabı ilk bitiren kişinin kaç günde bi-
+tirdiğini önce tahmin ediniz. Daha sonra gerçek 
+sonucu bularak tahmininizle karşılaştırınız.
+Problem 17
+Bir yerleşim yerindeki kişilerin çiftliklerinde günlük sağdıkları süt miktarları aşağıdaki tablo -
+da verilmiştir. 
+Her gün üretilen süt, süt toplama merkezine satılmaktadır. 
+a) Süt toplama merkezinin 1520 litre süte ihtiyacı olduğuna göre bu miktarı en erken 
+karşılayabilecek kişi kaç günde tamamlar?
+b) Süt toplama merkezinin 5760 litre süte ihtiyacı olduğunda tüm kişiler birlikte bu 
+ihtiyacı kaç günde tamamlar?
+Problem 18
+Kişiler Günlük Sağılan Süt Miktarı (L)
+Ahmet 30
+Havva 38
+Mustafa 32
+Zeynep 28
+Tablo: Kişiler ve Sağdıkları Süt Miktarları
+===== SAYFA 129 =====
+129
+2. TEMA
+6000       20 
+= 300 
+6000       300 
+= 20 
+6000       1500 
+= 4 
+Tahir, hesap makinesi yardımıyla 6000 sayısını 20’ye, 300’e ve 1500’e bölmüştür.
+Yapılan bölme işlemlerini inceleyerek aşağıdaki soruları cevaplayınız.
+1) Yukarıdaki kısa yoldan bölme işlemlerinde gözlemlediğiniz özellikleri açıklayarak yazınız.
+2) Aşağıdaki işlemlerin sonuçlarını kısa yoldan bölme işleminin ulaştığınız özelliklerini kul -
+lanarak bulunuz.
+a) 48 000 ÷ 20 =  b) 48 000 ÷ 300 =   c) 42 000 ÷ 6000 =
+ç) 84 000 ÷ 30 =  d) 84 000 ÷ 400 =   e) 84 000 ÷ 7000 =
+3) Kısa yoldan yapılan bölme işlemlerine ait yöntemlerin işlem yapmayı nasıl kolaylaştırdı -
+ğını  ifade ediniz.
+Aşağıdaki bölme işlemlerini kısa yoldan yapınız.
+a) 4000 ÷ 20 =   b) 7500 ÷ 30 =   c) 80 000 ÷ 4000 =  
+ç) 4500 ÷ 150 =  d) 55 000 ÷ 1100 =  e) 9000 ÷ 250 =
+f) 900 ÷ 90 =   g) 6000 ÷ 30 =   ğ) 350 ÷ 70 =
+Etkinlik 2Etkinlik 2 Kısa Yoldan Bölme İşlemi
+Örnek 2
+===== SAYFA 130 =====
+130
+SAYILAR VE NİCELİKLER
+Etkinlik 3Etkinlik 3 Çarpma ve Bölme İşleminin Bileşenleri
+Çetin öğretmenin farklı işlemler yazdığı iki tahta görseli aşağıda verilmiştir.
+1) Tahta - 1'deki işlemleri inceleyiniz. 
+2) Tahta - 2'deki işlemleri inceleyiniz. 
+Bir çarpma işleminde çarpanlardan herhangi biri verilmediğinde bu çarpanı bulmaya 
+yönelik neler söyleyebilirsiniz? Fikirlerinizi arkadaşlarınızla paylaşınız. 
+540
+180
+36   
+15    36
+180
+000
+540
+090
+15   
+36    45
+090
+000
+x 15  
+36
+540
+Tahta - 1
+600
+100
+25   
+24    50
+100
+000
+600
+120
+2 4    
+25    48
+120
+000
+Tahta - 2
+x 24  
+25
+600
+Bir bölme işleminde bölünen veya bölen verilmediğinde bunları bulmaya yönelik ne-
+ler söyleyebilirsiniz? Fikirlerinizi arkadaşlarınızla paylaşınız.
+===== SAYFA 131 =====
+131
+2. TEMA
+Aşağıdaki bölme işlemlerinde verilmeyen sayıları bulunuz.
+a) 4000 ÷ ……. = 40   b) 500 ÷ ……. = 50   c) ……. ÷ 1000 = 6  
+ç) ……. ÷ 20 = 70   d) 859 ÷ ……. = 1  e) 1250 ÷ ……. = 10
+f) ……. ÷ 90 = 90   g) ……. ÷ 750 = 1  ğ) 2970 ÷ ……. = 90
+Aşağıdaki çarpma işlemlerinde verilmeyen sayıları bulunuz.
+a) 75 x ……. = 7500    b) ……. x 2 =  2000
+c) 150 x ……. = 1500    ç) ……. x 12 = 2700
+d) 14 x ……. = 784    e) ……. x 36 = 1296
+Örnek 3
+Örnek 4
+Meltem Hanım, 9875 TL’ye televizyon satın al -
+mıştır. Satın aldığı televizyon için aylık en fazla 
+900 TL ödeyebileceğini belirtmiştir. Borcunu en 
+kısa sürede bitirecek şekilde bir ödeme planı 
+oluşturulmuştur. 
+9875
+875
+900
+109000
+Etkinlik 4Etkinlik 4 Taksit Sayısı
+Yukarıdaki bölme işlemini inceleyiniz. Kimin haklı olduğuna dair fikrinizi nedenleriyle 
+yazınız. Bu fikirlerinizi arkadaşlarınızla paylaşarak tartışınız.
+Meltem Hanım, aşağıdaki bölme işlemini yaparak 10 ay taksit ödeyeceğini, satıcı ise 11 ay 
+ödeyeceğini iddia etmiştir. 
+===== SAYFA 132 =====
+132
+SAYILAR VE NİCELİKLER
+Bir ekmek fırını bir saatte 80 ekmek üretmektedir. 
+Buna göre bu ekmek fırını kaçıncı saatte 9640 ekmeği üretmiş olur?
+1. Yazıcı
+1000 Baskı
+2. Yazıcı
+5000 Baskı
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Günlük 40 baskı yapılırsa kaç gün sonra 1. yazıcının mürekkebi tamamen biter?
+b) Günlük 27 baskı yapılırsa kaç gün sonra 2. yazıcının mürekkebi tamamen biter?
+Problem 20
+Problem 21
+Aşağıda her biri farklı marka olan iki yazıcı verilmiştir. Bu yazıcıların mürekkepleri tam do -
+luyken yapılabilecek baskı sayısı altlarında gösterilmiştir.
+250 öğrenciden oluşan bir grup, teleferikle Uludağ’a çıkmak istiyor. 
+Her seferinde en fazla 11 kişi taşıyabilen teleferiğin bütün öğrencileri dağa çıkarabil-
+mek için en az kaç kez sefer yapması gerekir?
+Problem 19
+===== SAYFA 133 =====
+133
+2. TEMA
+Saat 18.00’de ders çalışmaya başlayan İnci’nin ders çalışma programı aşağıdaki tabloda 
+verilmiştir.
+Tablo: Derslere Göre Çalışma Süreleri
+Dersin Adı Türkçe Matematik Fen Bilimleri
+Ders Çalışma Süresi 50 dakika 50 dakika 40 dakika
+Her bir ders arasında on beşer dakika mola veren İnci, ders çalışmayı saat kaçta bi -
+tirmiştir?
+Can, kardeşini 20 Mart 2024 günü genel sağlık kontrolüne götürmüştür. Kardeşine ait bilgi 
+formundaki yaş bölümünde 1 yaş 4 ay 18 gün yazdığını görmüştür.
+Can’ın kardeşinin doğum tarihini gün, ay ve yıl olarak hesaplayınız.
+Problem 22
+Eda ve Ece tiyatroya giderek "Küçük Prens" adlı oyunu izlemişlerdir. 
+Oyun iki bölümden oluşmakta ve ilk bölüm 12.35'te başlayıp 13.28'de, ikinci bölüm 13.40'ta 
+başlayıp 14.30'da bitmiştir.  
+Buna göre tiyatro oyununun süresi toplam kaç dakikadır?
+Problem 23
+Problem 24
+===== SAYFA 134 =====
+134
+SAYILAR VE NİCELİKLER
+Buna göre aşağıdaki soruları cevaplandırınız.
+a) 4000 TL para biriktirip tasarımını beğendiğiniz bisikleti aldığınızda kaç TL para üstü 
+alırsınız?
+b) Tasarımını beğendiğiniz bisikletten kardeşinize de aldığınızda ödemeniz gereken 
+toplam tutar kaç TL olur?
+c) Bir yıl sonunda tasarımını beğendiğiniz bisikleti alabilmek için ayda kaç TL biriktir -
+meniz gerekir?
+ç) Tasarımını beğendiğiniz bisikleti haftada 75 TL biriktirerek kaç ay sonra alabilirsiniz? 
+(1 ay = 4 hafta)
+2460 TL2460 TL
+2940 TL2940 TL
+2760 TL2760 TL
+2520 TL2520 TL
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+Problem 25
+Farklı şekilde tasarlanmış dört bisikletin fiyatı aşağıda verilmiştir.
+===== SAYFA 135 =====
+135
+2. TEMA
+2 İki kardeşten biri 12 Temmuz 2005, diğeri ise 18 Kasım 1999 tarihinde doğmuştur.
+Buna göre bu iki kardeşin doğum tarihleri arasında kaç yıl, kaç ay, kaç gün fark oldu-
+ğunu bulunuz.
+1 Tuncay, güvenilir şifre oluşturmak amacıyla bir program tasarlamıştır. Bu programda 
+şifreyi oluşturmak için gerekli koşullar aşağıda verilmiştir:
+• Üç farklı rakam seçilmelidir.
+• Oluşturulacak şifre yedi basamaklı bir doğal sayı olmalıdır.
+• Şifrenin herhangi bir bölüğündeki basamaklarda bulunan sayılar büyükten küçüğe doğru 
+yazılmalıdır.
+• Şifrenin herhangi bir bölüğündeki basamaklarda bulunan sayılar küçükten büyüğe doğru 
+yazılmalıdır.
+Tuncay, tasarladığı programa göre  “0, 5 ve 8” rakamlarını kullanarak bir şifre oluşturmak 
+istiyor. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Tuncay’ın oluşturabileceği tüm şifreleri yazınız.
+b) Tuncay’ın oluşturabileceği şifreler içerisinden en büyük ve en küçüğünü yazınız.
+c) Aşağıdakilerden hangisi Tuncay’ın oluşturabileceği şifrelerden birinin okunuşudur?
+A) Sekiz milyon elli sekiz bin elli sekiz
+B) Beş milyon elli sekiz  
+C) Sekiz milyon elli sekiz bin sekiz yüz elli
+D) Beş milyon beş yüz seksen bin sekiz yüz elli
+ÖLÇME VE DEĞERLENDİRME SORULARI
+===== SAYFA 136 =====
+136
+SAYILAR VE NİCELİKLER
+3 Aşağıda üç farklı kargo şirketine ait fiyat tarifesi gösterilmiştir.
+Kargo Şirketi Adresten Alım 
+Ücreti 1 kg Fiyatı
+A 150 TL 12 TL
+B 40 TL 13 TL
+C - 14 TL
+Ayşe Hanım 40 kg, Bekir Bey 100 kg ve Ceren Hanım 150 kg kütleye sahip kolileri kargo ile  
+adreslerinden alınacak şekilde göndermek istiyor. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Ceren Hanım, hangi kargo şirketi ile gönderirse daha fazla ücret öder?
+b) Bekir Bey, en az ücreti ödemesi için hangi kargo şirketini tercih etmelidir?
+c) Ayşe Hanım’ın B kargo şirketi ile gönderdiği bilinmektedir. Buna göre aşağıdakilerden 
+hangisi doğrudur?
+A) Diğer kargo şirketlerine göre daha fazla ücret ödemiştir.
+B) A kargo şirketi ile gönderseydi 70 TL daha az ücret öderdi.
+C) C kargo şirketi ile gönderseydi daha fazla ücret öderdi.
+D) A kargo şirketine göre 70 TL daha az ücret ödemiştir.
+40 kg
+100 kg 150 kg
+Tablo: Kargo Şirketlerine Ait Fiyat Tarifesi
+===== SAYFA 137 =====
+137
+2. TEMA
+Elektrikli bisiklet kullanan Hamza Bey'in evi ile iş yeri arasındaki uzaklık 7 km'dir. Elektrikli 
+bisikletini sadece işe gidip gelirken kullanmaktadır. Bir yılda 150 gün elektrikli bisikletini kul-
+lanan Hamza Bey’in bisikletine ait bilgiler aşağıda verilmiştir.    
+c) Hamza Bey’in bisikleti kullandığı süre içerisinde batarya dolum maliyetinin değişmediği 
+bilinmektedir. Buna göre bu süre içerisinde batarya dolumu için ödediği ücret aşağıdakiler-
+den hangisidir?
+A) 407 TL   B) 418 TL   C) 429 TL  D) 440 TL
+Karekodu okutarak ek 
+örnek sorulara ulaşabilirsiniz.
+Ev
+İş Yeri
+7 km
+4 Elektrikli bisikletler, diğer bisikletler gibi pedalların çevrilmesi ile kullanılabilir. Elektrikli 
+bisikletlerin farkı, pedallar çevrilirken ihtiyaç hâlinde motordan destek alarak sürücüye yar-
+dımcı olmasıdır.
+Hamza Bey bisikletini iş yerinde ya da evde şarj edebildiğine göre aşağıdaki soruları 
+cevaplayınız.
+a) Hamza Bey, başlangıçta şarjı tam dolu olan bisikletini kullandığı süre içerisinde kaç defa 
+daha tam şarj etmiştir?
+b) Hamza Bey, kullandığı süre içerisinde bisikletinin bataryasını kaç gün kaç saat şarj etmiştir?
+===== SAYFA 138 =====
+GEOMETRİ
+9 cm
+4 cm
+3 cm
+2 cm
+3 cm
+5 cm
+8 cm
+6 cm
+6 cm
+15 cm
+12 cm
+18 cm
+10 cm
+4 cm
+Çevre = 20 br
+Bu temada
+ ►dikdörtgenin çevre uzunluğunu, alanını yorumlamanız,
+ ►dikdörtgenin çevre uzunluğu ve alanıyla ilgili problemleri  
+çözmeniz
+beklenmektedir.
+GEOMETRİK NİCELİKLER
+• Dikdörtgenin Çevre Uzunluğu
+• Dikdörtgenin Alanı
+3. TEMA
+Anahtar Kavramlar
+alan, çevre, dikdörtgen
+Sembol ve Gösterimler
+cm², m², Ç(ABCD), A(ABCD)
+Karekodu okutarak özet 
+içeriğe ulaşabilirsiniz.
+138
+Karekodu okutarak tema içeriğine 
+ulaşabilirsiniz.
+===== SAYFA 139 =====
+GEOMETRİ
+9 cm
+4 cm
+3 cm
+2 cm
+3 cm
+5 cm
+8 cm
+6 cm
+6 cm
+15 cm
+12 cm
+18 cm
+10 cm
+4 cm
+Çevre = 20 br
+139
+===== SAYFA 140 =====
+GEOMETRİK NİCELİKLER
+140
+HAZIR MIYIZ?
+1) Uzunluk ölçü birimlerinden bazılarını ve onları birbirine dönüştürmeyi öğrenmiştiniz.
+Aşağıdaki boşlukları uygun ifadelerle doldurunuz.
+a) Temel uzunluk ölçü birimi ________’dir.
+b) Kitabın üst yüzünün kenar uzunluklarını ölçmek için en uygun ölçü birimi _______’dir.
+c) Sınıfın tabanının kenar uzunluklarını ölçmek için en uygun ölçü birimi _______’dir.
+ç) İki ülke arasındaki mesafeyi ölçmek için en uygun ölçü birimi _______’dir.
+d) 1 m = ____ cm = ____ mm’dir.
+2) Aşağıdaki bir el modelinin farklı duruşlarını inceleyiniz. Kendi elinizi düşünerek gösterilen 
+uzunlukları tahmin etmeye çalışınız. Bu uzunlukları hangi uzunluk ölçü birimi ile tahmin 
+etmek daha uygun olur? Tahminlerinizi arkadaşlarınızın tahminleriyle karşılaştırınız. Cetvel 
+yardımıyla elinizin aşağıdaki elin duruşlarına göre gerçek ölçümlerini yapınız. Tah -
+minî sonuç ile gerçek sonucu karşılaştırınız.
+3) Kitabınızın, sıranızın veya belirlediğiniz başka bir nesnenin üst yüzünün belli bir 
+kenar uzunluğunu tahmin ediniz ve ardından onları cetvelle ölçünüz. Tahminlerinizle 
+gerçek sonuçları karşılaştırınız.
+4) Kare şeklinde eş büyüklükte  yeteri kadar kâğıt kesiniz. Bu kâğıtlarla üstüste gel -
+meyecek ve aralarında boşluk olmayacak şekilde defterinizin veya sıranızın bir yüzü-
+nü kaplayınız. Bu iş için kullandığınız kare şeklindeki kâğıt sayısını belirleyiniz.
+Tahmininiz Gerçek Sonuç
+Kitap
+Sıra
+...
+...
+===== SAYFA 141 =====
+3. TEMA
+141
+BAŞLAY ALIM
+1) Aşağıdaki geometri tahtasında verilen geometrik şekillerin çevre uzunluklarını cet-
+velle ölçünüz. Bu şekillerin kenar ve çevre uzunluklarını santimetre cinsinden bula -
+rak yazınız.
+b) Sıranızın ve defterinizin üst yüzünün alanını, oluşturduğunuz büyük ve küçük kare şek -
+lindeki kâğıtları aralarında boşluk kalmayacak ve üst üste gelmeyecek şekilde kullanarak 
+ölçünüz ve elde ettiğiniz sonucu aşağıdaki boşluğa yazınız.
+c) Temel uzunluk ölçme birimlerinden yararlanarak sıranızın ve defterinizin üst yüzünün 
+alanını ölçmek için bir alan ölçme yöntemi geliştirebilir misiniz? Fikirlerinizi arkadaşlarınızla 
+paylaşarak tartışınız.
+2) Arkadaşlarınızla aşağıdaki gibi iki farklı büyüklükte kare şeklinde kâğıtlar oluşturunuz. 
+Oluşturduğunuz kâğıtları kullanarak aşağıdaki soruları cevaplayınız.
+a) Sıranızın ve defterinizin üst yüzünü, oluşturduğunuz büyük ve küçük kare şeklindeki 
+kâğıtları ayrı ayrı kullanarak aralarında boşluk kalmayacak ve üst üste gelmeyecek şekilde  
+kaç tanesi ile kaplayabileceğinizi tahmin ediniz ve tahmininizi aşağıdaki boşluğa yazınız.
+===== SAYFA 142 =====
+GEOMETRİK NİCELİKLER
+142
+Bir fotoğrafı ya da resmi daha uzun süre muhafaza
+etmek ve sergilemek için çerçeve kullanırız. Fars -
+çadan dilimize geçen “çerçeve” kelimesinin köke -
+ni Farsçada “dört çubuk, dörtgen” anlamına gelen 
+“çarçube” sözcüğüne dayanmaktadır. Bir resim ser-
+gisinde veya sanat müzesinde ilk dikkatimizi çeken 
+şey çerçeveler değildir. Ancak çerçevenin tabloyla 
+olan uyumu onun daha dikkat çekici ve estetik gö -
+rünmesini sağlayabilir. Tabloyu ön plana çıkarabilir 
+ya da tablonun daha sönük görünmesine sebep ola-
+bilir. Peki, sizce fotoğraf ya da resme uygun çerçeve 
+nasıl yapılıyor olabilir?
+DİKDÖRTGENİN ÇEVRE UZUNLUĞU
+Aşağıdaki dikdörtgenlerin kenar uzunluklarını belirleyiniz. Daha sonra çevre uzun -
+luklarını bularak altlarındaki noktalı yerlere yazınız.
+Bulduğunuz çevre uzunlukları hakkında fikirlerinizi arkadaşlarınızla paylaşarak tartışınız.
+Bulduğunuz çevre uzunluğuna sahip ve kenar uzunlukları santimetre cinsinden do -
+ğal sayı olan farklı dikdörtgenleri aşağıdaki kareli zemine çiziniz. 
+Etkinlik 1Etkinlik 1 Çevre Uzunluğu Aynı Olan Dikdörtgenler
+1 cm
+1 cm
+1 cm
+1 cm
+A B
+K L
+M
+P R
+STNCD
+Ç(ABCD) = ............ Ç(KLMN) = ............ Ç(PRST) = ............
+===== SAYFA 143 =====
+3. TEMA
+143
+Aşağıdaki kareli zemine çevre uzunluğu 12 cm olan kare çiziniz. 
+Sizce çevre uzunluğu 12 cm olan farklı kareler çizilebilir mi? Fikirlerinizi arkadaşları-
+nızla paylaşarak tartışınız.
+Kenar uzunlukları doğal sayı ve çevre uzunluğu 16 cm olan kaç dikdörtgen çizilebilir? 
+Çizilebilecek dikdörtgenlerin kenar uzunluklarının neler olabileceğini sınıfça tartışı -
+nız ve belirlediğiniz dikdörtgenleri aşağıya çiziniz.
+Etkinlik 2Etkinlik 2 Kaç Farklı Kare Çizilebilir?
+1 cm
+1 cm
+Aynı çevre uzunluğuna sahip olup kenar uzunlukları farklı dikdörtgen -
+ler çizilebilir. Bütün kenar uzunlukları eşit olan dikdörtgene kare denir. 
+Kare özel bir dikdörtgendir. Ancak aynı çevre uzunluğuna sahip farklı 
+kareler çizilemez. 
+Örnek 1
+1 cm
+1 cm
+===== SAYFA 144 =====
+GEOMETRİK NİCELİKLER
+144
+30
+22
+6
+37
+25
+18
+20
+13
+32
+24
+30
+10
+7
+12
+16
+3
+28
+Çizemediğiniz çevre uzunluğu oldu mu? Neden çizemediniz? Sınıfça tartışınız.
+Gözünüzü kapatıp aşağıdaki sayıların üzerinde arkadaşınız “Dur!” diyene kadar parmağı-
+nızı gezdiriniz. Çevre uzunluğu parmağınızın denk geldiği sayıya eşit ve kenar uzunlukları 
+da doğal sayı olan bir dikdörtgen çiziniz. İşlem yapma sırası arkadaşınıza geçmeden önce 
+yaptığınız çizimin doğru olup olmadığını kontrol ediniz. (Kareli zemindeki en küçük 
+karenin bir kenar uzunluğu 1 birimdir.)
+Örnek 2
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+===== SAYFA 145 =====
+3. TEMA
+145
+Yeterli sayıda kare, daire ve düzgün beşgen şeklindeki not kâğıdını kullanarak aynı büyük-
+lükte üç ayrı dikdörtgen biçimindeki defter sayfasının bir yüzü kaplanacaktır. Kaplanırken 
+Şekil 1, Şekil 2 ve Şekil 3’teki gibi not kâğıtları yan yana veya alt alta aynı hizada yerleş-
+tirilecektir. Not kâğıtlarının defter sayfasının bir yüzünden dışarı taşmamasına ve üst üste 
+gelmemesine dikkat ediniz.
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Defterlerin üst yüzünün boşluk kalmadan kaplanabilmesi için hangi not kâğıdı seçilmeli-
+dir? 
+b) Belirlediğiniz şeklin yüzey kaplamada nerelerde kullanıldığına dair çevrenizden örnekler 
+veriniz.
+c) Çevrenizde yüzeyleri kaplamak için kullanılan nesnelerin şekillerini belirleyiniz. Belirledi-
+ğiniz şekillerin seçilmesinin sebebini arkadaşlarınızla tartışınız.
+DİKDÖRTGENİN ALANI
+... ...
+...
+...
+... ...
+...
+...
+Şekil 1 Şekil 2 Şekil 3
+Etkinlik 1Etkinlik 1 Yüzeyleri Geometrik Şekillerle Kaplama
+===== SAYFA 146 =====
+GEOMETRİK NİCELİKLER
+146
+Bir defter kapağı birim karelerden oluşan zemine yukarıdaki gibi yerleştirilmiştir. 
+Buna göre aşağıdaki soruları cevaplandırınız.
+a) Defterin kapağının alanının kaç birim kare olduğunu kareleri sayarak bulunuz.
+b) Bu defterin kapağının alanını birim kareleri saymadan daha farklı bir yolla bulabilir misiniz?
+c) Bu yöntemlerden hangisi ile sonuca daha kolay ulaştığınızı açıklayınız. Defter kapağında 
+bulunan birim karelerin sayısı bu kapağın iki ardışık kenar uzunluğu ile ilişkisini açıklayınız.
+1 br
+1 br
+Dikdörtgenin alanı, ardışık kenarları boyunca hiç boşluk kalmayacak ve 
+birim kareler üst üste gelmeyecek şekilde yerleştirilen birim kare sayıları-
+nın çarpımıdır. Bu çarpım, dikdörtgenin birim kare cinsinden alanını verir.
+Dikdörtgenin Alanı = 
+Sütun
+Satır
+Örnek 1
+X( (( (
+Satırdaki birim kare 
+sayısı
+Sütundaki birim kare 
+sayısı
+===== SAYFA 147 =====
+3. TEMA
+147
+Aşağıdaki kareli zeminde verilen dikdörtgenlerin alanlarını santimetrekare cinsinden 
+bulunuz.
+Aşağıdaki kareli zeminde verilen şekilde mavi boyalı bölgenin alanını santimetrekare 
+cinsinden bulunuz.
+Aşağıda alanları ve birer kenar uzunluğu verilen dikdörtgenlerin verilmeyen kenar 
+uzunluklarını bulunuz.
+A(ABCD) = ..... A(KLMN) = ..... A(PRST) = .....
+1 cm
+1 cm
+Alan = 84 metrekare
+7 metre
+..... metre
+Alan = 121 metrekare
+11 metre
+..... metre
+Alan = 104 metrekare
+13 metre
+..... metre
+Örnek 2
+Örnek 3
+Örnek 4
+A
+K L
+MN
+O Ö
+PR
+B
+CD
+1 cm
+1 cm
+A B
+K L
+M
+P R
+STNCD
+Mavi bölgenin alanı = ..........
+===== SAYFA 148 =====
+GEOMETRİK NİCELİKLER
+148
+Aşağıda sol taraftaki dikdörtgenler ile sağ taraftaki dikdörtgenlerden alanları eşit 
+olanları eşleştiriniz.
+a)
+b)
+c)
+4) (....)
+3) (....)
+2) (....)
+1) (....)1 br 1 br
+1 br
+1 br
+1 br
+1 br
+1 br
+1 br 1 br
+1 br
+1 br
+1 br
+1 br
+1 br
+Örnek 5
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+===== SAYFA 149 =====
+3. TEMA
+149
+Birim karelerle oluşturulmuş temel şekiller kullanılarak oynanan bir oyun verilmiştir. 
+Aşağıdaki temel şekiller kullanılarak bir dikdörtgen oluşturulmuştur.
+Aşağıda sağ tarafta verilen dikdörtgenleri boşluk kalmadan sol taraftaki temel şekil -
+lerle doldurunuz. Verilen temel şekilleri istediğiniz yöne döndürebilirsiniz. 
+Doldurduğunuz şekilleri arkadaşlarınızla paylaşınız. Bu şekillerin alanlarını karşılaştırınız.
+Etkinlik 2Etkinlik 2 Alan Kaplama Oyunu
+Temel Şekiller
+===== SAYFA 150 =====
+GEOMETRİK NİCELİKLER
+150
+DİKDÖRTGENDE ÇEVRE UZUNLUĞU VE ALAN
+Mete, anne ve babası ile evlerinin salonu için dikdörtgen şeklinde halı almak için halı fir -
+masıyla görüşmeye gitmiştir. Mete'nin babası 24 metrekare halıya ihtiyaçlarının olduğu -
+nu söylemiştir. Firma yetkilisi ise bu bilginin yeterli olmayacağını, 24 metrekare alana sahip 
+birçok dikdörtgen şeklinde halı olabileceğini söylemiştir. Mete, "Alanı 24 metrekare olan 
+dikdörtgen şeklinde halı nasıl farklı olabilir?" diye düşünmüştür. Firma yetkilisi örnek olarak 
+aşağıdaki halıları göstermiştir.
+Türkler duygu, düşünce ve yaşam biçimlerini 
+ürettikleri halılara yansıtmışlardır. Konargöçer 
+bir yaşam tarzı ve töresi olan Türkmen toplu -
+lukları, yaşadıkları yerlerde temiz bir zeminde 
+oturmak ve ısınmak için eğirdikleri yünleri bit -
+kilerin kök leriyle boyayarak yaptıkları iplerden 
+halı ve kilim dokumuşlardır. Dokudukları bu 
+halı ve kilimleri oturdukları yerlere sermiş, ev -
+lerinin duvarlarına asmışlardır.
+4 m
+6 m
+12 m
+2 m
+3 m
+8 m
+Mete bu örneklere bakarak hepsinin alanının 24 metrekare olduğunu fakat kenar uzunluk-
+larının ve çevre uzunluklarının farklı olduğunu görmüştür. 
+Doğru halıyı alabilmesi için halının alanı yerine çevre uzunluğunun bilinmesi yeterli olur 
+muydu?
+Etkinlik 1Etkinlik 1 Aynı Alana Sahip Halılar
+(Genel ağdan alınmıştır.)
+===== SAYFA 151 =====
+3. TEMA
+151
+Mete bu örneklere bakarak hepsinin çevre uzunluğunun 20 metre olduğunu fakat kenar 
+uzunluklarının ve alanlarının farklı olduğunu görmüştür. 
+Mete'nin aradığı halıyı, alanının 24 metrekare ve çevre uzunluğunun da 20 metre oldu-
+ğunu dikkate alarak aşağıda tasarlayınız. 
+Mete, evlerinin oturma odası için alanı 18 metrekare ve çevre uzunluğu 18 metre olan dik -
+dörtgen şeklinde bir halı almak istiyor. Alanı 18 metrekare ve çevre uzunluğu 18 metre olan 
+halı modellerini dinamik matematik yazılımında ayrı ayrı çizerek Mete'nin almak istediği 
+halının kenar uzunluklarını belirleyiniz. 
+2 m
+5 m
+5 m
+8 m
+7 m
+3 m
+Mete'nin annesi çevre uzunluğu 20 m olan dikdörtgen şeklindeki bir halının ihtiyaçlarını karşı -
+layacağını söylemiştir. Firma yetkilisi çevresi 20 m olan birçok halı olabileceğini söylemiş ve 
+örnek olarak aşağıdaki halıları göstermiştir.
+===== SAYFA 152 =====
+GEOMETRİK NİCELİKLER
+152
+Aşağıda alan ölçüleri eşit olan dikdörtgenler verilmiştir.
+Alan ölçüleri aynı olan dikdörtgenlerin çevre uzunluklarının farklı olmasının neden -
+leri hakkındaki fikirlerinizi yazınız. Daha sonra arkadaşlarınızla paylaşarak tartışınız.
+Alan İki Ardışık Kenarın Uzunlukları Çevre Uzunluğu
+Etkinlik 2Etkinlik 2 Alanları Aynı Olan Dikdörtgenler
+Bu dikdörtgenlerin alan ölçülerini, kenar ve çevre uzunluklarını tabloya yazınız.
+4 cm
+4 cmU
+Y
+Ü
+V8 cm
+2 cm
+A B
+CD
+1 cm
+16 cm
+K L
+MN
+===== SAYFA 153 =====
+3. TEMA
+153
+Çevre Uzunluğu İki Ardışık Kenarın Uzunlukları Alan
+Aşağıda çevre uzunlukları eşit olan dikdörtgenler verilmiştir.
+Çevre uzunlukları aynı olan dikdörtgenlerin alan ölçülerinin farklı olmasının neden -
+leri hakkındaki fikirlerinizi yazınız. Daha sonra arkadaşlarınızla paylaşarak tartışınız.
+3 cm
+7 cm
+7 cm
+5 cm
+9 cm 11 cm
+10 cm
+4 cm
+Etkinlik 3Etkinlik 3 Çevre Uzunlukları Aynı Olan Dikdörtgenler
+Bu dikdörtgenlerin alan ölçülerini, kenar ve çevre uzunluklarını tabloya yazınız.
+A
+K
+U
+Y
+R
+S
+P
+T
+Ü
+V
+N
+L
+MD
+B
+C
+===== SAYFA 154 =====
+GEOMETRİK NİCELİKLER
+154
+Bir kâğıdı keserek kenar uzunluğu santimetre cinsinden doğal sayı 
+olan 18 adet eş kare oluşturunuz. Karenin kenar uzunluğuna sınıf 
+arkadaşlarınızla karar veriniz. Kareleri, tamamı kullanılacak ve üst 
+üste gelmeyecek şekilde birleştirerek farklı dikdörtgenler oluşturu -
+nuz (Makas kullanırken dikkatli olunuz.).
+Kaç farklı dikdörtgen elde ettiniz? Dikdörtgenlerin kenar ve 
+çevre uzunluklarını belirleyerek tabloda gösteriniz.
+40 cm uzunluğunda bir ip alınız ve bu ipin tamamını kullana-
+rak kenar uzunlukları santimetre cinsinden doğal sayı olan 
+farklı dikdörtgenler oluşturunuz. 
+Kaç farklı dikdörtgen elde ettiniz? Elde ettiğiniz dik -
+dörtgenlerin kenar uzunluklarını ve alanlarını yazınız.
+Aynı çevre uzunluğuna sahip dikdörtgenler farklı alan ölçülerine sahip 
+olabilir. 
+Aynı alan ölçüsüne sahip dikdörtgenler farklı çevre uzunluğuna sahip 
+olabilir. 
+Etkinlik 4Etkinlik 4 Birim Karelerle Dikdörtgen Yapma
+İki Ardışık Kenarın Uzunlukları Çevre Uzunluğu
+Örnek 1
+MALZEMELER
+Bir adet A4 kâğıdı, 
+kalem, cetvel, 
+makas
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+===== SAYFA 155 =====
+3. TEMA
+155
+Performans Görevi 
+Piksel Boyama
+Sevgili öğrenciler, bu çalışmada belirlediğiniz kareli bir alanda (dijital ortam veya kâğıt 
+üzerinde) piksel sanatı ile aynı çevre uzunluğuna ya da aynı alana sahip farklı dikdört -
+genler kullanarak bir görsel oluşturmanız ve oluşturduğunuz görsellerle sanal bir sergi 
+düzenlemeniz beklenmektedir. Estetik bakış açısıyla özgün bir piksel tasarım çalışması 
+ortaya çıkarmanız önemli olacaktır.
+Çalışma öncesinde şu noktalara dikkat etmelisiniz:
+• Piksel sanatını araştırmalı ve örneklerini incelemelisiniz.
+• Yapacağınız tasarımda hangi materyalleri kullanacağınıza karar vermelisiniz.
+• Küçük basit görseller oluşturmak üzere deneme yapmalısınız.
+• Tasarım süreçleri bireyin yaratıcılık yeteneği ile bağlantılı olarak estetik zevklerin ön 
+planda olduğu bir süreçtir. Bunun için hayal gücünüzü kullanmalı ve ortaya çıkarmak is -
+tediğiniz görsele karar vermelisiniz.
+• Hazırlayacağınız tasarımın verilen tablodaki puanlama anahtarı ile değerlendirileceğine 
+dikkat etmelisiniz.
+Çalışma sırasında şu noktalara dikkat etmelisiniz:
+• Tasarımınızda aynı çevre uzunluğuna ya da aynı alana sahip farklı dikdörtgenler kullan-
+malısınız.
+• Tasarımınızda düzgün ve estetik bir görünüme sahip olmak için renk uyumu, özgünlük 
+gibi kriterleri göz önünde bulundurunuz.
+• Tamamladığınız tasarımlarınızla sanal bir sergi düzenleyiniz.
+Tablo: Piksel Boyama Performans Görevi İçin Hazırlanan Bütüncül Dereceli Puanlama 
+Anahtarı
+Kriterler Dereceler
+1 2 3 4 5
+Tasarımında aynı çevre uzunluğuna ya da aynı alana sahip 
+farklı dikdörtgenleri kullanmıştır.
+Özgün bir tasarım oluşturmuştur.
+Estetik ve renk uyumu olan bir tasarım oluşturmuştur.
+Sergi sürecinde sergilemiştir.
+===== SAYFA 156 =====
+GEOMETRİK NİCELİKLER
+156
+2. Adım: 
+Arsanın alanı 12 m x 18 m = 216 m
+2
+,  evin de 36 m
+2  
+alana sahip olacağı bilindiğine göre ev 
+arsaya sığacaktır. Ardışık kenarlardan birinin uzunluğu 12 metreden, diğerinin uzunluğu 18 
+metreden fazla olmamalıdır.
+6. Adım: 
+Kenarları 12 m ve 18 m’yi temsil edecek şekilde dikdörtgenler çiziniz ve planladığınız evleri 
+arsaya yerleştiriniz.
+Bilge Hanım, köyündeki kenar uzunlukları 12 m ve 18 m 
+olan dikdörtgen şeklindeki arsasına tabanı dikdörtgen şek-
+linde bir ev yaptırmak istiyor. 
+Taban alanı 36 m2 olması istenen evin arsa içine yerleşe-
+bilmesi için kaç farklı tasarım yapılabileceğini bulunuz.
+18
+12
+1. Adım: 
+Dikdörtgen şeklinde bir arsa var ve bu arsanın kenar uzunlukları 12 m ve 18 m’dir.
+Yapılacak ev de 36 m2  
+olmalıdır.
+Problem 1
+Alan: 36 m
+2
+1 m 36 m
+2 m 18 m
+3 m 12 m
+4 m 9 m
+6 m 6 m
+Tablo: Farklı Tasarımların Kenar 
+Uzunlukları
+Aşağıdaki adımları izleyerek problemi çözelim.
+3. Adım: Evin tabanının olası kenar uzunlukları 
+metre cinsinden doğal sayı olacak şekilde belirle-
+nerek tabloda gösterilmiştir.
+4. Adım: 
+Kenar uzunlukları 12 m ve 18 m olan dikdörtgen 
+şeklindeki arsanın içine taban alanı 36 m
+2
+ olan bir 
+ev planlanacaktır.  
+5. Adım: 
+Tabloda arsaya sığacağı belirlenen ev tasarımlarını çize rek arsanın içindeki durumunu gör-
+meye çalışınız.
+===== SAYFA 157 =====
+3. TEMA
+157
+18 m
+2 m
+12 m
+3 m
+4 m
+9 m
+3 m
+12 m
+6 m
+6 m
+Yukarıda tasarımı verilen evler arsaya başarılı bir şekilde sığmıştır.
+7. Adım: 
+Bulduğumuz kenar uzunluklarını, arsanın boyutları ile karşılaştırarak kontrol edelim. Arsa -
+nın kenarlarından daha uzun kenarlara sahip olan evleri listemizden çıkaralım. Böylece bu 
+arsaya taban alanı 36 m
+2
+ olan 6 farklı ev tasarımı yapılabilir.
+8. Adım: 
+Bazı evler arsaya iki farklı şekilde sığdırılabildi. Evlerin arsa içindeki konumu da birçok 
+seçenek oluşturdu. Yani evlerin arsanın bir kenarına bitişik ya da arsanın orta kısımlarına 
+gelecek şekilde de yapılabilir olduğu görüldü.
+9. Adım: 
+Bu problemin çözümüne başarılı bir şekilde ulaşıldığını gördünüz. Öyleyse buna benzer 
+problemlerde dikdörtgenin olası kenar uzunluklarını listeleyerek belirlenen alan içerisine 
+yerleştirebilirsiniz.
+10. Adım: Alternatif problem.
+Arsanın kenar uzunlukları 6 ve 9 m ve istenen ev 24 m
+2
+ olsaydı benzer bir yol izleyerek 
+kenar uzunlukları 4 ve 6 m ya da 3 ve 8 m olan evler tasarlayabilirdiniz. Kenar uzunlukları 2 
+ve 12 m olan ev de 24 m
+2
+ olurdu fakat arsaya sığmazdı.
+9 m
+4 m
+===== SAYFA 158 =====
+GEOMETRİK NİCELİKLER
+158
+Asya Hanım, taban kenar uzunlukları 400 ve 500 cm olan dikdörtgen şeklindeki salonunun 
+parkelerinin tamamını değiştirmek istemektedir. Aşağıdaki broşürde parke çeşitlerinin ölçü-
+leri, fiyatları ve işçilik maliyetleri verilmiştir. 
+PARKE FİYAT LİSTESİ
+Problem 2
+Problem Çözme Adımları
+a) Dikdörtgenin çevre uzunluğu ve alanı ile ilgili problemlerde şekil, 
+uzunluk ve alan ölçüleri gibi matematiksel bileşenler belirlenir.
+b) Problemdeki matematiksel bileşenler arasındaki ilişki belirlenir.
+c) Problemde verilenler matematiksel gösterimlere dönüştürülür.
+ç) Problem, matematiksel gösterimler kullanılarak açıklanır.
+d) Problemin sonucuna ilişkin tahminde bulunulur ve işlemleri gerçek -
+leştirmek için stratejiler geliştirilir. 
+e) Belirlenen strateji veya stratejiler çözüm için uygulanır. 
+f) Çözüm yolları kontrol edilir ve çözüme ulaştırmayan strateji değiş -
+tirilir.
+g) Problemin çözümü için kullanılan veya geliştirilen stratejiler gözden 
+geçirilerek kısa yollar değerlendirilir. 
+ğ) Kullanılan strateji veya stratejiler farklı problemlerin çözümlerine 
+genellenir.
+h) Genellemenin geçerliliği matematiksel örneklerle değerlendirilir.
+Eni: 20 cm
+Boyu: 20 cm 
+1 adet fiyatı: 24 TL
+İşçilik: 3000 TL
+Gri Parke
+Eni: 50 cm
+Boyu: 20 cm 
+1 adet fiyatı: 50 TL
+İşçilik: 2800 TL
+Açık Kahverengi Parke
+===== SAYFA 159 =====
+3. TEMA
+159
+Asya Hanım'ın seçeceği her bir parke çeşidine göre ödeyeceği toplam ücreti bulup,  
+en ekonomik olanını problem çözme adımlarını uygulayarak belirleyiniz.
+1. Adım:
+2. Adım:
+3. Adım:
+4. Adım:
+5. Adım:
+6. Adım:
+7. Adım:
+8. Adım:
+9. Adım:
+10. Adım:
+===== SAYFA 160 =====
+GEOMETRİK NİCELİKLER
+160
+Şehir ve bölge planlama okuyan Aras, kareli kâğıt üzerine bir şehir planlamaya karar ver -
+miştir. Aras; tek katlı, depreme dayanıklı, enerji panelleriyle kendi elektriğini üreten, bisiklet 
+yolu ve yeşilliği bol olan bir tasarımı planlamaktadır. Kâğıt üzerinde farklı bölgeleri farklı 
+renklerle, farklı çizgi tipleriyle ya da kısaltmalarla göstermeye karar vererek aşağıdaki tab -
+loyu hazırlamıştır.
+KISALTMA RENK
+YOL Y
+BİSİKLET YOLU BY
+EVLER E
+PARK P
+AVM A
+OKUL O
+HUZUREVİ HE
+Problem 3
+===== SAYFA 161 =====
+3. TEMA
+161
+Aras’ın çizdiği şehir planından bir bölüm yukarıda verilmiştir. 
+Bu plana uygun olarak aşağıdaki soruları cevaplandırınız.
+ç) Evlerin ve okulun çatısı dikdörtgen biçimindeki güneş panelleri ile tamamen kaplana -
+caktır. Bir güneş panelinin kenar uzunlukları sırasıyla 2 ve 3 birimdir. Her bir güneş paneli 
+1000 TL olduğuna göre bu işlemin toplam maliyetini hesaplayınız.
+a) Huzurevinin tabanının çevre uzunluğu kaç birimdir?
+b) Parkların alanı toplam kaç birim karedir?
+c) Bisiklet yolunun alanı kaç birim karedir?
+E
+Y
+P
+BY
+BY
+P
+A
+HE
+O
+1 br
+1 br
+===== SAYFA 162 =====
+GEOMETRİK NİCELİKLER
+162
+Türkiye Kadın Millî Voleybol Takımı’nın da katılma -
+ya hak kazandığı 2024 Paris Olimpiyat Oyunları’nda 
+saha kenarındaki reklam panolarının maliyet hesa -
+bını sizin yapmanız isteniyor.
+Bu saha voleybol alanı ve serbest bölgeden oluşmaktadır. Reklam panoları uzun kenarı bo-
+yunca serbest bölgenin her kenarının üzerine aralarında boşluk kalmadan yerleştirilecektir. 
+Aşağıda kırmızı çizgilerle sınırlandırılan voleybol alanı ve kalan kısmı serbest bölge olan 
+voleybol sahasının modeli verilmiştir.  
+Serbest 
+bölge
+Serbest 
+bölge
+24 m
+18 m
+9 m
+15 m
+a) Serbest bölgenin alanı kaç metrekaredir?
+b) Bu voleybol sahasının etrafına uzun kenarı 3 metre olan reklam panoları yerleştirilecektir. 
+Bir panonun maç süresince reklam göstermesinin 1 dakikası 750 TL’dir. 
+Bir voleybol maçının ortalama süresi 2 saat 30 dakika olduğuna göre 2 maç boyunca 
+tüm panoları kiralamak isteyen bir şirket kaç TL öder?
+Problem 4
+Voleybol Alanı Voleybol Alanı
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+===== SAYFA 163 =====
+3. TEMA
+163
+Alanı 30 m
+2
+, kenar uzunlukları metre cinsinden doğal sayı olan dikdörtgen şeklinde kaykay 
+pisti yapılacaktır. Pistin çevresi çitlerle çevrilecektir. Çitlerin 1 metresi 1125 TL’dir. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) Her bir birim karenin bir kenarının uzunluğu 1 metre olan aşağıdaki kareli zemine olabile-
+cek tüm pist modellerini temsilî olarak çiziniz. Bu çizimleri dinamik matematik yazılımında da 
+yapabilirsiniz. Çitlere ait maliyet tablosunu doldurunuz. En uygun maliyetli pisti belirleyiniz.
+b) Dikdörtgenin kenar uzunlukları ile çit maliyeti arasında nasıl bir ilişki olduğunu açıklayınız.
+1 m
+1 m
+Kısa Kenar 
+Uzunluğu
+Uzun Kenar 
+Uzunluğu Çevre Çit Maliyeti
+Problem 5
+Karekodu okutarak tema ile ilgili 
+e-içeriğe ulaşabilirsiniz.
+===== SAYFA 164 =====
+GEOMETRİK NİCELİKLER
+164
+Buna göre hangisinin metrekare fiyatı en düşüktür?
+A) A                           B) B                              C) C                              D) D  
+Çağdaş, kenar uzunlukları doğal sayı olan dikdörtgen şeklindeki arsasının kenarlarını bir 
+sıra çit ile çevirecektir. 
+Arsanın alanı 32 metrekare olduğuna göre bu iş için kullanılacak çitin uzunluğu aşa-
+ğıdakilerden hangisi olabilir?
+A) 20 metre               B) 24 metre               C) 28 metre               D) 32 metre
+1 metre
+A
+B C
+D
+1233 TL 1660 TL 824 TL 2478 TL
+2 metre 1 metre 2 metre
+3 metre
+2 metre
+2 metre
+3 metre
+A
+B C
+D
+2
+ÖLÇME VE DEĞERLENDİRME SORULARI
+1 Aşağıda dikdörtgen şeklindeki A, B, C ve D halılarının kenar uzunlukları ve fiyatları 
+verilmiştir.
+===== SAYFA 165 =====
+3. TEMA
+165
+Bir yolun kenar uzunlukları metre cinsinden doğal sayı olan dikdörtgen biçimindeki bir kıs-
+mı hasar görmüştür. Bu hasar görmüş kısmın etrafına bir sıra güvenlik şeridi çekilmiştir.
+Kullanılan güvenlik şeridinin uzunluğu 46 metre olduğuna göre hasar görmüş kıs-
+mın alanı en fazla kaç metrekaredir?
+A) 126                   B) 130                    C) 132                   D) 144
+Can ve mal güvenliği için yaya ve araç trafiğine 
+kapatılması gereken hasar görmüş bölgenin etrafına 
+çekilen renkli uyarı bandına güvenlik şeridi denir.
+4 Aşağıdaki tabanı dikdörtgen şeklinde olan kapların içi boya doludur.
+Bu boyaların her biriyle bulundukları kabın taban alanının 15 katı kadar alan boyanabil-
+mektedir. 
+Buna göre aşağıdaki soruları cevaplayınız.
+a) 120 metrekarelik bir duvarın tamamını tek renge boyamak isteyen Necati, kaç numaralı 
+kapları seçebilir?
+b) Necati, üç kaptaki boyayı kullanarak en fazla kaç metrekare alan boyayabilir?
+c) Necati, 3. kaptaki boyanın tamamını kullanarak kenar uzunlukları metre cinsinden 
+doğal sayı olan dikdörtgen biçiminde bir duvarı boyamıştır. Necati’nin boyadığı duvarın 
+çevre uzunluğu en az kaç metredir?
+2 metre
+4 metre
+1. kap
+3 metre
+2. kap
+3 metre
+1 metre 5 metre
+3. kap
+3
+===== SAYFA 166 =====
+GEOMETRİK NİCELİKLER
+166
+Bu parkın yeşil ile boyanmış kısmı bitki ekilecek alanı, kahverengi ile boyanmış kısmı top -
+rak alanı, gri ile boyanmış kısmı asfaltlanacak alanı ve mavi ile boyanmış kısmı ise havuz 
+yapılacak alanı göstermektedir. 
+Krokiye göre aşağıdaki soruları cevaplayınız.
+a) Parkın krokisinde her biri farklı renge boyanmış kısımların alanlarını nasıl belirleyebile -
+ceğinizi açıklayınız.
+b) Parkın krokisinde en fazla alana sahip olan kısım hangi renkle boyanmıştır?
+c) Parkın krokisinde en az alana sahip olan kısım hangi renkle boyanmıştır?
+ç) Parkın krokisinde farklı renklere boyanmış alanları büyükten küçüğe doğru sıralayınız.
+Karekodu okutarak ek 
+örnek sorulara ulaşabilirsiniz.
+5 Herhangi bir yerin kuş bakışı görüntüsünün kâğıt üzerine çizilmiş hâline kroki denir.
+Aşağıda bir parkın krokisi çizilmiştir.
+10 m
+28 m
+7 m
+9 m
+12 m
+23 m
+===== SAYFA 167 =====
+EK-1- ÖZ DEĞERLENDİRME FORMU
+Etkinlik:         Tarih:
+Öğrenci Adı Soyadı:
+Numarası:
+Sınıf:
+1. Bu etkinlikte neler öğrendim?
+2. Neyi iyi yaptım? Neden?
+3. Hangi konuda zorlandım? Neden?
+4. Hangi konuda kendimi daha çok geliştirmeliyim?
+5. Bu çalışmadaki kuvvetli yönlerim nelerdi?
+6. Daha sonraki çalışmalarda neleri farklı yapacağım?
+EKLER
+167
+===== SAYFA 168 =====
+asetat: Işığı geçiren ve gösterilmek istenen görüntüyü yansıtan madde.
+birimkare: Alanının hesaplanmasında kullanılan uzunlukların birimi cm, m vb. birimlerle ifade 
+edilmemiş bölgelerin alan ölçüsü.
+egzoz: İçten yanmalı motorlarda yanan akaryakıtın gazının dışarı atılmasını sağlayan düzen.
+gönye: Dik açıları ölçmeye ve çizmeye yarayan dik üçgen biçiminde araç.
+hulahop: Genellikle sert plastikten büyük çember şeklinde yapılan, vücudun bel ve basen böl-
+gesinde çevrilerek kullanılan çocuk oyuncağı ve spor aleti.
+iletki: Bir açıyı ölçmeye ve başka bir yerde aynı açıyı çizmeye yarayan, yarım çember biçimin-
+deki araç; açıölçer.
+kavşak: Yol vb. uzayıp giden şeylerin kesiştikleri veya birleştikleri yer.
+konargöçer: Göçebe bir hayat süren, bir yere sürekli yerleşmeyen (oba vb.); göçerkonar.
+kübik: Kübizm akımına uyularak yapılan.
+metrekare: Kenarı 1 metre olan bir karenin alanına eşit yüzey ölçüsü birimi.
+parke: Konut, iş yeri vb. yerlerin tabanını döşemek için çeşitli boyutlarda, ince, uzunca tahta 
+parçalarının veya yapay malzemenin belirli bir düzene göre yerleştirilmesiyle yapılan döşeme.
+pergel: Yay veya çember çizmekte ve ölçmekte kullanılan araç; yayçizer.
+pist: Gösteri yapmak, dans etmek vb. için düzenlenmiş, genellikle yuvarlak yer.
+referans: Karşılaştırma için başlangıç kabul edilen nokta veya yer.
+santimetrekare: Kenarı 1 santimetre olan bir karenin alanına eşit yüzey ölçüsü birimi.
+sergi: Halkın gezip görmesi, tanıması için uygun biçimde yerleştirilmiş ürünlerin, sanat eserle-
+rinin tümü.
+SÖZLÜK
+- A -
+- B -
+- E -
+- G -
+- H -
+- İ -
+- K -
+- M -
+- P -
+- S -
+Bu ders kitabının cevap anahtarı 
+için karekodu okutunuz.
+168
+- R -
+===== SAYFA 169 =====
+Bu ders kitabının görsel ve genel ağ 
+kaynakçası için karekodu okutunuz.
+169
+Bu kaynakça Apa-6 yazım kurallarına göre oluşturulmuştur.
+KAYNAKÇA
+Aktaş, M. (2013). Aynı performans görevinin farklı sayıda puanlayıcılar tarafından üç farklı 
+teknikle puanlanmasından elde edilen puanların güvenirliklerinin genellenebilirlik kuramına 
+göre incelenmesi (Yüksek lisans tezi). Yükseköğretim Kurulu Ulusal Tez Merkezi’nden 
+edinilmiştir. (Tez No. 345254)
+Aytekin, A., Sönmez-Çakır, F., Yücel, Y. B. ve Kulaözü, İ. (2018). Algoritmaların 
+hayatımızdaki yeri ve önemi. Avrasya Sosyal ve Ekonomi Araştırmaları Dergisi, 5(7), 143-
+150.
+Baki, A. (2023). Matematik Tarihi ve Felsefesi. Ankara: Pegem.
+Doruk, B. K. (2023). Olasılıkla ilgili temel kavramlar ve öğretimi. Baltacı, S. ve Bütüner, S. 
+Ö. (Ed.), Etkinlik temelli olasılık ve istatistik öğretimi (33-84) içinde. Ankara: Nobel.
+Karakuş, F. ( 2023). İstatistiksel problem çözme süreci: araştırma sorusu oluşturma, veri 
+toplama, düzenleme ve analiz etme. Baltacı, S. ve Bütüner, S. Ö. (Ed.), Etkinlik temelli 
+olasılık ve istatistik öğretimi (143-167) içinde. Ankara: Nobel.
+Kaya, A. (2014). Dışavurumcu sanat terapinin üniversite öğrencilerinde akış durumu ve 
+psikolojik iyi oluş üzerindeki etkisi (Yüksek lisans tezi). Yükseköğretim Kurulu Ulusal Tez 
+Merkezi’nden edinilmiştir. (Tez No. 483445)
+Kaya- Göktepe, A. (2018). Dinî içerikli müzik terapinin üniversite öğrencilerinde duygu 
+durumu, kaygı ve algılanan stres düzeyi üzerindeki etkisi. (Yüksek lisans tezi). 
+Yükseköğretim Kurulu Ulusal Tez Merkezi’nden edinilmiştir. (Tez No. 508238)
+Matınpour, M. ve Arslan-Selçuk, S. (2018). İslami geometrik desenlerin origamik 
+potansiyelleri: Altıgenler üzerinde bir deneme. Journal on Mathematic, Engineering and 
+Natural Sciences (EJONS), 2(3), 88-101.
+Şahin, M. C. ve Arslan-Namlı, N. (2017). Algoritma eğitiminin problem çözme becerisi 
+üzerine etkisi. Recep Tayyip Erdoğan Üniversitesi Sosyal Bilimler Dergisi, 3(5), 135-153.
+Van de Walle, J. A., Karp, K. S. ve Bay-Williams, J. M. (2012). İlkokul Ve Ortaokul 
+Matematiği: Gelişimsel Yaklaşımla Öğretim. (S. Durmuş, Çev. Ed.). Ankara: Nobel.
+Yerlikaya, T. ve Aslanyürek, C. (2019). RSA algoritmasının şifreleme hızını arttıran 
+algoritmalar ve performansları. Dicle Üniversitesi Mühendislik Fakültesi Mühendislik 
+Dergisi, 10(3), 853-862.
+===== SAYFA 170 =====
+!
+!
+!!
+!
+!
+!
+!
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!!
+!
+!
+!!
+!
+! !
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!
+!
+!
+!
+!
+!
+! !
+!
+!!
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+Adana
+Adıyaman
+Afyonkarahisar
+Ağrı
+Amasya
+Ankara
+Antalya
+Artvin
+Aydın
+Balıkesir
+Bilecik
+Bingöl
+Bitlis
+Bolu
+Burdur
+Bursa
+Çanakkale
+Çankırı
+Çorum
+Denizli
+Diyarbakır
+Edirne
+Elâzığ
+Erzincan
+Erzurum
+Eskişehir
+Gaziantep
+Giresun
+Gümüşhane
+Hakkâri
+Hatay
+Isparta
+Mersin
+İstanbul
+İzmir
+Kars
+Kastamonu
+Kayseri
+Kırklareli
+Kırşehir
+Kocaeli
+Konya
+Kütahya
+Malatya
+Manisa
+Kahramanmaraş
+MardinMuğla
+Muş
+Nevşehir
+Niğde
+Ordu Rize
+Sakarya
+Samsun
+Siirt
+Sinop
+Sivas
+Tekirdağ
+Tokat
+Trabzon
+Tunceli
+Şanlıurfa
+Uşak Van
+Yozgat
+Zonguldak
+Aksaray
+  Bayburt
+Karaman
+Kırıkkale
+Batman
+Şırnak
+Bartın
+Ardahan
+Iğdır
+Yalova
+Karabük
+Kilis
+Osmaniye
+Düzce
+KızılırmakN.
+Kura N.
+Aras N.
+Fırat N.
+EGEDENİZİ
+K      A      R      A       D      E     N     İ       Z
+A
+K
+D
+E
+N
+İ
+Z
+Tiflis
+Erivan
+Lefkoşa
+G
+Ü
+R
+C
+İS
+T
+A
+N
+ERM
+ENİSTAN NAHÇIVAN Ö.C.
+(AZERBAYCAN)
+İ
+R
+A
+N
+I
+R
+A
+K
+LÜBNAN
+B
+U
+L
+G
+A
+R
+İS
+T
+A
+N
+YU
+N
+A
+N
+İS
+T
+A
+N
+Erenköy
+GÜNEY KIBRIS RUM YÖNETİMİ
+KUZEY KIBRIS
+TÜRK CUMHURİYETİ
+Fırat N.
+Meriç N.
+Aras N.
+Van
+Gölü
+Gediz N.
+Sakarya N.
+Kızılırmak N.
+Dicle N.
+S
+U
+R
+İ
+Y
+E
+Asi N.
+ACARA Ö.C.
+Sofya
+Bükreş
+R
+O
+M
+A
+N
+Y
+A
+Beyrut
+U
+K
+R
+A
+Y
+N
+A
+R
+U
+S
+Y
+A
+F
+E
+D
+E
+R
+A
+S
+Y
+O
+N
+U
+Şam
+Doğu
+Kudüs
+FİLİSTİN
+Tel Aviv
+İSRAİL
+M
+I
+S
+I
+R
+L
+İ
+B
+Y
+A
+FİLİSTİN
+AZERBAYCAN
+Bağdat
+Atina
+Tuna N.
+Tuz
+Gölü
+Urumiye
+Gölü
+Gazze Şeridi
+Batı Şeria
+MARMARA
+DENİZİ
+HAZAR
+DENİZİ
+Gökçeada
+Ceyhan N.
+Nil N.
+Süveyş K.
+Dicle N.
+Kura N.
+Çoruh N.
+Yeşilırmak N.
+Büyük M
+enderes N.
+Bakırçay N.
+Küçük Menderes N.
+Seyhan N.
+Göksu N.
+Bozcaada
+50°D
+45°D
+45°D
+40°D
+40°D
+35°D
+35°D
+30°D
+30°D
+25°D
+25°D
+40°K 40°K
+35°K 35°K
+TÜRKİYE'NİN MÜLKİ İDARE BÖLÜMLERİ İLE
+KARA VE DENİZ KOMŞULARI HARİTASI
+BAŞKENT
+İL MERKEZİ Elâzığ!
+GÖL
+!
+AKARSU
+ÜLKE SINIRI
+ÖZERK BÖLGE SINIRI
+Ankara
+Harita Genel Müdürlüğü tarafından üretilmiştir.
+0 100 200 300 40050
+km
+170
+===== SAYFA 171 =====
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! !
+!!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+Baykal G.
+Aral G.
+Ladoga G.
+Balkaş G.
+Onega G.
+Van G.
+Urumiye G.
+Hulun G.
+Tuz G.
+Tuna N.
+Amur N.
+Peçora N.
+Po N.
+Ganj N.
+Nil N.
+İrtiş N.
+Dicle N.
+Sen N.
+Obi N.
+Nil N.
+Obi N.
+Sırderya N.
+İrtiş N.
+Volga N.
+Ural N.
+Yenisey N.
+Don N.
+Şam
+Oslo
+Kiev
+Bakü
+Paris
+Sofya
+Varşova
+Brüksel
+İslamabad
+Kâbil
+Pekin
+Atina
+Berlin
+Tahran
+Bişkek
+Astana
+Ankara
+Tiflis
+Londra
+Bağdat
+UKRAYN
+A
+Aşkabat
+Duşanbe
+Taşkent
+Moskova
+Stokholm
+Amsterdam
+M
+O
+Ğ
+O
+L
+İS
+TA
+N
+AFGANİST
+AN
+ÖZBEKİSTAN
+K
+A
+Z
+A
+K
+İS
+T
+A
+N
+Yeni Delhi
+TACİKİSTAN
+FİNLANDİYA
+Kopenhag
+Helsinki
+Ulanbator
+F i l i p i n
+D e n i z i
+ B  a  r  e  n  t  s
+D  e  n  i  z  i
+N  o  r  v  e  ç
+D  e  n  i  z  i
+Güney Çin Denizi
+Ohotsk Denizi
+A   k   d   e   n   i   z
+B e r i n g   D e n i z i
+  Doğu Çin
+ Denizi
+K u z e y
+D e n i z i
+   Japon Denizi
+ Doğu Denizi
+Sarı  Deniz
+K a r a d e n i z
+K ı z ı l d e n i z
+Sulu 
+Denizi
+B
+altık
+Denizi
+Tiren 
+Denizi
+Adriyatik Denizi
+Azak
+Denizi
+Ege Denizi
+K a r a
+D e n i z i
+Umman 
+Denizi
+NORVEÇ
+İSVEÇ
+DANİMARKA
+Ç
+İN
+ H
+A
+L
+K
+  
+ C
+U
+M
+H
+U
+R
+İY
+E
+T
+İ
+SİNCAN UYGUR
+ÖZERK BÖLGESİ
+KIRG
+IZİSTAN
+JAM
+M
+U VE KEŞM
+İR
+(İhtilaflı Bölge)
+(BMKontrolHattı)
+Tarafsız
+Bölge
+İR
+A
+N
+IRAK
+SU
+RİYE
+T  Ü  R K  İ  Y  E
+  Hazar
+      Denizi
+GÜRCİST
+AN
+GKRY
+KKTC
+AZER
+BAYCAN
+TÜRKM
+ENİSTAN
+MOLDOVA
+MACARİSTANPOLONYA
+AVUSTURYA
+ALMANYA
+LİH
+İSV
+HRV
+ROMANYA
+BULGARİST
+AN
+BH
+SRB
+KSV
+KRD
+ARN
+KMKD
+B   Ü   Y   Ü
+   K 
+O   K   Y   A   N   U   S
+Yemen Denizi
+Manş Denizi
+BİRLEŞİK KRALLIK
+HOLLANDA
+BEL
+F R A N S A
+YU
+NANİSTAN
+P A K İ S T A N
+H
+İN
+D
+İS
+TA
+N
+Bahrülgazel N.
+İndigirka N.
+Lena N.
+Sarı N.
+Sarıkamış G.
+BükreşKişinev
+Ribinsk
+Brj. G.
+Usa
+ N.
+Severnaya
+Dvina N.
+Lefkoşa
+KIRIM Ö.C.
+TUVA C.
+SAHA (YAKUT) C.
+FİLİSTİN
+Issık G.
+Meriç N.
+Hotan N.
+Cebelitarık B.
+Hürmüz B.
+İndus N.
+Fırat N.
+CEZAYİR
+TUNUS
+LİBYA
+MISIR
+SUDAN
+YEM
+EN
+UM
+M
+AN
+SUUDİ ARABİSTAN
+BİRLEŞİ
+K ARAP
+EM
+İRLİKLERİ
+KATAR
+KUVEY
+T
+ÜRDÜN
+BANG
+LADEŞ
+İTALYA
+İSPANYA
+PORTEKİZ
+TrablusTunus
+Cezayir
+Madrid
+Lizbon
+Kahire
+Amma
+n
+Kuveyt
+Doha
+Riyad
+Abu Dabi
+Muskat
+Sana
+Hartum
+Dakka
+BELARUS
+Minsk
+İRLANDA
+Dublin
+İZLANDA
+FAS NİJER
+ÇAD
+R
+U
+S
+Y
+A
+ 
+F
+E
+D
+E
+R
+A
+S
+Y
+O
+N
+U
+1
+2
+3 4
+5 6
+7
+8
+9
+10
+NAHÇIVAN Ö.C.
+a
+b
+c ç d
+e
+f g
+g
+ı
+j
+j
+k
+l
+h
+i
+180°170°D160°D150°D140°D130°D
+120°D
+120°D
+110°D100°D
+100°D
+90°D80°D
+80°D
+70°D60°D
+60°D
+50°D
+50°D
+40°D
+40°D
+30°D
+30°D20°D10°D0°10°B20°B30°B
+50°K
+40°K
+40°K30°K
+30°K
+20°K
+20°K
+10°K
+10°K
+TÜRK DÜNYASI HARİTASI
+Bağımsız Türk Devletleri
+Türk Cumhuriyetleri, Türk Bölgeleri
+Türk Toplulukları
+km
+0 500 1.000 1.500 2.000250
+ÜLKE KISALTMALARI
+HIRVATİSTAN
+KUZEY KIBRIS TÜRK CUMHURİYETİ
+LİHTENŞTAYN
+İSVİÇRE
+SIRBİSTAN
+KARADAĞ
+KOSOVA
+KKTC
+LİH
+İSV
+SRB
+KRD
+KSV
+HRV
+ARNAVUTLUK
+BELÇİKA
+GÜNEY KIBRIS RUM YÖNETİMİ
+BOSNA - HERSEK
+GKRY
+BEL
+ARN
+BH
+KUZEY MAKEDONYA KMKD
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+TÜRK CUMHURİYETLERİ,
+TÜRK BÖLGELERİ
+GAGAVUZ YERİ
+KARAÇAY-ÇERKESYA
+KABARDİN-BALKARYA C.
+DAĞISTAN C.
+ÇUVAŞİSTAN C.
+TATARİSTAN C.
+BAŞKURT C.
+KARAKALPAKİSTAN C.
+ALTAY C.
+HAKASYA C.
+a
+TÜRK TOPLULUKLARI
+Avrupa'daki Türkler
+Kosova Türkleri
+Yunanistan Türkleri
+Bulgaristan Türkleri
+Romanya Türkleri
+Suriye Türkmenleri
+Irak Türkmenleri
+İran Türkleri
+Afganistan Türkmenleri
+Pakistan Türkmenleri
+Hindistan Türkmenleri
+Çin H. C. Türkleri
+Moğolistan Türkleri
+Rusya Federasyonu Türkleri
+b
+c
+ç
+d
+e
+f
+g
+h
+ı
+i
+j
+k
+l
+171

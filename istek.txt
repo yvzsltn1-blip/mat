@@ -1,0 +1,11 @@
+"C:\Users\YAVUZ\Documents\Game\matematik\matematik5-1-web-promtu.txt"
+  "C:\Users\YAVUZ\Documents\Game\matematik\matematik5-1.pdf" bu 2 dosyayı incele, ben bir matematik
+  öğretmeniyim. Çocuklar sınıfta konuları anlamıyorlar. Bu dönem çocukların anlayacağı dilden , bol ve farklı
+  oyunlu, görsel yönü zengin, animasyonlu ve sesli bir web sitesi oluşturmak istiyorum. Mesela öğrencilerin
+  isimlerini gireyim, rastgele bir öğrenci ismi seçilsin ve oyunu o oynasın gibi şeyler istiyorum. Şube ismi ve
+  ardından öğrenci isimleri gibi. 5. sınıf'a girelim mesela, ardından tüm konular çıksın, önce konuları hızlıca
+  anlatayım, siteden görsel yolla, animasyonlarla vs öğrenciler dersi anlasın, sonra da seviye seviye, puanları
+  soruların zorluğuna göre belirlenmiş oyunlar olsun. Çocukları gruplayabilelim mesela. çeşitli seçenekler
+  olsun, ardından 1. gruptan 1 çocuk seçelim, sonrasında 2. gruptan bir çocuk. Grıpların puanları olsun gibi
+  gibi. Öncelikle sen bana bu müfredata ve seviyeye uygun , bol oyunlu ve animasyonlu, görselli bir web sitesi
+  oluştur

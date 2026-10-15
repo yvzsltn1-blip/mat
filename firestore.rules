@@ -1,0 +1,15 @@
+rules_version = '2';
+// Uygulamanın tek kullanıcısı: yalnız elif@gmail.com hesabı, yalnız kendi verisine erişir.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) {
+      return request.auth != null && request.auth.uid == uid && request.auth.token.email == "elif@gmail.com";
+    }
+    match /teachers/{uid} {
+      allow read, write: if owner(uid);
+      match /classes/{classId} {
+        allow read, write: if owner(uid);
+      }
+    }
+  }
+}
