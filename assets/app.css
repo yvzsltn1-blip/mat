@@ -436,6 +436,10 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .stage { background: radial-gradient(ellipse at 30% 10%, #fff, #f8f4e9); }
 .scene .draw { stroke-dasharray: 1100; stroke-dashoffset: 1100; animation-duration: 1.15s; }
 .dial-svg { touch-action: none; cursor: grab; }
+.dial-svg text.dial-num { font: 800 12.5px var(--kid); fill: #46536e; }
+.dial-svg text.dial-num.is-ninety { font-size: 15px; fill: #1c8c74; }
+.dial-svg text.dial-zone { font: 800 11px var(--kid); fill: #3f7d70; }
+.dial-svg text.dial-zone.is-wide { fill: #a56f2f; }
 .dial-svg:active { cursor: grabbing; }
 .dial-svg:focus-visible { outline: 3px solid #e2a325; outline-offset: -3px; border-radius: 12px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -491,6 +495,9 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .story-title {font-weight:800;color:#46675c;font-size:.9rem}
 .story-title span {background:#e8f1e9;padding:6px 12px;border-radius:20px}
 .lesson-workspace {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,1fr);gap:24px;margin:22px 0}
+.lesson-workspace.has-teach {grid-template-areas:"model lesson"}
+.lesson-workspace.has-teach .lesson-canvas {grid-area:model}
+.lesson-workspace.has-teach .lesson-notes {grid-area:lesson}
 .lesson-canvas {min-width:0;padding:22px;border:1px solid #d9e1d8;border-radius:24px;background-color:#f4f8f1;background-image:radial-gradient(#b4c6b650 1px,transparent 1px);background-size:20px 20px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:14px}
 .canvas-label {font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#46675c;font-weight:800}
 .lesson-canvas>.mini {align-self:flex-start}
@@ -502,6 +509,47 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .lesson-notes h3 {font-size:1rem;color:#507061;margin:0 0 15px}
 .observation {display:flex;gap:12px;line-height:1.65;font-size:1.12rem;animation:note-in .55s ease both;animation-delay:calc(var(--note-i) * 180ms)}
 .observation>span {flex:0 0 28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#e8eee4;color:#35634c;font-size:.8rem;font-weight:800;margin-top:3px}
+.teach-chat {display:flex;gap:12px;align-items:flex-start}
+.anka-side {flex:0 0 56px;display:grid;justify-items:center;gap:3px;animation:anka-bob 2.8s ease-in-out infinite}
+.anka-face {width:56px;height:56px;border-radius:50%;background:#fff;border:2.5px solid #e2d9ca;display:grid;place-items:center;font-size:2rem;box-shadow:0 4px 0 #eee9dc}
+.anka-name {font-size:.66rem;font-weight:900;letter-spacing:.06em;color:#8a7a63;text-transform:uppercase}
+.teach-bubbles {min-width:0;flex:1;display:grid;gap:10px}
+.teach-para {position:relative;background:#fff;border:2px solid #e7e3d5;border-radius:18px 18px 18px 6px;padding:12px 14px;margin:0;line-height:1.62;font-size:1.02rem;box-shadow:0 4px 0 #eee9dc;animation:bubble-in .5s ease both;animation-delay:calc(var(--note-i) * 380ms + 120ms)}
+.term {background:linear-gradient(180deg,transparent 58%,#ffe3a1 58%);color:#7a5410;font-weight:800;padding:0 2px;border-radius:4px}
+.worked {background:#fff;border:2px solid #dce5db;border-radius:18px;padding:14px 16px;margin-top:6px;animation:tile-arrive .5s ease both;animation-delay:.3s}
+.worked-kicker {font-size:.75rem;font-weight:900;letter-spacing:.08em;color:#725421;margin:0 0 6px}
+.worked-ask {font-weight:800;line-height:1.55;margin:0 0 12px;font-size:1.05rem}
+.worked ol.worked-steps {list-style:none;margin:0 0 12px;padding:0;counter-reset:adim;display:grid;gap:10px}
+.worked-steps li {counter-increment:adim;position:relative;line-height:1.55;padding:10px 12px 10px 46px;background:#f7faf5;border:2px solid #e3ebdf;border-radius:14px;animation:tile-arrive .5s ease both;animation-delay:calc(var(--step-i) * 260ms + 400ms)}
+.worked-steps li::before {content:counter(adim);position:absolute;left:10px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:.9rem;color:#fff;background:#2c6bed;box-shadow:0 3px 0 #1c4bb3}
+.worked-steps li:nth-child(4n+2)::before {background:#1c8c74;box-shadow:0 3px 0 #146b57}
+.worked-steps li:nth-child(4n+3)::before {background:#d89a12;box-shadow:0 3px 0 #a87509}
+.worked-steps li:nth-child(4n+4)::before {background:#c25b8a;box-shadow:0 3px 0 #993f6b}
+.step-num {display:inline-block;background:#eef4ff;border:1.5px solid #c9d9f5;border-radius:8px;padding:0 6px;font-weight:900;color:#2c4a9e;font-variant-numeric:tabular-nums;margin:0 1px}
+.worked-result {display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:linear-gradient(110deg,#e7f6f1,#f6fffb);border:2px solid #bfe5d8;border-radius:14px;padding:10px 12px;margin:0;line-height:1.5;animation:result-pop .65s cubic-bezier(.2,1.4,.4,1) both;animation-delay:calc(var(--steps,3) * 260ms + 900ms)}
+.teach-motto {display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#fff6df;border:2px dashed #e8c977;border-radius:16px;padding:10px 14px;margin:14px 0 0;line-height:1.55;font-weight:700;animation:tile-arrive .55s ease both;animation-delay:1.5s}
+@keyframes bubble-in {from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+@keyframes anka-bob {0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes result-pop {from{opacity:0;transform:scale(.75)}60%{opacity:1;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
+.play-hint {margin:0;line-height:1.45;font-weight:700;color:#244e41}
+.im-lab {display:grid;gap:12px}
+.im-instruction {margin:0;font-weight:800;color:#244e41;line-height:1.4}
+.im-controls {display:grid;gap:8px}
+.im-controls label {display:grid;gap:4px;font-weight:700;font-size:.92rem}
+.im-choices {display:flex;flex-wrap:wrap;gap:8px}
+.im-choices button {flex:1;min-width:108px}
+.im-choices button.on {background:#244e41;color:#fff;border-color:#244e41}
+.im-checks {display:grid;gap:6px}
+.im-checks label {display:flex;gap:8px;align-items:flex-start;font-weight:700}
+.im-caption,.im-line {margin:.35em 0;line-height:1.5}
+.im-line {font-size:1.15rem;font-weight:800}
+.im-frac {display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .2em;line-height:1.05;font-weight:800}
+.im-frac span:first-child {border-bottom:2px solid currentColor;padding:0 .25em .05em}
+.im-frac span:last-child {padding:.05em .25em 0}
+.im-digits {display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
+.im-digits span,.im-grid span {min-width:28px;text-align:center;padding:6px 8px;border-radius:8px;background:#fff;border:1px solid #dce5db;font-weight:800}
+.im-digits .diff {background:#fff1cf;border-color:#d49a3a}
+.im-grid {display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
 .lesson-check {background:#fff1cf;border:1px solid #eed99b;border-radius:16px;padding:15px;margin-top:22px}
 .lesson-check summary {cursor:pointer;font-weight:800;line-height:1.5}
 .lesson-check p {line-height:1.6;margin-bottom:0;animation:note-in .3s ease}
@@ -529,8 +577,8 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .slide-actions .solid {margin-left:auto}
 @keyframes note-in {from {opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes tile-arrive {from{opacity:0;transform:translateY(24px) scale(.92)}to{opacity:1;transform:none}}
-@media(max-width:1050px){.lesson-workspace{grid-template-columns:1fr}.lesson-canvas .scene{max-height:280px}}
-@media(max-width:600px){.lesson-canvas,.response-panel{padding:14px}.question-brief{padding:15px}.slide-actions .solid{margin-left:0}.lesson-progress{gap:4px}.story-title{font-size:.8rem}.observation{font-size:1rem}}
+@media(max-width:1050px){.lesson-workspace{grid-template-columns:1fr}.lesson-workspace.has-teach{grid-template-areas:"lesson" "model"}.lesson-canvas .scene{max-height:280px}}
+@media(max-width:600px){.lesson-canvas,.response-panel{padding:14px}.question-brief{padding:15px}.slide-actions .solid{margin-left:0}.lesson-progress{gap:4px}.story-title{font-size:.8rem}.observation{font-size:1rem}.anka-face{width:44px;height:44px;font-size:1.45rem;box-shadow:none}.anka-side{flex-basis:44px}.teach-para{font-size:.95rem;padding:10px 12px}.teach-chat{gap:8px}.worked-steps li{padding:9px 10px 9px 40px}.teach-motto{padding:9px 12px}}
 @media(prefers-reduced-motion:reduce){.observation,.learning-tile,.lesson-check p,.lesson-canvas .draw{animation:none;opacity:1;transform:none;stroke-dashoffset:0}.choice{transition:none}}
 
 /* Tam ekranda dersin tamamini tek gorunumde tut. */
@@ -548,7 +596,15 @@ body.classroom-fullscreen .topic-main h2 {font-size:clamp(1.45rem,2.4vh,2rem);ma
 body.classroom-fullscreen .lesson-progress {margin:4px 0 10px}
 body.classroom-fullscreen .lesson-progress button {height:8px}
 body.classroom-fullscreen .lesson-workspace {flex:1;min-height:0;margin:6px 0;grid-template-columns:minmax(0,1.1fr) minmax(250px,.9fr);gap:16px;overflow:hidden}
-body.classroom-fullscreen .lesson-canvas {min-height:0;padding:12px;gap:8px;overflow:hidden;justify-content:flex-start}
+body.classroom-fullscreen .lesson-canvas {min-height:0;padding:12px;gap:8px;overflow:auto;justify-content:flex-start}
+body.classroom-fullscreen .teach-para {font-size:.92rem;line-height:1.45;padding:8px 11px;box-shadow:none;border-width:1.5px}
+body.classroom-fullscreen .anka-face {width:44px;height:44px;font-size:1.45rem;box-shadow:none}
+body.classroom-fullscreen .anka-side {flex-basis:44px}
+body.classroom-fullscreen .worked {padding:10px 12px;animation-delay:.1s}
+body.classroom-fullscreen .worked-steps li {padding:7px 10px 7px 40px}
+body.classroom-fullscreen .worked-steps li::before {width:22px;height:22px;font-size:.8rem;left:9px;box-shadow:none}
+body.classroom-fullscreen .teach-motto {margin-top:10px;padding:8px 12px;animation-delay:.8s}
+body.classroom-fullscreen .lesson-notes.is-teach {overflow:auto}
 body.classroom-fullscreen .lesson-canvas .scene {max-height:min(34vh,300px);min-height:120px}
 body.classroom-fullscreen .lesson-canvas>.stage {padding:8px;margin:0}
 body.classroom-fullscreen .lesson-canvas .dial-stage {height:min(27vh,240px);min-height:0;flex:none;display:grid;place-items:center;overflow:hidden}

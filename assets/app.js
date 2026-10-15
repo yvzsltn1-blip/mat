@@ -957,6 +957,7 @@
 
   function sandboxHtml(kind) {
     if (kind.startsWith("m7-") && window.Mat7Labs) return Mat7Labs.html(kind);
+    if (kind.startsWith("im-") && window.MatImagine) return MatImagine.html(kind);
     if (kind === "dial") {
       if (isPairLesson()) {
         const total = state.sandbox.pairTotal || 90;
@@ -1416,24 +1417,60 @@
     </div><p class="footer-note">Doğru/yanlış 5 puan. Diğer sorular: Keşif 10 · Alıştırma 20 · Problem 35 · Meydan okuma 50 · Özel zor 80 puan. Yanlışta ve süre dolduğunda puan silinmez.</p></main>`;
   }
 
+  function highlightTerms(text, terms) {
+    let html = esc(text);
+    if (terms) for (const term of terms) {
+      const safe = esc(term);
+      const at = html.indexOf(safe);
+      if (at >= 0) html = html.slice(0, at) + '<mark class="term">' + safe + "</mark>" + html.slice(at + safe.length);
+    }
+    return html;
+  }
+  function numChips(text) {
+    return esc(text).replace(/(\d+(?:[.,]\d+)*)/g, '<b class="step-num">$1</b>');
+  }
+
+  function lessonNotes(slide) {
+    const check = slide.check ? `<details class="lesson-check"><summary>💭 ${esc(slide.check.ask)}</summary><p>${esc(slide.check.answer)}</p></details>` : "";
+    if (slide.narration) {
+      const item = slide.example;
+      return `<div class="lesson-notes is-teach"><h3>Anka anlatıyor</h3>
+        <div class="teach-chat">
+          <div class="anka-side" aria-hidden="true"><span class="anka-face">🦉</span><span class="anka-name">Anka</span></div>
+          <div class="teach-bubbles">${slide.narration.map((para, i) => `<p class="teach-para" style="--note-i:${i}">${highlightTerms(para, slide.terms)}</p>`).join("")}</div>
+        </div>
+        ${item ? `<section class="worked" style="--steps:${item.steps.length}"><p class="worked-kicker">✨ Birlikte çözelim</p><p class="worked-ask">${numChips(item.ask)}</p><ol class="worked-steps">${item.steps.map((step, i) => `<li style="--step-i:${i}">${numChips(step)}</li>`).join("")}</ol><p class="worked-result">🎉 <b>Sonuç:</b> ${esc(item.result)}</p></section>` : ""}
+        ${slide.motto ? `<p class="teach-motto">🧠 <b>Akılda kalsın:</b> ${esc(slide.motto)}</p>` : ""}
+        ${check}</div>`;
+    }
+    const sentences = slide.p.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [slide.p];
+    return `<div class="lesson-notes"><h3>${slide.sandbox ? "Nasıl yaparım?" : "Neyi fark ettin?"}</h3>${sentences.map((line, i) => `<p class="observation" style="--note-i:${i}"><span>${i + 1}</span>${esc(line.trim())}</p>`).join("")}
+      ${check}</div>`;
+  }
+
   function renderLesson(t) {
     const slide = t.slides[state.slide];
     const key = t.id + ":" + state.slide;
     if (state.sandboxKey !== key) {
       state.sandboxKey = key;
-      state.sandbox = { deg: slide.scene && slide.scene.kind === "angle" ? slide.scene.deg : 60, pairTotal: state.slide === 2 ? 180 : 90, w: 4, h: 3, r: 4, digits: "" };
+      state.sandbox = {
+        deg: Number.isInteger(slide.sandboxDeg) ? slide.sandboxDeg : (slide.scene && slide.scene.kind === "angle" ? slide.scene.deg : 60),
+        pairTotal: slide.storyStep === 2 ? 180 : 90,
+        w: slide.sandboxW || 4,
+        h: slide.sandboxH || 3,
+        r: slide.sandboxR || 4,
+        digits: slide.sandboxDigits || ""
+      };
     }
     const interactiveAngle = isPairLesson() || slide.sandbox === "dial" || (slide.scene && slide.scene.kind === "angle");
     const visual = slide.h === "Komşu açılar" ? MatAdjacent.html() : slide.scene && slide.scene.kind === "intersect" ? MatIntersection.html() : interactiveAngle ? sandboxHtml("dial") : slide.sandbox ? sandboxHtml(slide.sandbox) : (slide.scene ? MatVisuals.renderScene(slide.scene) : "");
-    const sentences = slide.p.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [slide.p];
-    return `<div class="lesson-header"><p class="kicker">Gör · Düşün · Keşfet</p><span>${state.slide + 1} / ${t.slides.length}</span></div>
+    const ruleSheet = slide.bullets ? `<article class="lesson-rule-sheet"><p><b>Bilgi:</b> ${esc(slide.readingIntro)}</p><ul>${slide.bullets.map(rule => `<li>${esc(rule)}</li>`).join("")}</ul><p class="lesson-rule-tip"><b>Püf noktası:</b> ${esc(slide.readingTip)}</p></article>` : "";
+    return `<div class="lesson-header"><p class="kicker">${slide.teach ? "Ders anlatımı" : "Gör · Düşün · Keşfet"}</p><span>${state.slide + 1} / ${t.slides.length}</span></div>
       <div class="lesson-progress" aria-label="Anlatım ilerlemesi">${t.slides.map((s,i)=>`<button type="button" data-act="goto-slide" data-i="${i}" class="${i===state.slide?'active':i<state.slide?'done':''}" aria-label="${i+1}. adım: ${esc(s.h)}" ${i===state.slide?'aria-current="step"':''}></button>`).join('')}</div>
       ${slide.story ? `<p class="story-title">${esc(slide.story)} <span>${['① Modeli kur','② Değişimi izle','③ Sonucu keşfet'][slide.storyStep]}</span></p>` : ''}
       <h2>${esc(slide.h)}</h2>
-      <div class="lesson-workspace${slide.bullets ? ' lesson-reading' : ''}">
-        ${slide.bullets ? `<article class="lesson-rule-sheet"><p><b>Bilgi:</b> ${esc(slide.readingIntro)}</p><ul>${slide.bullets.map(rule=>`<li>${esc(rule)}</li>`).join('')}</ul><p class="lesson-rule-tip"><b>Püf noktası:</b> ${esc(slide.readingTip)}</p></article>` : `<div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? '✋ Şimdi sen dene' : '✦ Dikkatle izle'}</span>${visual}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>
-        <div class="lesson-notes"><h3>${slide.sandbox ? 'Nasıl yaparım?' : 'Neyi fark ettin?'}</h3>${sentences.map((line,i)=>`<p class="observation" style="--note-i:${i}"><span>${i+1}</span>${esc(line.trim())}</p>`).join('')}
-        ${slide.check ? `<details class="lesson-check"><summary>💭 ${esc(slide.check.ask)}</summary><p>${esc(slide.check.answer)}</p></details>` : ''}</div>`}
+      <div class="lesson-workspace${slide.bullets ? " lesson-reading" : ""}${slide.teach ? " has-teach" : ""}">
+        ${slide.bullets ? `${ruleSheet}${lessonNotes(slide)}` : `${slide.teach ? lessonNotes(slide) : ""}<div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? "✋ Kafanda canlandır" : "✦ Dikkatle izle"}</span>${visual}${slide.playHint ? `<p class="play-hint">${esc(slide.playHint)}</p>` : ""}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>${slide.teach ? "" : lessonNotes(slide)}`}
       </div>
       <div class="slide-actions">
         <button class="soft" type="button" data-act="slide-prev" ${state.slide === 0 ? "disabled" : ""}>← Önceki</button>
@@ -1903,7 +1940,12 @@
 
   let angleTimer = null;
   function isPairLesson() {
-    return state.screen === "topic" && state.topicTab === "lesson" && topic().id === "cift" && (state.slide < 3 || currentSlide().h === "Tümler ve bütünler");
+    if (state.screen !== "topic" || state.topicTab !== "lesson") return false;
+    const slide = currentSlide();
+    if (!slide) return false;
+    if (slide.sandbox === "pair") return true;
+    const t = topic();
+    return !!(t && t.id === "cift" && (slide.story || slide.h === "Tümler ve bütünler"));
   }
   function angleKind(deg) {
     return deg === 0 ? "Sıfır açı · kollar üst üste" : deg < 90 ? "Dar açı · 90°den küçük" : deg === 90 ? "Dik açı · tam 90°" : deg < 180 ? "Geniş açı · 90° ile 180° arasında" : "Doğru açı · tam 180°";
@@ -1962,7 +2004,10 @@
       handle.setAttribute("cy", y);
     }
     if (label) label.textContent = deg + "°";
-    if (arc) arc.setAttribute("d", MatVisuals.arc(180, 176, 32, deg));
+    if (arc) {
+      arc.setAttribute("d", MatVisuals.arc(180, 176, 32, deg));
+      arc.setAttribute("visibility", deg === 90 ? "hidden" : "visible");
+    }
     const svg = document.getElementById("dialSvg");
     if (svg) svg.setAttribute("aria-valuenow", String(deg));
     const kind = document.getElementById("angleKind");
@@ -1986,6 +2031,7 @@
 
   function bindDynamic() {
     if (window.Mat7Labs) Mat7Labs.bind(app);
+    if (window.MatImagine) MatImagine.bind(app);
     const arcadeRoot = document.getElementById("arcadeRoot");
     if (arcadeRoot && typeof MatArcade !== "undefined") MatArcade.mount(arcadeRoot, arcadeCtx());
     if (typeof MatAdjacent !== "undefined") MatAdjacent.bind();
