@@ -1572,7 +1572,7 @@
     const lv = MatGames.LEVELS.find(l => l.id === q.level);
     const praise = ["Süper!", "Tam isabet!", "İşte bu!", "Harikasın!", "Çok iyi!"][state.correctCount % 5];
     const fb = state.feedback;
-    const scene = q.scene && q.kind !== "dial" && q.kind !== "rect" ? MatVisuals.renderScene(q.scene) : "";
+    const scene = q.scene && q.kind !== "dial" && q.kind !== "rect" ? MatVisuals.renderScene(q.scene) : (window.MatQuestionVisuals ? MatQuestionVisuals.build(String(q.id).split(":")[0], q) : "");
     const longChoices = q.kind === "mc" && q.choices.some((c) => String(c).length > 28);
     return `<div class="game" style="--lv:${lv.color}">
       ${gameBar(q, lv)}

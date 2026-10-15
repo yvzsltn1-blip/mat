@@ -14,6 +14,8 @@ Başlatmak için `index.html` dosyasını tarayıcıda açın. Önceden açık s
 
 Sorular `matematik5-1-web-promtu.txt` ile `matematik5-1.pdf` kapsamı temel alınarak özgün hazırlanmıştır. Özel zor seviye, temel kazanımları birleştiren ek muhakeme ve sayma görevleri içerir.
 
+- Seviye oyunlarındaki sorular düz metin olarak kalmaz: `assets/question-visuals.js` soru metnini okuyup konuya uygun bir çizim üretir (noktalar ve uzunluklar, açı parçaları, kesişen doğrular, çemberler, inşa çemberleri, çokgenler, üçgenler, dikdörtgen bahçe/oda/halı, basamak kartları, bölük kutuları, sayı doğrusu, işlem kartları, alt alta işlem, bölme şeması, gruplar). Uygun desen yoksa “Verilenler / İstenen” kartlarıyla görsel bir özet gösterilir. Çizimde yalnız soruda verilen sayılar kullanılır; cevap gösterilmez. Kontrol: `node tests/question-visuals.cjs`.
+
 Kontrol komutu: `node tests/verify.cjs`. Harici bağımlılık olmadan 1.500 sorunun kimliklerini, tekrarlarını, cevap biçimlerini, 5 puanlık doğru/yanlış kuralını, 100 tam turu, puanlamayı, süreyi, duraklatmayı ve kalıcılığı doğrular.
 
 ## Sınıf sistemi (Firebase)
