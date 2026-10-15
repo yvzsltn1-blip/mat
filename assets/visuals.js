@@ -16,6 +16,13 @@
     return `<div class="stage"><svg class="scene" viewBox="${vb || "0 0 360 220"}" role="img">${inner}</svg></div>`;
   }
 
+  function arc2(cx, cy, r, from, to) {
+    const [x1, y1] = ray(cx, cy, from, r);
+    const [x2, y2] = ray(cx, cy, to, r);
+    const large = to - from > 180 ? 1 : 0;
+    return `M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r} ${r} 0 ${large} 0 ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+  }
+
   function angleSvg(deg, opts) {
     const o = opts || {};
     const cx = 78;
@@ -26,40 +33,56 @@
     const square = d === 90
       ? `<path d="M108 168 L108 138 L78 138" fill="none" stroke="#1c8c74" stroke-width="3"/>`
       : "";
+    const arcMark = d === 90
+      ? ""
+      : `<path class="draw delay" d="${arc(cx, cy, 32, d)}" fill="none" stroke="#6554a4" stroke-width="2" stroke-linecap="round"/>`;
     const label = o.show ? `<text x="168" y="42" font-size="22" font-weight="700" fill="#1b2430">${d}°</text>` : "";
     return wrap(`
       <line class="draw" x1="${cx}" y1="${cy}" x2="${cx + len}" y2="${cy}" stroke="#1b2430" stroke-width="4" stroke-linecap="round"/>
       <line class="draw delay" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e25b45" stroke-width="4" stroke-linecap="round"/>
-      <path class="draw delay" d="${arc(cx, cy, 32, d)}" fill="none" stroke="#6554a4" stroke-width="1.5"/>
+      ${arcMark}
       <circle class="pop" cx="${cx}" cy="${cy}" r="5" fill="#2c6bed"/>
       ${square}${label}
     `);
   }
 
-  function dialSvg(deg) {
+  function dialSvg(deg, opts) {
+    const pair = opts && opts.pair;
     const cx = 180;
     const cy = 176;
     const d = Math.max(0, Math.min(180, Math.round(deg || 0)));
     const [x, y] = ray(cx, cy, d, 112);
     let ticks = "";
     for (let t = 0; t <= 180; t += 10) {
-      const inner = t % 30 === 0 ? 78 : 90;
+      const major = t % 30 === 0;
+      const inner = major ? 76 : 90;
       const [x1, y1] = ray(cx, cy, t, inner);
       const [x2, y2] = ray(cx, cy, t, 104);
-      ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#1b2430" stroke-width="${t % 30 === 0 ? 2.4 : 1}"/>`;
-      if (t % 30 === 0) {
-        const [lx, ly] = ray(cx, cy, t, 122);
-        ticks += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-size="11" fill="#3d4a5c">${t}</text>`;
+      const green = t === 90;
+      ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${green ? "#1c8c74" : major ? "#33415e" : "#a9b9cd"}" stroke-width="${green ? 3.6 : major ? 2.6 : 1.3}" stroke-linecap="round"/>`;
+      if (major) {
+        const [lx, ly] = ray(cx, cy, t, 127);
+        ticks += `<text x="${lx.toFixed(1)}" y="${(ly + 4.5).toFixed(1)}" text-anchor="middle" class="dial-num${green ? " is-ninety" : ""}">${t}</text>`;
       }
     }
-    return `<div class="stage dial-stage"><svg id="dialSvg" class="scene dial-svg" viewBox="0 0 360 230">
-      <path d="${arc(cx, cy, 104, 180)}" fill="none" stroke="#eadfce" stroke-width="28" stroke-linecap="butt"/>
+    const [dx, dy] = ray(cx, cy, 45, 104);
+    const [gx, gy] = ray(cx, cy, 135, 104);
+    const band = pair
+      ? `<path d="${arc(cx, cy, 104, 180)}" fill="none" stroke="#eadfce" stroke-width="26"/>`
+      : `<path d="${arc2(cx, cy, 104, 1, 88)}" fill="none" stroke="#c9e8df" stroke-width="26"/>
+      <path d="${arc2(cx, cy, 104, 92, 179)}" fill="none" stroke="#ffe2c2" stroke-width="26"/>
+      <text x="${dx.toFixed(1)}" y="${(dy + 4).toFixed(1)}" text-anchor="middle" class="dial-zone">dar</text>
+      <text x="${gx.toFixed(1)}" y="${(gy + 4).toFixed(1)}" text-anchor="middle" class="dial-zone is-wide">geniş</text>`;
+    return `<div class="stage dial-stage"><svg id="dialSvg" class="scene dial-svg" viewBox="0 0 360 230" aria-valuemin="0" aria-valuemax="180" aria-valuenow="${d}">
+      ${band}
       ${ticks}
-      <path id="dialArc" d="${arc(cx, cy, 32, d)}" fill="none" stroke="#6554a4" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="${cx}" y1="${cy}" x2="${cx + 118}" y2="${cy}" stroke="#33415e" stroke-width="5" stroke-linecap="round"/>
+      <path id="dialArc" d="${arc(cx, cy, 32, d)}" fill="none" stroke="#7b5fd0" stroke-width="3" stroke-linecap="round" visibility="${d === 90 ? "hidden" : "visible"}"/>
       <line id="dialRay" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#e25b45" stroke-width="5" stroke-linecap="round"/>
-      <circle cx="${cx}" cy="${cy}" r="7" fill="#16342f"/>
-      <circle id="dialHandle" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#fff" stroke="#e25b45" stroke-width="3"/>
-      <path id="dialSquare" d="M180 152 L204 152 L204 176" fill="none" stroke="#1c8c74" stroke-width="3" visibility="${d === 90 ? 'visible' : 'hidden'}"/>
+      <circle cx="${cx}" cy="${cy}" r="9" fill="#1f3a33"/>
+      <circle cx="${cx}" cy="${cy}" r="3.2" fill="#fff"/>
+      <circle id="dialHandle" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#fff" stroke="#e25b45" stroke-width="3.5"/>
+      <path id="dialSquare" d="M180 150 L206 150 L206 176" fill="none" stroke="#1c8c74" stroke-width="3.5" stroke-linecap="round" visibility="${d === 90 ? "visible" : "hidden"}"/>
     </svg></div>`;
   }
 
@@ -259,7 +282,7 @@
   }
 
   function pairSvg(deg,total,hideMissing) {
-    return dialSvg(deg).replace('<path d=', `<g id="pairSectors">${pairParts(deg,total,hideMissing)}</g><path d=`);
+    return dialSvg(deg, { pair: true }).replace('<path d=', `<g id="pairSectors">${pairParts(deg,total,hideMissing)}</g><path d=`);
   }
 
   root.MatVisuals = {
