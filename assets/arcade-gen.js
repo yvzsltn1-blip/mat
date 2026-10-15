@@ -481,5 +481,6 @@
     return null;
   }
 
-  root.MatArcadeGen = { generate, topics: Object.keys(T), estimateKind, LINE_RANGE, fmt, ri, pick, shuffle, P, sector, ray, dot, line, text, svg, rightMark, CORAL, BLUE, TEAL, INK, GOLD, GRAPE };
+  root.MatArcadeGen = { generate, topics: Object.keys(T), estimateKind, LINE_RANGE, fmt, ri, pick, shuffle, P, sector, ray, dot, line, text, svg, rightMark, arrowHead,
+    angleFigure, polygonPts, rectFigure, triangleFromAngles, protractor, abacus, digitTiles, column, dots, CORAL, BLUE, TEAL, INK, GOLD, GRAPE };
 })(typeof window !== "undefined" ? window : globalThis);

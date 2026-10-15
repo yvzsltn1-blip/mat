@@ -70,7 +70,7 @@ fixture("cevre", 5, 12, 134); fixture("alan", 5, 10, 47812);
 fixture("insa", 5, 14, 88); fixture("insa", 5, 15, 22);
 fixture("iliski", 5, 7, 2704); fixture("iliski", 5, 15, 1);
 
-function harness(storage = new Map()) {
+function harness(storage = new Map(), opts = {}) {
   let now = 1000000, serial = 0;
   const jobs = new Map();
   const element = () => ({ innerHTML: "", textContent: "", style: { setProperty() {} }, classList: { toggle() {}, add() {}, remove() {}, contains() { return false; } }, appendChild() {}, remove() {}, focus() {}, querySelector: () => element(), setAttribute() {}, addEventListener() {} });
@@ -84,7 +84,7 @@ function harness(storage = new Map()) {
     clearInterval: id => jobs.delete(id),
     MatAudio: { cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "" } });
   ctx.window = ctx;
-  for (const file of ["curriculum.js", "lesson-stories.js", "games.js", "question-bank.js"]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
+  for (const file of ["curriculum.js", "lesson-stories.js", "games.js", "question-bank.js", ...(opts.gen ? ["arcade-gen.js", "level-gen.js"] : [])]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
   const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, persist, addMany, parseList, makeGroups, eligible, spinPick, members, groupScore, beginLevel, submit, goNext, currentQ, cancelRound, pauseClock, resumeClock, openTopic, onChange, onClick, isCorrect, ready, animateLessonAngle, applyLessonAngle, render };\n})();");
   vm.runInContext(source, ctx);
   ctx.testApi.startLocal();
@@ -167,6 +167,35 @@ for (const topic of MatCurriculum.topics) for (const level of MatGames.LEVELS) {
   assert.equal(restored.state.students[1].score, pts);
   assert(Object.keys(restored.state.usedQuestions).length > 0);
 }
+// Sınırsız mod: her konu ve seviyede üretilen sorularla tam tur; havuz kaydı tutulmaz, ayar kalıcıdır.
+for (const topic of MatCurriculum.topics) for (const level of MatGames.LEVELS) {
+  const h = harness(new Map(), { gen: true }); addStudent(h);
+  assert.equal(h.state.questionSource, "gen");
+  h.openTopic(topic.id, "play"); h.beginLevel(level.id);
+  let expected = 0;
+  for (let i = 0; i < 15; i++) {
+    h.advance(500);
+    assert.equal(h.state.phase, "quiz");
+    const q = h.currentQ();
+    assert(q.generated && q.scene && q.scene.kind === "art", "Üretilmiş görselli soru bekleniyordu: " + topic.id);
+    assert.equal(q.points, level.points);
+    expected += q.points;
+    answer(h);
+    h.goNext();
+  }
+  assert.equal(h.state.phase, "finish");
+  assert.equal(h.state.students[0].score, expected);
+  assert.equal(Object.keys(h.state.usedQuestions).length, 0);
+}
+{
+  const h = harness(new Map(), { gen: true }); addStudent(h);
+  h.state.questionSource = "bank"; h.persist();
+  const restored = harness(h.storage, { gen: true });
+  assert.equal(restored.state.questionSource, "bank");
+  restored.openTopic("aci", "play"); restored.beginLevel(2); restored.advance(500);
+  assert(!restored.currentQ().generated, "Banka modunda sabit soru gelmeli");
+}
+console.log("OK: sınırsız mod 100 tam turda ve kaynak ayarının kalıcılığında doğrulandı.");
 console.log(`OK: ${questionCount} benzersiz soru, ${tfCount} düşük puanlı D/Y, ${kinds.size} soru tipi; 100 tam tur, puanlama, süre, duraklatma, rastgele sıra ve kalıcılık kontrolleri geçti.`);
 
 // Girilen dereceye aniden atlamak yerine ara derecelerden geçmeli.

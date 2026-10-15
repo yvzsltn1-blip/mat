@@ -1,0 +1,1009 @@
+================================================================================
+MEB ORTAOKULU MATEMATİK 7. SINIF DERS KİTABI (1. KİTAP)
+ETKİLEŞİMLİ, OYUNLAŞTIRILMIŞ EĞİTSEL WEB SİTESİ GELİŞTİRME PROMPTU
+================================================================================
+
+KAYNAK KİTAP   : Ortaokul ve İmam Hatip Ortaokulu Matematik 7. Sınıf Ders Kitabı,
+                 1. Kitap (MEB Yayınları, 2026; 224 sayfa; ISBN 978-975-11-9899-0)
+                 Kaynak dosya: Kitaplar/matematik7-1.pdf
+                 (İşlenmiş metin: kitap7-ayiklama-metni.txt — sayfa numaralı)
+
+AMAÇ           : Bu promptu verdiğinizde AI, kitabın 4 temasının tamamını dijital
+                 bir "macera oyunu sitesine" dönüştüren tek sayfalık (SPA) bir web
+                 uygulaması geliştirecektir. Site; ders içi etkinlik, ev ödevi ve
+                 akıllı tahta kullanımına uygun, tamamen çevrim dışı çalışan
+                 (internet gerektirmeyen), oyunlaştırılmış bir öğrenme deneyimidir.
+
+HEDEF KİTLE    : 12-13 yaş, 7. sınıf öğrencileri. Dil; yalın, saygılı, motive edici
+                 ve aşırı "çocuklaşmadan" 12-13 yaş seviyesinde yazılmalıdır.
+
+ÖNEMLİ NOT     : Bu proje, daha önce geliştirilen "Matematik 5-1" sitesinin
+                 kardeş projedir. Maskot (Anka), oyunlaştırma sistemi, teknik altyapı
+                 ve görsel dil aynı ailedendir; bu sayede öğrenci 6. sınıf sitesinden
+                 buraya geçtiğinde arayüzü yeniden öğrenmek zorunda kalmaz.
+
+--------------------------------------------------------------------------------
+BÖLÜM 1 — PROJE ÖZETİ VE GENEL KURALLAR
+--------------------------------------------------------------------------------
+
+1.1. TEMEL İLKELER
+- Site tamamen TÜRKÇE olacak; Türkçe karakterler (ç, ğ, ı, İ, ö, ş, ü) ve Türkçe
+  noktalama (virgülle ondalık: 2,5 — nokta değil) her yerde doğru kullanılacaktır.
+- Tüm sayı gösterimleri Türk standartlarına uygun: ondalık ayracı virgül (0,75),
+  binlik ayıracı nokta (1.250), birimler arası boşluk (40 mL, 2 m³, 12 °C).
+- Matematiksel gösterimler kitaptaki standartlara uygun:
+  - Mutlak değer: |a|, |−7| = 7, |x − 3| < 5
+  - Rasyonel sayı: a/b (b ≠ 0), "−2/5", eşit gösterimler: −2/5 = 2/−5 = −(2/5)
+  - Devirli ondalıklı gösterim: devreden kısım üstte nokta ile işaretlenir
+    (0,3̄ gibi); HTML'de <span class="tekrar">0,3</span> üst nokta CSS'iyle
+    gösterilir, düz metin gerekiyorsa "0,333... (3 devirli)" biçimi kullanılır.
+  - Üslü ifade: aⁿ (taban a, üs n, değer aⁿ); (−2)² ile −2² ayrımı görsel
+    parantezlerle netleştirilir.
+  - Hacim birimleri: mm³, cm³, dm³, m³, mL, cL, dL, L
+  - Yüzey alanı: A; hacim: H; uzunluk: |AB|; açı: ∠ABC, m(∠ABC)=45°
+  - Diklik: ⊥ ; Paralellik: ∥ ; Eşlik: ≅
+- TELİF HAKKI KURALI (ÇOK ÖNEMLİ): Kitaptaki metinler, sorular, tablolar birebir
+  KOPYALANMAZ. Kitaptaki senaryolar, veriler ve etkinlikler yalnızca İLHAM
+  kaynağıdır; tüm soru metinleri, diyaloglar ve veri setleri SİTE İÇİN ÖZGÜN
+  olarak yeniden yazılır. Sayısal değerler (sıcaklıklar, fiyatlar, boyutlar) ve
+  kavramsal yapılar korunarak farklı cümlelerle sunulur. Kitabın sayfa
+  numaraları yalnızca geliştiriciye yol göstermek için bu belge içindedir;
+  sitenin arayüzünde görünmez.
+
+1.2. KİTAP AKIŞI ↔ SİTE AKIŞI EŞLEŞTİRMESİ
+Kitabın her temasında aynı öğrenme akışı izlenir:
+  KİTAP: "NELER BİLİYORUZ?" → "BAŞLAYALIM" → "ÖĞRENELİM" (alt bölümler) →
+         "NELER ÖĞRENDİK?" → "PERFORMANS GÖREVİ" → "TEMA ÖLÇME VE DEĞERLENDİRME"
+  SİTE : "Ön Keşif" (hazırlık soruları) → "Açılış Senaryosu" (hikâye) →
+         "Etaplar" (oyunlu seviyeler) → "Etap Kontrolü" (mini quiz) →
+         "Atölye" (performans görevi dijital karşılığı) → "Dünya Kalesi" (tema
+         finali sınavı)
+Etiketler dijital karşılıklarıyla: DÜŞÜN-TARTIŞ-AÇIKLA → "Düşünce Köşesi"
+(arkadaşla tartışma soruları); KATIL-UYGULA-KEŞFET → "Keşif Laboratuvarı"
+(etkileşimli deney); UYGULAYALIM → "Uygulama Sahası"; PROBLEM → "Problem
+İstasyonu"; Etkileşimli İçerik (E-içerik) → site içi simülatör; Ek Etkinlik →
+"Bonus Görev"; Konu Anlatım Videosu → video bağlantı kartı; Ek Ölçme ve
+Değerlendirme Soruları → "Kale Sınavı Zor Modu".
+
+1.3. DEĞERLENDİRME YAPILARI (KİTAPTAKİ FORMLARIN DİJİTALİ)
+- Öz Değerlendirme Formu → etap sonunda kendini değerlendirme yıldızları
+- Akran Değerlendirme Formu → grup çalışmalarında arkadaşını puanlama
+- Grup Değerlendirme Formu → grup çalışması sonrası ekip öz değerlendirmesi
+- Analitik Dereceli Puanlama Anahtarı → performans görevlerinin otomatik rubrik
+- "3-2-1 Çıkış Kartı" (Tema 1, s.114: ÜÇ YAZ / İKİ ÖĞREN / BİR PAYLAŞ) → tema
+  finalinde dijital çıkış kartı; öğrencinin yazdıkları "Anka Günlüğü"ne kaydedilir.
+
+--------------------------------------------------------------------------------
+BÖLÜM 2 — GENEL YAPI: 4 DÜNYA (TEMA) VE OYUNLAŞTIRMA SİSTEMİ
+--------------------------------------------------------------------------------
+
+2.1. DÖRT DÜNYA
+Kitabın 4 teması, oyun haritasındaki 4 dünyaya karşılık gelir:
+  DÜNYA 1 — "SAYILAR UZAYI"      (Tema 1: Sayılar ve Nicelikler (1), s.13-116)
+  DÜNYA 2 — "PRİZMA DİYARI"      (Tema 2: Geometrik Nicelikler (1), s.117-158)
+  DÜNYA 3 — "VERİ KAŞİFLERİ"     (Tema 3: İstatistiksel Araştırma Süreci, s.159-200)
+  DÜNYA 4 — "SİMETRİ ATÖLYESİ"   (Tema 4: Dönüşüm, s.201-217)
+
+2.2. OYUN HARİTASI
+- Tek bir "Macera Haritası" ekranı: 4 dünya bir yol üzerinde; Dünya 1 başlangıçta
+  açık, diğerleri önceki dünyanın kalesi sınavı %60 geçilince açılır.
+- Her dünya kendi renk teması ve ikonuyla: Sayılar Uzayı (yıldız yolu), Prizma
+  Diyarı (küp şehir), Veri Kaşifleri (grafik ormanı), Simetri Atölyesi (ayna evi).
+- Harita tamamen SVG çizimli, etkin noktalar animasyonlu (pulsing), klavye ile
+  gezilebilir (erişilebilirlik).
+
+2.3. OYUNLAŞTIRMA SİSTEMİ (5. SINIF SİTESİYLE AYNI MOTOR)
+- XP: her doğru ilk denemede 10 XP, ikinci denemede 5 XP; seviye tamamlama
+  bonusu +50; etap bonusu +200; dünya finali +500.
+- Yıldız: her seviye 1-3 yıldız (hatasız=3, ≤2 hata=2, daha fazla deneme=1).
+- Rozetler (7. sınıfa özel): "Sayı Kaşifi" (D1), "Mimar" (D2), "Dedektif" (D3),
+  "Simetri Ustası" (D4), "Seri Ustası" (7 gün), "Koleksiyoncu" (tüm kültür
+  kartları), "Anka'nın Dostu" (tüm dünya finalleri).
+- Seri (streak): gün gün ilerleme; ceza YOK — bir gün atlamak seri sadece durur.
+- Anka (maskot kuş) her ekranda konuşma balonuyla rehberlik eder; cesaretlendirici
+  mesajlar verir, ipuçları sunar. Asla aşağılamaz, asla "başarısız" demez.
+
+2.4. SORU TİPLERİ
+Çoktan seçmeli (4 seçenek), Doğru/Yanlış, Sayısal giriş (virgül desteği),
+Kesir/dizi giriş (a/b, devirli gösterim), Sürükle-bırak (sıralama, eşleştirme,
+gruplama), Nokta-yerleştirme (sayı doğrusuna yerleştirme), Çizim-İnşa (sayı
+doğrusu, simetri doğrusu, orta dikme/açıortay inşası — doğru tolerans kontrolü),
+Kaydırıcı (slider ile değer ayarlama), Tablo doldurma, Grafik okuma/çizme,
+3D görünüm seçme, Parantez yerleştirme bulmacası.
+
+2.5. DÖRT ZORLUK SEVİYESİ (HER ETAPTA S1→S4)
+  S1 "Keşif"  : kavram tanıtımı, görsel destekli, ipucu açık
+  S2 "Alıştırma": standart uygulama, ipucu isteğe bağlı
+  S3 "Problem" : gerçek yaşam bağlamı, çok adımlı
+  S4 "Meydan Okuma": özgün zor problemler, ipucu yok, süre baskısı yok
+Seviye ilerledikçe oyun mekanikleri zorlaşır ama her seviye tek başına da
+tamamlanabilir; S4 tamamlanamasa bile etap bitmiş sayılır (ceza yok).
+
+2.6. KİTAP KAZANIMLARININ SİTEYE DAĞILIMI (TEMA KAPAKLARINDAN)
+- DÜNYA 1: Doğal sayılardan tam sayılara ve rasyonel sayılara genişletme yapabilme;
+  paydası 1 olan rasyonel sayının tam sayı olduğunu yorumlama; tam sayı ve rasyonel
+  sayılarla toplama, çıkarma, çarpma, bölme işlemleri yapma; bu işlemleri içeren
+  gerçek yaşam problemlerini çözme.
+- DÜNYA 2: Geometrik cisimleri ve bu cisimlerin farklı yönlerden görünümlerini
+  yorumlama; dikdörtgenler prizmasının yüzey alanını ve hacmini hesaplama; hacim
+  ölçme birimleri arasındaki ilişkileri değerlendirme.
+- DÜNYA 3: Kategorik ve nicel (sürekli) verilerin elde edildiği gerçek yaşam
+  durumlarında istatistiksel araştırma sürecini yürütebilme; başkalarının grafik,
+  rapor, yorum, çıkarım ve tahminleri hakkında tartışabilme.
+- DÜNYA 4: Yansıma dönüşümü altındaki görüntüler hakkında çıkarım yapabilme;
+  simetri doğrusu ile ilgili deneyimlerinden yola çıkarak orta dikme ve açıortay
+  inşası yapabilme.
+- Her soruya kazanım etiketi eklenir: "M7-1.1-tamsayilar", "M7-2.3-hacim",
+  "M7-3.5-oms", "M7-4.1-yansima" biçiminde (EK A'daki konu kodlarına göre).
+
+--------------------------------------------------------------------------------
+BÖLÜM 3 — DÜNYA 1: SAYILAR UZAYI (TEMA 1, s.13-116)
+--------------------------------------------------------------------------------
+
+TEMA GİRİŞİ (s.13) sitenin dünya açılışında özetlenir: Anahtar kavramlar (devirli
+ondalıklı gösterim, mutlak değer, rasyonel sayılar, tam sayılar) dünya haritasında
+kartlar halinde tanıtılır. Renk teması: derin mavi + camgöbeği; arka plan gökyüzü
+ve yıldız yolu; sayı doğrusu motifi.
+
+── ETAP 1.1 TAM SAYILAR (s.17-24) ──────────────────────────────────────────────
+Kavramlar: pozitif/negatif tam sayılar, sıfır, doğal başlangıç noktası, sayı
+doğrusu, karşıt sayılar, günlük yaşamda negatif değerler (borç, derinlik, don,
+zemin altı, eksik bakiye).
+Başlayalım senaryosu (s.15-16): "Sıfırın farklı anlamları" — 0 MB internet, 0 °C,
+0. yıl, terazinin sıfırı. Site açılışı: Anka öğrenciden "sıfır nerede işe yarar?"
+keşfini isteyen interaktif kart dizisi sunar.
+Seviye/oyun önerileri:
+- S1 "Sıcaklık Haritası": şehirlerin sıcaklıklarını (-89 °C Antarktika kaydı dahil)
+  sayı doğrusuna yerleştirme; ZDUS (Zirai Don Uyarı Sistemi) tetiklendiğinde çiftçi
+  kartı açılır (soğuk zincir ve ZDUS kültür kartları).
+- S1 "Apartman Asansörü": zemin 0, alt katlar negatif; "5. kattan 3 kat aşağı
+  in" tarzı görevler (UYGULAYALIM 2 karşılığı); toplam kat farkı bulmacaları.
+- S2 "Deringöz Görevleri": su altı aracı (ASELSAN teknoloji kültür kartı) ±derinlik
+  görevleri; "deniz seviyesinden 12 m yukarı/38 m aşağı" koordinat okuma.
+- S2 "Dijital Kart Bakiyesi": Mert'in kart hikâyesi tarzında borç-bakiye durumu;
+  negatif bakiye yorumu.
+- S2 "UTC Saat Çevirici": Tokyo/Vancouver/Brezilya saat farklarıyla saat ayarlama
+  oyunu (PROBLEM 2 karşılığı).
+- S3 "Çekirge Sıçrayışı": sayı doğrusunda ileri/geri sıçramalarla hedefe ulaşma;
+  sıçrama sayısı kaydetme, en kısa yol bulmacası.
+- S3 "Matematik Tarih Şeridi": Rhind Papirüsü, Hypatia, Pisagor, Öklid, Harezmi,
+  Brahmagupta, El-Kâşî, Fermat, Euler, Gauss, Widmann (± işaretinin ilk kullanımı),
+  Von Neumann kartlarının kronolojik sıralama oyunu (kültür köşesi).
+- S4 "Don Uyarı Trafik Kontrolü": sıcaklık-soğuk zincir senaryolarında (-18 °C
+  dondurucu, +4 °C soğuk zincir) kargo rotası kurma.
+Performans Görevi karşılığı (s.34): "Sıfırın Anlamları" poster atölyesi — mutlak
+sıfır (−273,15 °C) ve bağıl sıfır, Celsius-Kelvin ölçek karşılaştırması dijital
+bilgi kartları; öğrenci kendi posterini sürükle-bırak ile tasarlar, rubrikle
+otomatik değerlendirilir.
+Etap Kontrolü: 10 soruluk mini quiz (kazanım: doğal→tam sayı genişletme).
+
+── ETAP 1.2 RASYONEL SAYILAR (s.25-34) ─────────────────────────────────────────
+Kavramlar: rasyonel sayı tanımı (a/b, b≠0), eş rasyonel sayılar, en sade hâl,
+negatif işaretin pay/payda/önde olması eşitliği, paydası 1 olan rasyonel = tam
+sayı, sayı doğrusunda kesir gösterimi.
+Seviye/oyun önerileri:
+- S1 "İşaret Taşımacılığı": − işaretini paya, paydaya, sayının önüne taşıma — üç
+  gösterimin eşitliğini kanıtlayan animasyon (KATIL-UYGULA-KEŞFET 1 karşılığı).
+- S1 "Payda Sıfır Alarmı": geçersiz kesirleri hızlıca ayıklama (payda 0 olamaz).
+- S2 "Su Sayacı Okuma": kesirlerle ölçüm okuma ve kayıt (s.26 senaryosu tarzı).
+- S2 "Adım Uzunluğu": adım uzunluğu kesir problemi dijital karşılığı.
+- S3 "Kesir-Tam Sayı Köprüsü": paydası 1 olan rasyonelleri tam sayıya dönüştürme
+  ve tersi; eş rasyonelleri eşleştirme oyunu.
+- S3 "Ayna Salyangoz": simetrik örüntülerle sayı doğrusu simetrisi keşfi (s.28
+  ayna-salyangoz etkinliği ilhamıyla).
+- S4 "Rasyonel Avcısı": karışık gösterimlerde (kesir, ondalık, tam sayı) verilen
+  sayıları tanıma ve doğru kutuya yerleştirme yarışı.
+Etap Kontrolü: 10 soru (kazanım: rasyonel sayı genişletme, b=1 yorumu).
+
+── ETAP 1.3 MUTLAK DEĞER (s.35-38) ─────────────────────────────────────────────
+Kavramlar: mutlak değer |a|, hata miktarı, referans noktaya uzaklık, ± tolerans.
+Seviye/oyun önerileri:
+- S1 "Kahve Paketleme Fabrikası": 200 g ± tolerans; ambalajdaki "e" işareti (net
+  hacim işareti) kültür kartı; paketleri |hata| ≤ sınır filtresiyle kabul/ret.
+- S2 "Saat Hatası Dedektifi": gerçek saate göre ± sapma hesabı (TÜBİTAK UME hassas
+  saat bağlamı kültür kartı).
+- S2 "Sondaj Kuyusu": yeryüzüne yakınlık = |değer| karşılaştırma (kuyu derinlikleri).
+- S3 "Asansör Kat Farkı": |kat farkı| ile mesafe hesabı; hangi asansör daha yakın?
+- S3 "Dart Tahtası": |a| puanlamalı dart oyunu (s.40 NELER ÖĞRENDİK dart etkinliği
+  karşılığı; |−3| ve |3| aynı puan keşfi).
+- S4 "Mutlak Değer Denkleştirici": |a − b| bulmacaları; iki sıcaklık farkının
+  mutlak değeri.
+Etap Kontrolü: 8 soru (kazanım: mutlak değer kavramı).
+
+── DÜNYA 1 ARA KONTROL (s.39-40 "NELER ÖĞRENDİK?") ─────────────────────────────
+Frayer modeli şablonu (kavram-karşı örnek-özgün olmayan örnek-tanım) dijital
+doldurma kartı; D/Y hızlı tur; "Rasyonel Sayılar ve Özellikleri" E-içerik
+simülatörü bağlantısı.
+
+── ETAP 1.4 RASYONEL SAYILARIN FARKLI TEMSİLLERİ (s.41-49) ─────────────────────
+Kavramlar: ondalık gösterim, sonlu ondalık, devirli ondalık gösterim, devreden
+basamak grubu, devirli → b/a dönüşümü (9'lar kuralı), paydanın asal çarpan
+analizi (yalnız 2 ve 5 → sonlu).
+Seviye/oyun önerileri:
+- S1 "Çevirme Makinesi": kesir → ondalık uzun bölme animasyonu; devir başladığında
+  basamaklar renklenir, devirli gösterim yazılır.
+- S2 "2-5 Dedektifi": paydanın asal çarpanlarına bakıp sonlu/devirli tahmin
+  yarışı (payda 2/5 asal çarpan kuralı keşfi).
+- S2 "Yedili Devir Çarkı": "Yedili Devir Çarkı" E-içerik karşılığı — 1/7 devri
+  basamak bazında çeviren interaktif çark.
+- S3 "Devirli → Kesir Sihirbazı": 0,3̄ → 1/3, 0,27̄ → 3/11, 0,4̄5̄ → 41/90 tarzı
+  9'lar/90'lar kuralı bulmacaları; kural öğrenci keşfederse +bonus XP.
+- S3 "0,999... = 1 Tartışma Salonu": kitaptaki üç strateji (kesir yaklaşımı,
+  aritmetik ortalama sıkıştırması, çarpma stratejisi) interaktif sunum kartları;
+  öğrenci strateji seçer, Anka her stratejiyi animasyonla gösterir
+  (DÜŞÜN-TARTIŞ-AÇIKLA karşılığı).
+- S4 "Toplar Makinesi": makine top oyunu dijital karşılığı — sayı girdikçe
+  makinedeki toplar kurallı dönüşür (bilardo/oyuncak makinesi bağlamı).
+Video kartı: "Rasyonel Sayıların Farklı Temsilleri" konu anlatım videosu bağlantısı.
+Etap Kontrolü: 10 soru.
+
+── ETAP 1.5 RASYONEL SAYILARDA KARŞILAŞTIRMA VE SIRALAMA (s.50-61) ─────────────
+Kavramlar: karşılaştırma stratejileri (payda eşitleme, pay eşitleme, ondalığa
+çevirme), artan/azalan sıralama, iki sayı arasında sonsuz rasyonel sayı (yoğunluk).
+Seviye/oyun önerileri:
+- S1 "Gezegen Sıcaklıkları": Venüs 464 °C → Neptün −200 °C gezegen sıcaklıklarını
+  uzay sayı doğrusuna dizme (s.51 etkinliği).
+- S1 "Okyanus Derinlikleri": okyanus canlılarını derinliklerine göre dikey sayı
+  doğrusuna (yüzeyden en derine) yerleştirme.
+- S2 "Averaj Ustası": futbol takımlarının averajlarını hesaplayıp sıralama.
+- S2 "Serbest Atış Yüzdeleri": iki oyuncunun başarı oranını (a) payda eşitleme,
+  (b) ondalık çevirme — iki stratejiyi karşılaştırma seçimli problem (s.57).
+- S3 "Araya Sayı Sok": iki rasyonel sayı arasında bir sayı bulma; bulduğun sayı
+  ile araya başka sayı sokulabileceğini keşfetme — yoğunluk özelliği
+  (DÜŞÜN-TARTIŞ-AÇIKLA 17 dijital karşılığı; "sonsuz sayı" keşif animasyonu).
+- S3 "Antifriz Laboratuvarı": donma noktası −36,8 °C; hangi bölgede yeterli?
+  (ısı akışı senaryosu).
+- S4 "Sırala Bakalım": "Sırala Bakalım" E-içerik karşılığı — karışık gösterimli
+  (kesir+ondalık+devirli) 8 sayıyı süreli sıralama yarışı.
+Etap Kontrolü: 10 soru.
+
+── ETAP 1.6 TAM SAYILARLA İŞLEMLER VE PROBLEM ÇÖZME (s.62-81) ──────────────────
+Kavramlar: tam sayılarda toplama (sayı doğrusunda ok gösterimi), çıkarma
+(eksinin eksiyle toplamı: a − b = a + (−b)), çarpma ve bölmede işaret kuralları,
+işlem problemleri.
+Seviye/oyun önerileri:
+- S1 "Ok Okçusu": +4 ve −6 oklarını sayı doğrusunda animasyonla fırlatma; toplama
+  çıkarma her adımın görsel açıklaması (enerji tasarrufu bağlamı).
+- S1 "Kalori Dengesi": alılan/harca­lanan kalori tablosuyla bakiye hesabı
+  (BMH bağlamı, s.68 tablosu tarzı özgün veri).
+- S2 "Sayı Pulları": "Sayma Pulları ile Toplama ve Çıkarma İşlemleri" E-içerik
+  karşılığı — pullarla negatif/pozitif eşleştirme ve işlem kurma.
+- S2 "Klima Kumandası": her tuşta sabit değişim örüntüsü (−2 °C × 6 tuş) ile çarpma
+  işareti kurallarının keşfi; "eksi × artı = eksi" niçin? animasyonu.
+- S2 "Madenci Asansörü": bölme problemleri — "her turda eşit mesafe" soruları.
+- S3 "Bütçeni Yönet": "Bütçeni Yönet" E-içerik karşılığı — cüzdan bakiyesi yönetimi;
+  borç negatif, birikim pozitif; haftalık bütçe planı oyunu.
+- S3 Problem İstasyonu (kitap PROBLEM 1-4 dijital karşılıkları, özgün metinlerle):
+  - Sivas-Erzurum sıcaklık farkı tarzı problem (sabah −8, öğlen +5).
+  - Dünya saati: Tokyo/Vancouver/Brezilya arası çağrı planlama (UTC).
+  - Yaprak sarma dondurucu: her 10 dakikada −3 °C soğuma serisi.
+  - Dağ tırmanışı: yükselti her 100 m'de 1 °C düşüş; K, L, M kamp noktaları
+    sıcaklıkları (yükselti-sıcaklık problemi, rakım kavramı sözlük kartı).
+- S3 "Şahika'nın Derinlikleri": 107 m serbest dalış; her 10 m'de basınç görevi
+  (kültür kartı + tam sayı bölme problemi).
+- S4 "Zirve Operasyonu": çok adımlı tam sayı projesi; bütçe+sıcaklık+mesafe
+  birleşik senaryo.
+Etap Kontrolü: 12 soru (kazanım: tam sayılarla dört işlem + problem).
+
+── ETAP 1.7 RASYONEL SAYILARLA İŞLEMLER VE PROBLEM ÇÖZME (s.82-107) ────────────
+Kavramlar: ortak payda ile toplama-çıkarma, tam sayılı kesrin iki yolu, işlem
+özellikleri (değişme, birleşme, etkisiz eleman 0, ters eleman), dağılma özelliği,
+üslü ifadeler (taban, üs, değer), (−a)² ile −a² ayrımı, 1 ve −1'in kuvvetleri,
+bölme = tersiyle çarpma.
+Seviye/oyun önerileri:
+- S1 "Ortak Payda Tamircisi": paydaları eşitleyerek dişli sistem tamiri temalı
+  bulmaca; her doğru payda dişliler dönerek ilerler.
+- S1 "Sıfır Atık Mavi Denizaltısı": denizaltı göreviyle plastik atık toplama;
+  kesirli toplama-çıkarma görevleri (Sıfır Atık Mavi projesi kültür kartı).
+- S2 "İki Yol Yarışı": tam sayılı kesri (a) tam sayı+kesir ayrıştırarak, (b) tek
+  kesre çevirerek çözme; iki yolun sonucu karşılaştırma (s.85 iki yöntem keşfi).
+- S2 "Özellik Kartları": verilen işlem örneklerini değişme/birleşme/dağılma/
+  etkisiz/ters eleman kutusuna sürükleme; "hangi özellik işi kolaylaştırdı?"
+  bonusu.
+- S2 "Üslü Laboratuvar": bakteri çoğalması 2ⁿ simülasyonu, zıplayan top
+  (1/2)ⁿ animasyonu, flaş bellek kapasitesi 2'nin kuvvetleri tablosu
+  (MB→GB→TB), radyoaktif yarı ömür görseli (s.90-95 etkinliklerinin özgün
+  dijital karşılıkları).
+- S3 "Parantez-Üs Tuzağı": (−2)² ile −2² farkını gösteren kart maçı; −1'in
+  kuvvetleri örüntü bulmacası (−1ⁿ: çift üs +, tek üs −).
+- S3 "Sirke Şişeleme": bölme = tersiyle çarpma görsel modeli; sirke şişeleme
+  etkinliğinin dijital karşılığı; ekmek dilimleme, kurdele kesme varyasyonları.
+- S3 Problem İstasyonu (PROBLEM 5-7 özgün karşılıklar): dal birleştirme kesir
+  problemi; köstebek kazma çarpma problemi; pencere camı alan-servis problemi
+  (50 TL/dm² bağlamı).
+- S4 "Bayram Bütçesi": harçlık dağıtımı (1/5 + 2/9 paylaşımları) çok adımlı
+  rasyonel problem — özgün senaryo.
+- S4 "Bulut Dosyalar": bulut bilişim dosya aktarma süresi rasyonel çarpma
+  problem serisi.
+Etap Kontrolü: 12 soru (kazanım: rasyonel sayılarla dört işlem).
+
+── ETAP 1.8 ÇOK ADIMLI İŞLEMLER (s.108-113) ────────────────────────────────────
+Kavramlar: işlem önceliği (üslü ifade → parantez içi → çarpma-bölme → toplama-
+çıkarma), kesir çizgisinin parantez görevi.
+Seviye/oyun önerileri:
+- S1 "Öncelik Asansörü": işlem adımlarını doğru kat sırasıyla çıkma; yanlış
+  sıralamada asansör aynı katta kalır (ceza yok, ipucu açılır).
+- S2 "Valiz Tartısı": valiz kütle sınırı aşım ücreti problemi dijital karşılığı;
+  kareli çanta seçenekleri.
+- S2 "Su Deposu Simülasyonu": 40 L depo; 4/7 dolum, 1/5 tahliye adım adım
+  animasyon; kalan hacim hesabı.
+- S3 "Parantez Bulmacası": işlem sonucu hedef sayıya ulaştırmak için işlem
+  dizisine parantez yerleştirme (birden çok çözüm kabulü; keşif bonusu).
+- S3 "Kesir Çizgisi Kapısı": kesir çizgisinin parantez olduğunu gösteren iki
+  farklı sonuç üreten karşılaştırmalı animasyon (Serap-Ahmet diyaloğu tarzı
+  özgün diyalog).
+- S4 "Karma Yarış": tüm kural türlerini birleştiren 5 adımlı işlem yarışı.
+Dünya 1 ara özeti (s.112-113): D/Y 8 soru; geometrik işlem kutuları (kare/küp/
+ters); 3×3 çarpım bulmacası; yemekhane kartı −40 TL bakiye problemi; koli
+hacim-miktar karışık problemi — bunlar "Etaptalar Arası Bonus" olarak dağıtılır.
+
+── DÜNYA 1 FİNALİ — 1. TEMA KALESİ (s.114-116 ÖLÇME) ───────────────────────────
+- 20 soruluk karışık final (çoktan seçmeli + D/Y + sayısal + çizim): makro lens
+  lale odak uzaklığı (86/95/88 cm → ortanca-ortalama karışık), bal peteği hücre
+  çevresi (8 × 27,8 mm), ip kesme (3/4)⁴ üslü problem, altı bölge sıcaklık
+  çubuk grafiği (eksik Akdeniz verisini tamamlama), lastik basıncı bar aralığı
+  (2,2-2,3 / 2,1-2,2 kesir-seçenekli soru), kart ön-arka toplamları, dikdörtgen
+  döndürme sayı doğrusu, ABCD nokta işlemi (A/C·B + 1/2 gibi özgün benzeri).
+- "Kale Sınavı Zor Modu": Ek Ölçme ve Değerlendirme Soruları (s.116 karekod
+  içeriği tarzında ek soru seti — özgün).
+- 3-2-1 Çıkış Kartı: ÜÇ YAZ (öğrendiğin 3 şey) / İKİ ÖĞREN (merak ettiğin 2
+  konu) / BİR PAYLAŞ (bir ipucu) — dijital kart Anka Günlüğü'ne kaydedilir.
+- Rozet: "Sayı Kaşifi" + 500 XP. Dünya 2 açılır.
+
+--------------------------------------------------------------------------------
+BÖLÜM 4 — DÜNYA 2: PRİZMA DİYARI (TEMA 2, s.117-158)
+--------------------------------------------------------------------------------
+
+TEMA GİRİŞİ (s.117): Anahtar kavramlar (ayrıt, desilitre, desimetreküp,
+dikdörtgenler prizması, hacim, litre, metreküp, mililitre, milimetreküp, prizma,
+santilitre, santimetreküp, taban, yüz, yüzey, yüzey alanı) ve semboller
+(m³, dm³, cm³, mm³, L, dL, cL, mL) harita kartları. Renk teması: turuncu-amber;
+küp/prizma şehir silueti.
+
+── ETAP 2.1 CISİMLERİN FARKLI YÖNLERDEN GÖRÜNÜMLERİ (s.121-124) ────────────────
+Kavramlar: cisim, görünümler (ön-arka-sağ-sol-üst), eş küp, yapı, simetrik
+görünüm ilişkileri (ön-arka ve sağ-sol dikey simetrik; üst-alt yatay simetrik).
+Seviye/oyun önerileri:
+- S1 "Anıtkabir Galeri": farklı açılardan çekilmiş fotoğrafları (karekod yerine
+  site çizimleri) doğru yön kartıyla eşleştirme (s.119 BAŞLAYALIM karşılığı).
+- S1 "Ağaç Sırası Yanılgısı": perspektif yanılgısı animasyonu — uzaktaki ağaçlar
+  küçük görünür ama eşittir (DÜŞÜN-TARTIŞ-AÇIKLA karşılığı).
+- S2 "Eş Küplerle Yapı Kurucu": 3D küp editörü — verilen ön/üst/sağ görünümlerle
+  yapıyı kurma ("Eş Küplerle Yapı Oluşturma" E-içerik karşılığı; Ek-1 "Yönleri
+  İçeren Kâğıt" dijital yön kılavuzu ekranda açılır: ÖN/ARKA/SOL/SAĞ).
+- S2 "Görünüm Avcısı": kurulan yapının beş görünümünü seçme/doldurma.
+- S3 "En Az Küp": görünümlerden yapının en az kaç küp içerdiğini bulma
+  (maksimum- minimum bulmacaları).
+- S3 "Simetri Kontrol": ön-arka görünümler dikey simetrik mi? Üstten görünümde
+  sol-sağ yatay simetri testleri (BİLGİ KUTUSU kurallarının oyunu).
+- S4 "Sanal Küp Görevi": yerçekimsiz sanal küp programı bağlamı — çevrimli
+  yapı kurma zorlu görevleri.
+Etap Kontrolü: 10 soru (kazanım: görünümleri yorumlama).
+
+── ETAP 2.2 DİKDÖRTGENLER PRİZMASININ AÇINIMI VE YÜZEY ALANI (s.125-133) ───────
+Kavramlar: açınım, karşılıklı yüzler, dikdörtgenler prizması, kare prizma, küp,
+yüzey alanı A = 2(ab + ac + bc); kare prizma 2a² + 4ab; küp 6a².
+Seviye/oyun önerileri:
+- S1 "Kutu Kesim Atölyesi": küp kutunun kenarlarından kesilip düzleme yayılması
+  animasyonu; açınım kavramı tanıtımı.
+- S1 "Karşılıklı Yüz Damgası": açınım üzerinde karşılıklı yüzleri aynı renk/
+  sembolle işaretleme; yanlışta Anka ipucu.
+- S2 "Açınım Kapatma Oyunu": yüz kartlarını açınım boşluklarına sürükleme —
+  kitaptaki puan sistemiyle (5/3/2 puan) skor; farklı açınım düzenleri keşfi
+  (11 farklı küp açınımı bonus bulmacası).
+- S2 "Parfüm-Çikolata-İlaç Fabrikası": gerçek boyutlu kutuların yüzey alanı
+  hesabı; hangi kutu daha çok kâğıt ister?
+- S3 "Hediye Paketleme": 20×25×30 kutu için paket kâğıdı hesabı ve maliyet
+  (kese kâğıdı + şerit) — özgün senaryo; A=2(ab+ac+bc) formülünü öğrenci
+  keşfeder (Beste-Atakan-Ceyda-Kaan-Helin tahmin oyunu kartları).
+- S3 "Marangoz Sandığı": 8 blokla sandık kurma; 36×36×72 kare prizmadan en büyük
+  küpü kesme bulmacası.
+- S4 "Kare Prizma Özel": kare prizma 2a²+4ab ve küp 6a² formüllerinin türetilmesi
+  — formül keşif laboratuvarı; Şermin-Ege-Mesut kutu konuşması özgün diyalog
+  kartı.
+Etap Kontrolü: 10 soru (kazanım: yüzey alanı).
+
+── ETAP 2.3 HACMİ EŞ NESNELER ARACILIĞIYLA YORUMLAMA (s.134-137) ───────────────
+Kavramlar: hacim, birim küp, kapasite, dolgu sayısı.
+Seviye/oyun önerileri:
+- S1 "Kapasite Tahmincisi": kutuyu sayı küpü/pinpon topu/bilye ile doldurma
+  simülasyonu; önce tahmin, sonra dolgu; tahmin-hesap farkına yıldız.
+- S1 "Makarna Tuzağı": çubuk makarna vs fiyonk makarna dolgu yanılgısı
+  düzeltme mini oyunu (s.135 etkinliği ilhamıyla).
+- S2 "Tuğla Depo": depolara tuğla dizme; hangi depo daha çok tuğla alır?
+- S2 "Denge Kuleci": 3×4×12 parçalarla 10 veya 13 kat kule kurma (ahşap denge
+  oyunu karşılığı).
+- S3 "İlaç Rafı": ilaç kutularını rafa yerleştirme — kapasite yerleşim problemi.
+- S3 "Kare Karpuz Kartı": Japonya'da küp karpuz yetiştiriciliği kültür köşesi
+  kartı + "kare karpuz hangi kutuya sığar?" yaratıcı problem.
+Etap Kontrolü: 8 soru.
+
+── ETAP 2.4 PRİZMANIN HACİM BAĞINTISINI ELDE ETME (s.138-143) ──────────────────
+Kavramlar: katman yöntemi, H = (a·b)·c, birim küp sayma, eş hacimli farklı
+prizmalar, hacim oranı (2×, 3×, 8×).
+Seviye/oyun önerileri:
+- S1 "Katman Katman": üç arkadaşın yöntemi (taban önce/uzunluk önce/yükseklik
+  önce) animasyonla doldurma; üçü de aynı sonuca varır keşfi (Ahmet-Ceren-Mehmet
+  tablosunun özgün karşılığı).
+- S2 "Hacim Formülü Keşfi": H = (a·b)·c çarpımının üç farklı sıralaması —
+  değişme/birleşme bağlantısı (D1 işlem özellikleriyle köprü).
+- S2 "18 Küp Stüdyosu": 18 eş küple tüm farklı prizmaları tasarlama (yapı
+  yaratıcı + otomatik görünüm kaydı); "aynı hacim, farklı şekil" galerisi.
+- S3 "Büyüme Katsayısı": prizmanın bir boyutu 2 katına çıkarsa hacim? İki boyut?
+  Üç boyut? (2×, 3×, 8× D/Y sorularının interaktif keşfi).
+- S3 "Kesip Al": 8×7×5 prizmadan 1×1×2 bloklar kesme — kalan hacim 244 birim³
+  hesabı tarzı bulmacalar (özgün değerlerle).
+- S4 "Depo Mimarisi": verilen hacimle üç farklı prizma tasarlayıp maliyet-
+  yüzey alanı dengesini yorumlama (kare prizma/küp özel durumları dahil).
+E-içerik kartı: "Dikdörtgenler Prizmasının Hacmi" simülatörü.
+Etap Kontrolü: 10 soru (kazanım: hacim bağıntısı).
+
+── ETAP 2.5 HACİM ÖLÇME BİRİMLERİ (s.144-151) ──────────────────────────────────
+Kavramlar: mm³-cm³-dm³-m³ ilişkisi (her basamak ×1000); L-dL-cL-mL (her basamak
+×10); 1 dm³ = 1 L, 1 cm³ = 1 mL; düzensiz cisim hacmi (taşırmalı kap/dereceli
+silindir).
+Seviye/oyun önerileri:
+- S1 "Birim Merdiveni": mm³→m³ ×1000 merdiven tırmanışı; L merdiveni ×10 ayrı
+  ray; karışık dönüşüm bulmacaları.
+- S1 "Mikser Diyalogu": beton mikseri m³ ile meyve suyu litre konuşmasının
+  özgün diyalog kartı — hangi birim niçin uygun? karar oyunu (Elif-Metin
+  konuşması tarzı).
+- S2 "Kargo Kamyonu": 3×2×2 koli düzeni; 1 m kutu ve 1 dm küp ilişkisiyle
+  1000 keşfi animasyonu.
+- S2 "Taşırmalı Kap": dereceli silindire cisim daldırma — taşan su hacmini oku;
+  düzensiz cisim hacmi ölçüm mini oyunu.
+- S3 "Arşimet'in Tacı": Arşimet ve taç hikâyesi interaktif kültür kartı;
+  hikâyeden hacim hesabı görevi (kıymetli bir teori üretmenin hikâyesi).
+- S3 "Bahçe Yeri": toprak paketi 60 dm³ → sebze yatağı 2×1,5×0,4 m doldurma
+  problemi (kaç paket?).
+- S3 "Depo Sıralama": yakıt deposu kapasiteleri (44,125 L, 45250 mL, ...) birim
+  çevirip sıralama.
+- S4 "Uygulama Soruları": "Hacim ve Sıvı Ölçme Problemleri" uygulama soruları
+  modülü — 5 soruluk ZOR seri (s.149 tarzı).
+Performans Görevi karşılığı (s.150): "Ölçü Kapları Müzesi" — okka, kile, galon,
+varil; geçmişte ve farklı ülkelerde hacim/sıvı ölçü birimleri kartları; sanal
+müze gezisi bağlantı kartı (İslam Bilim ve Teknoloji Tarihi Müzesi); poster
+tasarım atölyesi + otomatik rubrik.
+Etap Kontrolü: 10 soru (kazanım: birim ilişkileri).
+
+── ETAP 2.6 PROBLEMLER (s.152-156) ─────────────────────────────────────────────
+Problem İstasyonu (özgün metinlerle kitap problemlerinin karşılıkları):
+- "Konteyner Planı": 2×3×6 m konteynere kutu yükleme — iki farklı kutu boyutu
+  seçeneği karşılaştırma (400 kutu 3,2×4,5×5 dm vs 960 kahve kutusu alternatifi).
+- "Takı Kutusu": kumaş kaplama maliyeti 500 TL/m²; yan yüz ölçüleri verilen
+  kutunun kaplama maliyeti.
+- "Akvaryum Kum Bariyeri": 40×25×30 akvaryuma 20 L su + kum; su seviyesi 0,5 cm
+  yükselir mi? (Feyza-Göktuğ iki stratejisi seçmeli çözüm).
+- "Damlaya Damlaya Havuz Olur!": diş fırçalarken musluk açık → 5 L/dk israf;
+  olimpik havuz 50×25×2 (FINA ölçüleri kültür kartı); fayans 1550 m² hesabı;
+  500 bin kişilik şehirde tasarruf 30 TL/m³ ile kaç TL? (su tasarrufu bilinç
+  kartı — DÜŞÜN-TARTIŞ-AÇIKLA).
+- NELER ÖĞRENDİK karışık küme: Anıtkabir 44 sütun (1,5×1,5×14 kare prizma)
+  hacim hesabı; kitap kolileri (50×30×80, 25 koli, kargo 50 TL/90 TL +%10
+  indirim) maliyet karşılaştırması.
+Dünya 2 Finali — 2. TEMA KALESİ (s.157-158): üstten görünüm seçme; 3,77 cm³ =
+3770 mm³ birim dönüşümü; 4×5×6 prizmadan 1×1×2 kesme; 60 m³ hacmin olası
+prizmaları; şeffaf prizmada eş küp tamamlama; 3×3×15 tahtadan küp kesme;
+kareli kâğıtta açınım çizip kaplama; Ek Ölçme zor modu. Rozet: "Mimar" + 500 XP.
+
+--------------------------------------------------------------------------------
+BÖLÜM 5 — DÜNYA 3: VERİ KAŞİFLERİ (TEMA 3, s.159-200)
+--------------------------------------------------------------------------------
+
+TEMA GİRİŞİ (s.159): Anahtar kavramlar (açıklık, çizgi grafiği, dağılım,
+değişebilirlik, evren, nokta grafiği, ortalama mutlak sapma, örneklem, veri)
+harita kartları. Renk teması: yeşil-zümrüt; grafik ormanı (çizgi gövdeli ağaçlar,
+sütun çalılar). BAŞLAYALIM karşılığı: Alperen Şengün NBA asist-ribaunt-sayı
+ortalamaları sütun grafiği okuma görevi (kültür kartı + grafik okuma).
+
+── ETAP 3.1 KATEGORİK VE NİCEL (SÜREKLİ) VERİ DAĞILIMLARI (s.162-164) ──────────
+Kavramlar: kategorik/nicel veri, kesikli/sürekli, dağılım, değişebilirlik.
+Seviye/oyun önerileri:
+- S1 "Veri Sınıflandırıcı": uyku süreleri tablosu (yaş gruplarına göre), bitki
+  boyu deneyi (humuslu/kumlu toprak), en sevilen renk — kartları "kesikli/sürekli/
+  kategorik" kutularına sürükleme.
+- S1 "Değişebilirlik Dedektifi": aynı cinsten ölçümler (6 aylık bebek ateşi,
+  termometre markaları) hep aynı çıkar mı? keşif kartları (s.168 değişebilirlik
+  etkinliği karşılığı).
+- S2 "Sıfır Atık Takip": geri kazanım oranları 27,20 → 36,08 yıllar itibarıyla
+  artış grafiği tamamlama (kültür kartı).
+- S3 "Dağılım mı Tek Değer mi?": veri seti mi tek gözlem mi — hızlı karar oyunu.
+Etap Kontrolü: 8 soru.
+
+── ETAP 3.2 İSTATİSTİKSEL ARAŞTIRMA SÜRECİ ADIMLARI (s.164-168) ────────────────
+Kavramlar: 4 adım — (1) Araştırma Sorusunu Belirleme (evren, örneklem,
+değişebilirlik), (2) Verileri Toplama ve Analize Hazırlama (anket, gözlem,
+hazır veri), (3) Veri Analizi (görselleştirme ve özetleme), (4) Veriyi
+Yorumlama ve Karar Verme.
+Seviye/oyun önerileri:
+- S1 "Süreç Merdiveni": 4 adımı doğru sırayla dizme; her adıma örnek
+  araştırma eşleştirme.
+- S2 "Soru Kalite Gümrüğü": su tüketimi araştırma sorularını (açık uçlu/çoktan
+  seçmeli, evreni tanımlı mı? değişebilirlik var mı?) iyi-zayıf sıralama
+  (KATIL-UYGULA-KEŞFET 1 karşılığı; otomatik Akran Değerlendirme Formu).
+- S2 "Evren-Örneklem Seçici": kantin kuyruğu araştırması için uygun örneklemin
+  seçilmesi; neden bu örneklem? gerekçe seçme (UGLAYALIM 1 özgün karşılığı).
+- S2 "Ekran Süresi Tasarımcısı": kendi ekran süresi araştırmasını adım adım
+  tasarlama simülatörü (soru → evren → örneklem → veri türü).
+- S3 "TÜİK Keşfi": kentsel-kırsal nüfus grafiği okuma ve yorumlama görevi
+  (TÜİK kültür kartı).
+- S3 "Glüten Pazarı": glütensiz makarna fiyat araştırması tasarımı (çölyak
+  duyarlılık empati kartı).
+- S4 "Süreci Eleştir": verilmiş bir araştırma planındaki eksik adımı bulma.
+E-içerik kartı: "Araştırma Sorusu, Evren ve Örneklem" ek etkinlik modülü.
+Etap Kontrolü: 10 soru.
+
+── ETAP 3.3 VERİLERİ TOPLAMA (s.169-170) ───────────────────────────────────────
+Kavramlar: anket, gözlem, hazır veri, kişisel veri, mahremiyet, KVKK.
+Seviye/oyun önerileri:
+- S1 "Anket Atölyesi": boy uzunluğu veri toplama planı oluşturma (adım kartları
+  sıralama + soru tasarımı).
+- S2 "Karekod Kütüphanesi": orman yangını fidan bağışı hazır verisini
+  "indirme" senaryosu (site içi simüle karekod → veri tablosu açılır).
+- S2 "Kişisel Veri Mi?": isim-adres-sınıf notu-tek "evet/hayır" anket cevabı —
+  hangileri kişisel veri? kart oyunu; Buse'nin hatalı paylaşımını düzeltme
+  (mahremiyet görevi).
+- S3 "KVKK Kartları": kişisel veri mevzuatı bilgi kartları + 5 soruluk quiz
+  (s.196 KVKK seçmeli soruların özgün karşılığı).
+- S4 "Mahremiyet Muhafızı": grup mesajında not paylaşımı senaryosunda doğru
+  davranışı seçme (3. TEMA ÖLÇME mahremiyet sorusunun oyunlaştırılmışı).
+Etap Kontrolü: 8 soru.
+
+── ETAP 3.4 VERİ ANALİZİ (s.171-172) ───────────────────────────────────────────
+Kavramlar: sütun grafiği, çizgi grafiği, nokta grafiği, grafik seçimi.
+Seviye/oyun önerileri:
+- S1 "Grafik Galerisi": nokta grafiği vs çizgi grafiği vs sütun grafiği ayrımı
+  sürükleme; hangi veri hangi grafik?
+- S2 "Gram Altın Saati": günlük gram altın alış fiyatları (5421,88 → 5624,27 TL
+  bağlamı, özgün değerlerle) için sütun mu çizgi mi karar oyunu + grafik
+  çizme görevi (TCMB veri kaynağı kültür kartı).
+- S2 "Kendi Grafiğini Çiz": E-içerik "Veriyi Görselleştirme" karşılığı — kendi
+  küçük veri setini gir, sütun/nokta/çizgi grafiğini gör.
+Etap Kontrolü: 8 soru.
+
+── ETAP 3.5 VERİYİ YORUMLAMA VE KARAR VERME (s.173-189) ────────────────────────
+Kavramlar: merkezî eğilim ölçüleri (aritmetik ortalama, ortanca, tepe değer),
+yayılım ölçüleri (açıklık, ortalama mutlak sapma OMS), referans değer bandı,
+persentil eğrisi, ±1 OMS bölgesi.
+Seviye/oyun önerileri:
+- S1 "Trend Okuyucu": Melek Hanım'ın 10 haftalık kilo grafiği (101,50 → 79,50 kg
+  bağlamı özgün değerlerle) çizgi grafiği okuma; VKİ referans bandı (54,5-68,1
+  uzunluk bağlamı) üzerine trend yorumu.
+- S1 "Mehtap'ın Ateşi": saat başı vücut sıcaklığı serisi (39,2 → 37,5) nokta
+  grafiği çizme ve yorumlama.
+- S2 "Deniz Isınıyor": Ege-Marmara deniz suyu sıcaklıkları 1970-2024; iklim
+  değişikliği trend yorumu + kar örtülü gün sayısı 30,0 → 22,4 karşılaştırma
+  (Meteoroloji kültür kartı).
+- S2 "Motor Testi": mühendisin "13 km/L ortalama" iddiasını veri setiyle sınama —
+  ortalama/ortanca/tepe değer üçlüsünden hangisi iddiayı destekler? (merkezî
+  eğilim ölçüleri karşılaştırma oyunu).
+- S2 "Persentil Kartları": bebek baş çevresi P25/P50/P75 tablo okuma; kendi
+  değerin hangi persentilde? oyunu (KATIL-UYGULA-KEŞFET 3 dijital karşılığı;
+  Esra Bayrak paralimpik uzun atlama 5,17-5,38 m kültür kartı dahil).
+- S3 "Voleybol İstikrarı": Selma (açıklık 27, OMS 6,4) vs Yasemin (açıklık 4,
+  OMS 1,2) sayı serileri; ±1 OMS mavi bölge çizimi; "kim daha istikrarlı?"
+  karar oyunu (KATIL-UYGULA-KEŞFET 4 karşılığı; dinamik istatistik yazılımı
+  adımları site içi simülasyon: veri gir → hesapla → grafiği gör).
+- S3 "OMS Hesaplayıcı": ortalama mutlak sapma adım adım hesap motoru (1. ortalama
+  bul, 2. sapmaları al, 3. mutlak değerleri topla, 4. gözlem sayısına böl);
+  "Ortalama Mutlak Sapma" ek etkinlik modülü.
+- S3 "C Vitamini Sepeti": Zeynep Hanım'ın meyve-sebze satış verisi OMS 31,2
+  yorumu; hangi gün saptırıcı? bulmaca.
+- S4 "Enerji Panosu": yenilenebilir enerji türleri (güneş-hidroelektrik-rüzgâr)
+  veri seti — çok adımlı analiz görevi.
+- S4 "Tam Araştırma Projesi": bilgisayar oyunu oynama süresi araştırmasını A'dan
+  Z'ye tasarlama (s.186-187 sürecin oyunlaştırılmış projelendirme modülü) —
+  rubrikle otomatik değerlendirme.
+E-içerik kartı: "İstatistiksel Araştırma Süreci İle İlgili Sorular" ek etkinlik.
+Etap Kontrolü: 12 soru.
+
+── ETAP 3.6 İSTATİSTİKSEL ARAŞTIRMA SÜREÇLERİNİN İNCELENMESİ (s.190-196) ───────
+Kavramlar: araştırmanın eleştirel okunması, hatalı grafik/yorum tespiti,
+medya okuryazarlığı, kaynak güvenilirliği, KVKK.
+Seviye/oyun önerileri:
+- S1 "Fulya'nın Dairesi": en sevilen ders daire grafiği araştırmasındaki hatayı
+  bulma (adım damgalama oyunu).
+- S2 "Buz Tabakaları": NSIDC verisi 1,91×10⁶ km² yorumunu eleştirel değerlendirme
+  (kültür kartı; "1,91×10⁶ km² ne kadar? Türkiye alanıyla kıyasla" görsel).
+- S2 "Haber Dedektifi": "Su İçmek Zararlı!" sahte haberini doğrulama adımları —
+  kaynak, yöntem, örneklem sorgulama kartları (medya okuryazarlığı oyunu).
+- S2 "Duru'nun Paylaşımı": sosyal medyada anket paylaşımı mahremiyet senaryosu;
+  izin onayı metni (Ege'nin onay kartı) analizi.
+- S3 "Burdur Gölü": su seviyesi 860 → ~845 m grafiğinde Sevgi'nin hatalı
+  yorumlarını düzeltme (yorum düzeltme bulmacası; Burdur Gölü kültür kartı).
+- S3 "Oğuz'un Anketi": anket etiği soruları (katılım zorlaması, mahremiyet)
+  doğru-yanlış turu.
+- S4 "Rapor İnşaatçısı": kendi mini araştırma raporunu yaz, Anka onu rubrikle
+  değerlendirir.
+Performans Görevleri karşılıkları: (1) "İklim Değişikliği" poster/afiş/broşür
+atölyesi + sunum (s.189); (3) "Yeterli ve Dengeli Beslenme" rapor incelemesi +
+sunum (s.194) — ikisi de dijital pano atölyesi ve Analitik Dereceli Puanlama
+Anahtarı ile otomatik değerlendirilir.
+Etap Kontrolü: 10 soru.
+
+── DÜNYA 3 FİNALİ — 3. TEMA KALESİ (s.197-199) ─────────────────────────────────
+Tünel uzunlukları evren-örneklem sorusu; sınav netleri veri setinde ortanca 14 /
+tepe 17,33 / açıklık 12 / ortalama 12,75 — "hangisi yanlış?" sorusu; 4 yarışçının
+8 yarış süre tablosu değişebilirlik analizi; kalp atış hızı ölçüm farkları; Bade'nin
+oda sıcaklığı çizgi grafiği çoktan seçmeli; mahremiyet senaryosu. Ek Ölçme zor
+modu. Rozet: "Dedektif" + 500 XP.
+
+--------------------------------------------------------------------------------
+BÖLÜM 6 — DÜNYA 4: SİMETRİ ATÖLYESİ (TEMA 4, s.201-217)
+--------------------------------------------------------------------------------
+
+TEMA GİRİŞİ (s.201): Anahtar kavramlar (açıortay, orta dikme, yansıma dönüşümü)
+harita kartları. Renk teması: mor-lavanta; ayna evi. NELER BİLİYORUZ karşılığı:
+şekillerin verilen doğrulara göre simetrilerini çizme ön görevi (s.202) — çizim
+motorunun ısınma turu.
+
+── ETAP 4.1 YANSIMA DÖNÜŞÜMÜ (s.202-210) ───────────────────────────────────────
+Kavramlar: yansıma dönüşümü, simetri doğrusu, simetrik nokta çiftleri (simetri
+doğrusuna dik olma + eşit uzaklık + doğrunun çifti ortalama özelliği), şekil ile
+görüntünün eşliği, simetri aynası ve asetat kâğıdı materyalleri.
+Seviye/oyun önerileri:
+- S1 "Simetri Aynası Simülatörü": aynayı simetri doğrusu üzerinde sürükle;
+  noktaların görüntüleri anlık oluşsun (k.204 materyal tanıtımının dijitali);
+  "asetat çevirme" animasyonu ile eşlik kontrolü.
+- S1 "Harf-Sayı-Logo Avı": BAŞLAYALIM görevi — 3, S harfleri ve logolar arasından
+  doğruda simetrik olanları seçme; öğrenci kendi simetrik harfini çizme (çizim
+  motoru).
+- S2 "Nokta Taşıyıcı": verilen doğruya göre nokta/doğru parçası/çokgenin
+  görüntüsünü nokta nokta yerleştirme (gönye-cetvel dijital karşılığı; kontrol:
+  simetri doğrusuna diklik ±2° ve eşit uzaklık).
+- S2 "Karşılıklı Köşeler": ABCD ↔ KLMN eş şekil çiftinde karşılıklı noktaları
+  birleştir; çizgiler simetri doğrusuna dik mi, doğrulu ortalar mı? kontrol
+  oyunu (A↔K, D↔N görüntü çifti; B↔L, C↔M değil — niçin? tartışma kartı).
+- S3 "Gizli Doğru": eş üçgen çifti ve eş dörtgen çiftinde simetri doğrusu var mı?
+  varsa nerede? bulmaca (KATIL-UYGULA-KEŞFET 3 karşılığı; "karşılıklı nokta
+  birleştiren çizgiler paralelse simetri doğrusu olamaz" keşfi).
+- S3 "Simetri Doğruları Nerede?": ikizkenar üçgen, düzgün beşgen, yarım daire,
+  paralelkenar (yok!), çeşitkenar üçgen (yok!) — doğru şekillere simetri
+  doğrularını çizme; birden fazla simetri doğrusu keşfi.
+- S3 "Üçgenden Dörtdgene": 6 üçgen türünün (çeşitkenar dik, ikizkenar dik,
+  ikizkenar, eşkenar...) yansımada oluşan dörtgenlerinin kenar-açı özellik
+  tablosunu doldurma (UYGULAYALIM 1 dijital karşılığı; hangi durumda
+  dikdörtgen, hangi durumda eşkenar dörtgen/yamuk oluşur?).
+- S4 "Desen Atölyesi": halı-kilim motifleri (hayat ağacı, göz, bereket, nazar,
+  kuş) kültür kartları; Yağcı Bedir (Balıkesir) ve Gülsarya (Hakkâri) kilim
+  görselleri; yansıma dönüşümüyle kendi desenini tasarlayıp kaydetme
+  (DÜŞÜN-TARTIŞ-AÇIKLA 1 karşılığı). Mimari-sanat-doğa-teknoloji simetri
+  keşif kartları (cami-köprü, mozaik-minyatür, kelebek-kar tanesi, uçak
+  kanadı) dünya süsü olarak serpilir.
+Performans Görevi karşılığı (s.209): "Bayrak Simetri Sergisi" — farklı ülkelerin
+bayraklarından simetrik şekilleri seçme, simetri doğrularını belirleme, dijital
+pano/sunum hazırlama; grup çalışması modu (Grup Değerlendirme Formu + rubrik).
+Video kartı: "Şekillerin Yansıma Dönüşümü Altındaki Görüntüleri" bağlantısı.
+Etap Kontrolü: 10 soru (kazanım: yansıma dönüşümü).
+
+── ETAP 4.2 ORTA DİKME VE AÇIORTAY İNŞASI (s.211-215) ──────────────────────────
+Kavramlar: orta dikme (bir doğru parçasını dik kesen ve eşit uzunlukta iki
+parçaya ayıran doğru), açıortay (bir açıyı iki eş açıya ayıran doğru), pergel
+ve ölçüsüz cetvel inşaları, eş çember çiftleri yöntemi.
+Seviye/oyun önerileri:
+- S1 "Pergel Kursu": pergel arayüz eğitimi — merkez, yarıçap, çember çizme
+  alıştırmaları (Etkinlik Uygulama Yönergesi "Simetri Doğrusu Oluşturma" dijital
+  kılavuzu).
+- S1 "Simetri Doğrusu Geri Getir": doğru parçasına ait simetri doğrusunu ortadan
+  dikmeye dönüştürme keşfi (UYGULAYALIM 2 karşılığı; A A' B B' çiftleri).
+- S2 "Orta Dikme İnşacısı": A ve B merkezli eş çember çiftleri çiz (yarıçapı
+  öğrenci seçer — AB'den farklı olabilir keşfi; soru: yarıçap serbest mi?),
+  kesişim noktalarını birleştir; diklik + ortalama kontrolü otomatik (s.212
+  etkinliğinin dijitali; farklı çember konumları galerisi S-T / P-R varyasyonları).
+- S2 "Açıortay İnşacısı": açı kollarında köşeye eşit uzaklıklı K, L noktaları;
+  KL doğru parçasının orta dikmesi = açının simetri doğrusu = açıortay zinciri
+  keşfi (s.213-214; B ve D merkezli çember çiftleri varyasyonları).
+- S3 "Yarım İnşayı Tamamla": yarım bırakılmış açıortay ve orta dikme inşa
+  süreçlerini tamamlama bulmacaları (NELER ÖĞRENDİK 2-3 dijital karşılığı).
+- S3 "Önerme Kâşifi": I. şekil ile görüntü eşştir, II. açının simetri doğrusu
+  açıortayıdır, III. doğru parçasının simetri doğrusu orta dikmesidir — hangileri
+  doğru? (I, II ve III) önerme quizi.
+- S4 "Hatalı Adım Dedektifi": 4 adımlı CD orta dikme inşasında İLK hatanın
+  yapıldığı adımı bul, nedenini gerekçelendir (4. TEMA ÖLÇME 3 dijital karşılığı).
+- S4 "Daire Dilimi": verilen daire diliminin (D, E, F noktaları) simetri doğrusunu
+  yalnız pergel ve ölçüsüz cetvelle inşa etme ustalık görevi.
+Video kartı: "Simetri Doğrularının İnşası" bağlantısı.
+Etap Kontrolü: 10 soru (kazanım: inşalar).
+
+── DÜNYA 4 FİNALİ — 4. TEMA KALESİ (s.216-217) ─────────────────────────────────
+Açıortay inşaları (3 farklı açı); çokgenlerin simetri doğrularını uygun araçlarla
+çizme; hatalı orta dikme adımı tespiti; daire dilimi simetri doğrusu; eş şekillerin
+gizli doğruya göre simetrik olup olmadığını pergel ile bulma; eş üçgen çiftinin
+verilen doğruya göre simetrikliği gerekçelendirme. Ek Ölçme zor modu.
+Rozet: "Simetri Ustası" + 500 XP. Dört dünya bitince "Anka'nın Kanatları" final
+rozeti ve genel sertifikasyon ekranı.
+
+--------------------------------------------------------------------------------
+BÖLÜM 7 — EK DİJİTAL ÖZELLİKLER
+--------------------------------------------------------------------------------
+
+7.1. SÖZLÜK (kitap s.219-220 karşılığı): site içi aramalı sözlük — açınım, ayrıt,
+asist, bar, bilye, deklanşör, denizaltı, döviz, ekosistem, estetik, fayans,
+fiyonk makarna, gerekçe, glüten, heybe, humus, ihracat, jeotermal, katman,
+konteyner, kriter, külçe, lens, logo, makro lens, materyal, mikroorganizma,
+mikser, minyatür, motif, mozole, müsabaka, nakliye, ocak, odak, odaklamak,
+paralimpik, peyzaj, pinpon, radyatör, rakım, ribaunt, rota, sandık, simetrik,
+strateji, tadilat, veri, yenilenebilir enerji (+ kitap akışında geçen matemati-
+tiksel terimler: devirli ondalık gösterim, mutlak değer, rasyonel sayı, evren,
+örneklem, ortalama mutlak sapma, açıklık, yansıma dönüşümü, orta dikme,
+açıortay...). Terimler metin içinde ilk geçtiğinde altı çizgili gösterilir;
+dokununca tanım kartı açılır.
+
+7.2. KÜLTÜR KÖŞESİ ("Keşfet" kartı koleksiyonu): Deringöz (ASELSAN), UTC saat
+dilimleri, soğuk zincir, ZDUS, Rhind Papirüsü, Hypatia, Pisagor, Öklid, Harezmi,
+Brahmagupta, El-Kâşî, Fermat, Euler, Gauss, Widmann, Von Neumann, "e" ambalaj
+işareti, TÜBİTAK UME, Şahika Ercümen, Sıfır Atık Mavi, Anıtkabir, Japonya kare
+karpuz, Arşimet ve taç, sanal müze gezisi, FINA olimpik havuz ölçüleri, diş
+fırçalama su israfı, Alperen Şengün, TÜİK, gram altın fiyatları, Melek Hanım
+sağlık takibi, Meteoroloji deniz sıcaklıkları, Esra Bayrak, persentil eğrisi,
+KVKK, buz tabakaları (NSIDC), Burdur Gölü, iklim değişikliği, yenilenebilir
+enerji, halı-kilim motifleri (hayat ağacı, göz, bereket, nazar, kuş; Yağcı
+Bedir, Gülsarya). Kartlar dünya geçildikçe toplanır; "Koleksiyoncu" rozeti tüm
+kartlara verilir.
+
+7.3. GÜNLÜK VE DEĞERLENDİRME: Anka Günlüğü (öğrenci notları, 3-2-1 çıkış
+kartları, tasarım kayıtları); Öz Değerlendirme, Akran Değerlendirme ve Grup
+Değerlendirme Formlarının dijital versiyonları; Analitik Dereceli Puanlama
+Anahtarı ile performans görevlerinin otomatik rubrik puanı.
+
+7.4. ÖĞRETMEN PANELİ (İSTEK GEREĞİ):
+- Öğrenci girişi: öğretmen sınıf/şube adı girer, öğrenci isimlerini ekler
+  (liste ya da "İsim Soyisim" satır satır); veriler tarayıcıda saklanır.
+- Rastgele öğrenci seçici: büyük animasyonlu çark; seçilen öğrencinin adı
+  görünür; "tekrar seçme" opsiyonu (seçilenler hariç tutulur), listeden kişi
+  çıkarma, çarkı yeniden doldurma.
+- Grup sistemi: sınıfı N gruba ayırma (rastgele veya elle), gruplara renk/tema
+  ikonu, grup puanları panosu; oyun içi doğru cevaplar grup puanına da eklenir;
+  grup puanı grafiği (sütun) akıllı tahtada projeksiyon görünümü.
+- Sesli geri bildirim: Web Speech API ile Türkçe konuşma ("Harika! Bu doğru
+  cevaptı.") ve ses efektleri; sessiz moda tek tıkla geçiş.
+- Animasyonlu geri bildirim: doğru cevapta konfeti, yanlışta nazik "tekrar
+  dene" animasyonu; hiçbir şekilde ceza yok.
+
+7.5. EK ETKİNLİKLER VE VİDEO KARTLARI: her dünya "Bonus Görev" köşesinde —
+"Araştırma Sorusu, Evren ve Örneklem", "Ortalama Mutlak Sapma", "İstatistiksel
+Araştırma Süreci İle İlgili Sorular", "İstatistiksel Araştırma Süreçlerinin
+İncelenmesi", her temanın "Ek Ölçme ve Değerlendirme Soruları" zor modu;
+Konu Anlatım Videosu bağlantı kartları ("Rasyonel Sayıların Farklı Temsilleri",
+"Şekillerin Yansıma Dönüşümü Altındaki Görüntüleri", "Simetri Doğrularının
+İnşası").
+
+--------------------------------------------------------------------------------
+BÖLÜM 8 — TEKNİK GEREKSİNİMLER
+--------------------------------------------------------------------------------
+
+8.1. MİMARİ
+- Tek sayfalık uygulama (SPA); vanilla JavaScript (framework isteğe bağlı ama
+  bağımlılık minimum tutulmalı); internete bağımlı CDN ZORUNLU DEĞİL (akıllı
+  tahta / sınıf bilgisayarı çevrim dışı çalışabilmeli).
+- Veri modeli: sorular ve oyun tanımları JSON dosyalarında (soru havuzu, seviye
+  tanımları, kültür kartları, sözlük); kod ve veri ayrık.
+- Dosya yapısı önerisi: index.html; assets/css/site.css; assets/js/app.js,
+  engine.js (oyun motoru), data/ klasöründe world1.json ... world4.json,
+  glossary.json, culture.json.
+
+8.2. GÖRSEL MOTOR
+- Tüm çizimler SVG: sayı doğrusu (yatay/dikey), prizma ve açınım çizimleri,
+  grafikler (nokta/çizgi/sütun/daire), simetri doğruları, pergel inşa
+  animasyonları, çark öğrenci seçici.
+- 3D eş küp editörü: izometrik SVG veya CSS 3D transform; küp ekleme/silme/
+  dönüş; görünümler (ön/arka/sağ/sol/üst) otomatik hesaplanıp yan panelde
+  gösterilir.
+- İstatistik simülatörü: veri girişi tablosu + otomatik AO/ortanca/tepe/
+  açıklık/OMS hesabı + anlık grafik + ±1 OMS bandı çizimi.
+- Simetri simülatörü: sürüklenebilir simetri doğrusu, nokta/şekil görüntü
+  hesaplama, diklik-eşit uzaklık ölçüm okumaları.
+- Pergel simülatörü: merkez seç, yarıçap ayarla (sayısal veya sürükle), çember
+  çiz; kesişim noktaları otomatik işaretlenir; inşa doğrulama puanı.
+
+8.3. KALICILIK (localStorage ANAHTARLARI)
+  m7_progress  : dünya/etap/seviye tamamlanma, yıldızlar
+  m7_xp        : toplam XP, seviye
+  m7_badges    : kazanılan rozetler
+  m7_streak    : günlük seri kaydı
+  m7_culture   : toplanan kültür kartları
+  m7_journal   : Anka Günlüğü girişleri, 3-2-1 kartları, tasarım kayıtları
+  m7_settings  : ses aç/kapa, animasyon hızlı/yavaş, renk kontrastı
+  m7_teacher   : öğretmen paneli verisi (öğrenci listesi, gruplar, puanlar)
+
+8.4. ERİŞİLEBİLİRLİK VE UYUM
+- Klavye ile tam gezinme (Tab/Enter/ok tuşları); ARIA etiketleri; anlamlı
+  kontrast (WCAG AA); font boyutu ayarı; animasyon azaltma modu.
+- Duyarlı tasarım: akıllı tahta (geniş), tablet ve telefon kırılımları.
+- Performans: 60 fps hedef; büyük animasyonlarda requestAnimationFrame.
+
+8.5. KAZANIM İZLEME
+- Her soru JSON'da kazanım etiketi taşır ("M7-1.4-devirli"); öğretmen panelinde
+  kazanım bazlı sınıf performans grafiği sunulur (hangi kazanım eksik?).
+
+--------------------------------------------------------------------------------
+BÖLÜM 9 — GÖRSEL TASARIM YÖNERGELERİ
+--------------------------------------------------------------------------------
+
+- Maskot: Anka kuşu (5. sınıf sitesindeki maskotun devamı; 7. sınıf için biraz
+  daha "bilge" görünüm — kitap şerbiyle). Konuşma balonları kısa, cesaretlendirici,
+  mizah 12-13 yaşa uygun.
+- Dünya renk paletleri:
+  D1 Sayılar Uzayı: derin mavi #1E3A8A + camgöbeği #22D3EE (yıldız yolu)
+  D2 Prizma Diyarı: amber #D97706 + turuncu #FB923C (küp şehir)
+  D3 Veri Kaşifleri: zümrüt #059669 + yeşil #34D399 (grafik ormanı)
+  D4 Simetri Atölyesi: mor #7C3AED + lavanta #C4B5FD (ayna evi)
+- Arayüz: büyük dokunma alanları (akıllı tahta için), yuvarlak köşeler, net
+  hiyerarşi; yıldız/XP gösterge çubuğu her ekranda üstte.
+- Geri bildirim: doğru → yeşil tik + kısa olumlu ses + konfeti (az, zarif);
+  yanlış → mercan rengi yumuşak uyarı + ipucu teklifi + yeniden deneme
+  düğmesi; asla kırmızı alarm, asla "yanlış" yazısıyla korkutma.
+- Ses: Web Speech API Türkçe TTS (opsiyonel) + efekt sesleri; tek tıkla sessiz.
+
+--------------------------------------------------------------------------------
+BÖLÜM 10 — İÇERİK HAZIRLAMA KURALLARI
+--------------------------------------------------------------------------------
+
+10.1. SORU SAYILARI: her etapta S1 minimum 8, S2 minimum 10, S3 minimum 8,
+S4 minimum 6 özgün soru; dünya finali minimum 20 soru; zor mod ek set
+minimum 10 soru. Toplam site hedefi: 400+ özgün soru.
+
+10.2. GERÇEKÇİ DEĞERLER: sıcaklıklar °C (Antarktika −89 °C, gezegen değerleri),
+kalori, para TL (virgüllü: 58,50 TL), hacim L/mL/m³, basınç bar (lastik
+2,2-2,3), mesafe m/km, süre sn/dk; 2026 Türkiye bağlamına uygun fiyatlar;
+kişi isimleri güncel ve çeşitli (kız/erkek dengeli).
+
+10.3. ÇELDİRİCİLER KAVRAMSAL OLMALI:
+- mutlak değeri işlem uygulanmadan düşürenler / yalnızca işareti değiştirenler
+- −2² ile (−2)² karıştıranlar; devirli sayıda devri kaydıranlar
+- hacim ile yüzey alanını karıştıranlar; 1 dm³ = 1 L'yi 10 sananlar
+- ×1000 basamak kurallarını ×100 sananlar; evren/örneklem ters çevirenler
+- ortanca-ortalama-tepe karıştıranlar; açıklığı negatif bulanlar
+- simetri doğrusunda yalnız diklik ya da yalnız eşit uzaklık ölçenler
+- orta dikmede çember yarıçapını AB'ye eşitlemek zorunda sananlar
+
+10.4. ÇİZİM/İNŞA TOLERANSLARI: simetri doğrusu diklik ±2°; nokta yerleştirme
+±3 piksel karşılığı tolerans; orta dikmede kesişim noktası seçimi serbest
+(yarıçap farklı olabilir); grafiğe veri noktası yerleştirme ±1 birim.
+
+10.5. ÜSLUP: 12-13 yaş; kısa cümle; olumlu dil; "hâlâ", "artık", "hem de"
+gibi bağlaçlarla akıcılık; gereksiz akademik terim kullanma; terim ilk
+geçtiğinde sözlük kartı.
+
+--------------------------------------------------------------------------------
+BÖLÜM 11 — MVP VE GENİŞLEME
+--------------------------------------------------------------------------------
+
+11.1. MVP (ilk teslimat)
+- Macera haritası + 4 dünya (D1 harita üzerinde aktif; diğerleri kilitli ama
+  görülebilir).
+- Her dünyada 2 etap aktif: D1: 1.1 Tam Sayılar + 1.3 Mutlak Değer; D2: 2.2
+  Açınım-Yüzey Alanı + 2.4 Hacim Bağıntısı; D3: 3.2 Süreç Adımları + 3.5
+  Yorumlama; D4: 4.1 Yansıma + 4.2 İnşalar. Her etapta S1-S4.
+- 4 dünya finali sınavı + 3-2-1 çıkış kartı (D1) + rozetler + XP + seri.
+- 4 simülatör MVP: sayı doğrusu ok motoru, eş küp editörü (basit), istatistik
+  simülatörü (basit), simetri aynası simülatörü.
+- Öğretmen paneli: öğrenci/şube girişi, rastgele öğrenci seçici, grup sistemi +
+  grup puanları, sesli/animasyonlu geri bildirim.
+- localStorage kalıcılık; çevrim dışı çalışma; erişilebilirlik temel seviye.
+
+11.2. GENİŞLEME (MVP sonrası)
+- Kalan tüm etaplar ve zor modlar; kültür köşesi tam koleksiyon; Anka Günlüğü
+  tam fonksiyon; pergel inşa simülatörü gelişmiş mod; 3D görünüm motoru
+  gelişmiş; performans atölyeleri (poster, bayrak sergisi, iklim raporu,
+  ölçü kapları müzesi) dijital pano + rubrik; kazanım bazlı öğretmen raporları.
+
+11.3. KABUL KRİTERLERİ (MVP'de zorunlu)
+1) Site çevrim dışı açılır, tüm oyunlar çalışır (sadece video kartları dış
+   bağlantı ister).
+2) Tüm metinler Türkçe; ondalıklar virgülle; Türkçe karakter sorunsuz.
+3) Hiçbir kitap metni birebir kopyalanmamıştır; tüm sorular özgündür.
+4) Her etapta 4 zorluk seviyesi; ceza mekanizması yoktur; yanlışta ipucu
+   ve yeniden deneme sunulur.
+5) İlerleme, XP, rozetler, seriler, öğretmen paneli verileri localStorage'da
+   kalır; sayfa yenilendiğinde korunur.
+6) Rastgele öğrenci seçici ve grup puanları akıllı tahta görünümünde okunur.
+7) Sayı doğrusu, prizma/açınım, grafik, simetri ve inşa çizimleri SVG'dir ve
+   dokunmatik ekranla kullanılabilir.
+8) Üç simülatör (istatistik, simetri, küp editörü) gerçek hesap yapar
+   (sahte animasyon değil).
+9) Sorular kazanım etiketlidir; öğretmen panelinde kazanım raporu görünür.
+10) Dünya finalleri geçilmeden sonraki dünya açılmaz; %60 barajı ekranda
+    gösterilir.
+
+--------------------------------------------------------------------------------
+EK A — KONU LİSTESİ VE KAZANIM ETİKETLERİ
+--------------------------------------------------------------------------------
+  T1.1 Tam Sayılar                          → M7-1.1-tamsayilar
+  T1.2 Rasyonel Sayılar                     → M7-1.2-rasyonel
+  T1.3 Mutlak Değer                         → M7-1.3-mutlakdeger
+  T1.4 Rasyonel Sayıların Farklı Temsilleri → M7-1.4-temsiller
+  T1.5 Karşılaştırma ve Sıralama            → M7-1.5-siralama
+  T1.6 Tam Sayılarla İşlemler ve Problem    → M7-1.6-tamsayiislemler
+  T1.7 Rasyonel Sayılarla İşlemler ve Problem → M7-1.7-rasyonelislemler
+  T1.8 Çok Adımlı İşlemler                  → M7-1.8-cokadimli
+  T2.1 Cisimlerin Görünümleri               → M7-2.1-gorunumler
+  T2.2 Açınım ve Yüzey Alanı                → M7-2.2-acinim
+  T2.3 Hacmi Eş Nesnelerle Yorumlama        → M7-2.3-hacimyorum
+  T2.4 Prizmanın Hacim Bağıntısı            → M7-2.4-hacim
+  T2.5 Hacim Ölçme Birimleri                → M7-2.5-birimler
+  T2.6 Problemler                           → M7-2.6-problemler
+  T3.1 Kategorik ve Nicel Veri Dağılımları  → M7-3.1-dagilimlar
+  T3.2 İstatistiksel Araştırma Süreci Adımları → M7-3.2-surec
+  T3.3 Veri Toplama ve Mahremiyet           → M7-3.3-toplama
+  T3.4 Veri Analizi (Grafikler)             → M7-3.4-analiz
+  T3.5 Veriyi Yorumlama ve Karar Verme      → M7-3.5-yorumlama
+  T3.6 Süreçlerin İncelenmesi ve Medya Okuryazarlığı → M7-3.6-inceleme
+  T4.1 Yansıma Dönüşümü                     → M7-4.1-yansima
+  T4.2 Orta Dikme ve Açıortay İnşası        → M7-4.2-insa
+
+--------------------------------------------------------------------------------
+EK B — KİTAP ETKİNLİKLERİ → DİJİTAL KARŞILIK TABLOSU (geliştirici yol haritası)
+--------------------------------------------------------------------------------
+  Kitaptaki etkinlik (sayfa)            → Dijital karşılık
+  ─────────────────────────────────────────────────────────────────────────
+  Sıfırın anlamları BAŞLAYALIM (s.15-16)   → Açılış "Sıfır Nerede?" kartları
+  Apartman katları UYGULAYALIM (s.19)      → Asansör simülasyonu
+  Deringöz görevleri (s.18)                → ±derinlik görev oyunu + kültür kartı
+  Matematik tarih şeridi (s.20)            → Kronoloji sıralama oyunu
+  UTC saat problemleri (s.72)              → Dünya saati çevirici
+  Negatif işaret KATIL-UYGULA-KEŞFET (s.26)→ İşaret taşımacılığı oyunu
+  Dart tahtası (s.40)                      → Mutlak değer dart oyunu
+  Frayer modeli (s.39)                     → Dijital kavram kartı doldurma
+  Devirli gösterim 2-5 kuralı (s.44)       → "2-5 Dedektifi" oyunu
+  "Yedili Devir Çarkı" E-içerik (s.48)     → Devir çarkı modülü
+  0,999...=1 tartışması (s.46-47)          → 3 strateji tartışma salonu
+  Toplar makinesi (s.47)                   → Makine top oyunu
+  Gezegen sıcaklıkları (s.51)              → Uzay sayı doğrusu sıralama
+  Okyanus derinlikleri (s.55)              → Dikey sayı doğrusu oyunu
+  "Sırala Bakalım" E-içerik (s.61)         → Sürükle-bırak sıralama yarışı
+  Kalori tablosu (s.68)                    → Kalori dengesi hesaplayıcı
+  "Bütçeni Yönet" E-içerik (s.69)          → Bütçe simülasyonu
+  Klimalar örüntüsü (s.74)                 → İşaret kuralı keşif animasyonu
+  Yaprak sarma problemi (s.73)             → Soğuma serisi problem oyunu
+  Bakteri çoğalması 2ⁿ (s.90)              → Üslü ifade laboratuvarı
+  Zıplayan top (1/2)ⁿ (s.91)               → Yarılan yükseklik animasyonu
+  (−2)² vs −2² tartışması (s.96)           → Parantez-üs tuzağı kart maçı
+  Valiz kütle sınırı (s.110)               → Havalimanı tartı oyunu
+  Su deposu 40 L (s.111)                   → Depo dolum-tahliye animasyonu
+  3-2-1 çıkış kartı (s.114)                → Dijital çıkış kartı modülü
+  Lale odak uzaklıkları (s.115)            → Merkezî ölçüler karışık sorusu
+  Anıtkabir fotoğrafları (s.119)           → Görünüm eşleştirme galerisi
+  "Eş Küplerle Yapı Oluşturma" E-içerik    → 3D küp editörü (Ek-1 yön kılavuzu)
+  Açınım kapatma oyunu puanlı (s.126)      → 5/3/2 puanlı açınım oyunu
+  Hediye paketi 20×25×30 (s.127)           → Paketleme maliyet hesabı
+  Japonya kare karpuz (s.135)              → Kültür kartı + kapasite problemi
+  Katman yöntemi tablosu (s.139)           → Üç yöntem animasyonu
+  Hacim oranı 2×/3×/8× D/Y (s.142)         → Büyüme katsayısı laboratuvarı
+  Beton mikseri diyaloğu (s.144)           → Birim seçim karar oyunu
+  Dereceli silindir-taç (s.148)            → Taşırmalı kap mini oyunu
+  Okka/kile/galon/varil görevi (s.150)     → Ölçü kapları müzesi + poster
+  Olimpik havuz su israfı (s.155)          → "Damlaya Damlaya" hesaplayıcısı
+  Alperen Şengün grafiği (s.161)           → Grafik okuma açılış görevi
+  Uyku süreleri tablosu (s.162)            → Veri sınıflandırıcı oyunu
+  Su tüketimi soru sıralaması (s.165)      → Soru kalite gümrüğü + akran formu
+  TÜİK nüfus grafiği (s.167)               → Keşif kartı + yorum görevi
+  Fidan hazır veri (s.169)                 → Simüle karekod veri indirme
+  Gram altın grafikler (s.171)             → Sütun/çizgi karar oyunu
+  Melek Hanım kilo grafiği (s.174)         → Trend okuma modülü
+  Persentil eğrisi (s.177-178)             → Persentil tablo oyunu
+  Selma-Yasemin OMS (s.180-182)            → ±1 OMS mavi bölge çizici
+  Dinamik istatistik yazılımı (s.180-182)  → Site içi istatistik simülatörü
+  "Su İçmek Zararlı!" (s.192)              → Haber dedektifi oyunu
+  Burdur Gölü yorumları (s.195)            → Yorum düzeltme bulmacası
+  Simetri aynası/asetat (s.204)            → Ayna simülatörü
+  Gizli simetri doğrusu (s.206)            → Gizli doğru bulmacası
+  Halı-kilim desenleri (s.207)             → Desen tasarım atölyesi
+  Üçgen yansımaları tablosu (s.208)        → Üçgen→dörtgen sınıflandırma
+  Bayrak simetri görevi (s.209)            → Bayrak sergisi atölyesi
+  Orta dikme inşası (s.212)                → Pergel inşa simülatörü
+  Açıortay inşası (s.213-214)              → Pergel inşa simülatörü 2
+  Yarım inşa tamamlama (s.215)             → Tamamlama bulmacaları
+  Hatalı inşa adımı (s.216)                → Dedektif bulmacası
+  Sözlük (s.219-220)                       → Aramalı dijital sözlük
+
+--------------------------------------------------------------------------------
+BİTİŞ NOTU
+--------------------------------------------------------------------------------
+Bu prompt verildiğinde AI; Dünya 1'in etap 1.1'inden başlayarak kitabın öğrenme
+akışını sadık kalarak ama telif ihlal etmeden, 12-13 yaş dilinde, oyunlaştırılmış,
+çevrim dışı çalışan, akıllı tahta uyumlu, öğretmen paneli (rastgele öğrenci
+seçici + grup sistemi + sesli/animasyonlu geri bildirim) içeren eksiksiz bir
+site üretmelidir. Anka rehberdir, öğrenci kahramandır, hiçbir öğrenci ceza
+almaz — sadece öğrenir ve eğlenir.
+================================================================================

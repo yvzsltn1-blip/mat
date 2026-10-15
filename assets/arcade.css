@@ -162,3 +162,53 @@
   .ar-balloon { animation: none; }
   .ar-cloud, .arcade-icon, .ar-hero-icon, .ar-handle, .ar-ring.urgent { animation: none; }
 }
+
+/* Sınırsız seviye soruları */
+.source-pick { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 12px 0 4px; }
+.source-pick > span { font-weight: 800; }
+.source-pick small { flex-basis: 100%; color: #6b6577; }
+.art-stage { overflow: hidden; }
+.art-stage > .ar-svg { max-height: 100%; }
+.art-stage > .ar-boxes, .art-stage > .ar-cards, .art-stage > .ar-words { width: 100%; }
+.ar-card small { display: block; font: 700 .42em var(--kid, inherit); color: #8a7bb0; text-align: center; margin-top: 2px; }
+.ar-card.q { border-color: #f3a593; box-shadow: 0 5px 0 #f7cbbf; color: #c2412d; }
+.art-stage .ar-boxes { gap: 8px; }
+.art-stage .ar-box { max-width: 31%; padding: 6px 10px; }
+.art-stage .ar-box b { font-size: clamp(1.15rem, 3.2vh, 2rem); letter-spacing: 1px; }
+.art-stage .ar-box small { font-size: clamp(.8rem, 1.9vh, 1.05rem); text-align: center; }
+.art-stage .ar-card { font-size: clamp(1.5rem, 4vh, 2.4rem); }
+
+/* Kesir ve kavram sorular? i?in iki oyunculu cevap se?enekleri. */
+.ar-choice-grid { display:grid; gap:10px; padding:12px; }
+.ar-choice-grid button { white-space:normal; overflow-wrap:anywhere; min-height:52px; }
+
+.ar-option-legend { display:grid; gap:6px; text-align:left; padding:10px; }
+.ar-option-legend p { margin:0; font-size:clamp(.9rem,1.7vw,1.2rem); overflow-wrap:anywhere; }
+.ar-option-legend b { display:inline-grid; place-items:center; min-width:1.7em; border-radius:50%; background:#e6ddff; margin-right:6px; }
+.m7-lab input[type="text"] { width:100%; padding:12px; border:2px solid #c8d3e1; border-radius:10px; font:inherit; }
+.m7-lab label { display:grid; gap:8px; }
+.cmp-lab { width:100%; padding:clamp(8px,2vw,20px); color:#1f2547; }
+.cmp-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 20px; text-align:left; }
+.cmp-controls label { font-size:clamp(.85rem,1.5vw,1.1rem); font-weight:700; }
+.cmp-controls output { font-weight:900; color:#2c6bed; }
+.cmp-controls input { display:block; width:100%; min-height:32px; accent-color:#2c6bed; }
+.cmp-method { display:flex; justify-content:center; gap:12px; align-items:center; margin:12px 0; }
+.cmp-method select { font:inherit; padding:8px; max-width:100%; border:1px solid #aab8cb; border-radius:8px; background:white; color:#1f2547; }
+.cmp-result { display:flex; align-items:center; justify-content:center; gap:22px; font-size:clamp(1.5rem,3vw,2.5rem); margin:16px 0 4px; }
+.cmp-a { color:#2c6bed; }.cmp-b { color:#1c8c74; }
+.cmp-fraction { display:inline-flex; flex-direction:column; vertical-align:middle; text-align:center; line-height:1.25; margin:0 .2em; min-width:1.3em; }
+.cmp-fraction > span:first-child { border-bottom:2px solid currentColor; padding:0 .15em; }
+.cmp-strips svg { display:block; width:100%; max-height:90px; }
+.cmp-lab [data-cmp-output] > svg { display:block; width:100%; max-height:160px; }
+.cmp-caption { display:flex; justify-content:space-between; gap:10px; font-size:.85rem; line-height:1.5; margin:3px 0 10px; }
+.cmp-explanation { background:#eef4ff; border-left:4px solid #2c6bed; border-radius:10px; padding:12px; font-size:clamp(.95rem,1.7vw,1.2rem); line-height:1.7; text-align:left; }
+.cmp-instruction { font-size:.95rem; margin:0 0 12px; line-height:1.5; }
+@media(max-width:500px) { .cmp-controls { grid-template-columns:1fr; gap:5px; } .cmp-result { gap:12px; } }
+body.classroom-fullscreen .cmp-lab { min-height:0; overflow-y:auto; flex:1; }
+.lesson-workspace.lesson-reading,
+body.classroom-fullscreen .lesson-workspace.lesson-reading { display:block; overflow-y:auto; }
+.lesson-rule-sheet { padding:clamp(16px,3vw,32px); border:1px solid #ded8b0; border-radius:20px; background:#fffbed; color:#1f2547; font-size:clamp(1rem,1.7vw,1.4rem); line-height:1.65; }
+.lesson-rule-sheet > p { margin:0 0 14px; }
+.lesson-rule-sheet ul { padding-left:1.5em; margin:0; }
+.lesson-rule-sheet li { margin:0 0 .65em; padding-left:.2em; }
+.lesson-rule-sheet .lesson-rule-tip { margin:18px 0 0; border-top:1px solid #ded8b0; padding-top:14px; }

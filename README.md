@@ -40,6 +40,16 @@ Kontrol komutu: `node tests/verify.cjs`. Harici bağımlılık olmadan 1.500 sor
 - Sıralama (kürsü), rapor (soru/doğru/yanlış/başarı, konu ve seviye kırılımı), CSV dışa aktarma, elle ödül puanı.
 - İnternet yoksa Firebase yüklenemezse “Bu cihazda devam et” ile çevrimdışı çalışır. Bu tarayıcıda eski sürümden kalan sınıf, ilk girişte buluta aktarılır.
 
+## Sınırsız görsel sorular
+
+Konunun “Oyna” ekranında **♾️ Sınırsız görsel** (varsayılan) ve **📚 Soru bankası (75)** arasında seçim yapılır; seçim kalıcıdır.
+
+- Sınırsız modda her soru `assets/level-gen.js` tarafından o anda üretilir: yeni sayılar, yeni çizim, çözüm ve ipucu. Sorular bitmez; son 80 soru tekrar etmez.
+- 20 konunun her birinde 5 seviyeye göre zorlaşan 5–10 farklı soru kalıbı vardır (toplam 133 kalıp). Çizimler yalnız verilenleri gösterir, aranan değer “?” ile işaretlenir.
+- Soru türleri: cetvel, sayı doğrusu, iletki, saat kadranı, abaküs, onluk bloklar, basamak kartları, bar modeli, kareli zemin, pergelle inşa, kesişen/paralel doğrular, çokgenler, hikâye kutuları…
+- Çalışma kâğıdı tarzı **kareli zemin** soruları: d doğrusuna paralel/dik olanı bulma, kaç doğrunun paralel/dik olduğunu sayma, “a ⊥ e”, “d // f” ifadelerinden doğru olanı seçme, siyah noktadan geçen paralel/dik doğruyu seçme, iki doğrunun durumunu belirleme.
+- Her soru seviyenin puanını kazandırır (10/20/35/50/80). Üretici kontrolü: `node tests/level-gen.cjs`.
+
 ## Görsel oyunlar
 
 Her konunun “Oyna” panelinde, seviye kartlarının altında “🎮 Görsel oyunlar” bulunur. Sorular `assets/arcade-gen.js` tarafından her seferinde çizimlerle yeniden üretilir (iletki, abaküs, sayı doğrusu, nokta dizileri, kareli alan, çokgenler, üçgenler…); 20 konu × 3 zorlukta sınırsız soru çıkar.
@@ -50,3 +60,24 @@ Her konunun “Oyna” panelinde, seviye kartlarının altında “🎮 Görsel 
 - **🎯 Göz Kararı** (açı ve sayı konuları): Açının ölçüsünü tahmin etme ya da sayıyı sayı doğrusunda bulma; yakınlığa göre puan.
 
 Oyun puanları öğrencinin puanına, grubuna, istatistiklerine ve rapordaki “Son turlar” listesine yazılır. Üretici kontrolü: `node tests/arcade-gen.cjs`.
+
+
+## 7. s?n?f ? 1. kitap
+
+S?n?flar?m ekran?nda **7. s?n?f** olu?turun veya mevcut 7. s?n?f?n?z? a??n. Konu haritas? s?n?f?n seviyesine g?re de?i?ir. 5. s?n?f?n 20 konusu kendi haritas?nda kal?r; 6 ve 8. s?n?flar i?in mevcut tekrar kapsam? kullan?l?r.
+
+- Kaynak: `matematik7-1-web-promtu.txt`. D?rt tema ve 22 etab?n tamam?: Say?lar Uzay? (8), Prizma Diyar? (6), Veri K??ifleri (6), Simetri At?lyesi (2).
+- 124 anlat?m ad?m?: kavramlar, ??z?ml? ?rnekler, s?k hatalar, 22 konu sonu kontrol sorusu ve 16 etkile?imli ara? yerle?imi.
+- 1.650 sabit kimlikli ?zg?n soru: her konuda 5 seviye ? 15 soru. Her soruda ??z?m, ipucu, kazan?m etiketi ve g?rsel/model bulunur. ?st seviyelerde ters i?lem, birden fazla ko?ul ve ara?t?rma ele?tirisi sorular? eklenir.
+- Ayn? kazan?mlarla rastgele soru ?retimi, Balon Patlat ve Kap??ma. Negatif, ondal?k, kesir ve kavram cevaplar? se?eneklerle verilir; Kap??ma da bu se?enekleri iki oyuncuya sunar. Uzun balon se?enekleri A?D a??klama listesinde okunur.
+- Say? do?rusu, prizma alan/hacim, istatistik ve yans?ma ara?lar?. ?statistik arac?na ?rne?in `2; 4; 4; 10` yaz?labilir; ondal?k virg?l desteklenir.
+- ??renci puanlar?, konu y?ld?zlar?, tekrar ?nleme, s?n?f raporlar? ve mevcut yerel/bulut kay?t ak??? ortak motoru kullan?r. 7. s?n?f konu kimlikleri `m7-` ile ba?lar.
+
+??erikler: `assets/curriculum7.js`; sorular: `assets/questions7.js`; etkile?imli ara?lar: `assets/labs7.js`.
+Kontrol: `node tests/grade7.cjs` (1.650 banka sorusu, 6.600 ?retilen soru, 220 tur, s?n?fa g?re harita, ba?lant?lar, kesirli Kap??ma ve istatistik hesaplar?).
+
+Bu ekleme mevcut ??retmen/s?n?f uygulamas?n?n ak???n? kullan?r. Kaynak belgedeki ayr? macera haritas?, d?nya kaleleri, rozetler ve poster d?zenleyicisi bu kapsamda uygulanmam??t?r. De?i?iklikler yereldir; Firebase yay?n? ayr?ca yap?l?r.
+
+### Rasyonel say?larda g?rsel kar??la?t?rma
+
+1.5 konusu ?nce yedi kural? ve p?f noktas?n? i?eren d?z konu anlat?m?yla a??l?r. ?Etkile?imli ?rneklere ge?? d??mesinden sonra sekiz etkile?imli ad?m gelir: i?aret, tam k?s?m, 0?1/2?1 referanslar?, e? payda, e? pay, pay/payda e?itleme, ondal?k kar??la?t?rma ve negatiflerde s?ralama. Ayn? ?l?ekli kesir ?eritleri ve say? do?rusu kayd?r?c?larla g?ncellenir. Her ad?mda bir kontrol sorusu vard?r. Kaynak g?rselin kurallar? ?zg?n ?rneklerle i?lenmi?tir. Mod?l: `assets/compare7.js`; kontrol: `node tests/compare7.cjs`.

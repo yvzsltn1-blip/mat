@@ -138,16 +138,17 @@
   }
   function balloonsView() {
     const q = S.item, T = balloonTime(), el0 = (now() - S.start) / 1000;
+    const labeled = q.choices.some(c => String(c).length > 16);
     const balloons = q.choices.map((c, i) => {
       const lane = (i + .5) * (100 / q.choices.length);
       const state = S.picked === i ? (String(c) === String(q.answer) ? "popped" : "bad") : S.result && String(c) === String(q.answer) ? "reveal" : "";
       const len = String(c).length + (q.unit && q.numeric ? 2 : 0);
-      return `<button type="button" class="ar-balloon ${state}" data-g="pop" data-i="${i}" style="--x:${lane}%;--c:${BALLOON_COLORS[i % 4]};--fs:${len > 9 ? .62 : len > 6 ? .75 : len > 4 ? .9 : 1};bottom:${balloonBottom(i, el0, T)}%;animation-delay:${(-i * .7).toFixed(2)}s" ${S.result ? "disabled" : ""}>
-        <span>${esc(c)}${q.unit && q.numeric ? `<small>${esc(q.unit)}</small>` : ""}</span><i aria-hidden="true"></i></button>`;
+      return `<button type="button" class="ar-balloon ${state}" data-g="pop" data-i="${i}" aria-label="${esc(c)}" style="--x:${lane}%;--c:${BALLOON_COLORS[i % 4]};--fs:${labeled ? 1 : len > 9 ? .62 : len > 6 ? .75 : len > 4 ? .9 : 1};bottom:${balloonBottom(i, el0, T)}%;animation-delay:${(-i * .7).toFixed(2)}s" ${S.result ? "disabled" : ""}>
+        <span>${labeled ? 'ABCD'[i] : esc(c)}${q.unit && q.numeric && !labeled ? `<small>${esc(q.unit)}</small>` : ""}</span><i aria-hidden="true"></i></button>`;
     }).join("");
     const turn = `<span class="ar-count">${S.idx + 1}/${S.perTurn}</span><div class="ar-timer"><i id="arBar" style="width:${Math.max(0, 100 - el0 / (T + 1.5) * 100)}%"></i></div>`;
     return `${bar(turn)}<div class="game-stage ar-stage">
-      <section class="g-question"><span class="question-label" style="--lv:${S.m.color}">${S.m.icon} SORU ${S.idx + 1}</span><h2 class="prompt">${esc(q.prompt)}</h2><div class="g-scene ar-scene">${q.svg}</div></section>
+      <section class="g-question"><span class="question-label" style="--lv:${S.m.color}">${S.m.icon} SORU ${S.idx + 1}</span><h2 class="prompt">${esc(q.prompt)}</h2><div class="g-scene ar-scene">${q.svg}</div>${labeled ? `<div class="ar-option-legend">${q.choices.map((c,i)=>`<p><b>${'ABCD'[i]}</b> ${esc(c)}</p>`).join('')}</div>` : ''}</section>
       <section class="ar-sky">${balloons}<div class="ar-cloud c1"></div><div class="ar-cloud c2"></div>
         ${S.result ? resultBubble(S.result) : ""}</section></div>`;
   }
@@ -294,7 +295,7 @@
       <header><span class="ar-ava">${(id ? esc(initials(nameOf(id, i))) : (i || 0) + 1)}</span><b>${esc(nameOf(id, i))}</b><span class="ar-wins">${"★".repeat(S.wins[i])}<em>${S.wins[i]}</em></span></header>
       <div class="ar-read" id="arRead${i}">${S.drafts[i] ? G.fmt(S.drafts[i]) : "…"}${S.item.unit ? `<small>${esc(S.item.unit)}</small>` : ""}</div>
       ${pen ? `<div class="ar-pen" id="arPen${i}">⏳ Ceza</div>` : ""}
-      ${keypad(i)}
+      ${S.item.numeric ? keypad(i) : `<div class="ar-choice-grid">${S.item.choices.map((c, j) => `<button type="button" class="soft" data-g="race-choice" data-player="${i}" data-choice="${j}" ${S.result || pen ? "disabled" : ""}>${esc(c)}</button>`).join("")}</div>`}
     </section>`;
   }
   function raceView() {
@@ -312,7 +313,7 @@
     if (k === "back") S.drafts[i] = S.drafts[i].slice(0, -1);
     else if (k === "ok") {
       if (!S.drafts[i]) return;
-      if (Number(S.drafts[i]) === S.item.answer) {
+      if (S.item.numeric ? Number(S.drafts[i]) === S.item.answer : S.drafts[i] === String(S.item.answer)) {
         S.result = { winner: i };
         S.wins[i] += 1;
         award(i, 15, true);
@@ -569,6 +570,13 @@
     if (g === "dnudge") { S.deg = Math.max(1, Math.min(S.total - 1, S.deg + Number(b.dataset.d))); paintDuel(); return; }
     if (g === "lock") { lockDuel(); return; }
     if (g === "duel-next") { if (S.round >= S.rounds) finishMatch(); else nextDuel(); return; }
+    if (g === "race-choice") {
+      const i = Number(b.dataset.player);
+      if (S.game !== "race" || S.item.numeric || S.result || S.penalty[i] > now()) return;
+      S.drafts[i] = String(S.item.choices[Number(b.dataset.choice)]);
+      raceKey(i, "ok");
+      return;
+    }
     if (g === "key") {
       const t = b.dataset.t, k = b.dataset.k;
       ctx.sound.click && ctx.sound.click();

@@ -1,0 +1,777 @@
+########## SAYFA 202 ##########
+=====
+TEMA: Dönüşüm
+4.
+202
+NELER BİLİYORUZ? 
+Aşağıdaki geometrik şekillerin verilen yatay veya dikey doğrulara göre simetrilerini 
+çiziniz.
+a)	
+b)	
+c)	
+ç)	
+d)	
+e)	
+
+
+########## SAYFA 203 ##########
+=====
+Yansıma Dönüşümü
+203
+BAŞLAYALIM 
+1)	 Aşağıdaki harf, sayı ve şekilleri inceleyerek soruları cevaplayınız.
+3
+S 
+a)	 Doğruya göre simetrik olan görsellerin numaralarını yazınız.
+b)	 Siz de doğruya göre simetrik olan birer adet harf, sayı ve logo çiziniz.
+2)	 Aşağıdaki doğa ve sanat görsellerini inceleyerek doğruya göre simetrik olan görselleri 
+belirleyiniz. Belirlediğiniz görsellerin hangi özelliklerinden (eşlik, eşit uzaklık, yön) do-
+layı doğruya göre simetrik olduklarını açıklayınız.
+3)	 	
+	
+	
+Sevilay Öğretmen, fen bilimleri dersinde “Aynalar” konusunu işlerken bir 
+aynanın önüne konulan nesne ve bu nesnenin görüntüsünü içeren yan-
+daki görseli öğrencilerine göstermiştir.
+Buna göre görseldeki nesnenin ve görüntüsünün aynaya olan uzak-
+lıklarıyla ilgili düşüncelerinizi yazınız.
+1
+2
+3
+4
+5
+
+
+########## SAYFA 204 ##########
+=====
+TEMA: Dönüşüm
+4.
+204
+ÖĞRENELİM
+KATIL-UYGULA-KEŞFET 1
+K
+L
+M
+YANSIMA DÖNÜŞÜMÜ
+a)
+ç)
+b)
+d)
+c)
+e)
+Simetri Aynası ve Asetat Kâğıdı Kullanımı
+Simetri aynası ve asetat kâğıdı, bir nokta veya şeklin yansıma dönüşümü altındaki görüntüsünü 
+somut olarak gözlemlemeyi ve kontrol etmeyi sağlayan materyallerdir.
+Simetri aynası: Bir şeklin yansıma dönüşümü altındaki görüntüsünü kontrol 
+etmek için simetri aynası, simetri doğrusu üzerine yerleştirilir. Verilen şekil ile 
+simetri aynasının diğer tarafında oluşan görüntüsünün birbirine eş olduğu gö-
+rülür.
+Asetat kâğıdı: Bir şeklin yansıma dönüşümü altındaki görüntüsünü kontrol et-
+mek için asetat kâğıdının bir kenarı simetri doğrusunun üzerine gelecek biçimde 
+yerleştirilir ve verilen şekil asetat kâğıdının üzerine çizilir. Şekil asetat kâğıdının 
+üzerine çizildikten sonra asetat kâğıdı simetri doğrusunun diğer tarafına çevrilir 
+ve verilen şekil ile görüntüsünün eş olduğu görülür.
+Nokta, Doğru Parçası ve Çokgenlerin Yansıma Dönüşümü Altındaki Görüntüsü
+Malzemeler:gönye, cetvel, simetri aynası, asetat kâğıdı
+Aşağıdaki görsellerde nokta, doğru parçası ve çeşitli çokgenler ile yansıma dönüşümü al-
+tındaki görüntülerini oluşturmak için doğrular verilmiştir. Buna göre soruları cevaplayınız.
+1)	 Nokta, doğru parçası ve çok-
+genlerin verilen doğrulara 
+göre yansıma dönüşümü 
+altındaki görüntülerini nasıl 
+çizebileceğinizi arkadaşları-
+nızla tartışınız.
+2)	 Noktanın, doğru parçasının 
+ve çokgenlerin verilen doğ-
+rulara göre yansıma dönüşü-
+mü altındaki görüntülerini 
+gönye ve cetvel kullanarak 
+uygun yerlere çiziniz.
+Konu Anlatım Videosu
+“Şekillerin Yansıma 
+Dönüşümü Altındaki 
+Görüntüleri”
+Bir noktanın veya şeklin bir doğruya göre simetrisine o nokta veya şeklin yansıma dönüşü-
+mü altındaki görüntüsü denir.
+BİLGİ KUTUSU
+
+
+########## SAYFA 205 ##########
+=====
+Yansıma Dönüşümü
+205
+•	 Simetri doğrusu, karşılıklı simetrik noktaları birleştiren doğru parçalarını dik ortalar.
+•	 Bir geometrik şekil ile şeklin yansıma dönüşümü altındaki görüntüsü eştir.
+BİLGİ KUTUSU
+KATIL-UYGULA-KEŞFET 2
+3)	 Görsellerde verilen doğruların üzerine bir simetri aynası veya asetat kâğıdı yerleştirerek çi-
+zimlerinizin doğru olup olmadığını kontrol ediniz. Hatalı çiziminiz varsa hatanın ne olduğunu 
+arkadaşlarınızla tartışınız.
+4)	 Geometrik bir şekil ile yansıma dönüşümü altındaki görüntüsünün birbirlerine karşılık gelen 
+noktalarını (örneğin karşılıklı köşe noktalar) cetvel ve gönye kullanarak birleştiriniz. Elde et-
+tiğiniz doğru parçaları ile simetri doğrusu arasındaki ilişkiyi uygun araçlardan yararlanarak 
+açıklayınız.
+5)	 Görsellerdeki geometrik şekiller ile yansıma dönüşümü altında oluşturduğunuz görüntülerinin 
+özelliklerini karşılaştırınız.
+A
+B
+C
+D
+K
+L
+M
+N
+83˚
+~
+~
+Örneğin yanda verilen noktalar görseldeki gibi karşılıklı 
+birleştirildiğinde
+A ile K, D ile N noktaları birbirinin yansıma dönüşümü al-
+tındaki görüntüsü iken
+B ile L, C ile M noktaları birbirinin yansıma dönüşümü al-
+tındaki görüntüsü değildir.
+Simetri Doğruları Nerede?
+Malzemeler: cetvel, gönye
+Aşağıdaki geometrik şekillerden hangilerinin doğruya göre simetrik olduğunu cetvel ve gönye 
+kullanarak belirleyiniz.
+Buna göre simetrik olan şekil veya şekillerin simetri doğrularını bu şekillerin üzerine çiziniz. 
+Birden fazla simetri doğrusuna sahip olan bir şekil olup olmadığını belirleyiniz. Çizdiğiniz 
+doğruların neden bu şekillere ait simetri doğrusu olduklarını matematiksel gerekçelerle 
+açıklayınız.
+İkizkenar Üçgen
+Düzgün Beşgen
+Yarım Daire
+Paralelkenar
+Çeşitkenar Üçgen
+
+
+########## SAYFA 206 ##########
+=====
+TEMA: Dönüşüm
+4.
+206
+KATIL-UYGULA-KEŞFET 3
+Gizlenmiş Bir Simetri Doğrusu Var Mı?
+Malzemeler:simetri aynası, asetat kâğıdı, gönye, cetvel
+Aşağıdaki görsellerden ilkinde bir eş üçgen çifti, ikincisinde ise bir eş dörtgen çifti 
+verilmiştir.
+Buna göre aşağıdaki soruları cevaplayınız.
+1)	 Görsellerdeki birbirine eş şekillerin bir doğruya göre simetrik şekiller olup olmadıklarını arka-
+daşlarınızla tartışınız. Düşüncelerinizi gerekçeleriyle açıklayınız.
+2)	 Görsellerdeki birbirlerine eş şekillerin karşılıklı köşelerini birleştiren doğru parçalarını çiziniz. 
+Doğru parçaları arasındaki ilişkiyi inceleyerek eş şekillerin arasında bir simetri doğrusunun 
+olup olamayacağını açıklayınız.
+3)	 Görsellerde bir doğruya göre simetrik olduğunu düşündüğünüz eş şekiller var ise bu şekillerin 
+arasındaki simetri doğrusunu gönye ve cetvel kullanarak nasıl çizeceğinizi açıklayınız. Çizimi-
+nizi yapınız ve simetri aynası veya asetat kağıdı yardımıyla çiziminizin doğruluğunu kontrol 
+ediniz.
+  
+4)	 Bir şekil ile şeklin yansıma dönüşümü altındaki görüntüsünün karşılıklı noktalarını birleştiren 
+doğru parçaları her zaman simetri doğrusuna dik midir? Simetri doğrusu bu doğru parçalarını 
+her zaman ortalar mı? Tartışınız. Ulaştığınız sonuçları yazınız.
+Birbirine eş şekillerin karşılıklı noktalarının birleştirilmesiyle oluşan doğru parçaları 
+birbirine paralel değilse bu şekiller bir doğruya göre simetrik olabilir mi? Düşününüz.
+
+
+########## SAYFA 207 ##########
+=====
+207
+Yansıma Dönüşümü
+DÜŞÜN-TARTIŞ-AÇIKLA 1
+Ülkemizde halı, kilim, çanta, heybe gibi pek çok dokuma 
+ürününde geleneksel motif ve desenler kullanılmaktadır. Bu 
+motif ve desenler aracılığıyla insanlar toplumsal statülerini, 
+inançlarını, evlilik veya bekârlık durumlarını; üzüntü, sevinç, 
+ayrılık, aşk gibi duygularını dokumalara yansıtmışlardır.
+Ayrıca motif ve desenlerin her birinin kendine özgü anlam ve 
+isimleri de vardır. Örneğin hayat ağacı motifi; uzun ömürlülü-
+ğü, dayanıklılığı, iyilik ve güzelliği temsil etmektedir.
+Hayat Ağacı
+Göz
+Bereket
+Nazar
+Kuş
+Damga / İm
+Aşağıda farklı yörelere ait halı ve kilim desenleri verilmiştir.
+Buna göre aşağıdaki soruları cevaplayınız.
+a)	 Görsellerdeki halı ve kilim desenlerinin değişiklik göstermesinin sebebi ne olabilir? Düşün-
+celerinizi arkadaşlarınızla tartışınız.
+b)	 Görsellerdeki halı ve kilim desenlerini yansıma dönüşümü açısından inceleyerek karşılaştı-
+rınız ve siz de defterinize bir desen oluşturunuz.
+Mimari: Mimarlar, antik dönemden günümüze cami, saray, köprü gibi 
+yapılarda denge, sağlamlık, estetik ve uyum amacıyla simetriyi kullan-
+mışlardır.
+Sanat ve Tasarım: Sanatçılar yüzyıllardır desen, mozaik, halı, minyatür 
+ve logo tasarımlarında görsel bütünlük oluşturmak için simetriyi kullan-
+mıştır.
+Doğa: Kelebeklerin kanat yapıları, kar tanelerinin kristal düzeni ve çiçek-
+lerin taç yaprakları simetrik örüntülere sahiptir.
+Teknoloji ve Mühendislik: Uçak kanatları, otomobil gövdeleri ve robot-
+ların simetrik biçimde üretilmesi denge, verimlilik ve güvenlik açısından 
+önemlidir.
+Yansıma dönüşümü yalnızca geometride değil gerçek yaşamın 
+birçok alanında estetik ve denge unsuru olarak önemli rol oynar.
+(Genel ağdan alınmıştır.)
+Görsel 2. Gülsarya Kilimi / Hakkâri Yöresi
+Görsel 1. Yağcı Bedir Kilimi / Balıkesir Yöresi
+
+
+########## SAYFA 208 ##########
+=====
+TEMA: Dönüşüm
+4.
+208
+UYGULAYALIM 1
+A
+B
+C
+Şekil 1: Çeşitkenar Dik Üçgen
+D
+E
+F
+Şekil 2: İkizkenar Dik Üçgen
+G
+H
+I
+Şekil 3: İkizkenar Üçgen
+J
+K
+L
+Şekil 4: İkizkenar Üçgen
+M
+N
+O
+Şekil 5: Eşkenar Üçgen
+P
+R
+S
+Şekil 6: Çeşitkenar Üçgen
+Buna göre aşağıdaki soruları cevaplayınız.
+1)	 Görsellerde verilen üçgenlerin yansıma dönüşümü altındaki görüntülerini koyu renkli kenarla-
+rına göre cetvel ve gönye yardımıyla çiziniz.
+2)	 Üçgenlerin yansıma dönüşümü altındaki görüntülerini çizdikten sonra oluşan dörtgenlerin 
+kenar ve açı özelliklerini tabloda uygun yerlere yazınız ve gerekçelerinizi arkadaşlarınızla  tar-
+tışınız.
+Oluşan Dörtgenin Kenar 
+Özellikleri
+Oluşan Dörtgenin Açı Özellikleri
+Şekil 1
+Şekil 2
+Şekil 3
+Şekil 4
+Şekil 5
+Şekil 6
+3)	 Şekil 1 ve Şekil 2’deki üçgenlerin renkli kenarları dışındaki bir kenarına göre yansıma dönüşü-
+mü altındaki görüntüleri çizildiğinde dörtgenden farklı hangi çokgenlerin oluşturulabileceğini 
+yazınız. Bu çokgenlerin özelliklerini gerekçeleriyle açıklayınız.
+Aşağıda bazı üçgen görselleri verilmiştir.
+a)
+ç)
+b)
+d)
+c)
+e)
+
+
+########## SAYFA 209 ##########
+=====
+209
+Yansıma Dönüşümü
+PERFORMANS GÖREVİ
+Sevgili öğrenciler, bu performans görevinde farklı ülkelerin bayraklarını güvenilir kaynaklardan 
+araştırdıktan sonra bayraklarında simetrik şekiller bulunanları seçmeniz, seçtiğiniz bayraklarda 
+yer alan simetrik şekillerin simetri doğrularını belirlemeniz ve simetrik şekiller içeren bayrak 
+örnekleri ile ilgili sunum yapmanız beklenmektedir.
+Çalışmada şu noktalara dikkat ediniz:
+Çalışma
+ Öncesinde
+•	 Öğretmeninizin rehberliğinde 4’er kişilik gruplara ayrılınız.
+•	 Araştırmanız sonunda sunum yapması için bir grup sözcüsü belirleyiniz.
+•	 Yapacağınız çalışma ile ilgili planlama ve görev dağılımı yapınız.
+•	 Araştırma yapacağınız genel ağ adreslerini (edu.tr, gov.tr vb.), ansiklopedi, kitap 
+ve dergileri belirleyiniz.
+•	 Belirlediğiniz kaynakların güvenilirliğini önce grup arkadaşlarınızla daha sonra 
+öğretmeniniz ile teyit ediniz.
+•	 Araştırılması istenen konu dışına çıkmayınız.
+•	 Sunum hazırlama kriterlerini inceleyiniz.
+•	 Araştırma sonucunda hazırlayacağınız sunumu öğretmeninize zamanında 
+teslim etmek için hazırlayınız.
+Çalışma
+ Sırasında
+•	 Farklı ülkelerin bayraklarını araştırınız.
+•	 Ülke bayraklarının tarihi üzerine bilgi toplayınız.
+•	 Topladığınız bilgileri sosyal bilgiler dersi ile bağlantı kurarak sınıf arkadaşlarınız-
+la paylaşınız.
+•	 Bulduğunuz ülke bayraklarının simetri doğrularını, cetvel, gönye ve açıölçer 
+kullanarak belirleyiniz.
+•	 Bulduğunuz bayrak örnekleri ve bilgileri ile ilgili sunum hazırlayınız.
+•	 Hazırladığınız sunumdaki bilgileri grup sözcünüz aracılığıyla sınıf arkadaşları-
+nızla paylaşınız.
+Sunum Hazırlama Kriterleri 
+•	 Metin dilinin anlaşılır ve etkili olmasına dikkat ediniz.
+•	 Yazı biçimlerindeki tutarlılığa dikkat ediniz.
+•	 Görsel zenginliğe önem veriniz.
+•	 Renklerin uyumuna dikkat ediniz.
+•	 Gereksiz detaylardan kaçınınız.
+Çalışma
+ Sonrasında
+•	 Çalışmanızın sonunda verilen “Grup Değerlendirme Formu”nu doldurunuz.
+•	 Performans göreviniz öğretmeniniz tarafından “Analitik Dereceli Puanlama 
+Anahtarı” ile değerlendirilecektir.
+Analitik Dereceli 
+Puanlama Anahtarı
+Grup Değerlendirme 
+Formu
+
+
+########## SAYFA 210 ##########
+=====
+TEMA: Dönüşüm
+4.
+210
+NELER ÖĞRENDİK?
+1)	 Aşağıdaki çokgenlerin verilen doğrulara göre yansıma dönüşümü altındaki görüntüleri-
+ni uygun matematiksel araçları kullanarak çiziniz.
+2)	 Aşağıda bir ABC üçgeni ile bir doğru verilmiştir. 
+Buna göre yukarıdaki ABC üçgeninin verilen doğruya göre yansıma dönüşümü altındaki 
+görüntüsünü üçgenin köşeleri yerine üçgen üzerinde belirleyeceğiniz farklı noktaları kul-
+lanarak uygulayacağınız bir strateji ile çiziniz.
+A
+B
+C
+
+
+########## SAYFA 211 ##########
+=====
+Orta Dikme ve Açıortay İnşası
+211
+UYGULAYALIM 2
+ORTA DİKME VE AÇIORTAY İNŞASI
+Aşağıdaki birinci görselde bir doğruya göre simetrik olduğu bilinen iki doğru parçası ve ikinci 
+görselde bir A açısı verilmiştir.
+A
+B
+A'
+B'
+A
+Buna göre birinci görseldeki simetri doğrusunu ve ikinci görseldeki açıya ait simetri doğru-
+sunu oluşturmak için cetvel, gönye ve pergeli nasıl kullanabileceğinizi açıklayınız. Simetri 
+doğrularını oluştururken dikkate aldığınız kriterleri yazınız.
+Pergel ve Ölçüsüz Cetvel Kullanarak Bir Doğru Parçasına Ait Simetri Doğrusunun İnşası
+Malzemeler: ölçüsüz cetvel, pergel
+Pınar
+Kerim
+Kerim, daha önceki yıllarda yalnızca pergel ve ölçüsüz cetvel kullanarak geo-
+metrik şekiller inşa ettiğimizi hatırlıyor musun?
+Tabii, hatırlıyorum hatta bunlardan bazıları simetri doğrusuna sahipti. Örneğin 
+ikizkenar üçgen ve eşkenar dörtgen inşa etmiştik.
+A
+B
+C
+E
+G
+D
+F
+KATIL-UYGULA-KEŞFET 4
+Kerim’in hatırladığı inşa çalışmaları ile ilgili şekiller aşağıda verilmiştir. Bu şekilleri incele-
+yerek verilen soruları cevaplayınız.
+
+
+########## SAYFA 212 ##########
+=====
+TEMA: Dönüşüm
+4.
+212
+1)	 ABC üçgeni ile DEFG eşkenar dörtgeninin simetri doğrularının nasıl oluşturulacağını şekillerin 
+üzerine çizerek açıklayınız.
+2)	 Kerim hatırladığı inşa çalışmalarından yola çıkarak bir doğru parçasına ait simetri doğrusunu 
+yalnızca pergel ve ölçüsüz cetvel kullanarak nasıl inşa edebilirdi? Kerim’in inşa adımlarını arka-
+daşlarınızla tartışınız ve ulaştığınız sonuçları yazınız.
+3)	 Bir doğru parçasına ait simetri doğrusunun inşası için belirlediğiniz adımları yalnızca pergel 
+ve ölçüsüz cetvel kullanarak aşağıdaki AB doğru parçası üzerinde uygulayınız ve ilgili soruları 
+cevaplayınız.
+a)	 Uyguladığınız inşa adımlarında çemberlerin kesişip kesişmediğini ve yarıçap uzunluklarının 
+eşit olup olmadığını açıklayınız.
+b)	 Çizdiğiniz çemberlerin yarıçap uzunlukları AB doğru parçasının uzunluğundan farklı olabilir 
+mi? Çizdiğiniz çemberleri sınıf arkadaşlarınızın çizdiği çemberlerle karşılaştırarak ulaştığınız 
+sonuçları yazınız.
+c)	 Çizdiğiniz simetri doğrusu, AB doğru parçasını dik ortalar mı? Gerekçeleriyle yazınız.
+A
+B
+Etkinlik Uygulama 
+Yönergesi
+“Simetri Doğrusu 
+Oluşturma”
+
+
+########## SAYFA 213 ##########
+=====
+Orta Dikme ve Açıortay İnşası
+213
+Bir doğru parçasını dik kesen ve eşit uzunlukta iki doğru parçasına ayıran doğru, ışın veya 
+doğru parçasına orta dikme denir. Bir doğru parçasına ait simetri doğrusu aynı zamanda o 
+doğru parçasına ait orta dikmedir.
+BİLGİ KUTUSU
+Malzemeler: ölçüsüz cetvel, pergel
+Bir açıya ait simetri doğrusu inşa etmek için aşağıdaki soruları cevaplayınız.
+1)	 Bir açının köşesine eşit uzaklıkta olan, açının kolları üzerindeki iki noktayı belirleyebilmek için 
+nasıl bir çizim yaparsınız? Açıklayınız.
+2)	 Aşağıdaki A açısının köşesine eşit uzaklıkta olan iki noktayı açının kolları üzerinde belirleyip bu 
+noktaları K ve L olarak isimlendiriniz. Belirlediğiniz noktaları birleştiren KL doğru parçasına ait 
+simetri doğrusunun inşası için bir sonraki adımın ne olabileceğini tartışınız.
+Orta dikme inşasında birbirini iki noktada kesen A ve B merkezli eş çember çiftlerinin 
+aşağıdaki gibi farklı yöntemlerle çizilebileceğini fark ettiniz mi?
+Yalnızca Pergel ve Ölçüsüz Cetvel Kullanarak Bir Açıya Ait Simetri Doğrusu İnşa Etme
+A
+KATIL-UYGULA-KEŞFET 5
+A
+B
+S
+T
+A
+B
+K
+L
+A
+B
+P
+R
+
+
+########## SAYFA 214 ##########
+=====
+TEMA: Dönüşüm
+4.
+214
+3)	 Açının kolları üzerinde belirlediğiniz noktaları birleştiren KL doğru parçasını çizerek bu doğru 
+parçasına ait orta dikmeyi yalnızca pergel ve ölçüsüz cetvel yardımıyla inşa ediniz.
+4)	 İnşa ettiğiniz orta dikme ile A açısına ait simetri doğrusu arasında nasıl bir ilişki vardır? Açıkla-
+yınız.
+5)	 Çizdiğiniz çemberlerin yarıçap uzunlukları, KL doğru parçasının uzunluğundan farklı olabilir 
+mi? Çizdiğiniz çemberleri sınıf arkadaşlarınızın çizdiği çemberlerle karşılaştırarak ulaştığınız 
+sonuçları yazınız.
+6)	 A açısına ait simetri doğrusunun oluşturduğu iki yeni açı arasında nasıl bir ilişki olduğunu 
+gerekçeleriyle açıklayınız.
+Oluşturduğunuz orta dikmenin aynı zamanda A açısına ait simetri doğrusu olduğu-
+nu fark ettiniz mi?
+Bir açıyı iki eş açıya ayıran doğru, ışın veya doğru parçasına açıortay denir. Bir açıya ait simetri 
+doğrusu aynı zamanda o açıya ait açıortaydır.
+BİLGİ KUTUSU
+A
+B
+D
+E
+A
+B
+D
+E
+Açıortay inşasında birbirini iki noktada kesen B ve D merkezli eş çember çiftlerinin 
+aşağıdaki gibi farklı yöntemlerle çizilebileceğini fark ettiniz mi?
+A
+B
+D
+E
+Konu Anlatım Videosu
+“Simetri Doğrularının 
+İnşası”
+
+
+########## SAYFA 215 ##########
+=====
+Orta Dikme ve Açıortay İnşası
+215
+1)	 I. Bir geometrik şekil ile bu şeklin yansıma dönüşümü altındaki görüntüsü eştir.
+II. Bir açının simetri doğrusu o açının aynı zamanda açıortayıdır.
+III. Bir doğru parçasının simetri doğrusu o doğru parçasının aynı zamanda orta dikmesidir.
+Yukarıda verilen bilgilerin hangileri doğrudur? 
+      A) I                 B) II                C) I ve II               D) I, II ve III
+2)	 Aşağıda bir açıya ait açıortayın yarım bırakılan inşa süreci verilmiştir. Bu inşa sürecini pergel ve 
+ölçüsüz cetvel yardımıyla tamamlayınız ve bu açının açıortayını çiziniz.
+3)	 Aşağıda bir doğru parçasına ait orta dikmenin yarım bırakılan inşa süreci verilmiştir. Bu inşa 
+sürecini pergel ve ölçüsüz cetvel yardımıyla tamamlayınız ve orta dikmeyi çiziniz.
+A
+B
+A
+F
+E
+NELER ÖĞRENDİK?
+
+
+########## SAYFA 216 ##########
+=====
+TEMA: Dönüşüm
+4.
+216
+1)	 Aşağıdaki açıların açıortaylarını, pergel ve ölçüsüz cetvel kullanarak inşa ediniz.
+a)	
+b)	
+c)	
+2)	 Aşağıdaki çokgenlerin simetri doğrularını, matematiksel araçlardan uygun olanları (pergel, 
+cetvel, açıölçer) kullanarak çiziniz.
+a)	
+b)	
+c)	
+3)	 Aşağıdaki CD doğru parçasına ait orta dikme inşasının bazı adımları hatalı verilmiştir.
+A
+B
+C
+D
+F
+E
+G
+I
+H
+K
+L
+J
+M
+N
+O
+P
+R
+S
+T
+U
+V
+Y
+Z
+  
+C
+D
+1. Adım
+2. Adım
+3. Adım
+Buna göre orta dikme inşa adımlarını dikkatlice inceleyip ilk hatanın hangi adımda 
+yapıldığını tespit ediniz. Hatalı adımın nedenini ve doğru inşa adımının nasıl olması 
+gerektiğini gerekçeleriyle açıklayınız.
+T
+R
+C
+D
+T
+R
+C
+D
+4. TEMA ÖLÇME VE DEĞERLENDİRME SORULARI
+
+
+########## SAYFA 217 ##########
+=====
+217
+Buna göre verilen daire diliminin simetri doğrusunu yalnızca ölçüsüz cetvel ve pergel 
+kullanarak inşa ediniz. İnşa adımlarını gerekçeleriyle açıklayınız.
+4)	 Aşağıdaki eş şekillerin gizli bir doğruya göre simetrik olup olmadığını yalnızca pergel ve 
+ölçüsüz cetvel kullanarak bulunuz. Simetri aynası veya asetat kâğıdı yerleştirerek çiziminizin 
+doğruluğunu kontrol ediniz.
+  
+  
+5)	 Aşağıda verilen iki eş üçgenin çizilen doğruya göre simetrik olup olmadığını uygun matema-
+tiksel araçları kullanarak açıklayınız.
+6)	 Aşağıda bir daire dilimi verilmiştir.       
+  
+D
+E
+F
+Ek Ölçme ve 
+Değerlendirme 
+Soruları
+
+
+########## SAYFA 218 ##########
+=====
+218
+EK-1- YÖNLERİ İÇEREN KÂĞIT 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ÖN 
+ARKA 
+SOL 
+SAĞ 
+EK 1: YÖNLERİ İÇEREN KAĞIT
+
+
+########## SAYFA 219 ##########
+=====
+219
+A-B-C-Ç
+açınım	
+: Bir cismin yüzeylerinin açılıp bir düzlem üzerine yayılması.
+analitik	
+: Çözümlemeye dayanan, çözümle ilgili; çözümlemeli.
+analiz	
+: Çözümleme yoluyla bir şeyi inceleme.
+asist	
+: Sayı atışından veya gol vuruşundan önce verilen son pas.
+ayrıt	
+: İki düzlemin ara kesiti.
+bağıntı	
+: İki veya daha çok nitelik arasında matematik işlemleri yardımı ile kurulan bağlılık veya
+	
+	 eşitlik.
+bar	
+: Hava basıncı birimi.
+bilye	
+: Çocukların oynamak için kullandığı taş, maden, toprak, cam vb.nden yapılmış küçük yu- 
+	
+  varlak nesne; misket.
+D-E-F
+deklanşör	
+: Fotoğraf makinesinin fotoğraf çekilirken basılan düğmesi.
+denizaltı	
+: Deniz yüzeyinin altında ve üstünde yol alabilen savaş veya araştırma gemisi.
+döviz	
+: Yabancı ülke parası.
+ekosistem	
+: Belirli bir alanda bulunan canlılar ile bunları saran çevrenin karşılıklı ilişkileri ile meydana 
+	
+  gelen ve süreklilik gösteren ekolojik sistem.
+estetik	
+: Güzellik duygusu ile ilgili olan; güzel duyusal.
+fayans	
+: Duvarları kaplayıp süslemek için kullanılan, bir yüzü sırlı ve türlü desenlerle bezenmiş, 
+	
+  pişmiş balçıktan levha.
+fiyonk makarna	 : Biçimi fiyonga benzeyen makarna.
+G-H-I-İ
+gerekçe	
+: Bir şeyi gerekli duruma getiren, yapılmasına sebep olan şey, gerektirici sebep.
+glüten	
+: Tahıl unlarından nişasta çıkarıldıktan sonra geri kalan albüminli madde.
+heybe	
+: At, eşek vb. binek hayvanlarının eyeri üzerine geçirilen veya omuzda taşınan, içine öte- 
+	
+	 beri koymaya yarayan, kilim veya halıdan yapılmış iki gözlü torba.
+humus	
+: Bitkilerin çürümesiyle oluşan koyu renkte organik toprak.
+ihracat	
+: Bir ülkenin ürettiği malları başka bir ülkeye veya ülkelere satması; dış satım.
+J-K-L
+jeotermal	
+: Yer altında bulunduğu veya yer altından geçtiği için sıcaklığı yüksek olan.
+katman	
+: Kat, tabaka.
+konteyner	
+: Çeşitli eşyaları taşımak için uluslararası standartlara göre tahtadan veya metalden yapıl- 
+	
+  mış büyük kasa; taşımalık.
+kriter	
+: Bir yargıya varmak veya değer vermek için başvurulan ilke; ölçüt.
+külçe	
+: Eritilerek kalıba dökülmüş maden veya alaşım.
+lens	
+: İçinden geçen paralel ışınları düzenli bir biçimde birbirine yaklaştıran veya birbirinden 
+	
+  uzaklaştıran, camdan veya ışık kırıcı herhangi bir maddeden yapılmış, genellikle küresel
+ 	
+  yüzeylerle sınırlanmış saydam cisim, mercek.
+logo	
+: Bir kurum veya kuruluşun kendine seçtiği, bazı ticaret eşyası üzerine konulan, o eşyayı 
+	
+  üreten veya satanı tanıtan resim, harf vb. özel işaret.
+SÖZLÜK
+SÖZLÜK
+
+
+########## SAYFA 220 ##########
+=====
+220
+M-N-O-Ö
+makro lens	
+: Lens teknik özelliklerinde maksimum büyütme oranı en az 1:1 veya “1x” olan lenstir. 
+materyal	
+: Yazılı, sözlü, görüntülü, kaydedilmiş her türlü belge.
+mikroorganizma	
+: Mikroskopla görülebilen organizma.
+mikser	
+: Çırpıcı, betonkarar.
+minyatür	
+: Çoğunlukla eski yazma kitaplarda görülen, ışık, gölge ve hacim duygusu yansıtılma-
+	
+  yan küçük, renkli resim sanatı.
+motif	
+: Yan yana gelerek bir bezeme işini oluşturan ve kendi başlarına birer birlik olan öge-
+	
+  lerden her biri. 
+mozole	
+: Anıt mezar.
+müsabaka	
+: İki sporcu veya iki takım arasında, kazanmak amacıyla karşılıklı olarak yapılan yarışma.
+nakliye	
+: Taşımak işi.
+ocak	
+: Yer üstünde veya yer altında cevher çıkarılan yer.
+odak	
+: Bir ışık veya ısı kaynağından yayılan ışınların bir mercekten geçtikten veya çukur bir 
+	
+  aynadan yansıdıktan sonra toplandığı yer.
+odaklamak	
+: İyi görüntü elde etmek, görüntüyü tam odak noktasına düşürmek için alıcı merceğini 
+	
+  ayarlamak.
+P-R-S-Ş
+paralimpik	
+: Çeşitli dallarda bireysel veya takım hâlinde engelli sporcular tarafından oynanan 
+	
+  (yarışma).
+peyzaj	
+: Bir yerin doğal görünüşü.
+pinpon	
+: Kuralları tenisinkine benzeyen, masa üzerinde özel top ve raketlerle oynanan bir 
+	
+  oyun, masa tenisi.
+radyatör	
+: Bağlı bulunduğu motordaki ısı derecesinin yükselmesini önleyen soğutucu.
+rakım	
+: Yer kabuğu üzerindeki bir yerin deniz seviyesine göre ölçülen yüksekliği, yükselti.
+ribaunt	
+: Sayı olmayan bir atıştan sonra, seken bir topun havadayken yakalanması.
+rota	
+: Bir gemi veya uçağın gidiş yönü, izleyeceği yol.
+sandık	
+: İçine çeşitli şeyler konulan, tahtadan yapılmış, kapaklı ev eşyası.
+simetrik	
+: Eksen olarak alınan bir doğrudan, benzer noktaları karşılıklı olarak aynı uzaklıkta bu-
+	
+  lunan iki benzer parçanın birbirine göre olan durumu, bakışımlı.
+strateji	
+: Önceden belirlenen bir amaca ulaşmak için tutulan yol, izlem.
+T-U-Ü
+tadilat	
+: Değişiklikler.
+V-Y-Z
+veri	
+: 1. Olgu, kavram veya komutların, iletişim, yorum ve işlem için elverişli biçimli gösterimi. 
+	
+  2. Gözlem ve deneye dayalı araştırmanın sonuçları.
+yenilenebilir enerji	 : Güneş, rüzgâr vb. kaynaklardan elde edilen enerji.
+SÖZLÜK
+

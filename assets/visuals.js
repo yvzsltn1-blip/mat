@@ -218,6 +218,8 @@
         return placeHtml(scene.digits);
       case "life":
         return lifeSvg(scene.id);
+      case "art":
+        return `<div class="stage art-stage">${scene.html}</div>`;
       case "formula":
         return `<div class="formula">${(scene.lines || []).map((l) => `<p>${l}</p>`).join("")}</div>`;
       default:

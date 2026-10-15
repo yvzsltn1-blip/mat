@@ -48,6 +48,7 @@
     fairTurns: true,
     autoRotate: true,
     rotateMode: "group",
+    questionSource: "gen",
     screen: "classes",
     manageTab: "students",
     classFilter: 0,
@@ -110,12 +111,16 @@
     return state.students.find((s) => s.id === state.selectedId) || null;
   }
 
+  function curriculum() {
+    return MatCurriculum.forGrade ? MatCurriculum.forGrade(state.grade) : MatCurriculum;
+  }
+
   function topic() {
-    return MatCurriculum.topics.find((t) => t.id === state.topicId) || null;
+    return curriculum().topics.find((t) => t.id === state.topicId) || null;
   }
 
   function worldOf(id) {
-    return MatCurriculum.worlds.find((w) => w.id === id);
+    return curriculum().worlds.find((w) => w.id === id);
   }
 
   function groupById(id) {
@@ -158,6 +163,7 @@
   }
 
   function levelPointsText(level) {
+    if (unlimited()) return String(level.points);
     const points = MatQuestionBank.get(state.topicId, level.id).map(q => q.points);
     const min = Math.min(...points), max = Math.max(...points);
     return min === max ? String(max) : min + "–" + max;
@@ -195,6 +201,7 @@
       fairTurns: state.fairTurns,
       autoRotate: state.autoRotate,
       rotateMode: state.rotateMode,
+      questionSource: state.questionSource,
       activeClassId: state.classId
     };
   }
@@ -228,6 +235,12 @@
     state.fairTurns = data.fairTurns !== false;
     state.autoRotate = data.autoRotate !== false;
     state.rotateMode = data.rotateMode === "class" ? "class" : "group";
+    state.questionSource = data.questionSource === "bank" ? "bank" : "gen";
+  }
+
+  // Sınırsız modda sorular her seferinde MatLevelGen ile yeniden üretilir.
+  function unlimited() {
+    return state.questionSource !== "bank" && !!window.MatLevelGen;
   }
 
   function normalizeClass(c) {
@@ -714,17 +727,20 @@
       if (token !== revealToken) return;
       state.level = level;
       const key = state.topicId + ":" + level;
+      const gen = unlimited();
       let used = Array.isArray(state.usedQuestions[key]) ? state.usedQuestions[key] : [];
-      state.cycleRenewed = used.length >= MatQuestionBank.perLevel;
+      state.cycleRenewed = !gen && used.length >= MatQuestionBank.perLevel;
       if (state.cycleRenewed) used = [];
-      const q = MatGames.buildQuiz(state.topicId, level, Date.now() + Math.random() * 1e6, used, 1)[0];
+      const q = gen ? MatLevelGen.generate(state.topicId, level) : MatGames.buildQuiz(state.topicId, level, Date.now() + Math.random() * 1e6, used, 1)[0];
       state.questions[state.qIndex] = q;
       state.reveal = { step: "question", level };
       render();
       revealTimer = setTimeout(() => {
         if (token !== revealToken) return;
-        state.usedQuestions[key] = [...used, q.id];
-        persist();
+        if (!gen) {
+          state.usedQuestions[key] = [...used, q.id];
+          persist();
+        }
         state.draft = blankDraft(q);
         state.reveal = null;
         state.phase = "quiz";
@@ -940,6 +956,7 @@
   }
 
   function sandboxHtml(kind) {
+    if (kind.startsWith("m7-") && window.Mat7Labs) return Mat7Labs.html(kind);
     if (kind === "dial") {
       if (isPairLesson()) {
         const total = state.sandbox.pairTotal || 90;
@@ -1150,7 +1167,7 @@
           <div><label for="classSection">Şube</label><input id="classSection" type="text" maxlength="12" placeholder="A" value="${esc(state.section)}"></div>
           <div><label for="classYear">Eğitim yılı</label><select id="classYear">${yearOptions()}</select></div>
         </div>
-        ${state.grade !== 5 ? `<p class="note">Anlatım ve soru bankası şu an 5. sınıf 1. kitap konularını kapsar. ${state.grade}. sınıflarla da bu konularla tekrar ve yarışma yapabilirsin.</p>` : ""}
+        ${![5, 7].includes(state.grade) ? `<p class="note">Anlatım ve soru bankası şu an 5. sınıf 1. kitap konularını kapsar. ${state.grade}. sınıflarla da bu konularla tekrar ve yarışma yapabilirsin.</p>` : ""}
       </section>
       <section class="card paste-card">
         <h3>Öğrenci ekle</h3>
@@ -1290,7 +1307,7 @@
     const idle = rows.filter((r) => !r.st.asked && !r.s.absent);
     const busiest = [...rows].sort((a, b) => b.st.asked - a.st.asked)[0];
     const th = (id, label) => `<th><button type="button" class="sort-btn ${state.reportSort === id ? "on" : ""}" data-act="report-sort" data-by="${id}">${label}${state.reportSort === id ? " ▾" : ""}</button></th>`;
-    const titleOf = (id) => (MatCurriculum.topics.find((t) => t.id === id) || { title: id }).title;
+    const titleOf = (id) => ((window.MatCurricula ? Object.values(MatCurricula).flatMap(c => c.topics) : curriculum().topics).find((t) => t.id === id) || { title: id }).title;
     const levelName = (id) => typeof id === "string" ? id : id === 0 ? "Rastgele" : (MatGames.LEVELS.find((l) => l.id === id) || { name: "" }).name;
     return `<div class="stat-cards">
         <div class="stat"><small>Çözülen soru</small><b>${fNumber(asked)}</b></div>
@@ -1356,14 +1373,14 @@
     const absent = state.students.filter((s) => s.absent).length;
     return `${header()}<main class="shell">${flashHtml()}<div class="board">
       <div>
-        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div><b>${fNumber(MatQuestionBank.total)} soru · 20 konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span></div></div>
-        ${state.grade !== 5 ? `<p class="note">${state.grade}. sınıf için bu sürümde 5. sınıf 1. kitap konuları kullanılır.</p>` : ""}
+        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div>${unlimited() ? `<b>♾️ Sınırsız görsel soru · 20 konu</b><span>Her konuda 5 seviye; her soru yeni sayılar ve yeni bir çizimle üretilir. Sıra şimdi sende!</span>` : `<b>${fNumber(curriculum().topics.length * MatQuestionBank.perTopic)} soru · 20 konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span>`}</div></div>
+        ${![5, 7].includes(state.grade) ? `<p class="note">${state.grade}. sınıf için bu sürümde 5. sınıf 1. kitap konuları kullanılır.</p>` : ""}
         ${state.tipHidden ? "" : `<div class="tip"><b>Nasıl kullanılır?</b> Konuya gir, önce anlat, sonra oyna. “Her sorudan sonra yeni öğrenci” açıkken her soruyu farklı bir öğrenci çözer. Yanlış cevap puan silmez. <button type="button" class="mini" data-act="hide-tip">Tamam</button></div>`}
-        ${MatCurriculum.worlds.map((w) => `<section class="world">
+        ${curriculum().worlds.map((w) => `<section class="world">
           <div class="world-head"><h2 style="color:${w.color}">${esc(w.name)}</h2><span class="fine">${esc(w.blurb)}</span></div>
-          <div class="topic-grid">${MatCurriculum.topics.filter((t) => t.worldId === w.id).map((t) => {
+          <div class="topic-grid">${curriculum().topics.filter((t) => t.worldId === w.id).map((t) => {
             const stars = who && who.stars ? (who.stars[t.id] || 0) : 0;
-            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">75 soru · 5 seviye</span></div><h3>${esc(t.title)}</h3>${starHtml(stars)}
+            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">${unlimited() ? "♾️ sınırsız soru" : "75 soru"} · 5 seviye</span></div><h3>${esc(t.title)}</h3>${starHtml(stars)}
               <div class="actions"><button class="soft" type="button" data-act="open" data-id="${t.id}" data-tab="lesson">Anlat</button><button class="solid" type="button" data-act="open" data-id="${t.id}" data-tab="play">Oyna</button></div></article>`;
           }).join("")}</div>
         </section>`).join("")}
@@ -1413,16 +1430,16 @@
       <div class="lesson-progress" aria-label="Anlatım ilerlemesi">${t.slides.map((s,i)=>`<button type="button" data-act="goto-slide" data-i="${i}" class="${i===state.slide?'active':i<state.slide?'done':''}" aria-label="${i+1}. adım: ${esc(s.h)}" ${i===state.slide?'aria-current="step"':''}></button>`).join('')}</div>
       ${slide.story ? `<p class="story-title">${esc(slide.story)} <span>${['① Modeli kur','② Değişimi izle','③ Sonucu keşfet'][slide.storyStep]}</span></p>` : ''}
       <h2>${esc(slide.h)}</h2>
-      <div class="lesson-workspace">
-        <div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? '✋ Şimdi sen dene' : '✦ Dikkatle izle'}</span>${visual}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>
+      <div class="lesson-workspace${slide.bullets ? ' lesson-reading' : ''}">
+        ${slide.bullets ? `<article class="lesson-rule-sheet"><p><b>Bilgi:</b> ${esc(slide.readingIntro)}</p><ul>${slide.bullets.map(rule=>`<li>${esc(rule)}</li>`).join('')}</ul><p class="lesson-rule-tip"><b>Püf noktası:</b> ${esc(slide.readingTip)}</p></article>` : `<div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? '✋ Şimdi sen dene' : '✦ Dikkatle izle'}</span>${visual}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>
         <div class="lesson-notes"><h3>${slide.sandbox ? 'Nasıl yaparım?' : 'Neyi fark ettin?'}</h3>${sentences.map((line,i)=>`<p class="observation" style="--note-i:${i}"><span>${i+1}</span>${esc(line.trim())}</p>`).join('')}
-        ${slide.check ? `<details class="lesson-check"><summary>💭 ${esc(slide.check.ask)}</summary><p>${esc(slide.check.answer)}</p></details>` : ''}</div>
+        ${slide.check ? `<details class="lesson-check"><summary>💭 ${esc(slide.check.ask)}</summary><p>${esc(slide.check.answer)}</p></details>` : ''}</div>`}
       </div>
       <div class="slide-actions">
         <button class="soft" type="button" data-act="slide-prev" ${state.slide === 0 ? "disabled" : ""}>← Önceki</button>
         <button class="soft" type="button" data-act="speak-slide">Anka okusun</button>
         <button class="soft" type="button" data-act="toggle-auto">${state.autoplay ? "Anlatımı durdur" : "▶ Otomatik anlat"}</button>
-        ${state.slide < t.slides.length - 1 ? `<button class="solid" type="button" data-act="slide-next">Sonraki adım →</button>` : `<button class="solid" type="button" data-act="to-play">Oyuna geç →</button>`}
+        ${state.slide < t.slides.length - 1 ? `<button class="solid" type="button" data-act="slide-next">${esc(slide.nextLabel || 'Sonraki adım →')}</button>` : `<button class="solid" type="button" data-act="to-play">Oyuna geç →</button>`}
       </div>`;
   }
 
@@ -1531,14 +1548,19 @@
   function renderPick(t) {
     const who = selected();
     const seen = MatGames.LEVELS.reduce((sum, l) => sum + (Array.isArray(state.usedQuestions[t.id + ":" + l.id]) ? state.usedQuestions[t.id + ":" + l.id].length : 0), 0);
-    return `<p class="kicker">75 soru · 5 seviye · ${seen} soru bu havuz turunda açıldı</p><h2>${esc(t.title)}</h2>
+    const gen = unlimited();
+    return `<p class="kicker">${gen ? "♾️ Sınırsız görsel soru · 5 seviye" : `75 soru · 5 seviye · ${seen} soru bu havuz turunda açıldı`}</p><h2>${esc(t.title)}</h2>
       <p class="say">${who ? esc(who.name) + " oynayacak. Puan ona" + (who.groupId ? " ve grubuna" : "") + " yazılacak." : "İstersen önce bir öğrenci çek. Çekmeden de puansız oynanır."}</p>
       ${settingsHtml(true)}
+      <div class="source-pick"><span>Sorular</span><div class="seg" role="group" aria-label="Soru kaynağı">
+        <button type="button" class="${gen ? "on" : ""}" data-act="question-source" data-source="gen" aria-pressed="${gen}">♾️ Sınırsız görsel</button>
+        <button type="button" class="${gen ? "" : "on"}" data-act="question-source" data-source="bank" aria-pressed="${!gen}">📚 Soru bankası (75)</button></div>
+        <small>${gen ? "Her soru yeni sayılar ve yeni bir çizimle anında üretilir; sorular hiç bitmez." : "Her seviyede 15 sabit soru; havuz bitince yeniden karıştırılır."}</small></div>
       <h3>Seviyeni sen seç</h3>
-      <div class="levels">${MatGames.LEVELS.map((lv) => `<button type="button" class="level-card" style="--level-color:${lv.color}" data-act="start-level" data-level="${lv.id}"><span class="level-icon" aria-hidden="true">${lv.icon}</span><small>SEVİYE ${lv.id}</small><b>${esc(lv.name)}</b><em>${levelPointsText(lv)} puan / soru</em><span class="fine">${esc(lv.blurb)}</span><span class="level-count">15 farklı soru</span></button>`).join("")}
-      <button type="button" class="level-card random-card" data-act="start-level" data-level="0"><span class="level-icon" aria-hidden="true">⚄</span><small>SÜRPRİZE HAZIR MISIN?</small><b>Şansına bırak</b><em>5–80 puan / soru</em><span class="fine">Her sorudan önce seviye çekilir, sonra o seviyeden bir soru gelir.</span><span class="level-count">5 seviyenin tamamı</span></button></div>
+      <div class="levels">${MatGames.LEVELS.map((lv) => `<button type="button" class="level-card" style="--level-color:${lv.color}" data-act="start-level" data-level="${lv.id}"><span class="level-icon" aria-hidden="true">${lv.icon}</span><small>SEVİYE ${lv.id}</small><b>${esc(lv.name)}</b><em>${levelPointsText(lv)} puan / soru</em><span class="fine">${esc(lv.blurb)}</span><span class="level-count">${gen ? "♾️ Sınırsız soru" : "15 farklı soru"}</span></button>`).join("")}
+      <button type="button" class="level-card random-card" data-act="start-level" data-level="0"><span class="level-icon" aria-hidden="true">⚄</span><small>SÜRPRİZE HAZIR MISIN?</small><b>Şansına bırak</b><em>${gen ? "10–80" : "5–80"} puan / soru</em><span class="fine">Her sorudan önce seviye çekilir, sonra o seviyeden bir soru gelir.</span><span class="level-count">5 seviyenin tamamı</span></button></div>
       ${arcadeCardsHtml(t)}
-      <p class="fine">Doğru/yanlış soruları her zaman <b>5 puan</b>dır; yalnız ilk iki seviyede bulunur. Diğer sorular seviyenin puanını kazandırır. Bir seviyenin 15 sorusu bitene kadar aynı soru tekrar gelmez.</p>
+      <p class="fine">${gen ? "Sınırsız modda her soru çizimli üretilir ve seviyenin puanını kazandırır. Kareli zeminde paralel/dik doğru, iletki, saat, abaküs, bloklar, bar modeli gibi farklı soru türleri karışık gelir." : "Doğru/yanlış soruları her zaman <b>5 puan</b>dır; yalnız ilk iki seviyede bulunur. Diğer sorular seviyenin puanını kazandırır. Bir seviyenin 15 sorusu bitene kadar aynı soru tekrar gelmez."}</p>
       ${state.gate !== null ? `<div class="result gate"><h3>İlk soruyu kim çözsün?</h3>
         <div class="actions"><button class="solid" type="button" data-act="gate-random">🎲 Rastgele çek ve başla</button>${state.groups.length ? `<button class="soft" type="button" data-act="gate-group">👥 Sıradaki gruptan çek</button>` : ""}<button class="soft" type="button" data-act="gate-free">Puansız başla</button></div>
         <div class="chips">${present(state.students).map((s) => `<button type="button" class="chip ${state.turnDone.includes(s.id) && state.fairTurns ? "played" : ""}" data-act="gate-pick" data-id="${esc(s.id)}">${esc(s.name)}</button>`).join("")}</div></div>` : ""}`;
@@ -1730,14 +1752,14 @@
     if (hash.startsWith("konu-")) {
       const play = hash.endsWith("-oyna");
       const id = play ? hash.slice(5, -5) : hash.slice(5);
-      if (MatCurriculum.topics.some((t) => t.id === id)) openTopic(id, play ? "play" : "lesson");
+      if (curriculum().topics.some((t) => t.id === id)) openTopic(id, play ? "play" : "lesson");
       else render();
     } else if (hash.startsWith("oyun-")) {
       const parts = hash.slice(5).split("-");
-      const id = parts[0];
-      const requestedLevel = Number(parts[1]);
+      const requestedLevel = Number(parts.pop());
+      const id = parts.join("-");
       const level = [0, ...MatGames.LEVELS.map(l => l.id)].includes(requestedLevel) ? requestedLevel : 1;
-      if (MatCurriculum.topics.some((t) => t.id === id)) {
+      if (curriculum().topics.some((t) => t.id === id)) {
         state.screen = "topic";
         state.topicId = id;
         state.topicTab = "play";
@@ -1963,6 +1985,7 @@
   }
 
   function bindDynamic() {
+    if (window.Mat7Labs) Mat7Labs.bind(app);
     const arcadeRoot = document.getElementById("arcadeRoot");
     if (arcadeRoot && typeof MatArcade !== "undefined") MatArcade.mount(arcadeRoot, arcadeCtx());
     if (typeof MatAdjacent !== "undefined") MatAdjacent.bind();
@@ -2194,6 +2217,10 @@
       return;
     }
     if (act === "set-grade") {
+      cancelRound();
+      stopAuto();
+      state.topicId = null;
+      state.slide = 0;
       state.grade = Number(btn.dataset.grade);
       persist();
       render();
@@ -2309,7 +2336,7 @@
       render();
       return;
     }
-    if (act === "rotate-mode") {
+    if (act === "question-source") {
       state.rotateMode = btn.dataset.mode === "class" ? "class" : "group";
       persist();
       render();
