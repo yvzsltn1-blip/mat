@@ -57,6 +57,7 @@
     el = node; ctx = context;
     if (!S || S.game !== ctx.gameId || S.topicId !== ctx.topicId) { stop(); S = fresh(ctx.gameId, ctx.topicId); }
     node.addEventListener("click", onClick);
+    node.addEventListener("pointerdown", onPointerDown);
     node.addEventListener("input", onInput);
     node.addEventListener("change", onChange);
     draw();
@@ -291,7 +292,7 @@
   const RACE_TIME = 45;
   function racePanel(i) {
     const id = S.players[i], pen = S.penalty[i] > now(), won = S.result && S.result.winner === i;
-    return `<section class="ar-side ${pen ? "penalty" : ""} ${won ? "won" : ""}" style="--gc:${colorOf(id, i)}">
+    return `<section class="ar-side ${pen ? "penalty" : ""} ${won ? "won" : ""}" id="arSide${i}" style="--gc:${colorOf(id, i)}">
       <header><span class="ar-ava">${(id ? esc(initials(nameOf(id, i))) : (i || 0) + 1)}</span><b>${esc(nameOf(id, i))}</b><span class="ar-wins">${"★".repeat(S.wins[i])}<em>${S.wins[i]}</em></span></header>
       <div class="ar-read" id="arRead${i}">${S.drafts[i] ? G.fmt(S.drafts[i]) : "…"}${S.item.unit ? `<small>${esc(S.item.unit)}</small>` : ""}</div>
       ${pen ? `<div class="ar-pen" id="arPen${i}">⏳ Ceza</div>` : ""}
@@ -327,11 +328,23 @@
       S.drafts[i] = "";
       S.penalty[i] = now() + 2000;
       ctx.sound.wrong();
-      draw();
+      paintSide(i);
       return;
     } else if (S.drafts[i].length < 9) S.drafts[i] += k;
-    const box = el.querySelector("#arRead" + i);
+    paintSide(i);
+  }
+  // Yalnız o oyuncunun panelini günceller; tam yeniden çizim diğer oyuncunun basılı tuşunu silerdi.
+  function paintSide(i) {
+    const side = el.querySelector("#arSide" + i);
+    if (!side) return;
+    const pen = S.penalty[i] > now();
+    side.classList.toggle("penalty", pen);
+    const box = side.querySelector("#arRead" + i);
     if (box) box.innerHTML = (S.drafts[i] ? G.fmt(S.drafts[i]) : "…") + (S.item.unit ? `<small>${esc(S.item.unit)}</small>` : "");
+    const badge = side.querySelector(".ar-pen");
+    if (pen && !badge && box) box.insertAdjacentHTML("afterend", `<div class="ar-pen" id="arPen${i}">⏳ Ceza</div>`);
+    if (!pen && badge) badge.remove();
+    side.querySelectorAll('[data-g="race-choice"]').forEach((b) => { b.disabled = pen || !!S.result; });
   }
   function raceAdvance() {
     if (S.round >= S.rounds) { finishMatch(); return; }
@@ -498,7 +511,7 @@
           return;
         }
       }
-      [0, 1].forEach((i) => { if (S.penalty[i] && S.penalty[i] <= now()) { S.penalty[i] = 0; draw(); } });
+      [0, 1].forEach((i) => { if (S.penalty[i] && S.penalty[i] <= now()) { S.penalty[i] = 0; paintSide(i); } });
     }
     if (S.game === "duel" && S.step === "answer") {
       const left = (S.deadline - now()) / 1000;
@@ -570,18 +583,28 @@
     if (g === "dnudge") { S.deg = Math.max(1, Math.min(S.total - 1, S.deg + Number(b.dataset.d))); paintDuel(); return; }
     if (g === "lock") { lockDuel(); return; }
     if (g === "duel-next") { if (S.round >= S.rounds) finishMatch(); else nextDuel(); return; }
-    if (g === "race-choice") {
+    // Fare ve dokunuş bu tuşlara pointerdown ile ulaşır; burada yalnız klavyeyle (detail 0) gelen tıklama kalır.
+    if ((g === "race-choice" || g === "key") && !(e.detail > 0)) press(b);
+  }
+  // Tuşlar click yerine pointerdown ile çalışır: iki öğrenci aynı anda dokunduğunda tarayıcı click'leri yutar.
+  function onPointerDown(e) {
+    if (e.button > 0) return;
+    const b = e.target.closest('[data-g="key"], [data-g="race-choice"]');
+    if (!b || !S || b.disabled) return;
+    e.preventDefault();
+    press(b);
+  }
+  function press(b) {
+    if (b.dataset.g === "race-choice") {
       const i = Number(b.dataset.player);
       if (S.game !== "race" || S.item.numeric || S.result || S.penalty[i] > now()) return;
       S.drafts[i] = String(S.item.choices[Number(b.dataset.choice)]);
       raceKey(i, "ok");
       return;
     }
-    if (g === "key") {
-      const t = b.dataset.t, k = b.dataset.k;
-      ctx.sound.click && ctx.sound.click();
-      if (t === "duel") duelKey(k); else raceKey(Number(t), k);
-    }
+    const t = b.dataset.t, k = b.dataset.k;
+    ctx.sound.click && ctx.sound.click();
+    if (t === "duel") duelKey(k); else raceKey(Number(t), k);
   }
   function duelKey(k) {
     if (S.step !== "answer") return;

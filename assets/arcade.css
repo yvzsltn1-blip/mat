@@ -99,6 +99,8 @@
 .ar-side header b { font: 800 clamp(1.1rem, 2.4vh, 1.5rem) var(--kid); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ar-wins { font-size: 1.2rem; color: #f0a90d; display: flex; align-items: center; gap: 4px; }
 .ar-wins em { font-style: normal; font: 800 1.4rem var(--kid); color: #1f2547; background: #fff; border-radius: 12px; padding: 0 10px; }
+.ar-side { user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.ar-keypad, .ar-choice-grid { touch-action: none; }
 .ar-side.penalty { animation: shake .4s; filter: grayscale(.6); }
 .ar-side.won { transform: scale(1.02); box-shadow: 0 0 0 6px #51cf66, 0 8px 0 color-mix(in srgb, var(--gc) 35%, white); }
 .ar-pen { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; border-radius: 26px; background: rgba(255,255,255,.75); font: 800 2rem var(--kid); color: #c2532f; }
