@@ -1091,6 +1091,7 @@
       <span class="sync-state" id="syncState" data-s="${status}">${syncText(status)}</span>
       <div class="top-actions">
         ${nav}
+        ${state.tahta && state.screen === "topic" ? `<button class="ghost" type="button" data-act="tahta" aria-pressed="true">Tahta modunu kapat</button>` : ""}
         <button class="ghost practice-btn ${state.practice ? "on" : ""}" type="button" data-act="toggle-practice" title="Antrenman modunda puan ve istatistik yazılmaz" aria-pressed="${state.practice}">🏋️ ${state.practice ? "Antrenman açık" : "Antrenman"}</button>
         <button class="ghost icon" type="button" data-act="toggle-voice" title="${state.voice ? "Sesli anlatım açık" : "Sesli anlatım kapalı"}" aria-label="${state.voice ? "Sesli anlatımı kapat" : "Sesli anlatımı aç"}">${state.voice ? "🗣️" : "🤐"}</button>
         <button class="ghost icon" type="button" data-act="toggle-mute" title="${state.muted ? "Efektler kapalı" : "Efektler açık"}" aria-label="${state.muted ? "Sesi aç" : "Sesi kapat"}">${state.muted ? "🔇" : "🔊"}</button>
@@ -1478,7 +1479,9 @@
       ${slide.story ? `<p class="story-title">${esc(slide.story)} <span>${['① Modeli kur','② Değişimi izle','③ Sonucu keşfet'][slide.storyStep]}</span></p>` : ''}
       <h2>${esc(slide.h)}</h2>
       <div class="lesson-workspace${slide.bullets ? " lesson-reading" : ""}${slide.teach ? " has-teach" : ""}">
+        <div class="lesson-layout">
         ${slide.bullets ? `${ruleSheet}${lessonNotes(slide)}` : `${slide.teach ? lessonNotes(slide) : ""}<div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? "✋ Kafanda canlandır" : "✦ Dikkatle izle"}</span>${visual}${slide.playHint ? `<p class="play-hint">${esc(slide.playHint)}</p>` : ""}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>${slide.teach ? "" : lessonNotes(slide)}`}
+        </div>
       </div>
       <div class="slide-actions">
         <button class="soft" type="button" data-act="slide-prev" ${state.slide === 0 ? "disabled" : ""}>← Önceki</button>
@@ -1732,6 +1735,80 @@
     </div></main>`;
   }
 
+  let lessonFitObserver;
+  let lessonSizeObserver;
+  let lessonFitTimer;
+  function scheduleLessonFit() {
+    clearTimeout(lessonFitTimer);
+    lessonFitTimer = setTimeout(fitLesson, 100);
+  }
+
+  // Scale the slide so it fills the fullscreen panel: shrink when it is too
+  // tall, grow when space is left. A zoom change is measured only after the
+  // browser has laid it out (a synchronous re-measure can return the previous
+  // size), and each pass corrects the zoom by the measured ratio.
+  const LESSON_ZOOM_MIN = 0.5, LESSON_ZOOM_MAX = 1.5;
+  let lessonFitRun = 0;
+  function fitLesson() {
+    const workspace = app.querySelector(".lesson-workspace");
+    const layout = workspace?.querySelector(".lesson-layout");
+    if (!layout) return;
+    if (!document.body.classList.contains("classroom-fullscreen") || window.innerWidth <= 760) {
+      layout.style.zoom = "";
+      return;
+    }
+    const run = ++lessonFitRun;
+    let pass = 0;
+    const step = () => {
+      if (run !== lessonFitRun || !layout.isConnected) return;
+      const zoom = parseFloat(layout.style.zoom) || 1;
+      const height = layout.getBoundingClientRect().height;
+      const room = workspace.clientHeight - 2;
+      if (!height || room <= 0) return;
+      // Text rewraps as the zoom changes, so height is not exactly linear.
+      let next = zoom * room / height;
+      if (pass < 2) next = zoom + (next - zoom) * 0.9;
+      next = Math.min(LESSON_ZOOM_MAX, Math.max(LESSON_ZOOM_MIN, Math.floor(next * 100) / 100));
+      const fits = height <= room + 1;
+      if (fits && Math.abs(next - zoom) < 0.02) return;
+      if (pass >= 4) {
+        // Settle on a size that fits rather than keep adjusting.
+        if (!fits) layout.style.zoom = Math.max(LESSON_ZOOM_MIN, Math.floor(zoom * room / height * 98) / 100);
+        return;
+      }
+      layout.style.zoom = next;
+      pass++;
+      setTimeout(() => requestAnimationFrame(step), 30);
+    };
+    step();
+  }
+
+  function watchLessonLayout() {
+    lessonFitObserver?.disconnect();
+    lessonSizeObserver?.disconnect();
+    const layout = app.querySelector(".lesson-layout");
+    if (layout && typeof ResizeObserver !== "undefined") {
+      let lastWidth = -1, lastHeight = -1;
+      lessonSizeObserver = new ResizeObserver((entries) => {
+        const box = entries[0].borderBoxSize[0];
+        const width = Math.round(box.inlineSize), height = Math.round(box.blockSize);
+        if (width === lastWidth && height === lastHeight) return;
+        lastWidth = width;
+        lastHeight = height;
+        scheduleLessonFit();
+      });
+      // Observe the fixed outer panel, never the workspace being scaled:
+      // its scrollbars can otherwise feed back into the fit calculation.
+      lessonSizeObserver.observe(layout.closest(".topic-main"), { box: "border-box" });
+    }
+    if (layout && typeof MutationObserver !== "undefined") {
+      lessonFitObserver = new MutationObserver(scheduleLessonFit);
+      // Interactive examples replace their output without a page render.
+      lessonFitObserver.observe(layout, { childList: true, subtree: true, characterData: true });
+    }
+    scheduleLessonFit();
+  }
+
   function render() {
     if (!authenticated) {
       renderLogin();
@@ -1748,6 +1825,7 @@
     app.innerHTML = (state.practice ? `<div class="practice-ribbon" role="status">🏋️ ANTRENMAN MODU · puan, istatistik ve sıralama değişmez <button type="button" data-act="toggle-practice">Kapat</button></div>` : "") + html + (passwordOpen ? passwordDialog() : "");
     document.body.classList.toggle("practice-mode", state.practice);
     bindDynamic();
+    watchLessonLayout();
   }
 
   function renderLoading(text) {
@@ -2900,7 +2978,11 @@
     if (!authenticated) return;
     document.body.classList.toggle("is-fs", !!document.fullscreenElement);
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
+    scheduleLessonFit();
   });
+  window.addEventListener?.("resize", scheduleLessonFit);
+  document.addEventListener("toggle", scheduleLessonFit, true);
+  document.fonts?.ready.then(scheduleLessonFit);
 
   if (cloud) {
     cloud.onStatus((s) => {

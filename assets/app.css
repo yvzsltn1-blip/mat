@@ -496,6 +496,7 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .story-title {font-weight:800;color:#46675c;font-size:.9rem}
 .story-title span {background:#e8f1e9;padding:6px 12px;border-radius:20px}
 .lesson-workspace {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,1fr);gap:24px;margin:22px 0}
+.lesson-layout {display:contents}
 .lesson-workspace.has-teach {grid-template-areas:"model lesson"}
 .lesson-workspace.has-teach .lesson-canvas {grid-area:model}
 .lesson-workspace.has-teach .lesson-notes {grid-area:lesson}
@@ -624,6 +625,41 @@ body.classroom-fullscreen .slide-actions {margin-top:4px;padding-top:8px}
 body.classroom-fullscreen .slide-actions button {padding:8px 13px}
 @media(max-height:700px){body.classroom-fullscreen .lesson-workspace{gap:10px}body.classroom-fullscreen .lesson-canvas .scene{max-height:26vh;min-height:90px}body.classroom-fullscreen .lesson-canvas .dial-stage{height:22vh}body.classroom-fullscreen .observation{font-size:.9rem;margin:.4em 0}body.classroom-fullscreen .topic-main{padding:8px 14px}}
 @media(max-width:760px){body.classroom-fullscreen .lesson-workspace{grid-template-columns:1fr;grid-template-rows:minmax(180px,.85fr) minmax(120px,.7fr);overflow:auto}body.classroom-fullscreen .lesson-canvas .scene{max-height:24vh}body.classroom-fullscreen .topic-main{overflow:auto}}
+
+/* Fullscreen slides use their natural height, then fit the available space. */
+@media(min-width:761px){
+  body.classroom-fullscreen .topic-main {position:relative}
+  body.classroom-fullscreen .topic-main>.step-back {position:absolute;top:8px;right:20px;padding:4px 12px;margin:0;box-shadow:none}
+  body.classroom-fullscreen .lesson-header {min-height:28px;padding-right:100px}
+  body.classroom-fullscreen .lesson-header .kicker {margin:0}
+  body.classroom-fullscreen .story-title {margin:2px 0;font-size:.8rem}
+  body.classroom-fullscreen .story-title span {padding:3px 8px}
+  body.classroom-fullscreen .lesson-workspace {display:block;overflow:auto}
+  body.classroom-fullscreen .lesson-layout {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
+  body.classroom-fullscreen .has-teach .lesson-layout {grid-template-areas:"model lesson";grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+  body.classroom-fullscreen .lesson-rule-sheet {grid-area:model;font-size:.95rem;line-height:1.4}
+  body.classroom-fullscreen .lesson-canvas .dial-stage {height:27vh}
+  body.classroom-fullscreen .lesson-canvas .fine {margin:2px 0;line-height:1.35}
+  body.classroom-fullscreen .lesson-canvas .angle-entry label {margin-bottom:4px}
+  body.classroom-fullscreen .lesson-canvas .pair-equation>span {padding:4px}
+  body.classroom-fullscreen .lesson-canvas .pair-equation small {margin-bottom:2px}
+  body.classroom-fullscreen .lesson-canvas .im-lab,body.classroom-fullscreen .lesson-canvas .im-controls {gap:6px}
+  body.classroom-fullscreen .lesson-canvas,body.classroom-fullscreen .lesson-notes {overflow:visible;min-width:0}
+  body.classroom-fullscreen .lesson-notes.is-teach {display:grid;grid-template-columns:minmax(0,1fr);gap:14px;padding:0;align-items:start;align-self:start}
+  body.classroom-fullscreen .is-teach>h3 {margin:0;font-size:1.1rem}
+  body.classroom-fullscreen .is-teach>.worked {margin:0}
+  body.classroom-fullscreen .is-teach>.teach-motto,body.classroom-fullscreen .is-teach>.lesson-check {grid-column:1 / -1;margin:0}
+  body.classroom-fullscreen .teach-chat {gap:10px}
+  body.classroom-fullscreen .teach-para {font-size:clamp(1.05rem,1.15vw,1.4rem);line-height:1.45;padding:10px 14px}
+  body.classroom-fullscreen .anka-side {flex-basis:30px}
+  body.classroom-fullscreen .anka-face {width:30px;height:30px;font-size:1.1rem}
+  body.classroom-fullscreen .teach-bubbles,body.classroom-fullscreen .worked ol.worked-steps {gap:6px}
+  body.classroom-fullscreen .worked-ask {font-size:clamp(1.05rem,1.15vw,1.4rem);line-height:1.4;margin-bottom:8px}
+  body.classroom-fullscreen .worked-steps li {font-size:clamp(1rem,1.1vw,1.35rem);line-height:1.4;padding:8px 10px 8px 36px}
+  body.classroom-fullscreen .worked-result {padding:7px 9px;line-height:1.4}
+  body.classroom-fullscreen .lesson-canvas .learning-cards {padding:10px 0;gap:8px}
+  body.classroom-fullscreen .lesson-canvas .learning-tile {padding:12px 8px}
+}
 .angle-presets {display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .angle-presets button {min-width:58px;padding:10px 14px}
 .angle-kind {text-align:center;font-weight:800;color:#267763;margin:0 0 12px}
