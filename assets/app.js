@@ -1474,11 +1474,11 @@
     const interactiveAngle = isPairLesson() || slide.sandbox === "dial" || (slide.scene && slide.scene.kind === "angle");
     const visual = slide.h === "Komşu açılar" ? MatAdjacent.html() : slide.scene && slide.scene.kind === "intersect" ? MatIntersection.html() : interactiveAngle ? sandboxHtml("dial") : slide.sandbox ? sandboxHtml(slide.sandbox) : (slide.scene ? MatVisuals.renderScene(slide.scene) : "");
     const ruleSheet = slide.bullets ? `<article class="lesson-rule-sheet"><p><b>Bilgi:</b> ${esc(slide.readingIntro)}</p><ul>${slide.bullets.map(rule => `<li>${esc(rule)}</li>`).join("")}</ul><p class="lesson-rule-tip"><b>Püf noktası:</b> ${esc(slide.readingTip)}</p></article>` : "";
-    return `<div class="lesson-header"><p class="kicker">${slide.teach ? "Ders anlatımı" : "Gör · Düşün · Keşfet"}</p><span>${state.slide + 1} / ${t.slides.length}</span></div>
+    return `<div class="lesson-header"><p class="kicker">${slide.teach ? "Ders anlatımı" : "Gör · Düşün · Keşfet"}</p>${visual && !slide.bullets ? figZoomHtml() : ""}<span>${state.slide + 1} / ${t.slides.length}</span></div>
       <div class="lesson-progress" aria-label="Anlatım ilerlemesi">${t.slides.map((s,i)=>`<button type="button" data-act="goto-slide" data-i="${i}" class="${i===state.slide?'active':i<state.slide?'done':''}" aria-label="${i+1}. adım: ${esc(s.h)}" ${i===state.slide?'aria-current="step"':''}></button>`).join('')}</div>
       ${slide.story ? `<p class="story-title">${esc(slide.story)} <span>${['① Modeli kur','② Değişimi izle','③ Sonucu keşfet'][slide.storyStep]}</span></p>` : ''}
       <h2>${esc(slide.h)}</h2>
-      <div class="lesson-workspace${slide.bullets ? " lesson-reading" : ""}${slide.teach ? " has-teach" : ""}">
+      <div class="lesson-workspace${slide.bullets ? " lesson-reading" : ""}${slide.teach ? " has-teach" : ""}${!slide.bullets && figScale !== 1 ? " fig-scaled" : ""}" style="${slide.bullets ? "" : figScaleStyle()}">
         <div class="lesson-layout">
         ${slide.bullets ? `${ruleSheet}${lessonNotes(slide)}` : `${slide.teach ? lessonNotes(slide) : ""}<div class="lesson-canvas"><span class="canvas-label">${slide.sandbox ? "✋ Kafanda canlandır" : "✦ Dikkatle izle"}</span>${visual}${slide.playHint ? `<p class="play-hint">${esc(slide.playHint)}</p>` : ""}<button type="button" class="mini" data-act="replay-lesson">↻ Yeniden göster</button></div>${slide.teach ? "" : lessonNotes(slide)}`}
         </div>
@@ -1489,6 +1489,43 @@
         <button class="soft" type="button" data-act="toggle-auto">${state.autoplay ? "Anlatımı durdur" : "▶ Otomatik anlat"}</button>
         ${state.slide < t.slides.length - 1 ? `<button class="solid" type="button" data-act="slide-next">${esc(slide.nextLabel || 'Sonraki adım →')}</button>` : `<button class="solid" type="button" data-act="to-play">Oyuna geç →</button>`}
       </div>`;
+  }
+
+  // Teacher-controlled figure size for lesson models. In the normal page the
+  // figure fills its column's width, so the column grows with the figure. In
+  // fullscreen figures are limited by height, so the column only widens at
+  // large sizes and the slide fit shrinks the text to make room.
+  const FIG_SCALE_MIN = 0.6, FIG_SCALE_MAX = 2.5, FIG_SCALE_STEP = 0.2;
+  let figScale = 1;
+  function figScaleStyle(scale = figScale) {
+    const share = Math.min(0.82, Math.max(0.3, (1.25 / 2.25) * scale));
+    const col = Math.max(1, scale * 0.6);
+    return `--fig:${scale};--fig-col:${(share / (1 - share)).toFixed(2)}fr;--fig-col-fs:${col.toFixed(2)}fr`;
+  }
+  function figZoomHtml() {
+    return `<div class="fig-zoom" role="group" aria-label="Şekil boyutu"><span class="fig-zoom-title">Şekil</span>
+      <button type="button" data-act="fig-zoom" data-d="-1" title="Şekli küçült" aria-label="Şekli küçült" ${figScale <= FIG_SCALE_MIN ? "disabled" : ""}>−</button>
+      <span class="fig-zoom-val" aria-live="polite">%${Math.round(figScale * 100)}</span>
+      <button type="button" data-act="fig-zoom" data-d="1" title="Şekli büyüt" aria-label="Şekli büyüt" ${figScale >= FIG_SCALE_MAX ? "disabled" : ""}>+</button>
+      <button type="button" data-act="fig-zoom" data-d="0" title="Orijinal boyuta dön" ${figScale === 1 ? "disabled" : ""}>Sıfırla</button>
+    </div>`;
+  }
+  function applyFigScale(d) {
+    figScale = d === 0 ? 1 : Math.round(Math.min(FIG_SCALE_MAX, Math.max(FIG_SCALE_MIN, figScale + d * FIG_SCALE_STEP)) * 10) / 10;
+    // Update in place: re-rendering would reset the model the class is using.
+    const workspace = app.querySelector(".lesson-workspace");
+    if (workspace) setFigScaleAttrs(workspace, figScale);
+    const zoom = app.querySelector(".fig-zoom");
+    if (zoom) {
+      zoom.outerHTML = figZoomHtml();
+      app.querySelector(`.fig-zoom [data-d="${d}"]:not(:disabled)`)?.focus();
+    }
+    scheduleLessonFit();
+  }
+
+  function setFigScaleAttrs(workspace, scale) {
+    workspace.setAttribute("style", figScaleStyle(scale));
+    workspace.classList.toggle("fig-scaled", scale !== 1);
   }
 
   function fNumber(n) { return Number(n).toLocaleString("tr-TR"); }
@@ -1747,16 +1784,38 @@
   // tall, grow when space is left. A zoom change is measured only after the
   // browser has laid it out (a synchronous re-measure can return the previous
   // size), and each pass corrects the zoom by the measured ratio.
+  // With a resized figure, the figure keeps the on-screen size it had at 100%
+  // times the chosen scale (--fig-counter undoes the slide zoom for it), so
+  // only the text around it shrinks to make room.
   const LESSON_ZOOM_MIN = 0.5, LESSON_ZOOM_MAX = 1.5;
   let lessonFitRun = 0;
+  const lessonRefZoom = new Map();
+  let lastRefZoom = 1;
+  function setFigCounter(layout, zoom, scale) {
+    if (scale === 1) { layout.style.removeProperty?.("--fig-counter"); return; }
+    const ref = lessonRefZoom.get(state.topicId + ":" + state.slide) ?? lastRefZoom;
+    layout.style.setProperty?.("--fig-counter", (ref / zoom).toFixed(3));
+  }
   function fitLesson() {
     const workspace = app.querySelector(".lesson-workspace");
     const layout = workspace?.querySelector(".lesson-layout");
     if (!layout) return;
+    const hasFigure = !!layout.querySelector(".lesson-canvas");
     if (!document.body.classList.contains("classroom-fullscreen") || window.innerWidth <= 760) {
       layout.style.zoom = "";
+      layout.style.removeProperty?.("--fig-counter");
+      // Undo an interrupted 100% measurement.
+      if (hasFigure) setFigScaleAttrs(workspace, figScale);
       return;
     }
+    const key = state.topicId + ":" + state.slide;
+    let scale = figScale;
+    if (hasFigure && scale !== 1 && !lessonRefZoom.has(key)) {
+      // First measure this slide at 100%, then apply the chosen figure size.
+      scale = 1;
+      setFigScaleAttrs(workspace, 1);
+    }
+    setFigCounter(layout, parseFloat(layout.style.zoom) || 1, scale);
     const run = ++lessonFitRun;
     let pass = 0;
     const step = () => {
@@ -1770,13 +1829,30 @@
       if (pass < 2) next = zoom + (next - zoom) * 0.9;
       next = Math.min(LESSON_ZOOM_MAX, Math.max(LESSON_ZOOM_MIN, Math.floor(next * 100) / 100));
       const fits = height <= room + 1;
-      if (fits && Math.abs(next - zoom) < 0.02) return;
-      if (pass >= 4) {
+      const settle = (z) => {
+        if (scale !== 1) return;
+        lastRefZoom = z;
+        lessonRefZoom.set(key, z);
+        if (figScale === 1) return;
+        scale = figScale;
+        setFigScaleAttrs(workspace, scale);
+        setFigCounter(layout, z, scale);
+        pass = 0;
+        setTimeout(() => requestAnimationFrame(step), 30);
+      };
+      if (fits && Math.abs(next - zoom) < 0.02) { settle(zoom); return; }
+      if (pass >= 7) {
         // Settle on a size that fits rather than keep adjusting.
-        if (!fits) layout.style.zoom = Math.max(LESSON_ZOOM_MIN, Math.floor(zoom * room / height * 98) / 100);
+        if (!fits) {
+          const z = Math.max(LESSON_ZOOM_MIN, Math.floor(zoom * room / height * 98) / 100);
+          layout.style.zoom = z;
+          setFigCounter(layout, z, scale);
+        }
+        settle(parseFloat(layout.style.zoom) || 1);
         return;
       }
       layout.style.zoom = next;
+      setFigCounter(layout, next, scale);
       pass++;
       setTimeout(() => requestAnimationFrame(step), 30);
     };
@@ -2650,6 +2726,7 @@
     }
     if (act === "slide-next") { nextSlide(); return; }
     if (act === "slide-prev") { prevSlide(); return; }
+    if (act === "fig-zoom") { applyFigScale(Number(btn.dataset.d)); return; }
     if (act === "replay-lesson") { stopAuto(); MatAudio.cancelSpeak(); render(); return; }
     if (act === "speak-slide") {
       const slide = currentSlide();

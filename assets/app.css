@@ -495,16 +495,24 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .lesson-progress button.done {background:#268b74}
 .story-title {font-weight:800;color:#46675c;font-size:.9rem}
 .story-title span {background:#e8f1e9;padding:6px 12px;border-radius:20px}
-.lesson-workspace {display:grid;grid-template-columns:minmax(0,1.25fr) minmax(240px,1fr);gap:24px;margin:22px 0}
+.lesson-workspace {display:grid;grid-template-columns:minmax(0,var(--fig-col,1.25fr)) minmax(240px,1fr);gap:24px;margin:22px 0}
 .lesson-layout {display:contents}
 .lesson-workspace.has-teach {grid-template-areas:"model lesson"}
 .lesson-workspace.has-teach .lesson-canvas {grid-area:model}
 .lesson-workspace.has-teach .lesson-notes {grid-area:lesson}
 .lesson-canvas {min-width:0;padding:22px;border:1px solid #d9e1d8;border-radius:24px;background-color:#f4f8f1;background-image:radial-gradient(#b4c6b650 1px,transparent 1px);background-size:20px 20px;display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:14px}
 .canvas-label {font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:#46675c;font-weight:800}
+.fig-zoom {margin-left:auto;display:inline-flex;align-items:center;gap:4px;background:#fffdf8;border:1px solid #d9e1d8;border-radius:999px;padding:3px}
+.fig-zoom button {min-width:34px;height:30px;padding:0 10px;border-radius:999px;border:0;background:#e8f1e9;color:#1f4a3e;font:800 1.05rem/1 Nunito,sans-serif;cursor:pointer}
+.fig-zoom button:last-child {font-size:.8rem}
+.fig-zoom button:not(:disabled):hover {background:#d3e6d8}
+.fig-zoom button:disabled {opacity:.4;cursor:default}
+.fig-zoom-title {padding:0 4px 0 10px;font-weight:800;font-size:.8rem;color:#46675c}
+.fig-zoom-val {min-width:44px;text-align:center;font-weight:800;font-size:.85rem;color:#46675c;font-variant-numeric:tabular-nums}
 .lesson-canvas>.mini {align-self:flex-start}
+.fig-scaled .lesson-canvas {justify-content:flex-start;align-self:start}
 .lesson-canvas .stage {background:#ffffffd9;border:0;margin:0;padding:16px}
-.lesson-canvas .scene {max-height:350px;min-height:200px}
+.lesson-canvas .scene {max-height:calc(350px * var(--fig,1));min-height:calc(200px * min(var(--fig,1),1))}
 .lesson-canvas .pair {flex-wrap:wrap}
 .lesson-canvas .pv {overflow-x:auto;max-width:100%}
 .lesson-notes {align-self:center;min-width:0}
@@ -579,7 +587,7 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .slide-actions .solid {margin-left:auto}
 @keyframes note-in {from {opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes tile-arrive {from{opacity:0;transform:translateY(24px) scale(.92)}to{opacity:1;transform:none}}
-@media(max-width:1050px){.lesson-workspace{grid-template-columns:1fr}.lesson-workspace.has-teach{grid-template-areas:"lesson" "model"}.lesson-canvas .scene{max-height:280px}}
+@media(max-width:1050px){.lesson-workspace{grid-template-columns:1fr}.lesson-workspace.has-teach{grid-template-areas:"lesson" "model"}.lesson-canvas .scene{max-height:calc(280px * var(--fig,1))}}
 @media(max-width:600px){.lesson-canvas,.response-panel{padding:14px}.question-brief{padding:15px}.slide-actions .solid{margin-left:0}.lesson-progress{gap:4px}.story-title{font-size:.8rem}.observation{font-size:1rem}.anka-face{width:44px;height:44px;font-size:1.45rem;box-shadow:none}.anka-side{flex-basis:44px}.teach-para{font-size:.95rem;padding:10px 12px}.teach-chat{gap:8px}.worked-steps li{padding:9px 10px 9px 40px}.teach-motto{padding:9px 12px}}
 @media(prefers-reduced-motion:reduce){.observation,.learning-tile,.lesson-check p,.lesson-canvas .draw{animation:none;opacity:1;transform:none;stroke-dashoffset:0}.choice{transition:none}}
 
@@ -607,9 +615,9 @@ body.classroom-fullscreen .worked-steps li {padding:7px 10px 7px 40px}
 body.classroom-fullscreen .worked-steps li::before {width:22px;height:22px;font-size:.8rem;left:9px;box-shadow:none}
 body.classroom-fullscreen .teach-motto {margin-top:10px;padding:8px 12px;animation-delay:.8s}
 body.classroom-fullscreen .lesson-notes.is-teach {overflow:auto}
-body.classroom-fullscreen .lesson-canvas .scene {max-height:min(34vh,300px);min-height:120px}
+body.classroom-fullscreen .lesson-canvas .scene {max-height:calc(min(34vh,300px) * var(--fig,1));min-height:120px}
 body.classroom-fullscreen .lesson-canvas>.stage {padding:8px;margin:0}
-body.classroom-fullscreen .lesson-canvas .dial-stage {height:min(27vh,240px);min-height:0;flex:none;display:grid;place-items:center;overflow:hidden}
+body.classroom-fullscreen .lesson-canvas .dial-stage {height:calc(min(27vh,240px) * var(--fig,1));min-height:0;flex:none;display:grid;place-items:center;overflow:hidden}
 body.classroom-fullscreen .lesson-canvas .dial-stage .scene {width:100%;height:100%;min-height:0;max-height:none;object-fit:contain}
 body.classroom-fullscreen .lesson-canvas .dial-read {font-size:clamp(1.5rem,3vh,2.4rem);margin:0}
 body.classroom-fullscreen .lesson-canvas .angle-presets {gap:4px}
@@ -617,14 +625,14 @@ body.classroom-fullscreen .lesson-canvas .angle-presets button {min-width:44px;p
 body.classroom-fullscreen .lesson-canvas .angle-entry {margin-top:4px;padding:8px}
 body.classroom-fullscreen .lesson-canvas .pair-equation {padding:6px;margin:4px 0}
 body.classroom-fullscreen .lesson-canvas .pair-equation b {font-size:1.15rem}
-body.classroom-fullscreen .lesson-canvas #intersectionSvg {max-height:min(40vh,330px)}
+body.classroom-fullscreen .lesson-canvas #intersectionSvg {max-height:calc(min(40vh,330px) * var(--fig,1))}
 body.classroom-fullscreen .lesson-notes {overflow:auto;align-self:stretch;padding:10px 4px}
 body.classroom-fullscreen .observation {font-size:clamp(.92rem,1.35vw,1.12rem);line-height:1.42;margin:.65em 0}
 body.classroom-fullscreen .lesson-check {margin-top:10px;padding:10px}
 body.classroom-fullscreen .slide-actions {margin-top:4px;padding-top:8px}
 body.classroom-fullscreen .slide-actions button {padding:8px 13px}
-@media(max-height:700px){body.classroom-fullscreen .lesson-workspace{gap:10px}body.classroom-fullscreen .lesson-canvas .scene{max-height:26vh;min-height:90px}body.classroom-fullscreen .lesson-canvas .dial-stage{height:22vh}body.classroom-fullscreen .observation{font-size:.9rem;margin:.4em 0}body.classroom-fullscreen .topic-main{padding:8px 14px}}
-@media(max-width:760px){body.classroom-fullscreen .lesson-workspace{grid-template-columns:1fr;grid-template-rows:minmax(180px,.85fr) minmax(120px,.7fr);overflow:auto}body.classroom-fullscreen .lesson-canvas .scene{max-height:24vh}body.classroom-fullscreen .topic-main{overflow:auto}}
+@media(max-height:700px){body.classroom-fullscreen .lesson-workspace{gap:10px}body.classroom-fullscreen .lesson-canvas .scene{max-height:calc(26vh * var(--fig,1));min-height:90px}body.classroom-fullscreen .lesson-canvas .dial-stage{height:calc(22vh * var(--fig,1))}body.classroom-fullscreen .observation{font-size:.9rem;margin:.4em 0}body.classroom-fullscreen .topic-main{padding:8px 14px}}
+@media(max-width:760px){body.classroom-fullscreen .lesson-workspace{grid-template-columns:1fr;grid-template-rows:minmax(180px,.85fr) minmax(120px,.7fr);overflow:auto}body.classroom-fullscreen .lesson-canvas .scene{max-height:calc(24vh * var(--fig,1))}body.classroom-fullscreen .topic-main{overflow:auto}}
 
 /* Fullscreen slides use their natural height, then fit the available space. */
 @media(min-width:761px){
@@ -635,10 +643,11 @@ body.classroom-fullscreen .slide-actions button {padding:8px 13px}
   body.classroom-fullscreen .story-title {margin:2px 0;font-size:.8rem}
   body.classroom-fullscreen .story-title span {padding:3px 8px}
   body.classroom-fullscreen .lesson-workspace {display:block;overflow:auto}
-  body.classroom-fullscreen .lesson-layout {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:start}
-  body.classroom-fullscreen .has-teach .lesson-layout {grid-template-areas:"model lesson";grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+  body.classroom-fullscreen .lesson-layout {display:grid;grid-template-columns:minmax(0,var(--fig-col-fs,1fr)) minmax(0,1fr);gap:14px;align-items:start}
+  body.classroom-fullscreen .has-teach .lesson-layout {grid-template-areas:"model lesson";grid-template-columns:minmax(0,var(--fig-col-fs,1fr)) minmax(0,1.2fr);gap:24px}
   body.classroom-fullscreen .lesson-rule-sheet {grid-area:model;font-size:.95rem;line-height:1.4}
-  body.classroom-fullscreen .lesson-canvas .dial-stage {height:27vh}
+  body.classroom-fullscreen .lesson-canvas .dial-stage {height:calc(27vh * var(--fig,1))}
+  body.classroom-fullscreen .lesson-canvas :is(.stage, .scene:not(.stage .scene), #intersectionSvg, #adjacentSvg) {zoom:var(--fig-counter,1)}
   body.classroom-fullscreen .lesson-canvas .fine {margin:2px 0;line-height:1.35}
   body.classroom-fullscreen .lesson-canvas .angle-entry label {margin-bottom:4px}
   body.classroom-fullscreen .lesson-canvas .pair-equation>span {padding:4px}
@@ -682,7 +691,7 @@ body.classroom-fullscreen .slide-actions button {padding:8px 13px}
 .pair-other b:has(+ *) {color:#176b57}
 @media(max-width:600px){.pair-equation{gap:4px;padding:8px 4px}.pair-equation>span{padding:8px 3px}.pair-equation small{font-size:.65rem}}
 .intersection-lab {min-width:0}
-#intersectionSvg {display:block;width:100%;max-height:420px;touch-action:none;background:#fffdf8;border-radius:18px;user-select:none}
+#intersectionSvg {display:block;width:100%;max-height:calc(420px * var(--fig,1));touch-action:none;background:#fffdf8;border-radius:18px;user-select:none}
 .opposite-equalities {display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
 .opposite-equalities b {text-align:center;padding:14px 8px;border-radius:14px;background:#d7efe5;color:#14654d;font-size:clamp(1rem,1.7vw,1.35rem)}
 .opposite-equalities b+ b {background:#eae0f7;color:#654293}
@@ -691,7 +700,7 @@ body.classroom-fullscreen .slide-actions button {padding:8px 13px}
 .intersection-controls input {width:100%;accent-color:#3269ce}
 .intersection-controls label+label input {accent-color:#df6148}
 .adjacent-lab {min-width:0}
-#adjacentSvg {display:block;width:100%;max-height:420px;background:#fffdf8;border-radius:18px;touch-action:none}
+#adjacentSvg {display:block;width:100%;max-height:calc(420px * var(--fig,1));background:#fffdf8;border-radius:18px;touch-action:none}
 .adjacent-definition {display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
 .adjacent-definition span {padding:8px 12px;border-radius:999px;background:#fff;font-size:.8rem;font-weight:800;color:#3b6556}
 .adjacent-equation {display:flex;justify-content:center;align-items:center;gap:8px;margin:12px 0;padding:12px;background:#fff;border:1px solid #dce5db;border-radius:16px}
