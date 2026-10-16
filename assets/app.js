@@ -1673,7 +1673,10 @@
         ${state.groups.length ? `<button class="g-btn" type="button" data-act="next-group" title="Sıradaki gruptan çek">👥</button>` : ""}
         <button class="g-btn ${state.autoRotate ? "on" : ""}" type="button" data-act="toggle-setting" data-key="autoRotate" title="Her sorudan sonra yeni öğrenci: ${state.autoRotate ? "açık" : "kapalı"}" aria-pressed="${state.autoRotate}">🔄</button>
       </div>
-      <div class="g-progress"><div class="dots" aria-label="Tur ilerlemesi">${dots}</div><span><span class="level-badge" style="--level-color:${lv.color}">${lv.icon} ${esc(lv.name)}</span> Soru ${state.qIndex + 1}/${state.questions.length}</span></div>
+      <div class="g-progress" style="--lv:${lv.color}">
+        <div class="g-progress-head"><span class="g-level"><i aria-hidden="true">${lv.icon}</i>${esc(lv.name)}</span><span class="g-count" aria-label="Soru ${state.qIndex + 1} / ${state.questions.length}"><small>SORU</small><b>${state.qIndex + 1}</b><em>/${state.questions.length}</em></span></div>
+        <div class="g-track" aria-hidden="true">${dots}</div>
+      </div>
       <div class="g-points" aria-label="${q.points} puan"><span>⭐</span><b>+${q.points}</b></div>
       <div class="question-clock ${state.paused ? "is-paused" : ""}" id="questionClock" style="--time-left:${state.roundSeconds ? state.remainingMs / (state.roundSeconds * 1000) : 1}"><b id="clockValue" role="timer" aria-live="off">${state.roundSeconds ? clockText(state.remainingMs) : "∞"}</b>${!state.locked ? `<button class="mini" type="button" data-act="pause-clock" aria-label="${state.paused ? "Devam et" : "Duraklat"}">${state.paused ? "▶" : "Ⅱ"}</button>` : ""}</div>
       <button class="g-btn" type="button" data-act="fullscreen" title="Tam ekran" aria-label="Tam ekran">⛶</button>
