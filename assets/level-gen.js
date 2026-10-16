@@ -1167,10 +1167,12 @@
   // ---- Üretim ----
   // Tekrar geçmişi tarayıcıda saklanır; sayfa yenilense veya test kapatılıp açılsa da
   // son sorulan sorular hemen geri gelmez ve kalıplar sırayla dönmeye devam eder.
-  const STORE_KEY = "mat-levelgen-memory-v1";
+  // Yer kaplamasın diye sorular tam metin yerine kısa özet kodlarıyla saklanır.
+  const STORE_KEY = "mat-levelgen-memory-v2";
   const memory = {};
   let serial = 0;
   let saved = {};
+  try { root.localStorage.removeItem("mat-levelgen-memory-v1"); } catch (err) { /* eski kayıt silinemezse önemli değil */ }
   try { saved = JSON.parse(root.localStorage.getItem(STORE_KEY) || "{}") || {}; } catch (err) { saved = {}; }
   function load(key, list) {
     const st = { uses: new Map(), recent: [] };
@@ -1193,9 +1195,12 @@
   // Aynı metinli sorular çizimleriyle ayrışır; tekrar denetimi metin + cevap + çizimle yapılır.
   function signature(q) {
     const s = q.prompt + "|" + q.answer + "|" + (q.scene ? q.scene.html.replace(/animation-delay:[^;"]*;?/g, "") : "");
+    return hashText(q.prompt + "#" + q.answer).toString(36) + "." + hashText(s).toString(36);
+  }
+  function hashText(s) {
     let h = 0;
     for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0;
-    return q.prompt + "#" + q.answer + "#" + h;
+    return h;
   }
   function generate(topicId, level, rng) {
     rnd = rng || Math.random;
@@ -1227,5 +1232,5 @@
     q.id = `gen:${key}:${Date.now().toString(36)}${(serial++).toString(36)}`;
     return q;
   }
-  root.MatLevelGen = { generate, topics: Object.keys(TP), templates: (topicId) => (TP[topicId] || []).length };
+  root.MatLevelGen = { generate, topics: Object.keys(TP), templates: (topicId) => (TP[topicId] || []).length, hashText };
 })(typeof window !== "undefined" ? window : globalThis);
