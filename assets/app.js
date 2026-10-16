@@ -1678,7 +1678,7 @@
         <div class="g-track" aria-hidden="true">${dots}</div>
       </div>
       <div class="g-points" aria-label="${q.points} puan"><span>⭐</span><b>+${q.points}</b></div>
-      <div class="question-clock ${state.paused ? "is-paused" : ""}" id="questionClock" style="--time-left:${state.roundSeconds ? state.remainingMs / (state.roundSeconds * 1000) : 1}"><b id="clockValue" role="timer" aria-live="off">${state.roundSeconds ? clockText(state.remainingMs) : "∞"}</b>${!state.locked ? `<button class="mini" type="button" data-act="pause-clock" aria-label="${state.paused ? "Devam et" : "Duraklat"}">${state.paused ? "▶" : "Ⅱ"}</button>` : ""}</div>
+      <div class="question-clock ${state.paused ? "is-paused" : ""}" id="questionClock" style="--time-left:${state.roundSeconds ? state.remainingMs / (state.roundSeconds * 1000) : 1}"><b id="clockValue" role="timer" aria-live="off">${state.roundSeconds ? clockText(state.remainingMs) : "∞"}</b>${!state.locked ? `<button class="mini" type="button" data-act="pause-clock" aria-label="${state.paused ? "Devam et" : "Duraklat"}"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" fill="currentColor">${state.paused ? '<path d="M4.5 2.6v10.8c0 .8.9 1.3 1.6.8l8-5.4c.6-.4.6-1.2 0-1.6l-8-5.4c-.7-.5-1.6 0-1.6.8z"/>' : '<rect x="3" y="2.5" width="3.6" height="11" rx="1.2"/><rect x="9.4" y="2.5" width="3.6" height="11" rx="1.2"/>'}</svg></button>` : ""}</div>
       <button class="g-btn" type="button" data-act="fullscreen" title="Tam ekran" aria-label="Tam ekran">⛶</button>
     </div>`;
   }
