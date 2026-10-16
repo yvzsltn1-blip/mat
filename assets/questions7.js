@@ -291,10 +291,19 @@
     }
     return JSON.parse(JSON.stringify(cache.get(key)));
   }
+  // Son sorular tarayıcıda saklanır; test kapatılıp açılınca da aynı sorular hemen tekrar gelmez.
+  const STORE_KEY='mat7-gen-recent-v1';
+  let saved={};
+  try{saved=JSON.parse(root.localStorage.getItem(STORE_KEY)||'{}')||{};}catch(err){saved={};}
   function generate(id,level,rng=Math.random) {
-    const key=id+':'+level, history=recent.get(key)||[];let q;
+    const key=id+':'+level;
+    if(!recent.has(key))recent.set(key,Array.isArray(saved[key])?saved[key].filter(x=>typeof x==='string').slice(-80):[]);
+    const history=recent.get(key);let q;
     for(let i=0;i<100;i++) { q=make(id,level,Math.floor(rng()*15),rng);if(!history.includes(q.prompt))break; }
-    history.push(q.prompt);if(history.length>80)history.shift();recent.set(key,history);return q;
+    history.push(q.prompt);if(history.length>80)history.shift();
+    saved[key]=history;
+    try{root.localStorage.setItem(STORE_KEY,JSON.stringify(saved));}catch(err){/* depolama yoksa yalnız bellekte kalır */}
+    return q;
   }
   root.Mat7Questions={get,generate,frac,topics:topics.map(t=>t.id)};
   const oldGet=root.MatQuestionBank.get;

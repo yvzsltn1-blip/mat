@@ -1165,8 +1165,25 @@
   add("durum", 3, 5, gridStatements);
 
   // ---- Üretim ----
+  // Tekrar geçmişi tarayıcıda saklanır; sayfa yenilense veya test kapatılıp açılsa da
+  // son sorulan sorular hemen geri gelmez ve kalıplar sırayla dönmeye devam eder.
+  const STORE_KEY = "mat-levelgen-memory-v1";
   const memory = {};
   let serial = 0;
+  let saved = {};
+  try { saved = JSON.parse(root.localStorage.getItem(STORE_KEY) || "{}") || {}; } catch (err) { saved = {}; }
+  function load(key, list) {
+    const st = { uses: new Map(), recent: [] };
+    const raw = saved[key];
+    if (raw && Array.isArray(raw.recent)) st.recent = raw.recent.filter((x) => typeof x === "string").slice(-80);
+    if (raw && Array.isArray(raw.uses)) list.forEach((t, i) => { const n = Number(raw.uses[i]); if (n > 0) st.uses.set(t, n); });
+    return st;
+  }
+  function save(key, list, st) {
+    const min = Math.min(...list.map((t) => st.uses.get(t) || 0));
+    saved[key] = { recent: st.recent, uses: list.map((t) => (st.uses.get(t) || 0) - min) };
+    try { root.localStorage.setItem(STORE_KEY, JSON.stringify(saved)); } catch (err) { /* depolama yoksa yalnız bellekte kalır */ }
+  }
   function valid(q) {
     if (!q || !q.prompt || !q.explain) return false;
     if (q.kind === "num") return Number.isSafeInteger(q.answer) && q.answer >= 0;
@@ -1185,7 +1202,7 @@
     const lv = root.MatGames.LEVELS.find((x) => x.id === level);
     const list = (TP[topicId] || []).filter((t) => level >= t.lo && level <= t.hi);
     if (!lv || !list.length) throw new Error("Üretici yok: " + topicId + ":" + level);
-    const key = topicId + ":" + level, st = memory[key] || (memory[key] = { uses: new Map(), recent: [] });
+    const key = topicId + ":" + level, st = memory[key] || (memory[key] = load(key, list));
     let q = null;
     for (let attempt = 0; attempt < 60; attempt++) {
       const min = Math.min(...list.map((t) => st.uses.get(t) || 0));
@@ -1202,6 +1219,7 @@
     }
     if (!q) throw new Error("Soru üretilemedi: " + key);
     st.recent.push(q.sig); if (st.recent.length > 80) st.recent.shift();
+    save(key, list, st);
     delete q.sig;
     q.level = level;
     q.points = lv.points;
