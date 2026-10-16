@@ -249,11 +249,11 @@ body.game-mode.is-fs .topbar { display: none; }
 body.game-mode .shell { flex: 1; min-height: 0; width: 100%; margin: 0; padding: clamp(8px, 1.4vh, 16px) clamp(10px, 1.4vw, 20px); display: flex; flex-direction: column; }
 body.game-mode .topic-page { flex: 1; min-height: 0; display: flex; }
 body.game-mode .topic-nav { display: none; }
-body.game-mode .topic-main { flex: 1; min-height: 0; padding: 0; background: transparent; border: 0; box-shadow: none; display: flex; flex-direction: column; }
+body.game-mode .topic-main { flex: 1; min-height: 0; min-width: 0; padding: 0; background: transparent; border: 0; box-shadow: none; display: flex; flex-direction: column; }
 body.game-mode .reveal-stage { flex: 1; min-height: 0; border-radius: 30px; }
 body.game-mode .reveal-content { padding: 2vh 22px; }
 
-.game { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(8px, 1.3vh, 14px); font-family: var(--kid); color: #1f2547; }
+.game { flex: 1; min-height: 0; min-width: 0; display: flex; flex-direction: column; gap: clamp(8px, 1.3vh, 14px); font-family: var(--kid); color: #1f2547; }
 .game-bar { flex: none; display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 26px; padding: 7px 10px; border: 3px solid #ece4fb; box-shadow: 0 6px 0 #ddd2f3; }
 .g-btn { flex: none; width: 48px; height: 48px; border-radius: 16px; border: 0; background: #f1edfc; font-size: 1.35rem; font-weight: 800; color: #4a3a8c; box-shadow: inset 0 -4px 0 #dcd3f3; display: grid; place-items: center; }
 .g-btn:hover { background: #e7e0fb; }
@@ -354,17 +354,55 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .finish-actions { margin: 0; }
 .finish-game .review { margin: 0; padding-left: 18px; font-family: Nunito, sans-serif; font-size: .95rem; }
 
-/* Dar veya dikey ekranlarda alt alta, gerekirse kaydırılabilir */
-@media (max-width: 900px), (max-aspect-ratio: 4/5) {
-  body.game-mode { height: auto; overflow: auto; }
-  body.game-mode #app { height: auto; min-height: 100dvh; }
-  .game-stage, .game-stage.kind-dial, .game-stage.kind-rect { grid-template-columns: 1fr; }
-  .g-question, .g-answer { overflow: visible; }
-  .g-answer { min-height: 60vh; }
-  .game-bar { flex-wrap: wrap; }
-  .g-progress { margin-left: 0; align-items: flex-start; }
-  .g-player b { max-width: 50vw; }
+/* Dikey ekranlarda (telefon, dikey tablet) soru üstte, cevap altta; sayfa yine kaydırılmadan ekrana sığar. */
+@media (max-aspect-ratio: 1/1) {
+  body.game-mode .topbar { display: none; }
+  .game-stage, .game-stage.kind-dial, .game-stage.kind-rect { grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) minmax(0, 1.15fr); }
+  .g-player b { max-width: 40vw; }
+  .game .key { font-size: clamp(1.1rem, 2.4vh, 1.9rem); }
+  .game .readout { font-size: clamp(1.4rem, 3.2vh, 2.4rem); padding: 2px; }
+  .game .prompt { font-size: clamp(1.1rem, 1.5vh + 1.5vw, 2.2rem); }
   .finish-body { grid-template-columns: 1fr; }
+}
+/* Orta genişlik: ilerleme noktaları yerine yalnız "Soru x/y" */
+@media (max-width: 900px) {
+  .g-progress .dots, .g-player small { display: none; }
+  .g-progress { flex: none; white-space: nowrap; }
+  .g-player { flex: 0 1 auto; }
+  .game-bar:not(.ar-bar) { flex-wrap: wrap; row-gap: 4px; }
+}
+/* Küçük ekranlar: boşluklar, köşeler ve üst çubuk sıkışır */
+@media (max-width: 700px), (max-height: 560px) {
+  body.game-mode .shell { padding: 6px; }
+  body.game-mode .topbar { display: none; }
+  .game { gap: 6px; }
+  .game-bar { gap: 6px; padding: 4px 6px; border-radius: 18px; border-width: 2px; box-shadow: 0 3px 0 #ddd2f3; }
+  .g-btn { width: 38px; height: 38px; border-radius: 12px; font-size: 1.1rem; }
+  .g-avatar { width: 36px; height: 36px; font-size: 1rem; box-shadow: 0 0 0 2px #fff; }
+  .g-player { padding: 2px 10px 2px 2px; gap: 6px; }
+  .g-player small, .g-player em { display: none; }
+  .g-player b { font-size: 1rem; }
+  .g-draw select { height: 38px; max-width: 120px; }
+  .g-points { padding: 2px 10px; font-size: 1rem; }
+  .g-progress { font-size: .75rem; margin-left: auto; }
+  .g-progress .level-badge { display: none; }
+  .game .question-clock { min-width: 0; padding: 3px 8px; }
+  .game-stage { gap: 6px; }
+  .g-question, .g-answer { padding: 8px 10px; gap: 6px; border-radius: 20px; border-width: 2px; box-shadow: 0 4px 0 #f4d27f; }
+  .g-answer { box-shadow: 0 4px 0 #ddd2f3; }
+  .game .question-label { padding: 2px 10px; font-size: .7rem; }
+  .game .prompt { font-size: clamp(1rem, 1.6vh + 1.6vw, 1.6rem); }
+  .game .choices { gap: 6px; }
+  .game .choice { border-radius: 16px; padding: 4px 10px; font-size: clamp(.95rem, 1.4vh + 1vw, 1.4rem); }
+  .game .keypad { gap: 5px; }
+  .game .key { border-radius: 12px; font-size: clamp(1.1rem, 2.6vh, 1.8rem); }
+  .check-btn { padding: 8px 16px; border-radius: 16px; font-size: clamp(1rem, 2vh, 1.3rem); }
+  .finish-card { padding: 12px; gap: 8px; border-radius: 22px; }
+  .finish-top { gap: 10px; }
+}
+@media (max-height: 560px) {
+  .game .question-label, .g-mascot span { display: none; }
+  .game .readout { font-size: clamp(1.2rem, 6vh, 2rem); padding: 2px; }
 }
 @media (max-height: 640px) and (min-width: 901px) {
   .g-avatar { width: 40px; height: 40px; font-size: 1.05rem; }
