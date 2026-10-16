@@ -49,6 +49,8 @@
     autoRotate: true,
     rotateMode: "group",
     questionSource: "gen",
+    practice: false,
+    callout: false,
     screen: "classes",
     manageTab: "students",
     classFilter: 0,
@@ -202,6 +204,8 @@
       autoRotate: state.autoRotate,
       rotateMode: state.rotateMode,
       questionSource: state.questionSource,
+      practice: state.practice,
+      callout: state.callout,
       activeClassId: state.classId
     };
   }
@@ -236,6 +240,8 @@
     state.autoRotate = data.autoRotate !== false;
     state.rotateMode = data.rotateMode === "class" ? "class" : "group";
     state.questionSource = data.questionSource === "bank" ? "bank" : "gen";
+    state.practice = data.practice === true;
+    state.callout = data.callout === true;
   }
 
   // Sınırsız modda sorular her seferinde MatLevelGen ile yeniden üretilir.
@@ -532,7 +538,7 @@
         state.spinning = false;
         persist();
         MatAudio.fanfare();
-        MatAudio.speak(final.name + ", sıra sende!");
+        if (state.callout) MatAudio.speak(final.name + ", sıra sende!");
         setTimeout(() => {
           overlay.remove();
           if (resumeAfter && state.phase === "quiz" && !state.locked) resumeClock();
@@ -802,10 +808,11 @@
     const who = selected();
     const pts = ok ? q.points : 0;
     state.locked = true;
-    state.feedback = { ok, timedOut, explain: q.explain, correctText: showAnswer(q), points: pts, name: who ? who.name : "", awarded: !!who };
+    const counts = !!who && !state.practice;
+    state.feedback = { ok, timedOut, explain: q.explain, correctText: showAnswer(q), points: pts, name: who ? who.name : "", awarded: counts };
     state.review.push({ prompt: q.prompt, ok, timedOut, explain: q.explain, studentId: who ? who.id : null, points: who ? pts : 0, level: q.level });
     let newCycle = false;
-    if (who) {
+    if (counts) {
       const st = statsOf(who);
       const g = groupById(who.groupId);
       st.asked += 1;
@@ -851,7 +858,7 @@
       stopClock();
       const ratio = state.correctCount / state.questions.length;
       const stars = ratio === 1 ? 3 : ratio >= .8 ? 2 : ratio >= .4 ? 1 : 0;
-      state.students.forEach(who => {
+      if (!state.practice) state.students.forEach(who => {
         const attempts = state.review.filter(r => r.studentId === who.id);
         if (!attempts.length) return;
         const share = attempts.filter(r => r.ok).length / attempts.length;
@@ -872,7 +879,7 @@
 
   // Tur bitince sınıf geçmişine kısa bir özet yazılır (son turlar saklanır).
   function logRound() {
-    if (!state.classId || !state.review.length) return;
+    if (!state.classId || !state.review.length || state.practice) return;
     const players = {};
     state.review.forEach((r) => {
       if (!r.studentId) return;
@@ -1084,6 +1091,7 @@
       <span class="sync-state" id="syncState" data-s="${status}">${syncText(status)}</span>
       <div class="top-actions">
         ${nav}
+        <button class="ghost practice-btn ${state.practice ? "on" : ""}" type="button" data-act="toggle-practice" title="Antrenman modunda puan ve istatistik yazılmaz" aria-pressed="${state.practice}">🏋️ ${state.practice ? "Antrenman açık" : "Antrenman"}</button>
         <button class="ghost icon" type="button" data-act="toggle-voice" title="${state.voice ? "Sesli anlatım açık" : "Sesli anlatım kapalı"}" aria-label="${state.voice ? "Sesli anlatımı kapat" : "Sesli anlatımı aç"}">${state.voice ? "🗣️" : "🤐"}</button>
         <button class="ghost icon" type="button" data-act="toggle-mute" title="${state.muted ? "Efektler kapalı" : "Efektler açık"}" aria-label="${state.muted ? "Sesi aç" : "Sesi kapat"}">${state.muted ? "🔇" : "🔊"}</button>
         <button class="ghost icon" type="button" data-act="fullscreen" title="Tam ekran" aria-label="Tam ekran">⛶</button>
@@ -1494,6 +1502,8 @@
     return `<details class="teacher-settings" ${open ? "open" : ""}>
       <summary><span aria-hidden="true">⚙</span> Öğretmen oyun ayarları <small>${state.questionSeconds ? state.questionSeconds + " sn / soru" : "Süresiz"}${state.autoRotate ? " · her soruda yeni öğrenci" : ""}</small></summary>
       <div class="switches">
+        ${switchHtml("practice", "🏋️ Antrenman modu", "Deneme ve alıştırma için: oyunlar oynanır ama puan, istatistik ve sıralama değişmez.")}
+        ${switchHtml("callout", "Çekilişte ismi söyle", "Kapalıyken “Elif, sıra sende” sesi okunmaz. Açıkken çekilen öğrencinin adı söylenir.")}
         ${switchHtml("autoRotate", "Her sorudan sonra yeni öğrenci", "Bir öğrenci cevaplayınca sıradaki soru için otomatik olarak başka bir öğrenci çekilir.")}
         ${switchHtml("fairTurns", "Herkese sıra gelsin", "Soru çözen öğrenci, sınıftaki herkes bir kez oynayana kadar tekrar çekilmez.")}
         ${state.groups.length ? `<div class="seg small" role="group" aria-label="Otomatik çekiliş sırası">
@@ -1530,7 +1540,7 @@
       },
       award: arcadeAward,
       log: (title, players) => {
-        if (!state.classId) return;
+        if (!state.classId || state.practice) return;
         const vals = Object.values(players);
         state.history.unshift({ at: Date.now(), topicId: state.topicId, level: "🎮 " + title, n: vals.reduce((a, p) => a + p.a, 0), correct: vals.reduce((a, p) => a + p.c, 0), points: vals.reduce((a, p) => a + p.p, 0), players });
         if (state.history.length > HISTORY_LIMIT) state.history.length = HISTORY_LIMIT;
@@ -1543,6 +1553,7 @@
   }
 
   function arcadeAward(id, pts, ok) {
+    if (state.practice) return;
     const s = state.students.find((x) => x.id === id);
     if (!s) return;
     const st = statsOf(s), g = groupById(s.groupId);
@@ -1652,7 +1663,7 @@
           ${fb ? `<div class="g-feedback ${fb.ok ? "ok" : "bad"}" aria-live="polite">
             <div class="fb-emoji" aria-hidden="true">${fb.ok ? "🎉" : fb.timedOut ? "⏰" : "🤔"}</div>
             <h3>${fb.ok ? praise + (fb.name ? " " + esc(fb.name) : "") : fb.timedOut ? "Süre doldu!" : "Birlikte çözelim"}</h3>
-            ${fb.ok ? `<p class="fb-points">+${fb.points} puan${fb.awarded ? "" : " · öğrenci seçili değildi"}</p>` : `<p class="fb-answer">Doğru cevap: <b>${esc(fb.correctText)}</b></p>`}
+            ${fb.ok ? `<p class="fb-points">+${fb.points} puan${fb.awarded ? "" : state.practice ? " · antrenman, yazılmadı" : " · öğrenci seçili değildi"}</p>` : `<p class="fb-answer">Doğru cevap: <b>${esc(fb.correctText)}</b></p>`}
             <p class="fb-explain">${esc(fb.explain)}</p>
             <button class="check-btn" type="button" data-act="next-q">${state.qIndex === state.questions.length - 1 ? "🏁 Sonucu gör" : state.autoRotate && present(state.students).length > 1 ? "🎲 Sıradaki öğrenci →" : "Sonraki soru →"}</button>
           </div>` : ""}
@@ -1673,7 +1684,7 @@
       <div class="finish-card">
         <div class="finish-top"><div class="trophy" aria-hidden="true">${state.finishStars >= 2 ? "🏆" : state.finishStars === 1 ? "🎖️" : "🌱"}</div>
           <div><p class="kicker">${esc(t.title)} · tur bitti</p><h2>${title}</h2>${starHtml(state.finishStars)}
-          <p class="say">${state.correctCount} / ${state.questions.length} doğru · bu turda <b>${state.scoreEarned} puan</b> kazanıldı.</p></div></div>
+          <p class="say">${state.correctCount} / ${state.questions.length} doğru · bu turda <b>${state.scoreEarned} puan</b> kazanıldı.${state.practice ? " Antrenman · puan yazılmadı." : ""}</p></div></div>
         <div class="finish-body">
           <div><h3>Bu turun oyuncuları</h3>${scorers.length ? `<ul class="finish-players">${scorers.map((s, i) => `<li><span>${["🥇", "🥈", "🥉"][i] || "⭐"} ${esc(s.name)}</span><span>${s.ok}/${s.asked} doğru</span><b>+${s.points}</b></li>`).join("")}</ul>` : `<p class="fine">Bu tur puansız oynandı.</p>`}
             ${state.groups.length ? `<h3>Grup yarışı</h3><div class="finish-groups">${[...state.groups].sort((a, b) => groupScore(b.id) - groupScore(a.id)).map((g) => `<span style="--gc:${g.color}">${g.icon} ${esc(g.name)} <b>${groupScore(g.id)}</b></span>`).join("")}</div>` : ""}</div>
@@ -1703,6 +1714,8 @@
     else if (state.phase === "quiz") body = renderQuiz(t);
     else if (state.phase === "finish") body = renderFinish(t);
     else body = renderPick(t);
+    const atSetup = state.topicTab === "lesson" || state.phase === "pick";
+    const back = atSetup ? `<button class="soft step-back" type="button" data-act="go-back">← Geri</button>` : "";
     return `${header()}<main class="shell">${flashHtml()}<div class="topic-page">
       <aside class="topic-nav">
         <button class="soft" type="button" data-act="goto-board">← Konular</button>
@@ -1715,7 +1728,7 @@
         ${state.topicTab === "lesson" ? t.slides.map((s, i) => `<button type="button" class="nav-btn ${i === state.slide ? "on" : ""}" data-act="goto-slide" data-i="${i}">${i + 1}. ${esc(s.h)}</button>`).join("") : MatGames.LEVELS.map((lv) => `<button type="button" class="nav-btn ${state.level === lv.id && state.phase !== "pick" && (!state.reveal || state.reveal.level === lv.id) ? "on" : ""}" data-act="start-level" data-level="${lv.id}">${esc(lv.name)} · ${levelPointsText(lv)}</button>`).join("")}
         <button class="ghost" type="button" data-act="tahta" style="color:var(--ink);border-color:var(--line);margin-top:8px">${state.tahta ? "Tahta modunu kapat" : "Tahta modu"}</button>
       </aside>
-      <section class="topic-main">${body}</section>
+      <section class="topic-main">${back}${body}</section>
     </div></main>`;
   }
 
@@ -1732,7 +1745,8 @@
     document.body.classList.toggle("tahta", !!(state.tahta && state.screen === "topic" && !game));
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
     const html = state.screen === "classes" ? renderClasses() : state.screen === "manage" ? renderManage() : state.screen === "topic" ? renderTopic() : renderBoard();
-    app.innerHTML = html + (passwordOpen ? passwordDialog() : "");
+    app.innerHTML = (state.practice ? `<div class="practice-ribbon" role="status">🏋️ ANTRENMAN MODU · puan, istatistik ve sıralama değişmez <button type="button" data-act="toggle-practice">Kapat</button></div>` : "") + html + (passwordOpen ? passwordDialog() : "");
+    document.body.classList.toggle("practice-mode", state.practice);
     bindDynamic();
   }
 
@@ -1743,7 +1757,7 @@
 
   function renderLogin(focusPassword) {
     document.body.classList.add("login-mode");
-    document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode");
+    document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode", "practice-mode");
     if (cloud && !authReady) {
       renderLoading("Bağlanılıyor…");
       return;
@@ -2376,13 +2390,25 @@
     if (act === "export-csv") { exportCsv(); return; }
     if (act === "toggle-setting") {
       const key = btn.dataset.key;
-      if (!["autoRotate", "fairTurns"].includes(key)) return;
+      if (!["autoRotate", "fairTurns", "practice", "callout"].includes(key)) return;
       state[key] = !state[key];
       persist();
       render();
       return;
     }
+    if (act === "toggle-practice") {
+      state.practice = !state.practice;
+      persist();
+      flash(state.practice ? "🏋️ Antrenman modu açık: puan ve istatistik yazılmaz." : "Antrenman modu kapandı. Puanlar yeniden yazılıyor.");
+      return;
+    }
     if (act === "question-source") {
+      state.questionSource = btn.dataset.source === "bank" ? "bank" : "gen";
+      persist();
+      render();
+      return;
+    }
+    if (act === "rotate-mode") {
       state.rotateMode = btn.dataset.mode === "class" ? "class" : "group";
       persist();
       render();
@@ -2393,6 +2419,25 @@
       state.turnRound = (state.turnRound || 1) + 1;
       persist();
       flash("Sıra turu sıfırlandı. Herkes yeniden çekilebilir.");
+      return;
+    }
+    if (act === "go-back") {
+      stopAuto();
+      cancelRound();
+      if (state.screen === "topic" && state.topicTab === "lesson" && state.slide > 0) {
+        prevSlide();
+        return;
+      }
+      if (state.screen === "topic" && state.topicTab === "play" && state.phase !== "pick") {
+        state.phase = "pick";
+        state.gate = null;
+        render();
+        return;
+      }
+      if (!state.classId) { state.screen = "classes"; render(); return; }
+      state.screen = "board";
+      persist();
+      render();
       return;
     }
     if (act === "goto-board") {

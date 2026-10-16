@@ -213,6 +213,7 @@ textarea { min-height: 120px; resize: vertical; }
 .topic-nav, .topic-main { background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
 .topic-nav { padding: 12px; }
 .topic-main { padding: 16px 18px 22px; }
+.step-back { position: sticky; top: 8px; z-index: 4; margin: 0 0 14px; padding: 8px 16px; border-radius: 999px; font-weight: 800; box-shadow: 0 4px 0 #eadfcb; }
 .nav-btn, .choice, .key, .bucket, .order-btn {
   width: 100%;
   text-align: left;

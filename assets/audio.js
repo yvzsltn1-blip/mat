@@ -2,7 +2,7 @@
   const bus = {
     ctx: null,
     muted: false,
-    voice: true,
+    voice: false,
     token: 0,
 
     ensure() {

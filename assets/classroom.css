@@ -398,5 +398,10 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .modal-card h2 { margin: 0; font-family: Fraunces, Georgia, serif; }
 .modal-card input { width: 100%; border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 12px; background: #fff; }
 .modal-card .actions { margin-top: 10px; }
+.practice-ribbon { position: relative; z-index: 25; flex: none; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 6px 12px; background: repeating-linear-gradient(-45deg, #ffcf4a 0 18px, #ffc21a 18px 36px); color: #4a3200; font: 800 .95rem var(--kid); letter-spacing: .04em; text-align: center; }
+.practice-ribbon button { border: 0; border-radius: 99px; padding: 3px 12px; background: #4a3200; color: #fff; font-weight: 800; }
+.practice-btn { white-space: nowrap; }
+.topbar .practice-btn.on { background: #ffcf4a; color: #4a3200; border-color: #ffcf4a; }
+body.practice-mode .g-points, body.practice-mode .fb-points { filter: grayscale(.7); opacity: .75; }
 .modal-icon { font-size: 2.4rem; }
 .pw-ok { background: #e2f4ea; color: #1c6e55; border-radius: 12px; padding: 10px 12px; font-weight: 700; }

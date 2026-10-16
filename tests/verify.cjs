@@ -285,3 +285,27 @@ console.log(`OK: ${questionCount} benzersiz soru, ${tfCount} düşük puanlı D/
   assert.equal(again.state.groups.length, 2);
   console.log("OK: liste ayrıştırma, dengeli gruplar, herkese sıra, otomatik öğrenci değişimi, yoklama ve istatistik kalıcılığı.");
 }
+// Antrenman puan yazmaz; çekiliş sesi kayıtlı değilse kapalıdır.
+{
+  const h = harness(); addStudent(h); h.openTopic("cift", "play");
+  assert.equal(h.state.practice, false);
+  assert.equal(h.state.callout, false);
+  h.state.practice = true;
+  h.state.roundLength = 1;
+  h.beginLevel(1);
+  h.advance(1000);
+  const before = h.state.students[0].score;
+  answer(h);
+  assert(h.state.feedback.ok);
+  assert.equal(h.state.feedback.awarded, false);
+  assert.equal(h.state.students[0].score, before, "Antrenmanda puan yazılmamalı");
+  assert.equal((h.state.students[0].stats || { asked: 0 }).asked, 0, "Antrenmanda istatistik yazılmamalı");
+  h.goNext();
+  assert.equal(h.state.phase, "finish");
+  assert.equal(h.state.history.length, 0, "Antrenman turu geçmişe yazılmamalı");
+  h.persist();
+  const restored = harness(h.storage);
+  assert.equal(restored.state.practice, true);
+  assert.equal(restored.state.callout, false);
+  console.log("OK: antrenman modu puan yazmıyor; çekiliş sesi varsayılan kapalı.");
+}
