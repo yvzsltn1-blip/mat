@@ -754,3 +754,48 @@ body.login-mode::before {display:none}
   .login-submit,.login-submit span {transition:none}
 }
 @media(max-width:520px){.adjacent-equation{gap:5px;padding:10px 5px}.adjacent-equation span{font-size:.7rem}.adjacent-equation b{font-size:1.05rem}}
+/* Anlat ileri adımları: etkileşimli ve kendi kendine oynayan modeller */
+.pl-scene {background:#ffffffd9;border-radius:16px}
+.pl-draw {stroke-dasharray:1;stroke-dashoffset:1;animation:pl-draw 1s ease forwards;animation-delay:var(--d,0s)}
+.pl-pop {transform-box:fill-box;transform-origin:center;animation:pop .45s cubic-bezier(.2,.9,.3,1.3) both;animation-delay:var(--d,0s)}
+.pl-fade {animation:pl-fade .6s ease both;animation-delay:var(--d,0s)}
+.pl-pulse {animation:pl-pulse 1.4s ease-in-out infinite}
+.pl-swing {transform-box:view-box;transform-origin:var(--ox) var(--oy);animation:pl-swing 1.3s cubic-bezier(.5,0,.6,1.2) both;animation-delay:var(--d,.2s)}
+@keyframes pl-draw {to{stroke-dashoffset:0}}
+@keyframes pl-fade {from{opacity:0}to{opacity:1}}
+@keyframes pl-pulse {50%{opacity:.35}}
+@keyframes pl-swing {from{transform:rotate(var(--r))}to{transform:rotate(0)}}
+@keyframes pl-slide {from{transform:translateX(70px);opacity:0}to{transform:none;opacity:1}}
+.im-still .pl-draw,.im-still .pl-pop,.im-still .pl-fade,.im-still .pl-swing,.im-still .pl-move,.im-still .pl-group,.im-still .pl-term,.im-still .pl-zero,.im-still .pl-steps p {animation:none;stroke-dashoffset:0;opacity:1;transform:none}
+.im-demo {display:flex}
+.im-demo button {font-weight:800;border-color:#d88e25;color:#8a5212}
+.im-demo button:disabled {opacity:.55;cursor:progress}
+.pl-badges,.pl-chips {display:flex;flex-wrap:wrap;gap:6px;margin:4px 0}
+.pl-badges span,.pl-chips span {padding:5px 10px;border-radius:999px;font-weight:800;font-size:.85rem;background:#fff;border:1.5px solid #dce5db}
+.pl-badges .yes {background:#e3f5ee;border-color:#1c8c74;color:#14684f}
+.pl-badges .no {background:#fdecea;border-color:#e25b45;color:#a33a28}
+.pl-chips .on {background:#fff1cf;border-color:#d49a3a}
+.pl-groups {display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:6px 0}
+.pl-group {display:grid;gap:4px;text-align:center;animation:pop .5s ease both;animation-delay:var(--d)}
+.pl-group b {display:flex;gap:3px;padding:6px;border-radius:12px;background:color-mix(in srgb,var(--c) 14%,#fff);border:2px solid var(--c)}
+.pl-group i {font-style:normal;font-size:1.6rem;font-weight:800;min-width:1.1em}
+.pl-group small {font-weight:800;color:var(--c)}
+.pl-place {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.pl-place div {display:grid;gap:6px;justify-items:center;padding:6px 2px;border-radius:10px;background:#fff;border:1px solid #dce5db;overflow:hidden}
+.pl-place div.on {background:#fff1cf;border-color:#d49a3a}
+.pl-place small {font-size:.66rem;font-weight:700;color:#65776c;text-align:center;line-height:1.1}
+.pl-place b,.pl-place span {font-size:1.6rem;font-weight:800;min-height:1.3em}
+.pl-place span {color:#9aa5af}
+.pl-move {color:#c4472f;animation:pl-slide .7s ease both}
+.pl-terms {display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pl-term {padding:6px 10px;border-radius:10px;font-weight:800;font-size:1.1rem;color:#fff;background:var(--c);animation:pop .45s ease both;animation-delay:var(--d)}
+.pl-plus {font-size:1.2rem}
+.pl-big {font-size:clamp(1.4rem,3.4vw,2.2rem);text-align:center}
+.pl-zero {color:#c4472f;display:inline-block;animation:pl-slide .7s ease both;animation-delay:var(--d)}
+.pl-steps {display:grid;gap:8px}
+.pl-steps p {margin:0;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid #dce5db;font-weight:800;font-size:1.05rem;animation:note-in .45s ease both;animation-delay:var(--d)}
+.pl-steps span {display:grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:#244e41;color:#fff;font-size:.85rem}
+.pl-story {padding:12px 14px;border-radius:12px;background:#fffaf0;border:1px dashed #d49a3a;line-height:1.6;font-weight:600}
+.pl-story mark {background:#ffe08a;padding:0 3px;border-radius:4px}
+@media(max-width:600px){.pl-place small{font-size:.55rem}.pl-place b,.pl-place span{font-size:1.15rem}.pl-group i{font-size:1.2rem}}
+@media(prefers-reduced-motion:reduce){.pl-draw,.pl-pop,.pl-fade,.pl-swing,.pl-move,.pl-group,.pl-term,.pl-zero,.pl-steps p{animation:none;stroke-dashoffset:0;opacity:1;transform:none}.pl-pulse{animation:none}}

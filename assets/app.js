@@ -964,7 +964,7 @@
 
   function sandboxHtml(kind) {
     if (kind.startsWith("m7-") && window.Mat7Labs) return Mat7Labs.html(kind);
-    if (kind.startsWith("im-") && window.MatImagine) return MatImagine.html(kind);
+    if (kind.startsWith("im-") && window.MatImagine) return MatImagine.html(kind, (currentSlide() || {}).imPreset);
     if (kind === "dial") {
       if (isPairLesson()) {
         const total = state.sandbox.pairTotal || 90;

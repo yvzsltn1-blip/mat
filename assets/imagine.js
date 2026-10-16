@@ -472,11 +472,26 @@
     if (boxes.length) raw.on = boxes.filter((box) => box.checked).map((box) => box.value);
     return raw;
   }
-  function html(kind) {
+  function html(kind, preset) {
     const spec = specs[kind];
     if (!spec) return "";
-    const v = defaults(spec);
-    return `<div class="im-lab" data-imagine="${kind}"><p class="im-instruction">${spec.instruction}</p><div class="im-controls">${controlHtml(spec, v)}</div><div data-im-output></div></div>`;
+    const v = normalize(spec, preset || {});
+    const demo = spec.demo ? `<div class="im-demo"><button type="button" class="soft" data-im-demo="1">▶ İzle: kendisi oynasın</button></div>` : "";
+    return `<div class="im-lab" data-imagine="${kind}"><p class="im-instruction">${spec.instruction}</p><div class="im-controls">${controlHtml(spec, v)}</div>${demo}<div data-im-output></div></div>`;
+  }
+  // Gösteri sırasında kontrolleri yeni değerlere getirir; verilmeyen anahtarlar olduğu gibi kalır.
+  function apply(host, raw) {
+    host.querySelectorAll("[data-im]").forEach((input) => {
+      if (raw[input.dataset.im] !== undefined) input.value = raw[input.dataset.im];
+    });
+    host.querySelectorAll("[data-im-choice]").forEach((btn) => {
+      const want = raw[btn.dataset.imChoice];
+      if (want === undefined) return;
+      const on = btn.dataset.value === String(want);
+      btn.classList.toggle("on", on);
+      btn.setAttribute("aria-pressed", String(on));
+    });
+    if (raw.on) host.querySelectorAll("[data-im-check]").forEach((box) => { box.checked = raw.on.includes(box.value); });
   }
   function view(kind, raw) {
     const spec = specs[kind];
@@ -488,14 +503,28 @@
     if (!host) return;
     const spec = specs[host.dataset.imagine];
     if (!spec) return;
-    const paint = () => {
+    // Kaydırıcı sürüklenirken çizim anında güncellenir; seçimde ve gösteride animasyon yeniden oynar.
+    const paint = (still) => {
       const v = normalize(spec, read(host));
       host.querySelectorAll("[data-im-read]").forEach((el) => { el.textContent = v[el.dataset.imRead]; });
-      host.querySelector("[data-im-output]").innerHTML = spec.render(v);
+      const out = host.querySelector("[data-im-output]");
+      if (out.classList) out.classList.toggle("im-still", still === true);
+      out.innerHTML = spec.render(v);
     };
-    host.addEventListener("input", paint);
-    host.addEventListener("change", paint);
+    host.addEventListener("input", () => paint(true));
+    host.addEventListener("change", () => paint(true));
     host.addEventListener("click", (e) => {
+      const demoBtn = e.target && e.target.closest ? e.target.closest("[data-im-demo]") : null;
+      if (demoBtn && spec.demo && !demoBtn.disabled) {
+        demoBtn.disabled = true;
+        spec.demo.forEach((raw, i) => setTimeout(() => {
+          if (host.isConnected === false) return;
+          apply(host, raw);
+          paint(false);
+          if (i === spec.demo.length - 1) demoBtn.disabled = false;
+        }, i * (spec.demoMs || 2200)));
+        return;
+      }
       const btn = e.target && e.target.closest ? e.target.closest("[data-im-choice]") : null;
       if (!btn || !host.contains(btn)) return;
       const key = btn.dataset.imChoice;
@@ -508,5 +537,9 @@
     });
     paint();
   }
-  root.MatImagine = { html, bind, view, kinds: Object.keys(specs) };
+  function register(kind, spec) {
+    if (specs[kind]) throw new Error("Model zaten var: " + kind);
+    specs[kind] = spec;
+  }
+  root.MatImagine = { html, bind, view, register, spec: (kind) => specs[kind], get kinds() { return Object.keys(specs); } };
 })(typeof window !== "undefined" ? window : globalThis);

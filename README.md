@@ -50,6 +50,14 @@ Konunun “Oyna” ekranında **♾️ Sınırsız görsel** (varsayılan) ve **
 - Çalışma kâğıdı tarzı **kareli zemin** soruları: d doğrusuna paralel/dik olanı bulma, kaç doğrunun paralel/dik olduğunu sayma, “a ⊥ e”, “d // f” ifadelerinden doğru olanı seçme, siyah noktadan geçen paralel/dik doğruyu seçme, iki doğrunun durumunu belirleme.
 - Her soru seviyenin puanını kazandırır (10/20/35/50/80). Üretici kontrolü: `node tests/level-gen.cjs`.
 
+## Anlat sekmesinin ileri adımları
+
+5. sınıfın 20 konusunda ilk “Ders anlatımı” adımından sonraki statik çizimler `assets/lesson-play.js` ile dokunulan ve kendi kendine oynayan modellere çevrildi; her konuya yeni örnek adımları eklendi (toplam 22).
+
+- Örnekler: AB doğrusuna d doğrusunu koyup döndürme ve 90°de “d ⊥ AB” görme, gönyeyle diklik kontrolü, 6‑6‑6 çubuklarla üçgen kurma ve 6‑6‑55 çubuklarla uçların buluşamaması, üçgenin köşelerini kesip 180° yapma, kapı/saat açıları, raylarda aralık ölçme, harflerde paralel ve dik çizgiler, onluk bloklarla eldeli toplama ve onluk bozma, timsahla <, > işaretleri, karıncanın çevrede yürümesi, fayans döşeme…
+- Her modelde “▶ İzle” düğmesi örnekleri sırayla kendisi oynatır. Kaydırıcı sürüklenirken çizim anında güncellenir.
+- Kontrol: `node tests/lesson-play.cjs`.
+
 ## Görsel oyunlar
 
 Her konunun “Oyna” panelinde, seviye kartlarının altında “🎮 Görsel oyunlar” bulunur. Sorular `assets/arcade-gen.js` tarafından her seferinde çizimlerle yeniden üretilir (iletki, abaküs, sayı doğrusu, nokta dizileri, kareli alan, çokgenler, üçgenler…); 20 konu × 3 zorlukta sınırsız soru çıkar.
