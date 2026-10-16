@@ -285,7 +285,7 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .g-points { flex: none; display: flex; align-items: center; gap: 4px; background: linear-gradient(#ffdb6e, #ffb627); border-radius: 18px; padding: 4px 14px; box-shadow: inset 0 -5px 0 #e39a00; font-size: 1.3rem; }
 .g-points b { font-size: clamp(1.3rem, 2.6vh, 1.7rem); color: #5a3700; }
 .game .question-clock { flex: none; min-width: 104px; height: 52px; padding: 0 6px 0 14px; border-radius: 18px; flex-direction: row; justify-content: space-between; gap: 8px; border: 0; background: #f1edfc; color: #3b2a8a; box-shadow: inset 0 -5px 0 #dcd3f3; }
-.game .question-clock::after { left: 10px; right: 10px; bottom: 7px; width: auto; height: 4px; border-radius: 99px; background: #6b4fd8; opacity: .55; }
+.game .question-clock::after { display: none; }
 .game .question-clock > b { font-size: clamp(1.3rem, 2.6vh, 1.7rem); font-weight: 800; line-height: 1; margin-bottom: 4px; }
 .game .question-clock .mini { flex: none; margin: 0 0 4px; width: 36px; height: 36px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 12px; background: #6b4fd8; color: #fff; font: 800 .95rem var(--kid); box-shadow: inset 0 -4px 0 rgba(0,0,0,.22); cursor: pointer; transition: transform .12s, filter .12s; }
 .game .question-clock .mini:hover { filter: brightness(1.1); transform: translateY(-1px); }
@@ -293,7 +293,6 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .game .question-clock.is-paused { background: #fff6dc; color: #84651d; box-shadow: inset 0 -5px 0 #f4dd9c; }
 .game .question-clock.is-paused .mini { background: #22a86c; }
 .game .question-clock.urgent { background: #ffece4; color: #b23d22; box-shadow: inset 0 -5px 0 #f6c3b2; }
-.game .question-clock.urgent::after { background: #d9573a; opacity: .8; }
 .game .pool-notice { margin: 0; flex: none; }
 
 .game-stage { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(10px, 1.4vw, 18px); }
@@ -304,13 +303,20 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .game .question-label { align-self: flex-start; background: var(--lv); color: #fff; border-radius: 999px; padding: 4px 16px; font-size: .82rem; letter-spacing: .12em; font-weight: 800; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); }
 .game .prompt { font-family: var(--kid); font-weight: 700; font-size: clamp(1.35rem, 2.6vh + .7vw, 2.7rem); line-height: 1.22; margin: 0; letter-spacing: 0; color: #1f2547; overflow-wrap: anywhere; }
 .g-scene { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; overflow: auto; }
-.g-scene > .stage { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; border-radius: 22px; border: 2px dashed #f1d48b; background: #fffdf7; }
+.g-scene > .stage { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; border-radius: 24px; border: 2px solid #f6e2ae; background: radial-gradient(circle, #f3e6c4 1.2px, transparent 1.6px) 0 0 / 22px 22px, #fffefa; box-shadow: inset 0 -6px 0 #f8ebc8, 0 10px 22px rgba(214, 160, 40, .12); }
+/* Soru paneli: başlık ve soru üstte nefes alır, sahne kâğıt gibi bir kart */
+.game .g-question { padding: clamp(18px, 3vh, 34px) clamp(18px, 2vw, 32px); gap: clamp(10px, 1.8vh, 18px); }
+.game .g-question .prompt { padding-bottom: clamp(4px, .8vh, 10px); }
+.game .g-scene .formula { padding: 0 16px; text-align: center; }
+.game .g-scene .formula p { margin: .1em 0; font: 700 clamp(2.2rem, 6vh + 1.2vw, 5rem) Fraunces, Georgia, serif; color: #1f2547; letter-spacing: .01em; animation: fb-pop .45s cubic-bezier(.2, 1.4, .4, 1) both; }
+.game .g-scene .formula p + p { font-size: .55em; color: #5c6b7a; }
 .g-scene .scene { width: 100%; height: 100%; max-height: none; }
 .g-scene .grid-wrap, .g-scene .pv, .g-scene .trio, .g-scene .pair { max-height: 100%; }
 .g-mascot { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: clamp(3.5rem, 13vh, 8rem); line-height: 1; animation: symbol-float 3.2s ease-in-out infinite; }
 .g-mascot span { font-size: clamp(1rem, 2.4vh, 1.5rem); color: #a07a1f; font-weight: 800; margin-top: 8px; }
-.hint-btn { flex: none; align-self: flex-start; margin-top: auto; max-width: 100%; text-align: left; border: 2px dashed #e7c25d; background: #fff8de; color: #6c5313; border-radius: 18px; padding: 8px 16px; font: 700 clamp(.95rem, 1.8vh, 1.15rem) var(--kid); }
-.hint-btn.open { border-style: solid; background: #fff1bf; }
+.hint-btn { flex: none; align-self: flex-start; margin-top: auto; max-width: 100%; text-align: left; border: 2px solid #f4d27f; background: #fff; color: #6c5313; border-radius: 16px; padding: 8px 18px; font: 800 clamp(.95rem, 1.8vh, 1.15rem) var(--kid); box-shadow: inset 0 -4px 0 #f8e2a6; cursor: pointer; transition: transform .12s, background .12s; }
+.hint-btn:hover { background: #fffaea; transform: translateY(-1px); }
+.hint-btn.open { background: #fff4cc; font-weight: 700; }
 
 .g-answer .answer-area { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: clamp(6px, 1.2vh, 12px); }
 .g-answer .response-label { margin: 0; color: #6b4fd8; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 800; }
@@ -420,6 +426,9 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
   .game-stage { gap: 6px; }
   .g-question, .g-answer { padding: 8px 10px; gap: 6px; border-radius: 20px; border-width: 2px; box-shadow: 0 4px 0 #f4d27f; }
   .g-answer { box-shadow: 0 4px 0 #ddd2f3; }
+  .game .g-question { padding: 8px 10px; gap: 6px; }
+  .g-scene > .stage { border-radius: 16px; box-shadow: inset 0 -4px 0 #f8ebc8; }
+  .game .g-scene .formula p { font-size: clamp(1.6rem, 4vh + 2vw, 3rem); }
   .game .question-label { padding: 2px 10px; font-size: .7rem; }
   .game .prompt { font-size: clamp(1rem, 1.6vh + 1.6vw, 1.6rem); }
   .game .choices { gap: 6px; }
