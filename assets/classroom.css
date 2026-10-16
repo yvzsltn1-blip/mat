@@ -311,12 +311,12 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 .game .choices { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(0, 1fr); gap: clamp(8px, 1.4vh, 14px); }
 .g-tool.long .choices { grid-template-columns: 1fr; }
 .game .choice { container-type: size; min-height: 0; height: 100%; border-radius: 24px; border: 3px solid #ebe5f7; background: #fff; box-shadow: inset 0 -6px 0 #ebe5f7; padding: 8px 16px; font: 700 clamp(1.05rem, 2.1vh + .35vw, 1.75rem) var(--kid); color: #1f2547; }
-.game .choice:not(:disabled):hover { transform: translateY(-3px); border-color: #b9a8f0; background: #faf8ff; }
+.game .choice:not(:disabled):hover { transform: translateY(-3px); border-color: #b9a8f0; background: #faf8ff; box-shadow: inset 0 -6px 0 #ddd3f8, 0 6px 14px rgba(107,79,216,.12); }
 .game .choice-letter { flex: none; width: 2.1em; height: 2.1em; border-radius: 14px; font-size: .85em; display: grid; place-items: center; color: #fff; background: #6b4fd8; box-shadow: inset 0 -3px 0 rgba(0,0,0,.2); }
 /* Şık metni kutuyu doldursun: yazı ve harf rozeti kutunun boyuna göre büyür. */
 @supports (container-type: size) {
-  .game .choice-letter { font-size: clamp(.9rem, min(22cqh, 11cqw), 2.4rem); border-radius: 30%; }
-  .game .choice > span:nth-child(2) { flex: 1; min-width: 0; text-align: center; line-height: 1.12; overflow-wrap: anywhere; font-size: clamp(1.05rem, min(36cqh, 19cqw), 5.5rem); }
+  .game .choice-letter { font-size: clamp(.9rem, min(18cqh, 9cqw), 1.9rem); border-radius: 30%; }
+  .game .choice > span:nth-child(2) { flex: 1; min-width: 0; text-align: center; line-height: 1.12; overflow-wrap: normal; font-size: clamp(1.05rem, min(26cqh, 11cqw), 3.4rem); }
   .g-tool.long .choice > span:nth-child(2) { text-align: left; font-size: clamp(1rem, min(24cqh, 4.2cqw), 2.4rem); }
 }
 .game .choice:nth-child(2) .choice-letter { background: #ff8a3d; }
