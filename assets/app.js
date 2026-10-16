@@ -1436,7 +1436,10 @@
     return html;
   }
   function numChips(text) {
-    return esc(text).replace(/(\d+(?:[.,]\d+)*)/g, '<b class="step-num">$1</b>');
+    return esc(text).replace(/((?:^|[\s(|])[−-]\d+(?:[.,]\d+)*|\d+(?:[.,]\d+)*)/g, (m) => {
+      const lead = /^[\s(|]/.test(m) ? m[0] : "";
+      return lead + '<b class="step-num">' + m.slice(lead.length) + "</b>";
+    });
   }
 
   function lessonNotes(slide) {

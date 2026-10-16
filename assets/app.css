@@ -553,9 +553,11 @@ button.solid:not(:disabled):hover { background: #c84b37; box-shadow: 0 4px 14px 
 .im-checks label {display:flex;gap:8px;align-items:flex-start;font-weight:700}
 .im-caption,.im-line {margin:.35em 0;line-height:1.5}
 .im-line {font-size:1.15rem;font-weight:800}
-.im-frac {display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 .2em;line-height:1.05;font-weight:800}
-.im-frac span:first-child {border-bottom:2px solid currentColor;padding:0 .25em .05em}
-.im-frac span:last-child {padding:.05em .25em 0}
+.im-frac {display:inline-flex;align-items:center;gap:3px;vertical-align:middle;margin:0 .2em;line-height:1.05;font-weight:800}
+.im-frac .im-sign {font-weight:800;line-height:1}
+.im-frac .im-stack {display:inline-flex;flex-direction:column;align-items:center}
+.im-frac .im-stack > span:first-child {border-bottom:2px solid currentColor;padding:0 .25em .05em}
+.im-frac .im-stack > span:last-child {padding:.05em .25em 0}
 .im-digits {display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:6px 0}
 .im-digits span,.im-grid span {min-width:28px;text-align:center;padding:6px 8px;border-radius:8px;background:#fff;border:1px solid #dce5db;font-weight:800}
 .im-digits .diff {background:#fff1cf;border-color:#d49a3a}

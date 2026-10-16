@@ -127,4 +127,53 @@ const ucgen = MatCurriculum.topics.find((t) => t.id === "ucgen").slides;
 assert(ucgen.some((s) => s.sandbox === "im-sticks" && s.imPreset.c === 55));
 assert(MatCurriculum.topics.find((t) => t.id === "dikme").slides.some((s) => s.h === "AB doğrusuna dik bir doğru koy"));
 
-console.log(`OK: ${MatImagine.kinds.length} model, ${views} gösteri adımı; 5. sınıfta ${interactive} etkileşimli adım, ${extras} yeni örnek adımı. Statik kalan: ${stillStatic.length}.`);
+// Yeni eklenen 5. ve 7. sınıf görsel modelleri.
+assert(see("im-poly-tri", { n: 6, show: "tri" }).includes("4 üçgen"));
+assert(see("im-abacus", { m: 4, yb: 0, ob: 0, b: 0, y: 0, o: 0, bir: 9 }).includes("dört milyon dokuz"));
+assert(see("im-polyomino", { shape: "O" }).includes("Çevre = 8 birim"));
+assert(see("im-polyomino", { shape: "I" }).includes("Çevre = 10 birim"));
+assert(see("im-m7-sea", { h: -10, opp: "1" }).includes("Deniz seviyesi"));
+assert(see("im-m7-elevator", { start: 2, move: -5 }).includes("-3. kat"));
+assert(see("im-m7-sign", { p: 3, q: 4, pos: "both" }).includes("Pozitif"));
+assert(see("im-m7-pack", { w: 494, tol: 5 }).includes("Tolerans dışı"));
+assert(see("im-m7-rep", { p: 4, q: "9" }).includes("0,(4)"));
+assert(see("im-m7-dense", { pair: "0", zoom: 3 }).includes("sonsuz"));
+assert(see("im-m7-chips", { a: -3, op: "+", b: 5 }).includes("Sıfır çifti: 3"));
+assert(see("im-m7-pow", { p: 2, q: 3, exp: "2", par: "in" }).includes("+4/9"));
+assert(see("im-m7-pow", { p: 2, q: 3, exp: "2", par: "out" }).includes("−4/9"));
+assert(see("im-m7-jugs", { tot: "6/4", cup: "1/4" }).includes("6 bardak"));
+assert(see("im-m7-views3d", { b: "L", dir: "top" }).includes("5 birim küp"));
+assert(see("im-m7-net", { type: "open", fold: 1 }).includes("5 yüz"));
+assert(see("im-m7-packbox", { W: 20, D: 15, H: 12, k: "4" }).includes("45 kutu"));
+assert(see("im-m7-seesaw", { x5: 15, band: "1" }).includes("Ortanca = 6"));
+assert(see("im-m7-axis", { mode: "cut" }).includes("Kesilmiş eksen"));
+assert(see("im-m7-sym", { mode: "poly", n: 5 }).includes("5 tane simetri doğrusu"));
+assert(see("im-m7-bisect", { kind: "perp", step: 3 }).includes("Orta dikme"));
+
+// 7. sınıf: ilk adımdan sonraki tüm iç adımlar etkileşimli modele çevrildi ve boş tuval yok.
+assert(see("im-frac", { n: -3, d: 4, k: 1 }).includes('<b class="im-sign">−</b><span class="im-stack"><span>3</span><span>4</span></span>'));
+let interactive7 = 0, stillStatic7 = [];
+for (const topic of ctx.MatCurricula[7].topics) {
+  assert.equal(topic.slides.filter((s) => s.teach).length, 1, topic.id);
+  topic.slides.forEach((slide, i) => {
+    if (i && slide.sandbox) interactive7++;
+    else if (i) stillStatic7.push(topic.id + ": " + slide.h);
+    api.state.grade = 7;
+    api.openTopic(topic.id, "lesson");
+    api.state.slide = i;
+    api.state.sandboxKey = "";
+    api.render();
+    assert(!bad.test(app.innerHTML.replace(/aria-label="[^"]*"/g, "")), topic.id + " " + i);
+    if (!slide.bullets) {
+      assert(
+        app.innerHTML.includes('data-imagine="') ||
+        app.innerHTML.includes('data-lab="') ||
+        app.innerHTML.includes('data-compare="'),
+        `Boş model: ${topic.id} / ${slide.h} (${slide.sandbox})`
+      );
+    }
+  });
+}
+assert.equal(stillStatic7.length, 0, "7. sınıfta statik kalan adımlar: " + stillStatic7.join(", "));
+
+console.log(`OK: ${MatImagine.kinds.length} model, ${views} gösteri adımı; 5. sınıfta ${interactive} etkileşimli adım (${extras} yeni örnek), 7. sınıfta ${interactive7} etkileşimli adım. Statik kalan: ${stillStatic.length + stillStatic7.length}.`);

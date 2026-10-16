@@ -53,7 +53,7 @@
   const range = (key, label, min, max, value, step) => ({ type: "range", key, label, min, max, value, step });
   const number = (key, label, min, max, value) => ({ type: "number", key, label, min, max, value });
   const choice = (key, label, value, options) => ({ type: "choice", key, label, value, options });
-  const badges = (items) => `<div class="pl-badges">${items.map(([ok, t]) => `<span class="${ok ? "yes" : "no"}">${ok ? "✓" : "✗"} ${t}</span>`).join("")}</div>`;
+  const badges = (items) => `<div class="pl-badges">${items.map(([a, b]) => typeof a === "boolean" ? `<span class="${a ? "yes" : "no"}">${a ? "✓" : "✗"} ${b}</span>` : `<span class="yes" style="border-color:${b || C.blue};color:${b || C.ink}">${a}</span>`).join("")}</div>`;
   const chips = (items) => `<div class="pl-chips">${items.map(([on, t]) => `<span class="${on ? "on" : ""}">${t}</span>`).join("")}</div>`;
   const angleName = (d) => d === 0 ? "sıfır açı" : d < 90 ? "dar açı" : d === 90 ? "dik açı" : d < 180 ? "geniş açı" : d === 180 ? "doğru açı" : "tam açı";
 
@@ -1224,6 +1224,887 @@
     }
   });
 
+  add("im-poly-tri", {
+    instruction: "Kenar sayısını seç. A köşesinden çıkan köşegenler çokgeni kaç renkli üçgene ayırıyor?",
+    controls: [range("n", "Kenar sayısı", 4, 8, 5), choice("show", "Gösterim", "tri", [["diag", "Yalnız köşegenler"], ["tri", "Üçgenlere ayır"]])],
+    demo: [{ n: 4, show: "tri" }, { n: 5, show: "tri" }, { n: 6, show: "tri" }, { n: 7, show: "tri" }, { n: 8, show: "tri" }],
+    render(v) {
+      const n = v.n, pts = Array.from({ length: n }, (_, k) => pt(210, 108, 225 - k * 360 / n, 78));
+      const tris = [];
+      if (v.show === "tri") {
+        for (let k = 1; k < n - 1; k++) {
+          const a = pts[0], b = pts[k], c = pts[k + 1];
+          const mx = (a[0] + b[0] + c[0]) / 3, my = (a[1] + b[1] + c[1]) / 3;
+          tris.push(`<polygon points="${f(a[0])},${f(a[1])} ${f(b[0])},${f(b[1])} ${f(c[0])},${f(c[1])}" fill="${PALETTE[(k - 1) % PALETTE.length]}" fill-opacity="0.22" ${anim("pl-fade", (k - 1) * 0.14)}/>` +
+            text(mx, my + 4, `${k}. üçgen (180°)`, { size: 11, color: C.ink }));
+        }
+      }
+      const diags = [];
+      for (let k = 2; k < n - 1; k++) {
+        diags.push(line(pts[0][0], pts[0][1], pts[k][0], pts[k][1], C.red, 3, `stroke-dasharray="6 4" ${draw((k - 2) * 0.12)}`));
+      }
+      const poly = `<polygon points="${pts.map((p) => `${f(p[0])},${f(p[1])}`).join(" ")}" fill="none" stroke="${C.blue}" stroke-width="4" stroke-linejoin="round"/>`;
+      const dots = pts.map((p, k) => {
+        const lp = pt(210, 108, 225 - k * 360 / n, 95);
+        return dot(p[0], p[1], k === 0 ? C.gold : C.red, k === 0 ? 8 : 6, k * 0.04) + text(lp[0], lp[1] + 4, LETTERS[k], { size: 13, color: k === 0 ? C.gold : C.ink });
+      }).join("");
+      return svg(tris.join("") + poly + diags.join("") + dots, "Köşegenlerle üçgenlere ayırma") +
+        badges([[`${n} kenar`, C.blue], [`A'dan ${n - 3} köşegen`, C.red], [`${n - 2} üçgen`, C.green], [`Toplam ${(n - 2) * 180}°`, C.gold]]) +
+        cap(`A köşesinden komşu olmayan köşelere <b>${n - 3}</b> köşegen çizilir ve çokgen <b>${n - 2}</b> üçgene ayrılır. Her üçgenin iç açıları toplamı 180° olduğu için ${n} kenarlı çokgenin iç açıları toplamı ${n - 2} × 180° = <b>${(n - 2) * 180}°</b> olur.`);
+    }
+  });
+
+  add("im-abacus", {
+    instruction: "Çubuklardaki boncuk sayılarını değiştir; basamak abaküsünde sayının nasıl kurulduğunu ve okunduğunu gör.",
+    controls: [range("m", "Milyonlar", 0, 9, 2), range("yb", "Yüz binler", 0, 9, 0), range("ob", "On binler", 0, 9, 4), range("b", "Binler", 0, 9, 3), range("y", "Yüzler", 0, 9, 0), range("o", "Onlar", 0, 9, 5), range("bir", "Birler", 0, 9, 6)],
+    demo: [
+      { m: 2, yb: 0, ob: 4, b: 3, y: 0, o: 5, bir: 6 },
+      { m: 5, yb: 0, ob: 0, b: 0, y: 3, o: 0, bir: 7 },
+      { m: 0, yb: 8, ob: 2, b: 0, y: 4, o: 9, bir: 0 }
+    ],
+    render(v) {
+      const cols = [
+        ["Milyon", v.m, C.gold], ["Y.Bin", v.yb, C.red], ["O.Bin", v.ob, C.red],
+        ["Bin", v.b, C.red], ["Yüz", v.y, C.blue], ["On", v.o, C.blue], ["Bir", v.bir, C.blue]
+      ];
+      const n = v.m * 1e6 + v.yb * 1e5 + v.ob * 1e4 + v.b * 1e3 + v.y * 100 + v.o * 10 + v.bir;
+      const rods = cols.map(([lbl, count, col], i) => {
+        const x = 45 + i * 55;
+        let beads = "";
+        for (let k = 0; k < count; k++) {
+          const y = 148 - k * 11;
+          beads += `<ellipse cx="${x}" cy="${y}" rx="15" ry="5.5" fill="${col}" stroke="#fff" stroke-width="1.2" ${anim("pl-pop", k * 0.03)}/>`;
+        }
+        return `<line x1="${x}" y1="42" x2="${x}" y2="156" stroke="${C.wood}" stroke-width="4" stroke-linecap="round"/>` +
+          beads +
+          `<rect x="${x - 21}" y="160" width="42" height="24" rx="6" fill="#fff" stroke="${col}" stroke-width="2"/>` +
+          text(x, 177, count, { size: 14, color: col }) +
+          text(x, 198, lbl, { size: 10, color: C.ink });
+      }).join("");
+      const base = `<rect x="20" y="154" width="380" height="8" rx="4" fill="${C.wood}"/>` +
+        text(210, 26, `${group(n)} — "${sayNumber(n)}"`, { size: 14, color: C.ink });
+      return svg(base + rods, "Basamak abaküsü", 210) +
+        badges([[`Milyonlar: ${v.m}`, C.gold], [`Binler bölüğü: ${v.yb}${v.ob}${v.b}`, C.red], [`Birler bölüğü: ${v.y}${v.o}${v.bir}`, C.blue]]) +
+        cap(`Boncuk olmayan çubuğa <b>0</b> yazılır; basamak tutucu sıfır unutulursa sayı kayar. Sayı: <b>${group(n)}</b> (${sayNumber(n)}).`);
+    }
+  });
+
+  add("im-polyomino", {
+    instruction: "4 eş kareyle kurulan şekillerden (tetromino) birini seç. Alanlar hep 4 birim kare; peki dış kenar sayısı (çevre) neden değişiyor?",
+    controls: [choice("shape", "Şekil (4 kare)", "O", [["O", "Kare (2×2)"], ["I", "Çubuk (1×4)"], ["L", "L şekli"], ["T", "T şekli"], ["Z", "Z şekli"]])],
+    demo: [{ shape: "O" }, { shape: "I" }, { shape: "L" }, { shape: "T" }, { shape: "Z" }],
+    render(v) {
+      const map = {
+        O: [[1, 1], [2, 1], [1, 2], [2, 2]],
+        I: [[0, 1], [1, 1], [2, 1], [3, 1]],
+        L: [[1, 0], [1, 1], [1, 2], [2, 2]],
+        T: [[1, 1], [2, 1], [3, 1], [2, 2]],
+        Z: [[1, 1], [2, 1], [2, 2], [3, 2]]
+      };
+      const cells = map[v.shape] || map.O, set = new Set(cells.map(([x, y]) => `${x},${y}`));
+      const u = 42, ox = 115, oy = 32;
+      let tiles = "", edges = "", perim = 0, shared = 0;
+      cells.forEach(([cx, cy], idx) => {
+        const x = ox + cx * u, y = oy + cy * u;
+        tiles += `<rect x="${x + 2}" y="${y + 2}" width="${u - 4}" height="${u - 4}" rx="5" fill="${C.sky}" stroke="${C.blue}" stroke-width="1.5" ${anim("pl-pop", idx * 0.06)}/>` +
+          text(x + u / 2, y + u / 2 + 5, "1 br²", { size: 11, color: C.blue });
+        const dirs = [[[0, -1], [x, y, x + u, y]], [[1, 0], [x + u, y, x + u, y + u]], [[0, 1], [x, y + u, x + u, y + u]], [[-1, 0], [x, y, x, y + u]]];
+        dirs.forEach(([[dx, dy], [x1, y1, x2, y2]]) => {
+          if (!set.has(`${cx + dx},${cy + dy}`)) {
+            perim++;
+            edges += line(x1, y1, x2, y2, C.red, 4);
+          } else {
+            shared++;
+            edges += line(x1, y1, x2, y2, C.green, 2, 'stroke-dasharray="4 3"');
+          }
+        });
+      });
+      const internal = shared / 2;
+      return svg(tiles + edges + text(210, 194, `Kırmızı dış kenar = ${perim} br · Yeşil iç temas = ${internal} kenar`, { size: 12, color: C.ink }), "Eş alanlı şekiller", 206) +
+        badges([[`Alan = 4 birim kare`, C.blue], [`İç temas = ${internal}`, C.green], [`Çevre = ${perim} birim`, C.red]]) +
+        cap(`Her karenin 4 kenarı vardır (4 × 4 = 16). Kareler birbirine değdikçe içeride kalan her ortak kenar dış çevreden 2 kenar eksiltir: 16 − 2 × ${internal} = <b>${perim} birim</b>.`);
+    }
+  });
+
+  /* ---------- 7. Sınıf Görsel Modelleri ---------- */
+  add("im-m7-sea", {
+    instruction: "Nesneyi deniz seviyesine (0) göre hareket ettir. Karşıt noktayı da göstererek sıfıra uzaklığı karşılaştır.",
+    controls: [range("h", "Konum (metre)", -15, 15, -8), choice("opp", "Karşıt sayı", "1", [["0", "Gizle"], ["1", "Karşıtını göster"]])],
+    demo: [{ h: -10, opp: "1" }, { h: 0, opp: "0" }, { h: 12, opp: "1" }, { h: -6, opp: "1" }],
+    render(v) {
+      const h = v.h, y0 = 105, y = y0 - h * 4.8, yo = y0 + h * 4.8;
+      const skySea = `<rect x="20" y="16" width="380" height="89" rx="8" fill="#eef6ff"/>` +
+        `<rect x="20" y="105" width="380" height="92" rx="8" fill="#d8ecff"/>` +
+        line(20, y0, 400, y0, C.blue, 3, 'stroke-dasharray="8 4"') +
+        text(78, y0 - 6, "0 m (Deniz seviyesi)", { size: 11, color: C.blue });
+      const ruler = [-15, -10, -5, 0, 5, 10, 15].map((m) => {
+        const ym = y0 - m * 4.8;
+        return line(192, ym, 204, ym, C.ink, 2) + text(176, ym + 4, (m > 0 ? "+" : "") + m, { size: 10, anchor: "end", color: m === 0 ? C.blue : C.ink });
+      }).join("") + line(198, 28, 198, 182, C.ink, 2.5);
+      const icon = h > 0 ? "🦅 Martı" : h < 0 ? "🤿 Dalgıç" : "⛵ Kayık";
+      const main = line(255, y0, 255, y, h >= 0 ? C.green : C.red, 4) +
+        dot(255, y, h >= 0 ? C.green : C.red, 9) +
+        text(315, y + 5, `${icon}: ${h > 0 ? "+" + h : h} m`, { size: 13, color: h >= 0 ? C.green : C.red });
+      const opp = v.opp === "1" && h !== 0
+        ? line(255, y0, 255, yo, C.gold, 3, 'stroke-dasharray="5 4"') +
+          dot(255, yo, C.gold, 7, 0.1) +
+          text(318, yo + 4, `Karşıtı: ${-h > 0 ? "+" + -h : -h} m`, { size: 12, color: C.gold })
+        : "";
+      return svg(skySea + ruler + opp + main, "Deniz seviyesi ve tam sayılar") +
+        badges([[`Konum: ${h > 0 ? "+" + h : h} m`, h >= 0 ? C.green : C.red], [`Sıfıra uzaklık: ${Math.abs(h)} m`, C.blue], [`Karşıtı: ${-h > 0 ? "+" + -h : -h}`, C.gold]]) +
+        cap(`0 referans noktasıdır. Deniz üstü <b>+</b>, deniz altı <b>−</b> ile gösterilir. <b>${h}</b> ile <b>${-h}</b> karşıt sayılardır; ikisinin de 0'a uzaklığı <b>${Math.abs(h)}</b> metredir.`);
+    }
+  });
+
+  add("im-m7-elevator", {
+    instruction: "Başlangıç katını ve hareketi seç; asansörün hangi kata ulaştığını izle.",
+    controls: [range("start", "Başlangıç katı", -4, 5, 2), range("move", "Hareket (kat)", -6, 6, -5)],
+    demo: [{ start: 2, move: -5 }, { start: -3, move: 4 }, { start: 1, move: -4 }, { start: -2, move: 5 }],
+    render(v) {
+      const end = Math.max(-5, Math.min(6, v.start + v.move)), mv = end - v.start;
+      const floors = [];
+      for (let f = -5; f <= 6; f++) {
+        const y = 115 - f * 14;
+        floors.push(`<rect x="145" y="${y - 6}" width="76" height="13" rx="3" fill="${f === end ? "#fff3d1" : f === 0 ? "#e6f0fb" : "#fff"}" stroke="${f === 0 ? C.blue : "#d8cfc2"}"/>` +
+          text(132, y + 4, f > 0 ? "+" + f : String(f), { size: 10, anchor: "end", color: f === 0 ? C.blue : f < 0 ? C.red : C.green }));
+      }
+      const y1 = 115 - v.start * 14, y2 = 115 - end * 14;
+      const cab = `<rect x="160" y="${y2 - 5}" width="46" height="11" rx="3" fill="${C.gold}" stroke="${C.ink}" stroke-width="1.5" ${anim("pl-pop")}/>`;
+      const arrow = mv !== 0 ? line(248, y1, 248, y2, mv > 0 ? C.green : C.red, 4) + dot(248, y1, C.blue, 6) + dot(248, y2, mv > 0 ? C.green : C.red, 7, 0.12) +
+        text(318, (y1 + y2) / 2 + 4, `${mv > 0 ? "↑ +" + mv : "↓ " + mv} kat`, { size: 13, color: mv > 0 ? C.green : C.red }) : "";
+      return svg(floors.join("") + cab + arrow + text(64, 119, "Zemin (0)", { size: 11, color: C.blue }), "Asansör yolculuğu") +
+        badges([[`Başlangıç: ${v.start}`, C.blue], [`Hareket: ${mv >= 0 ? "+" + mv : mv}`, mv >= 0 ? C.green : C.red], [`Varış: ${end}. kat`, C.gold]]) +
+        cap(`(${v.start}) + (${mv >= 0 ? "+" + mv : mv}) = <b>${end}</b>. Zemin kat 0, otopark katları negatif, üst katlar pozitiftir.`);
+    }
+  });
+
+  add("im-m7-sign", {
+    instruction: "Eksiyi paya, paydaya veya kesrin önüne taşı; üç yazılımın da sayı doğrusunda aynı noktayı gösterdiğini gör.",
+    controls: [range("p", "Pay (büyüklük)", 1, 5, 3), range("q", "Payda", 2, 6, 4), choice("pos", "İşaretin yeri", "front", [["front", "Önde: −(a/b)"], ["top", "Payda: (−a)/b"], ["bot", "Paydada: a/(−b)"], ["both", "İkisinde: (−a)/(−b)"]])],
+    demo: [{ p: 3, q: 4, pos: "front" }, { p: 3, q: 4, pos: "top" }, { p: 3, q: 4, pos: "bot" }, { p: 3, q: 4, pos: "both" }],
+    render(v) {
+      const val = (v.pos === "both" ? 1 : -1) * (v.p / v.q);
+      const cards = [
+        ["front", `− ${v.p}/${v.q}`, -v.p / v.q],
+        ["top", `(${-v.p})/${v.q}`, -v.p / v.q],
+        ["bot", `${v.p}/(${-v.q})`, -v.p / v.q],
+        ["both", `(${-v.p})/(${-v.q})`, v.p / v.q]
+      ].map(([k, lbl, num], i) => {
+        const x = 22 + i * 96, active = v.pos === k;
+        return `<rect x="${x}" y="22" width="88" height="48" rx="10" fill="${active ? "#fff3d1" : "#fff"}" stroke="${active ? C.gold : C.blue}" stroke-width="${active ? 3 : 1.5}"/>` +
+          text(x + 44, 44, lbl, { size: 14, color: active ? C.red : C.ink }) +
+          text(x + 44, 62, `= ${f(num, 2)}`, { size: 11, color: num < 0 ? C.red : C.green });
+      }).join("");
+      const cx = 210, sc = 78, px = cx + val * sc;
+      const axis = line(36, 145, 384, 145, C.ink, 3) +
+        [-2, -1, 0, 1, 2].map((t) => line(cx + t * sc, 137, cx + t * sc, 153, C.ink, 2) + text(cx + t * sc, 170, t, { size: 12 })).join("") +
+        line(cx, 145, px, 145, val < 0 ? C.red : C.green, 5) +
+        dot(px, 145, val < 0 ? C.red : C.green, 8) +
+        text(px, 122, f(val, 2), { size: 13, color: val < 0 ? C.red : C.green });
+      return svg(cards + axis, "Rasyonel sayıda işaretin yeri") +
+        badges([[`Değer = ${f(val, 3)}`, val < 0 ? C.red : C.green], [v.pos === "both" ? "İki eksi → Pozitif" : "Tek eksi → Negatif", C.gold]]) +
+        cap(v.pos === "both"
+          ? `Hem pay hem payda negatifse (− ÷ − = +) kesir <b>pozitif</b> olur: (${-v.p})/(${-v.q}) = +${v.p}/${v.q}.`
+          : `Tek eksi işareti önde, payda veya paydada durabilir; üçü de sayı doğrusunda aynı noktayı (<b>−${v.p}/${v.q}</b>) gösterir.`);
+    }
+  });
+
+  add("im-m7-pack", {
+    instruction: "Paket ağırlığını ve izin verilen sapma (tolerans) sınırını değiştir; mutlak değerin kalite kontrolünü nasıl yaptığını gör.",
+    controls: [range("w", "Paket ağırlığı (g)", 485, 515, 494), range("tol", "Tolerans ± (g)", 2, 10, 5)],
+    demo: [{ w: 494, tol: 5 }, { w: 497, tol: 5 }, { w: 500, tol: 5 }, { w: 504, tol: 5 }, { w: 508, tol: 5 }],
+    render(v) {
+      const diff = v.w - 500, abs = Math.abs(diff), ok = abs <= v.tol;
+      const cx = 210, sc = 11, xMin = cx - v.tol * sc, xMax = cx + v.tol * sc, xVal = cx + diff * sc;
+      const band = `<rect x="${xMin}" y="78" width="${(xMax - xMin)}" height="42" rx="8" fill="${C.mint}" stroke="${C.green}" stroke-width="2" stroke-dasharray="5 3"/>` +
+        text(cx, 68, `Kabul aralığı: [${500 - v.tol} g, ${500 + v.tol} g]`, { size: 12, color: C.green });
+      const axis = line(35, 100, 385, 100, C.ink, 3) +
+        [-15, -10, -5, 0, 5, 10, 15].map((d) => line(cx + d * sc, 93, cx + d * sc, 107, C.ink, 1.8) + text(cx + d * sc, 134, 500 + d, { size: 10 })).join("");
+      const pkg = line(cx, 100, xVal, 100, ok ? C.green : C.red, 5) +
+        dot(xVal, 100, ok ? C.green : C.red, 9) +
+        text(xVal, 44, `📦 ${v.w} g (|${diff}| = ${abs} g)`, { size: 13, color: ok ? C.green : C.red });
+      return svg(band + axis + pkg + text(cx, 168, ok ? "✓ Kalite kontrolden geçti" : "✗ Tolerans dışı — ayrıldı", { size: 14, color: ok ? C.green : C.red }), "Mutlak değer ve tolerans aralığı") +
+        badges([[`Hedef: 500 g`, C.blue], [`Fark: ${diff >= 0 ? "+" + diff : diff} g`, C.ink], [`Sapma |${diff}| = ${abs} g`, ok ? C.green : C.red], [ok ? "Kabul" : "Red", ok ? C.green : C.red]]) +
+        cap(`Mutlak değer, hedeften sapma miktarını verir: |${v.w} − 500| = <b>${abs} g</b>. Sapma ≤ ${v.tol} g ise paket kabul edilir.`);
+    }
+  });
+
+  add("im-m7-rep", {
+    instruction: "Pay ve paydayı seç; uzun bölme adımlarını izle. Kalan sıfırlanıyor mu yoksa tekrar etmeye mi başlıyor?",
+    controls: [range("p", "Pay", 1, 11, 4), choice("q", "Payda", "9", [["2", "2"], ["3", "3"], ["4", "4"], ["5", "5"], ["6", "6"], ["8", "8"], ["9", "9"], ["11", "11"]])],
+    demo: [{ p: 3, q: "4" }, { p: 1, q: "3" }, { p: 4, q: "9" }, { p: 5, q: "6" }, { p: 3, q: "11" }],
+    render(v) {
+      const p = v.p, q = Number(v.q), intPart = Math.floor(p / q);
+      let rem = p % q, seen = {}, digits = [], rems = [rem], repeatAt = -1;
+      while (rem !== 0 && repeatAt < 0 && digits.length < 8) {
+        if (seen[rem] !== undefined) { repeatAt = seen[rem]; break; }
+        seen[rem] = digits.length;
+        rem *= 10;
+        digits.push(Math.floor(rem / q));
+        rem = rem % q;
+        rems.push(rem);
+      }
+      const finite = rem === 0 && repeatAt < 0;
+      const decStr = digits.length === 0 ? `${intPart}` : finite
+        ? `${intPart},${digits.join("")}`
+        : `${intPart},${digits.slice(0, repeatAt).join("")}(${digits.slice(repeatAt).join("")})`;
+      const boxes = digits.map((d, i) => {
+        const x = 42 + i * 52, rep = repeatAt >= 0 && i >= repeatAt;
+        return `<rect x="${x}" y="52" width="44" height="44" rx="8" fill="${rep ? "#fde6e2" : "#e6f0fb"}" stroke="${rep ? C.red : C.blue}" stroke-width="2" ${anim("pl-pop", i * 0.08)}/>` +
+          (rep ? line(x + 6, 46, x + 38, 46, C.red, 3.5) : "") +
+          text(x + 22, 80, d, { size: 18, color: rep ? C.red : C.blue }) +
+          text(x + 22, 116, `kalan ${rems[i + 1]}`, { size: 10, color: C.ink });
+      }).join("");
+      return svg(text(210, 28, `${p} ÷ ${q} = ${decStr}`, { size: 18, color: C.ink }) + boxes +
+        text(210, 156, finite ? "Kalan 0 oldu → Sonlu ondalık gösterim" : `Kalan (${rems[repeatAt]}) tekrar etti → Devirli ondalık gösterim`, { size: 13, color: finite ? C.green : C.red }), "Kesirden ondalığa: uzun bölme") +
+        badges([[`${p}/${q} = ${decStr}`, C.blue], [finite ? "Sonlu ondalık" : "Devirli ondalık", finite ? C.green : C.red]]) +
+        cap(finite
+          ? `Bölmede kalan 0'a ulaştığı için basamaklar biter: <b>${decStr}</b>.`
+          : `Bölmede aynı kalan yeniden çıktığı için rakamlar sonsuza dek tekrar eder ve devreden kısmın üstüne çizgi konur: <b>${decStr}</b>.`);
+    }
+  });
+
+  add("im-m7-dense", {
+    instruction: "Büyüteç kademesini artır; iki rasyonel sayının ortasını bularak aralarında sonsuz sayıda rasyonel sayı olduğunu gör.",
+    controls: [choice("pair", "Başlangıç aralığı", "0", [["0", "1/4 ile 2/4"], ["1", "−2/3 ile −1/3"], ["2", "0,2 ile 0,3"]]), range("zoom", "Büyüteç kademesi", 1, 4, 1)],
+    demo: [{ pair: "0", zoom: 1 }, { pair: "0", zoom: 2 }, { pair: "0", zoom: 3 }, { pair: "0", zoom: 4 }],
+    render(v) {
+      const base = v.pair === "1" ? [-2, 3, -1, 3] : v.pair === "2" ? [2, 10, 3, 10] : [1, 4, 2, 4];
+      const mult = Math.pow(2, v.zoom), den = base[1] * mult, a = base[0] * mult, b = base[2] * mult;
+      const mids = [];
+      for (let k = a + 1; k < b; k++) mids.push(`${k}/${den}`);
+      const pts = [];
+      for (let k = a; k <= b; k++) {
+        const t = (k - a) / (b - a), x = 55 + t * 310, isEnd = k === a || k === b;
+        pts.push(line(x, 96, x, 118, isEnd ? C.blue : C.red, isEnd ? 3 : 2) +
+          dot(x, 107, isEnd ? C.blue : C.red, isEnd ? 8 : 5, (k - a) * 0.04) +
+          (b - a <= 8 || isEnd || k === (a + b) / 2 ? text(x, isEnd ? 78 : 140, `${k}/${den}`, { size: 11, color: isEnd ? C.blue : C.red }) : ""));
+      }
+      return svg(`<circle cx="210" cy="107" r="76" fill="${C.sky}" fill-opacity="0.35" stroke="${C.gold}" stroke-width="2" stroke-dasharray="6 4"/>` +
+        line(45, 107, 375, 107, C.ink, 3) + pts.join("") +
+        text(210, 28, `×${mult} genişletme: ${a}/${den} ile ${b}/${den} arasında ${b - a - 1} kesir görünür`, { size: 13, color: C.ink }), "Rasyonel sayıların yoğunluğu") +
+        badges([[`Payda ×${mult} = ${den}`, C.blue], [`Görünür ara kesir: ${b - a - 1} tane`, C.red], [`Tam ortası: ${(a + b) / 2}/${den}`, C.green]]) +
+        cap(`Paydayı her 2 katına çıkardığımızda aralıkta yeni kesirler belirir (${mids.slice(0, 5).join(", ")}${mids.length > 5 ? "…" : ""}). İki rasyonel sayı arasında <b>sonsuz</b> rasyonel sayı vardır.`);
+    }
+  });
+
+  add("im-m7-chips", {
+    instruction: "Sayıları ve işlemi seç; +1 (mavi) ve −1 (kırmızı) pulların sıfır çiftleri yaparak işlemi nasıl modellediğini izle.",
+    controls: [range("a", "1. sayı", -6, 6, -3), choice("op", "İşlem", "+", [["+", "Toplama (+)"], ["-", "Çıkarma (−)"]]), range("b", "2. sayı", -6, 6, 5)],
+    demo: [{ a: -3, op: "+", b: 5 }, { a: 4, op: "-", b: -2 }, { a: -2, op: "-", b: 3 }, { a: -4, op: "+", b: -3 }],
+    render(v) {
+      const bEff = v.op === "+" ? v.b : -v.b, res = v.a + bEff;
+      const pos = (v.a > 0 ? v.a : 0) + (bEff > 0 ? bEff : 0);
+      const neg = (v.a < 0 ? -v.a : 0) + (bEff < 0 ? -bEff : 0);
+      const pairs = Math.min(pos, neg);
+      let svgChips = "";
+      for (let i = 0; i < pos; i++) {
+        const x = 48 + i * 28, paired = i < pairs;
+        svgChips += `<circle cx="${x}" cy="70" r="11" fill="${C.blue}" opacity="${paired ? 0.35 : 1}" ${anim("pl-pop", i * 0.04)}/>` +
+          text(x, 74, "+", { size: 14, color: "#fff" });
+      }
+      for (let i = 0; i < neg; i++) {
+        const x = 48 + i * 28, paired = i < pairs;
+        svgChips += `<circle cx="${x}" cy="112" r="11" fill="${C.red}" opacity="${paired ? 0.35 : 1}" ${anim("pl-pop", i * 0.04)}/>` +
+          text(x, 116, "−", { size: 14, color: "#fff" });
+        if (paired) svgChips += `<rect x="${x - 13}" y="55" width="26" height="72" rx="12" fill="none" stroke="${C.gold}" stroke-width="2" stroke-dasharray="4 3"/>`;
+      }
+      const head = v.op === "-"
+        ? `(${v.a}) − (${v.b}) = (${v.a}) + (${bEff >= 0 ? "+" + bEff : bEff}) = ${res}`
+        : `(${v.a}) + (${v.b}) = ${res}`;
+      return svg(text(210, 28, head, { size: 15, color: C.ink }) + svgChips +
+        text(210, 162, `Sıfır çifti: ${pairs} adet (+1 ile −1 birbirini sıfırlar) → Kalan: ${res}`, { size: 12, color: C.ink }), "Sayma pulları ve sıfır çifti") +
+        badges([[`+ pul: ${pos}`, C.blue], [`− pul: ${neg}`, C.red], [`Sıfır çifti: ${pairs}`, C.gold], [`Sonuç = ${res}`, res >= 0 ? C.green : C.red]]) +
+        cap(v.op === "-"
+          ? `Çıkarma işleminde çıkan sayının <b>toplama göre tersi</b> eklenir: (${v.a}) − (${v.b}) = (${v.a}) + (${bEff}) = <b>${res}</b>.`
+          : `Bir +1 pul ile bir −1 pul <b>sıfır çifti</b> oluşturur. ${pairs} sıfır çifti elenince geriye <b>${res}</b> kalır.`);
+    }
+  });
+
+  add("im-m7-ledger", {
+    instruction: "Başlangıç bakiyesini, gelirleri ve giderleri değiştir; bütçe tablosunun adım adım nasıl güncellendiğini gör.",
+    controls: [range("start", "Başlangıç (TL)", -100, 200, 50, 25), range("inc", "Gelir (+TL)", 0, 250, 125, 25), range("exp", "Gider (−TL)", 0, 250, 200, 25)],
+    demo: [{ start: 50, inc: 125, exp: 200 }, { start: -50, inc: 200, exp: 75 }, { start: 100, inc: 50, exp: 150 }],
+    render(v) {
+      const afterInc = v.start + v.inc, end = afterInc - v.exp;
+      const steps = [["Başlangıç", v.start], ["+ Gelir", afterInc], ["− Gider", end]];
+      const bars = steps.map(([lbl, val], i) => {
+        const x = 65 + i * 120, y0 = 115, h = Math.abs(val) * 0.25, y = val >= 0 ? y0 - h : y0;
+        const col = val >= 0 ? C.green : C.red;
+        return `<rect x="${x - 28}" y="${y}" width="56" height="${Math.max(4, h)}" rx="6" fill="${col}" fill-opacity="0.82" ${anim("pl-pop", i * 0.1)}/>` +
+          text(x, val >= 0 ? y - 8 : y + h + 14, `${val >= 0 ? "+" : ""}${val} TL`, { size: 12, color: col }) +
+          text(x, 184, lbl, { size: 12, color: C.ink });
+      }).join("");
+      return svg(line(30, 115, 390, 115, C.blue, 2, 'stroke-dasharray="5 3"') + text(35, 108, "0 TL", { size: 10, anchor: "start", color: C.blue }) + bars, "Gelir-gider bakiye planı") +
+        badges([[`Başlangıç: ${v.start} TL`, C.blue], [`Gelir sonrası: ${afterInc} TL`, C.green], [`Son bakiye: ${end} TL`, end >= 0 ? C.green : C.red]]) +
+        cap(`${v.start} + ${v.inc} − ${v.exp} = <b>${end} TL</b>. ${end >= 0 ? "Bakiye artıda (alacaklı/fazla)." : "Bakiye ekside (borçlu/açık)."}`);
+    }
+  });
+
+  add("im-m7-pow", {
+    instruction: "Rasyonel sayıyı, üssü ve parantez durumunu seç; işaretin ve değerin neden değiştiğini karşılaştır.",
+    controls: [range("p", "Pay (−)", 1, 4, 2), range("q", "Payda", 2, 5, 3), choice("exp", "Üs", "2", [["2", "Karesi (²)"], ["3", "Küpü (³)"]]), choice("par", "Parantez", "in", [["in", "Parantezli: (−a/b)ⁿ"], ["out", "Parantezsiz: −(a/b)ⁿ"]])],
+    demo: [{ p: 2, q: 3, exp: "2", par: "in" }, { p: 2, q: 3, exp: "2", par: "out" }, { p: 2, q: 3, exp: "3", par: "in" }, { p: 1, q: 2, exp: "2", par: "in" }],
+    render(v) {
+      const n = Number(v.exp), pn = Math.pow(v.p, n), qn = Math.pow(v.q, n);
+      const sign = v.par === "in" ? (n % 2 === 0 ? 1 : -1) : -1;
+      const expr = v.par === "in" ? `(−${v.p}/${v.q})${n === 2 ? "²" : "³"}` : `−(${v.p}/${v.q})${n === 2 ? "²" : "³"}`;
+      const factors = Array.from({ length: n }, () => v.par === "in" ? `(−${v.p}/${v.q})` : `${v.p}/${v.q}`).join(" × ");
+      const expanded = v.par === "in" ? factors : `−(${factors})`;
+      return svg(
+        `<rect x="35" y="24" width="350" height="52" rx="12" fill="#fff" stroke="${C.blue}" stroke-width="2"/>` +
+        text(210, 56, `${expr} = ${expanded}`, { size: 15, color: C.ink }) +
+        `<rect x="85" y="96" width="250" height="62" rx="14" fill="${sign > 0 ? C.mint : "#fde6e2"}" stroke="${sign > 0 ? C.green : C.red}" stroke-width="2.5" ${anim("pl-pop", 0.1)}/>` +
+        text(210, 134, `Sonuç: ${sign > 0 ? "+" : "−"}${pn}/${qn}`, { size: 20, color: sign > 0 ? C.green : C.red }),
+        "Rasyonel sayılarda üs ve parantez"
+      ) +
+        badges([[expr, C.blue], [sign > 0 ? "İşaret: Pozitif (+)" : "İşaret: Negatif (−)", sign > 0 ? C.green : C.red], [`Değer: ${sign > 0 ? "+" : "−"}${pn}/${qn}`, C.gold]]) +
+        cap(v.par === "in"
+          ? `Parantez içinde negatif tabanın ${n === 2 ? "çift (2) kuvveti <b>pozitif</b>" : "tek (3) kuvveti <b>negatif</b>"} olur: ${expr} = <b>${sign > 0 ? "+" : "−"}${pn}/${qn}</b>.`
+          : `Parantez eksiyi kapsamazsa önce kuvvet alınır, eksi önde kalır: ${expr} = <b>−${pn}/${qn}</b>.`);
+    }
+  });
+
+  add("im-m7-jugs", {
+    instruction: "Büyük sürahideki meyve suyunu ve küçük bardak ölçüsünü seç; rasyonel bölmenin kaç bardak doldurduğunu gör.",
+    controls: [choice("tot", "Sürahi (L)", "6/4", [["6/4", "3/2 L (1,5 L)"], ["9/4", "9/4 L (2,25 L)"], ["12/4", "3 L"]]), choice("cup", "Bardak (L)", "1/4", [["1/4", "1/4 L"], ["3/8", "3/8 L"], ["1/2", "1/2 L"]])],
+    demo: [{ tot: "6/4", cup: "1/4" }, { tot: "9/4", cup: "3/8" }, { tot: "12/4", cup: "1/2" }],
+    render(v) {
+      const [tp, tq] = v.tot.split("/").map(Number), [cp, cq] = v.cup.split("/").map(Number);
+      const total = tp / tq, cup = cp / cq, count = Math.round((total / cup) * 100) / 100;
+      const fullCups = Math.floor(count);
+      let cupsSvg = "";
+      for (let i = 0; i < Math.min(12, fullCups); i++) {
+        const x = 155 + (i % 6) * 42, y = i < 6 ? 55 : 118;
+        cupsSvg += `<rect x="${x}" y="${y}" width="30" height="42" rx="4" fill="#fff" stroke="${C.blue}" stroke-width="2"/>` +
+          `<rect x="${x + 2}" y="${y + 8}" width="26" height="32" rx="2" fill="${C.gold}" ${anim("pl-pop", i * 0.06)}/>` +
+          text(x + 15, y + 54, `${i + 1}`, { size: 10, color: C.ink });
+      }
+      const jug = `<rect x="38" y="45" width="78" height="118" rx="10" fill="#fff" stroke="${C.blue}" stroke-width="3"/>` +
+        `<rect x="42" y="${160 - total * 34}" width="70" height="${total * 34}" rx="6" fill="${C.gold}" fill-opacity="0.85"/>` +
+        text(77, 34, `Sürahi: ${f(total, 2)} L`, { size: 12, color: C.blue });
+      return svg(jug + cupsSvg + text(270, 32, `(${tp}/${tq}) ÷ (${cp}/${cq}) = (${tp}/${tq}) × (${cq}/${cp}) = ${count} bardak`, { size: 12, color: C.ink }), "Bölme: ters çevirip çarpma") +
+        badges([[`Toplam: ${f(total, 2)} L`, C.blue], [`Bardak: ${v.cup} L`, C.gold], [`Sonuç: ${count} bardak`, C.green]]) +
+        cap(`Bir rasyonel sayıyı başka bir rasyonel sayıya bölerken ikinci kesir <b>ters çevrilip çarpılır</b>: (${tp}/${tq}) × (${cq}/${cp}) = <b>${count}</b> tam bardak.`);
+    }
+  });
+
+  add("im-m7-tankstep", {
+    instruction: "Çok adımlı işlemin veya su deposu probleminin adımlarını sırayla ilerlet; işlem önceliğini canlı izle.",
+    controls: [choice("mode", "Senaryo", "order", [["order", "İşlem önceliği ağacı"], ["bar", "Kesir çizgisi gruplar"], ["tank", "Su deposu problemi"]]), range("step", "Adım", 1, 3, 1)],
+    demo: [{ mode: "order", step: 1 }, { mode: "order", step: 2 }, { mode: "order", step: 3 }, { mode: "bar", step: 2 }, { mode: "tank", step: 3 }],
+    render(v) {
+      if (v.mode === "tank") {
+        const levels = [1, 3 / 5, 3 / 5 + 1 / 5, 4 / 5];
+        const lv = levels[v.step];
+        const msgs = [
+          "",
+          "1. adım: Deponun 2/5'i kullanıldı → Kalan: 1 − 2/5 = 3/5",
+          "2. adım: Kalanın (3/5) 1/3'ü kadar su eklendi → (3/5) × (1/3) = 1/5 eklendi",
+          "3. adım: Son doluluk: 3/5 + 1/5 = 4/5 (Deponun %80'i dolu)"
+        ];
+        const h = lv * 110;
+        const tank = `<rect x="145" y="34" width="130" height="116" rx="10" fill="#fff" stroke="${C.blue}" stroke-width="3"/>` +
+          `<rect x="149" y="${146 - h}" width="122" height="${h}" rx="6" fill="${C.sky}" stroke="${C.blue}" ${anim("pl-pop")}/>` +
+          [1, 2, 3, 4].map((k) => line(145, 146 - k * 22, 275, 146 - k * 22, C.blue, 1, 'stroke-dasharray="4 3"')).join("") +
+          text(210, 96, `${Math.round(lv * 5)}/5 dolu`, { size: 18, color: C.blue });
+        return svg(tank + text(210, 178, msgs[v.step], { size: 12, color: C.ink }), "Çok adımlı depo problemi") +
+          badges([[`Adım ${v.step}/3`, C.blue], [`Doluluk: ${Math.round(lv * 5)}/5`, C.green]]) +
+          cap(msgs[v.step]);
+      }
+      const rows = v.mode === "bar"
+        ? [
+            "Başlangıç: (1/2 + 1/3) / (5/6 − 1/3)",
+            "1. adım (Pay ve payda ayrı parantezdir): Pay = 5/6 , Payda = 3/6",
+            "2. adım (Ana kesir çizgisi bölmedir): (5/6) ÷ (3/6)",
+            "3. adım (Ters çevir çarp): (5/6) × (6/3) = 5/3"
+          ]
+        : [
+            "Başlangıç: 3/4 + (1/2)² ÷ (3/8)",
+            "1. adım (Üs ve parantez): (1/2)² = 1/4 → 3/4 + 1/4 ÷ 3/8",
+            "2. adım (Bölme toplamadan önce): (1/4) × (8/3) = 2/3",
+            "3. adım (Toplama): 3/4 + 2/3 = 9/12 + 8/12 = 17/12"
+          ];
+      const cards = [0, 1, 2, 3].map((k) => {
+        const active = k <= v.step, cur = k === v.step;
+        return `<rect x="28" y="${18 + k * 44}" width="364" height="36" rx="8" fill="${cur ? "#fff3d1" : active ? "#eef6ff" : "#f5f2ec"}" stroke="${cur ? C.gold : active ? C.blue : "#d8cfc2"}" stroke-width="${cur ? 2.5 : 1.5}"/>` +
+          text(210, 41 + k * 44, rows[k], { size: 12, color: active ? C.ink : "#999" });
+      }).join("");
+      return svg(cards, "Çok adımlı işlem sırası") +
+        badges([[`1. Üs / Parantez`, C.gold], [`2. Çarpma / Bölme`, C.red], [`3. Toplama / Çıkarma`, C.blue]]) +
+        cap(rows[v.step]);
+    }
+  });
+
+  add("im-m7-views3d", {
+    instruction: "Yapıyı ve bakış yönünü seç; 3B birim küp yapısının yanında seçtiğin yöndeki 2B karesel görünümün nasıl oluştuğunu gör.",
+    controls: [choice("b", "Yapı", "L", [["L", "L kulesi (5 küp)"], ["step", "Basamaklı yapı (6 küp)"], ["amb", "İki farklı yapı — aynı görünüm"]]), choice("dir", "Bakış yönü", "top", [["top", "Üstten"], ["front", "Önden"], ["right", "Sağdan"]])],
+    demo: [{ b: "L", dir: "top" }, { b: "L", dir: "front" }, { b: "L", dir: "right" }, { b: "step", dir: "front" }, { b: "amb", dir: "top" }],
+    render(v) {
+      const grids = {
+        L: [[2, 1, 0], [1, 0, 0], [1, 0, 0]],
+        step: [[3, 2, 1], [0, 0, 0], [0, 0, 0]],
+        amb: [[2, 1, 0], [1, 2, 0], [0, 0, 0]]
+      };
+      const g = grids[v.b] || grids.L;
+      const iso = (x, y, z) => ({ x: 112 + (x - y) * 20, y: 120 + (x + y) * 10 - z * 18 });
+      const drawCube = (x, y, z, d) => {
+        const p = iso(x, y, z), dx = 20, dy = 10, dz = 18;
+        const top = `${p.x},${p.y - dz} ${p.x + dx},${p.y - dz + dy} ${p.x},${p.y - dz + 2 * dy} ${p.x - dx},${p.y - dz + dy}`;
+        const left = `${p.x - dx},${p.y - dz + dy} ${p.x},${p.y - dz + 2 * dy} ${p.x},${p.y + 2 * dy} ${p.x - dx},${p.y + dy}`;
+        const right = `${p.x},${p.y - dz + 2 * dy} ${p.x + dx},${p.y - dz + dy} ${p.x + dx},${p.y + dy} ${p.x},${p.y + 2 * dy}`;
+        return `<g ${anim("pl-pop", d)}>` +
+          `<polygon points="${top}" fill="${v.dir === "top" ? "#ffe39a" : "#9ec5fe"}" stroke="${C.ink}" stroke-width="1.2"/>` +
+          `<polygon points="${left}" fill="${v.dir === "front" ? "#ffe39a" : "#6ea8fe"}" stroke="${C.ink}" stroke-width="1.2"/>` +
+          `<polygon points="${right}" fill="${v.dir === "right" ? "#ffe39a" : "#3d8bfd"}" stroke="${C.ink}" stroke-width="1.2"/>` +
+          `</g>`;
+      };
+      let cubes = "", idx = 0, total = 0;
+      for (let y = 0; y < 3; y++) {
+        for (let x = 0; x < 3; x++) {
+          for (let z = 0; z < g[y][x]; z++) {
+            cubes += drawCube(x, y, z, idx++ * 0.03);
+            total++;
+          }
+        }
+      }
+      let cells = "", squareCount = 0;
+      const u = 28, ox = 255, oy = 52;
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 3; c++) {
+          let filled = false, label = "";
+          if (v.dir === "top") { filled = g[r][c] > 0; label = filled ? String(g[r][c]) : ""; }
+          else if (v.dir === "front") {
+            const maxH = Math.max(g[0][c], g[1][c], g[2][c]);
+            filled = (2 - r) < maxH;
+          } else {
+            const maxH = Math.max(g[r][0], g[r][1], g[r][2]);
+            filled = (2 - c) < maxH;
+          }
+          if (filled) squareCount++;
+          cells += `<rect x="${ox + c * u}" y="${oy + r * u}" width="${u}" height="${u}" fill="${filled ? "#ffe39a" : "#f7f3eb"}" stroke="${C.ink}" stroke-width="1.5"/>` +
+            (label ? text(ox + c * u + u / 2, oy + r * u + u / 2 + 4, label, { size: 12, color: C.ink }) : "");
+        }
+      }
+      const dirName = { top: "Üstten görünüm (kat sayılarıyla)", front: "Önden görünüm", right: "Sağdan görünüm" }[v.dir];
+      return svg(cubes + text(112, 26, `3B Yapı (${total} birim küp)`, { size: 12, color: C.ink }) +
+        cells + text(297, 36, dirName, { size: 12, color: C.blue }), "3B yapı ve 2B görünüm") +
+        badges([[`Toplam: ${total} küp`, C.blue], [`Görünümde: ${squareCount} kare`, C.gold], [dirName, C.green]]) +
+        cap(v.b === "amb"
+          ? `Üstten görünümde her sütundaki küp sayısı yazılmadığında, farklı küp sayısına sahip yapılar aynı önden/sağdan görünümü verebilir.`
+          : `<b>${dirName}</b> seçildiğinde derinlik farkları düzleşir ve yalnız bu yönden görünen <b>${squareCount}</b> karesel yüz çizilir.`);
+    }
+  });
+
+  add("im-m7-net", {
+    instruction: "Kutu türünü ve açınım adımını seç; karşılıklı eş yüz çiftlerini ve yüzey alanı hesabını incele.",
+    controls: [choice("type", "Kutu türü", "prism", [["prism", "Dikdörtgenler prizması (4×3×2)"], ["open", "Üstü açık kutu (5 yüz)"], ["cube", "Küp (3×3×3)"]]), range("fold", "Açınım / Çift vurgusu", 0, 3, 1)],
+    demo: [{ type: "prism", fold: 1 }, { type: "prism", fold: 2 }, { type: "prism", fold: 3 }, { type: "open", fold: 1 }, { type: "cube", fold: 0 }],
+    render(v) {
+      const [a, b, c] = v.type === "cube" ? [3, 3, 3] : [4, 3, 2];
+      const s = 14, cx = 190, cy = 82;
+      const faces = [
+        { name: "Taban", x: cx, y: cy, w: a * s, h: b * s, pair: 1, col: C.blue, area: a * b },
+        { name: "Ön", x: cx, y: cy + b * s, w: a * s, h: c * s, pair: 2, col: C.red, area: a * c },
+        { name: "Arka", x: cx, y: cy - c * s, w: a * s, h: c * s, pair: 2, col: C.red, area: a * c },
+        { name: "Sol", x: cx - c * s, y: cy, w: c * s, h: b * s, pair: 3, col: C.green, area: b * c },
+        { name: "Sağ", x: cx + a * s, y: cy, w: c * s, h: b * s, pair: 3, col: C.green, area: b * c }
+      ];
+      if (v.type !== "open") {
+        faces.push({ name: "Üst", x: cx + a * s + c * s, y: cy, w: a * s, h: b * s, pair: 1, col: C.blue, area: a * b });
+      }
+      const totalArea = faces.reduce((acc, f0) => acc + f0.area, 0);
+      const boxes = faces.map((f0, i) => {
+        const hi = v.fold === 0 || v.fold === f0.pair;
+        return `<rect x="${f0.x}" y="${f0.y}" width="${f0.w}" height="${f0.h}" fill="${f0.col}" fill-opacity="${hi ? 0.35 : 0.12}" stroke="${f0.col}" stroke-width="${hi ? 3 : 1.5}" ${anim("pl-pop", i * 0.05)}/>` +
+          text(f0.x + f0.w / 2, f0.y + f0.h / 2 + 4, `${f0.name} (${f0.area})`, { size: 10, color: C.ink });
+      }).join("");
+      return svg(boxes + text(210, 24, `${a}×${b}×${c} br — Toplam yüzey alanı = ${totalArea} br²`, { size: 13, color: C.ink }), "Prizma açınımı ve eş yüz çiftleri") +
+        badges([[`Taban/Üst: ${a * b} br²`, C.blue], [`Ön/Arka: ${a * c} br²`, C.red], [`Yanlar: ${b * c} br²`, C.green], [`Toplam: ${totalArea} br²`, C.gold]]) +
+        cap(v.type === "open"
+          ? `Üstü açık kutuda üst kapak yoktur; <b>5 yüz</b> toplanır: ${a * b} + 2×${a * c} + 2×${b * c} = <b>${totalArea} br²</b>.`
+          : v.type === "cube"
+          ? `Küpün 6 yüzü de eş karedir: 6 × (${a} × ${a}) = <b>${totalArea} br²</b>.`
+          : `Kapalı prizmada 3 çift eş dikdörtgen vardır: 2×(${a * b} + ${a * c} + ${b * c}) = <b>${totalArea} br²</b>.`);
+    }
+  });
+
+  add("im-m7-unitcube", {
+    instruction: "Ölçüm birimini veya karşılaştırma modunu değiştir; birim küp büyüdükçe sayının neden azaldığını ve hacim-alan farkını gör.",
+    controls: [choice("unit", "Ölçüm birimi", "1", [["1", "Küçük birim küp (1×1×1)"], ["2", "Büyük birim küp (2×2×2)"]]), choice("cmp", "Kavram", "vol", [["vol", "İçini doldur (Hacim)"], ["area", "Yüzeyi kapla (Alan)"]])],
+    demo: [{ unit: "1", cmp: "vol" }, { unit: "2", cmp: "vol" }, { unit: "1", cmp: "area" }],
+    render(v) {
+      const big = v.unit === "2", count = big ? 8 : 64;
+      const box = `<rect x="65" y="38" width="120" height="120" rx="8" fill="${v.cmp === "area" ? "#fde6e2" : C.sky}" stroke="${C.blue}" stroke-width="3"/>`;
+      const step = big ? 60 : 30, grid = [];
+      for (let i = 1; i < (big ? 2 : 4); i++) {
+        grid.push(line(65 + i * step, 38, 65 + i * step, 158, C.blue, 1.5, 'stroke-dasharray="4 3"'));
+        grid.push(line(65, 38 + i * step, 185, 38 + i * step, C.blue, 1.5, 'stroke-dasharray="4 3"'));
+      }
+      const info = v.cmp === "area"
+        ? text(295, 78, "Yüzey Alanı (2B)", { size: 15, color: C.red }) +
+          text(295, 104, "Dış yüzleri kaplayan kare sayısı:", { size: 11, color: C.ink }) +
+          text(295, 128, "6 × (4×4) = 96 br²", { size: 16, color: C.red })
+        : text(295, 78, "Hacim (3B Boşluk)", { size: 15, color: C.blue }) +
+          text(295, 104, big ? "2×2×2'lik büyük küplerle:" : "1×1×1'lik birim küplerle:", { size: 11, color: C.ink }) +
+          text(295, 128, `${count} adet küp sığar`, { size: 16, color: C.green });
+      return svg(box + grid.join("") + info, "Birim küp ve hacim yorumu") +
+        badges([[`Kutu: 4×4×4`, C.blue], [v.cmp === "area" ? "Yüzey: 96 br²" : `Sayı: ${count} küp`, v.cmp === "area" ? C.red : C.green]]) +
+        cap(v.cmp === "area"
+          ? `<b>Alan</b> kutunun dış kabuğunu kaplayan kare sayısıdır (br²); <b>hacim</b> ise içine sığan birim küp sayısıdır (br³).`
+          : `Kutunun büyüklüğü aynı kalsa bile seçilen birim küpün ayrıtı 2 katına çıkınca (hacmi 8 kat), içine sığan küp sayısı 64'ten <b>8'e</b> düşer.`);
+    }
+  });
+
+  add("im-m7-scale3d", {
+    instruction: "Ayrıtları, bilinmeyen ayrıt modunu veya doluluk oranını seç; prizma hacminin nasıl değiştiğini incele.",
+    controls: [range("a", "Uzunluk a", 2, 6, 4), range("b", "Genişlik b", 2, 5, 3), range("c", "Yükseklik c", 2, 5, 2), choice("fill", "Doluluk oranı", "4", [["2", "2/4 (Yarısı)"], ["3", "3/4 dolu"], ["4", "4/4 (Tam dolu)"]])],
+    demo: [{ a: 4, b: 3, c: 2, fill: "4" }, { a: 4, b: 3, c: 4, fill: "4" }, { a: 4, b: 3, c: 4, fill: "3" }, { a: 6, b: 4, c: 3, fill: "2" }],
+    render(v) {
+      const base = v.a * v.b, vol = base * v.c, ratio = Number(v.fill) / 4, waterVol = vol * ratio;
+      const w = v.a * 28, h = v.c * 22, dx = v.b * 10, dy = v.b * 6;
+      const x0 = 145, y0 = 155, wh = h * ratio;
+      const prism = `<polygon points="${x0},${y0 - wh} ${x0 + w},${y0 - wh} ${x0 + w + dx},${y0 - wh - dy} ${x0 + dx},${y0 - wh - dy}" fill="${C.sky}" stroke="${C.blue}" stroke-width="1.5"/>` +
+        `<rect x="${x0}" y="${y0 - wh}" width="${w}" height="${wh}" fill="${C.blue}" fill-opacity="0.35"/>` +
+        `<rect x="${x0}" y="${y0 - h}" width="${w}" height="${h}" fill="none" stroke="${C.ink}" stroke-width="2.5"/>` +
+        `<polygon points="${x0},${y0 - h} ${x0 + dx},${y0 - h - dy} ${x0 + w + dx},${y0 - h - dy} ${x0 + w},${y0 - h}" fill="none" stroke="${C.ink}" stroke-width="2"/>` +
+        `<polygon points="${x0 + w},${y0 - h} ${x0 + w + dx},${y0 - h - dy} ${x0 + w + dx},${y0 - dy} ${x0 + w},${y0}" fill="none" stroke="${C.ink}" stroke-width="2"/>`;
+      return svg(prism +
+        text(x0 + w / 2, y0 + 18, `a = ${v.a} br, b = ${v.b} br → Taban alanı = ${base} br²`, { size: 12, color: C.ink }) +
+        text(x0 - 28, y0 - h / 2, `c = ${v.c}`, { size: 12, color: C.red }) +
+        text(210, 24, `Tam hacim V = ${base} × ${v.c} = ${vol} br³ · Dolu: ${f(waterVol, 1)} br³`, { size: 13, color: C.blue }), "Taban alanı × yükseklik ve doluluk") +
+        badges([[`Taban: ${v.a}×${v.b} = ${base} br²`, C.blue], [`Yükseklik: ${v.c} br`, C.red], [`Tam hacim: ${vol} br³`, C.green], [`Dolu (${v.fill}/4): ${f(waterVol, 1)} br³`, C.gold]]) +
+        cap(`Hacim = Taban Alanı × Yükseklik = <b>${base} × ${v.c} = ${vol} br³</b>. Hacim ve taban alanı biliniyorsa eksik yükseklik <b>c = ${vol} ÷ ${base} = ${v.c}</b> bulunur.`);
+    }
+  });
+
+  add("im-m7-stairs", {
+    instruction: "Merdiven modunu, sayıyı ve basamak yönünü seç; küp birimlerde ×1000 / ÷1000, litrede ×10 / ÷10 geçişini izle.",
+    controls: [choice("sys", "Birim ailesi", "cube", [["cube", "m³ ↔ dm³ ↔ cm³ (×1000)"], ["litre", "L ↔ dL ↔ cL ↔ mL (×10)"]]), range("val", "Başlangıç değeri", 1, 9, 3), range("step", "Basamak (aşağı + / yukarı −)", -1, 2, 1)],
+    demo: [{ sys: "cube", val: 3, step: 1 }, { sys: "cube", val: 5, step: -1 }, { sys: "litre", val: 2, step: 2 }, { sys: "litre", val: 4, step: 1 }],
+    render(v) {
+      const units = v.sys === "cube" ? ["m³", "dm³ (L)", "cm³ (mL)"] : ["L (dm³)", "dL", "cL", "mL (cm³)"];
+      const factor = v.sys === "cube" ? 1000 : 10;
+      const startIdx = 1, endIdx = Math.max(0, Math.min(units.length - 1, startIdx + v.step));
+      const diff = endIdx - startIdx;
+      const res = diff >= 0 ? v.val * Math.pow(factor, diff) : v.val / Math.pow(factor, -diff);
+      const stairs = units.map((u, i) => {
+        const x = 48 + i * 90, y = 40 + i * 36;
+        const active = i === startIdx || i === endIdx;
+        return `<rect x="${x}" y="${y}" width="82" height="32" rx="6" fill="${i === endIdx ? "#fff3d1" : i === startIdx ? C.sky : "#fff"}" stroke="${active ? C.blue : "#ccc"}" stroke-width="${active ? 2.5 : 1.5}"/>` +
+          text(x + 41, y + 21, u, { size: 12, color: C.ink });
+      }).join("");
+      const opText = diff === 0 ? "Aynı birim" : diff > 0 ? `${diff} basamak aşağı → ×${Math.pow(factor, diff)}` : `${-diff} basamak yukarı → ÷${Math.pow(factor, -diff)}`;
+      return svg(stairs + text(210, 192, `${v.val} ${units[startIdx]} → ${opText} = ${f(res, 4)} ${units[endIdx]}`, { size: 13, color: C.blue }), "Hacim ve sıvı ölçme merdiveni") +
+        badges([[`1 dm³ = 1 L`, C.gold], [`1 cm³ = 1 mL`, C.green], [opText, C.red], [`= ${f(res, 4)} ${units[endIdx]}`, C.blue]]) +
+        cap(v.sys === "cube"
+          ? `Hacim birimlerinde 3 boyut olduğu için her basamakta 10 × 10 × 10 = <b>1000</b> ile çarpılır veya bölünür. Köprü: <b>1 dm³ = 1 L</b>.`
+          : `Litre basamakları (L–dL–cL–mL) onar onar büyür ve küçülür: her basamak <b>×10</b> veya <b>÷10</b> demektir.`);
+    }
+  });
+
+  add("im-m7-packbox", {
+    instruction: "Koli boyutlarını ve küçük kutu ayrıtını seç; her boyuta kaç kutu sığdığını ayrı ayrı bölerek hesapla.",
+    controls: [range("W", "Koli boyu (cm)", 12, 24, 20, 2), range("D", "Koli eni (cm)", 10, 20, 15, 5), range("H", "Koli yüksekliği (cm)", 8, 16, 12, 2), choice("k", "Küçük küp ayrıtı", "4", [["3", "3 cm"], ["4", "4 cm"], ["5", "5 cm"]])],
+    demo: [{ W: 20, D: 15, H: 12, k: "4" }, { W: 20, D: 15, H: 12, k: "5" }, { W: 18, D: 15, H: 12, k: "3" }],
+    render(v) {
+      const k = Number(v.k);
+      const nx = Math.floor(v.W / k), ny = Math.floor(v.D / k), nz = Math.floor(v.H / k);
+      const fitCount = nx * ny * nz;
+      const boxVol = v.W * v.D * v.H, cubeVol = k * k * k, naive = Math.floor(boxVol / cubeVol);
+      const u = 18, ox = 60, oy = 42;
+      let grid = `<rect x="${ox}" y="${oy}" width="${v.W * 6}" height="${v.H * 6}" fill="#f7f3eb" stroke="${C.ink}" stroke-width="2.5"/>`;
+      for (let r = 0; r < nz; r++) {
+        for (let c = 0; c < nx; c++) {
+          grid += `<rect x="${ox + c * k * 6}" y="${oy + (v.H - (r + 1) * k) * 6}" width="${k * 6}" height="${k * 6}" fill="${C.sky}" stroke="${C.blue}" stroke-width="1.5" ${anim("pl-pop", (r * nx + c) * 0.03)}/>`;
+        }
+      }
+      return svg(grid +
+        text(295, 58, `Boy: ⌊${v.W}÷${k}⌋ = ${nx} sıra`, { size: 12, color: C.blue }) +
+        text(295, 82, `En: ⌊${v.D}÷${k}⌋ = ${ny} sıra`, { size: 12, color: C.blue }) +
+        text(295, 106, `Yükseklik: ⌊${v.H}÷${k}⌋ = ${nz} kat`, { size: 12, color: C.blue }) +
+        text(295, 138, `Sığan: ${nx}×${ny}×${nz} = ${fitCount} kutu`, { size: 14, color: C.green }) +
+        (naive !== fitCount ? text(295, 164, `(Hacim bölünseydi ${naive} sanılırdı — boşluk kalır!)`, { size: 10, color: C.red }) : ""),
+        "Kutuya yerleştirme problemi") +
+        badges([[`Her sıraya: ${nx}×${ny}`, C.blue], [`Kat: ${nz}`, C.gold], [`Tam sığan: ${fitCount} kutu`, C.green]]) +
+        cap(`Kutular parçalanamayacağı için yalnız toplam hacmi bölmek yetmez; her ayrıt ayrı ayrı bölünür: <b>${nx} × ${ny} × ${nz} = ${fitCount}</b> kutu.`);
+    }
+  });
+
+  add("im-m7-plants", {
+    instruction: "Veri türünü ve değişkenlik düzeyini seç; nokta bulutunun ve dağılımın nasıl değiştiğini gözlemle.",
+    controls: [choice("type", "Veri türü", "cont", [["disc", "Kesikli (Kardeş sayısı — sayılır)"], ["cont", "Sürekli (Bitki boyu cm — ölçülür)"], ["code", "Kod (Forma numarası — nicel değil)"]]), choice("spread", "Değişebilirlik", "wide", [["low", "Düşük yayılım"], ["wide", "Yüksek yayılım"]])],
+    demo: [{ type: "disc", spread: "low" }, { type: "cont", spread: "wide" }, { type: "code", spread: "wide" }],
+    render(v) {
+      if (v.type === "code") {
+        const shirts = ["7", "10", "23", "99"].map((num, i) => {
+          const x = 60 + i * 88;
+          return `<rect x="${x}" y="52" width="64" height="74" rx="10" fill="${PALETTE[i]}" fill-opacity="0.22" stroke="${PALETTE[i]}" stroke-width="2.5" ${anim("pl-pop", i * 0.08)}/>` +
+            text(x + 32, 95, `#${num}`, { size: 18, color: PALETTE[i] });
+        }).join("");
+        return svg(shirts + text(210, 165, "Forma veya otobüs numaraları rakamla yazılsa da etiket (kategorik) veridir; ortalaması alınmaz!", { size: 11, color: C.red }), "Sayı görünmesi nicel olduğu anlamına gelmez") +
+          badges([[`Tür: Kategorik (Etiket)`, C.red], [`Toplanmaz / Ortalama alınmaz`, C.gold]]) +
+          cap(`Her gördüğün sayı nicel veri değildir. Forma numarası, telefon kodu veya plaka <b>etiket</b> görevi görür.`);
+      }
+      const pts = v.type === "disc"
+        ? (v.spread === "low" ? [1, 1, 2, 2, 2, 2, 3, 3] : [0, 1, 1, 2, 2, 3, 4, 5])
+        : (v.spread === "low" ? [11.8, 12.1, 12.2, 12.4, 12.5, 12.7, 12.9, 13.1] : [8.4, 9.7, 11.2, 12.5, 13.8, 15.1, 16.4, 17.6]);
+      const min = v.type === "disc" ? 0 : 8, max = v.type === "disc" ? 5 : 18;
+      const counts = {};
+      const dotsSvg = pts.map((val, i) => {
+        counts[val] = (counts[val] || 0) + 1;
+        const x = 55 + ((val - min) / (max - min)) * 310;
+        const y = 135 - (counts[val] - 1) * 20;
+        return dot(x, y, v.type === "disc" ? C.blue : C.green, 8, i * 0.05) +
+          text(x, y - 13, String(val), { size: 10, color: C.ink });
+      }).join("");
+      return svg(line(45, 145, 375, 145, C.ink, 2.5) + dotsSvg +
+        text(210, 32, v.type === "disc" ? "Kesikli veri: Yalnız tam değerler (0, 1, 2, 3…)" : "Sürekli veri: Ölçümle ara değerler de (12,4 cm gibi) alır", { size: 12, color: C.ink }), "Veri türü ve dağılım") +
+        badges([[v.type === "disc" ? "Kesikli (Sayma)" : "Sürekli (Ölçme)", C.blue], [v.spread === "low" ? "Dar dağılım" : "Geniş dağılım", C.green]]) +
+        cap(v.type === "disc"
+          ? `<b>Kesikli nicel veri</b> sayılarak elde edilir; iki tam sayı arasında buçuklu değer almaz.`
+          : `<b>Sürekli nicel veri</b> ölçülerek elde edilir; iki tam sayı arasındaki ondalık değerleri alabilir.`);
+    }
+  });
+
+  add("im-m7-sample", {
+    instruction: "Örneklem seçme yöntemini ve örneklem büyüklüğünü değiştir; evreni doğru temsil edip etmediğini incele.",
+    controls: [choice("method", "Örneklem yöntemi", "fair", [["fair", "Her sınıftan dengeli (Yansız)"], ["biased", "Yalnız spor kulübünden (Yanlı)"]]), range("n", "Örneklem büyüklüğü", 10, 60, 30, 10)],
+    demo: [{ method: "biased", n: 10 }, { method: "fair", n: 30 }, { method: "fair", n: 50 }],
+    render(v) {
+      const classes = ["5. Sınıf", "6. Sınıf", "7. Sınıf", "8. Sınıf"];
+      const boxes = classes.map((c, i) => {
+        const x = 30 + i * 92, picked = v.method === "fair" ? Math.round(v.n / 4) : (i === 2 ? v.n : 0);
+        return `<rect x="${x}" y="38" width="82" height="72" rx="10" fill="#eef6ff" stroke="${C.blue}" stroke-width="2"/>` +
+          text(x + 41, 58, c, { size: 12, color: C.blue }) +
+          `<circle cx="${x + 41}" cy="86" r="16" fill="${picked > 0 ? C.green : "#ddd"}" ${anim("pl-pop", i * 0.07)}/>` +
+          text(x + 41, 91, `${picked}`, { size: 12, color: "#fff" });
+      }).join("");
+      const msg = v.method === "fair"
+        ? `✓ Evrenin her grubundan dengeli seçildi (${v.n} öğrenci) — Temsil gücü yüksek`
+        : `✗ Yalnız tek gruptan seçildi — Yanlı örneklem, tüm okulu temsil etmez!`;
+      return svg(boxes + text(210, 148, msg, { size: 12, color: v.method === "fair" ? C.green : C.red }), "Evren ve örneklem seçimi") +
+        badges([[`Evren: Tüm okul`, C.blue], [`Örneklem: ${v.n} kişi`, C.gold], [v.method === "fair" ? "Yansız / Dengeli" : "Yanlı seçim", v.method === "fair" ? C.green : C.red]]) +
+        cap(`İstatistiksel araştırma sürecinde (Soru → Veri Toplama → Analiz → Yorum) <b>örneklem</b> evreni tarafsız temsil etmeli ve sonuçlar yalnız bu kapsam için genellenmelidir.`);
+    }
+  });
+
+  add("im-m7-survey", {
+    instruction: "Anket tasarım ayarlarını değiştir; tarafsız soru, veri gizliliği ve eksik veri kurallarını kontrol et.",
+    controls: [choice("q", "Soru biçimi", "neutral", [["biased", "Yönlendirici soru"], ["neutral", "Tarafsız soru"]]), choice("priv", "Kişisel veri", "safe", [["unsafe", "TC kimlik ve adres iste"], ["safe", "Yalnız araştırma sorusu"]]), choice("miss", "Boş cevaplar", "report", [["fake", "Kafadan doldur"], ["report", "Eksik veri olarak bildir"]])],
+    demo: [
+      { q: "biased", priv: "unsafe", miss: "fake" },
+      { q: "neutral", priv: "safe", miss: "report" }
+    ],
+    render(v) {
+      const items = [
+        [v.q === "neutral", v.q === "neutral" ? "Soru: 'Okul kütüphanesini haftada kaç gün kullanırsınız?'" : "Soru: 'Harika kütüphanemizi siz de çok seviyorsunuz değil mi?'"],
+        [v.priv === "safe", v.priv === "safe" ? "Gizlilik: İsim/TC istenmedi, gönüllü katılım sağlandı." : "Gizlilik ihlali: Gereksiz TC kimlik ve ev adresi soruldu!"],
+        [v.miss === "report", v.miss === "report" ? "Eksik veri: Cevapsız 3 form raporda açıkça belirtildi." : "Hata: Boş bırakılan sorulara rastgele sayı yazıldı!"]
+      ];
+      const score = items.filter(([ok]) => ok).length;
+      const cards = items.map(([ok, txt], i) => {
+        const y = 22 + i * 46;
+        return `<rect x="28" y="${y}" width="364" height="38" rx="8" fill="${ok ? C.mint : "#fde6e2"}" stroke="${ok ? C.green : C.red}" stroke-width="2" ${anim("pl-pop", i * 0.08)}/>` +
+          text(210, y + 24, `${ok ? "✓" : "✗"} ${txt}`, { size: 11, color: ok ? C.green : C.red });
+      }).join("");
+      return svg(cards + text(210, 180, `Etik ve Güvenilirlik Puanı: ${score} / 3`, { size: 14, color: score === 3 ? C.green : C.red }), "Veri toplama etiği ve kalitesi") +
+        badges([[`Soru: ${v.q === "neutral" ? "Tarafsız" : "Yanlı"}`, v.q === "neutral" ? C.green : C.red], [`Gizlilik: ${v.priv === "safe" ? "Korundu" : "İhlal"}`, v.priv === "safe" ? C.green : C.red], [`Eksik veri: ${v.miss === "report" ? "Şeffaf" : "Uydurma"}`, v.miss === "report" ? C.green : C.red]]) +
+        cap(`Güvenilir veri toplamak için sorular <b>tarafsız</b> olmalı, <b>yalnız gereken</b> veriler gönüllülükle toplanmalı ve <b>eksik veriler</b> uydurulmadan raporlanmalıdır.`);
+    }
+  });
+
+  add("im-m7-charts", {
+    instruction: "Aynı veri setini Sütun, Çizgi veya Nokta grafiğine çevir; hangi grafiğin neyi öne çıkardığını karşılaştır.",
+    controls: [choice("type", "Grafik türü", "bar", [["bar", "Sütun grafiği (Kategorileri karşılaştır)"], ["line", "Çizgi grafiği (Zamanla değişim)"], ["dot", "Nokta grafiği (Dağılım ve sıklık)"]]), range("hi", "Günü vurgula", 0, 4, 2)],
+    demo: [{ type: "bar", hi: 2 }, { type: "line", hi: 3 }, { type: "dot", hi: 2 }],
+    render(v) {
+      const days = ["Pzt", "Sal", "Çar", "Per", "Cum"], vals = [4, 6, 5, 8, 7], tot = 30;
+      const axes = line(55, 28, 55, 152, C.ink, 2) + line(55, 152, 375, 152, C.ink, 2);
+      let body = "";
+      if (v.type === "bar") {
+        body = vals.map((val, i) => {
+          const x = 75 + i * 58, h = val * 13, act = i === v.hi;
+          return `<rect x="${x}" y="${152 - h}" width="36" height="${h}" rx="5" fill="${act ? C.gold : C.blue}" ${anim("pl-pop", i * 0.06)}/>` +
+            text(x + 18, 144 - h, val, { size: 12, color: act ? C.gold : C.blue }) +
+            text(x + 18, 170, days[i], { size: 11, color: C.ink });
+        }).join("");
+      } else if (v.type === "line") {
+        const pts = vals.map((val, i) => [93 + i * 58, 152 - val * 13]);
+        body = `<polyline points="${pts.map(([x, y]) => `${x},${y}`).join(" ")}" fill="none" stroke="${C.red}" stroke-width="3.5" ${draw()}/>` +
+          pts.map(([x, y], i) => dot(x, y, i === v.hi ? C.gold : C.red, i === v.hi ? 8 : 6, i * 0.06) +
+            text(x, y - 12, vals[i], { size: 12, color: C.ink }) +
+            text(x, 170, days[i], { size: 11, color: C.ink })).join("");
+      } else {
+        body = vals.map((val, i) => {
+          const x = 93 + i * 58;
+          let dots = "";
+          for (let k = 0; k < val; k++) dots += dot(x, 142 - k * 14, i === v.hi ? C.gold : C.green, 5.5, k * 0.03);
+          return dots + text(x, 170, days[i], { size: 11, color: C.ink });
+        }).join("");
+      }
+      return svg(axes + body, "Grafik türleri ve veri analizi") +
+        badges([[`${days[v.hi]}: ${vals[v.hi]} br`, C.gold], [`Toplam: ${tot}`, C.blue], [`Ortalama: ${tot / 5}`, C.green]]) +
+        cap(v.type === "bar"
+          ? `<b>Sütun grafiği</b> gruplar arasındaki büyüklük farkını bir bakışta karşılaştırır.`
+          : v.type === "line"
+          ? `<b>Çizgi grafiği</b> verinin günlere göre artış ve azalış eğilimini (trendini) gösterir.`
+          : `<b>Nokta grafiği</b> her bir birimi tek tek göstererek yığılmaları görünür kılar.`);
+    }
+  });
+
+  add("im-m7-seesaw", {
+    instruction: "5. veriyi (uç değeri) sağa-sola kaydır; Aritmetik Ortalama, Ortanca (Medyan) ve Ortalama Mutlak Sapmanın (OMS) nasıl tepki verdiğini izle.",
+    controls: [range("x5", "5. veri değeri (diğerleri: 4, 5, 6, 6)", 4, 18, 9), choice("band", "Referans bandı", "1", [["0", "Gizle"], ["1", "Ortalama ± OMS bandını göster"]])],
+    demo: [{ x5: 6, band: "1" }, { x5: 9, band: "1" }, { x5: 15, band: "1" }, { x5: 18, band: "1" }],
+    render(v) {
+      const arr = [4, 5, 6, 6, v.x5].sort((a, b) => a - b);
+      const mean = arr.reduce((s, n) => s + n, 0) / arr.length;
+      const med = arr[2];
+      const mad = arr.reduce((s, n) => s + Math.abs(n - mean), 0) / arr.length;
+      const rangeVal = arr[4] - arr[0];
+      const xOf = (val) => 40 + ((val - 2) / 18) * 340;
+      const mx = xOf(mean), medX = xOf(med);
+      const bandSvg = v.band === "1"
+        ? `<rect x="${xOf(mean - mad)}" y="78" width="${xOf(mean + mad) - xOf(mean - mad)}" height="42" rx="6" fill="${C.mint}" stroke="${C.green}" stroke-width="1.5" stroke-dasharray="4 3"/>` +
+          text(mx, 68, `Ortalama ± OMS (${f(mean - mad, 1)} – ${f(mean + mad, 1)})`, { size: 11, color: C.green })
+        : "";
+      const ptsSvg = arr.map((val, i) => {
+        const x = xOf(val);
+        return line(x, 110, mx, 110, C.gold, 1.5, 'stroke-dasharray="3 2"') +
+          dot(x, 102 - (i === 3 && arr[3] === arr[2] ? 14 : 0), i === 4 ? C.red : C.blue, 7.5, i * 0.05) +
+          text(x, 46 + (i % 2) * 14, val, { size: 11, color: i === 4 ? C.red : C.blue });
+      }).join("");
+      const fulcrum = `<polygon points="${mx},120 ${mx - 14},148 ${mx + 14},148" fill="${C.red}"/>` +
+        text(mx, 164, `Ortalama = ${f(mean, 1)}`, { size: 12, color: C.red }) +
+        line(medX, 85, medX, 132, C.blue, 2.5, 'stroke-dasharray="4 3"') +
+        text(medX, 182, `Ortanca = ${med} · Tepe değer = 6`, { size: 11, color: C.blue });
+      return svg(bandSvg + line(35, 120, 385, 120, C.ink, 3) + ptsSvg + fulcrum, "Terazi dengesi: Ortalama, Ortanca ve OMS") +
+        badges([[`Ortalama: ${f(mean, 1)}`, C.red], [`Ortanca: ${med}`, C.blue], [`OMS: ${f(mad, 2)}`, C.green], [`Açıklık: ${rangeVal}`, C.gold]]) +
+        cap(`Uç değer (${v.x5}) büyüdükçe <b>ortalama (${f(mean, 1)})</b> ve <b>OMS (${f(mad, 2)})</b> sağa çekilir; fakat <b>ortanca (${med})</b> ve <b>tepe değer (6)</b> uç değerden etkilenmez.`);
+    }
+  });
+
+  add("im-m7-axis", {
+    instruction: "Dikey eksen başlangıcını değiştir; kesilmiş eksenin (0'dan başlamayan grafik) farkı nasıl abarttığını gör.",
+    controls: [choice("mode", "Eksen gösterimi", "cut", [["cut", "Kesilmiş eksen (90'dan başlar — yanıltıcı)"], ["zero", "Gerçek eksen (0'dan başlar — doğru)"]])],
+    demo: [{ mode: "cut" }, { mode: "zero" }],
+    render(v) {
+      const a = 92, b = 96, base = v.mode === "cut" ? 90 : 0, max = 100;
+      const ha = ((a - base) / (max - base)) * 115, hb = ((b - base) / (max - base)) * 115;
+      const ratioVis = Math.round((hb / ha) * 10) / 10;
+      const chart = line(75, 25, 75, 155, C.ink, 2.5) + line(75, 155, 345, 155, C.ink, 2.5) +
+        text(62, 155, base, { size: 12, anchor: "end", color: v.mode === "cut" ? C.red : C.green }) +
+        text(62, 38, "100", { size: 12, anchor: "end" }) +
+        `<rect x="125" y="${155 - ha}" width="58" height="${ha}" rx="6" fill="${C.blue}" ${anim("pl-pop")}/>` +
+        text(154, 146 - ha, `A: ${a}`, { size: 13, color: C.blue }) +
+        `<rect x="235" y="${155 - hb}" width="58" height="${hb}" rx="6" fill="${v.mode === "cut" ? C.red : C.green}" ${anim("pl-pop", 0.08)}/>` +
+        text(264, 146 - hb, `B: ${b}`, { size: 13, color: v.mode === "cut" ? C.red : C.green }) +
+        text(210, 182, v.mode === "cut" ? `Görsel yanıltma: B sütunu A'nın ${ratioVis} katı gibi duruyor!` : "Doğru ölçek: 92 ile 96 arasındaki gerçek oran (%4,3 fark) görünüyor.", { size: 11, color: v.mode === "cut" ? C.red : C.green });
+      return svg(chart, "Medyada grafik inceleme: Kesilmiş eksen") +
+        badges([[`Gerçek fark: 96 − 92 = 4`, C.blue], [`Sütun boyu oranı: ${ratioVis} kat`, v.mode === "cut" ? C.red : C.green]]) +
+        cap(v.mode === "cut"
+          ? `Dikey eksen 0 yerine 90'dan başlatılınca 4 puanlık küçük fark <b>3 kat</b> büyümüş gibi görünür. Grafikleri okurken önce eksen başlangıcına bak!`
+          : `Eksen 0'dan başladığında sütun boyları gerçek büyüklüklerle doğru orantılı olur.`);
+    }
+  });
+
+  add("im-m7-sym", {
+    instruction: "Çokgeni veya yansıma modunu seç; ayna doğrusuna dik eşit uzaklığı ve düzgün çokgenlerin simetri doğrusu sayısını incele.",
+    controls: [choice("mode", "İnceleme", "mirror", [["mirror", "Doğruya göre yansıma (Eşlik ve dik uzaklık)"], ["poly", "Düzgün çokgende simetri doğruları"]]), range("n", "Kenar / Konum", 3, 6, 4)],
+    demo: [{ mode: "mirror", n: 4 }, { mode: "mirror", n: 6 }, { mode: "poly", n: 3 }, { mode: "poly", n: 4 }, { mode: "poly", n: 6 }],
+    render(v) {
+      if (v.mode === "poly") {
+        const n = v.n, cx = 210, cy = 102, r = 68;
+        const pts = Array.from({ length: n }, (_, k) => pt(cx, cy, 90 - k * 360 / n, r));
+        let axes = "";
+        for (let k = 0; k < n; k++) {
+          const a = pt(cx, cy, 90 - k * 180 / n, r + 16);
+          const b = pt(cx, cy, 90 - k * 180 / n + 180, r + 16);
+          axes += line(a[0], a[1], b[0], b[1], C.red, 2, `stroke-dasharray="5 4" ${draw(k * 0.06)}`);
+        }
+        const poly = `<polygon points="${pts.map((p) => `${f(p[0])},${f(p[1])}`).join(" ")}" fill="${C.sky}" fill-opacity="0.35" stroke="${C.blue}" stroke-width="3.5"/>`;
+        return svg(poly + axes + text(210, 192, `Düzgün ${n}gen → ${n} tane simetri doğrusu`, { size: 13, color: C.ink }), "Simetri doğrusu sayısı") +
+          badges([[`Kenar sayısı: ${n}`, C.blue], [`Simetri doğrusu: ${n}`, C.red]]) +
+          cap(`Düzgün çokgenlerin kenar sayısı kadar simetri doğrusu vardır: Düzgün <b>${n}gen</b> tam <b>${n}</b> simetri doğrusuna sahiptir.`);
+      }
+      const d = v.n * 14, mx = 210;
+      const tri1 = [[mx - d, 48], [mx - d - 42, 128], [mx - 18, 146]];
+      const tri2 = tri1.map(([x, y]) => [2 * mx - x, y]);
+      const guides = tri1.map(([x1, y], i) => {
+        const x2 = 2 * mx - x1;
+        return line(x1, y, x2, y, C.gold, 1.8, 'stroke-dasharray="4 3"') +
+          square(mx, y, -180, -90, 9, C.green) +
+          dot(x1, y, C.blue, 5.5) + dot(x2, y, C.red, 5.5, 0.08) +
+          text(x1 - 14, y + 4, LETTERS[i], { size: 12, color: C.blue }) +
+          text(x2 + 16, y + 4, LETTERS[i] + "′", { size: 12, color: C.red });
+      }).join("");
+      const onAxis = dot(mx, 168, C.green, 6) + text(mx + 56, 172, "K = K′ (Ayna üstünde)", { size: 11, color: C.green });
+      return svg(
+        line(mx, 16, mx, 188, C.green, 3.5) +
+        `<polygon points="${tri1.map((p) => p.join(",")).join(" ")}" fill="${C.blue}" fill-opacity="0.22" stroke="${C.blue}" stroke-width="3"/>` +
+        `<polygon points="${tri2.map((p) => p.join(",")).join(" ")}" fill="${C.red}" fill-opacity="0.22" stroke="${C.red}" stroke-width="3" ${anim("pl-pop", 0.08)}/>` +
+        guides + onAxis,
+        "Doğruya göre yansıma"
+      ) +
+        badges([[`Uzaklıklar eşit (|AA′| ⊥ d)`, C.gold], [`Şekil ve görüntü EŞ`, C.blue], [`Yönelim ters döner`, C.red]]) +
+        cap(`Yansımada her nokta ile görüntüsü simetri doğrusuna <b>dik</b> ve <b>eşit uzaklıktadır</b>. Kenar uzunlukları ve açı ölçüleri korunur; doğru üzerindeki nokta (K) yerinde kalır.`);
+    }
+  });
+
+  add("im-m7-bisect", {
+    instruction: "İnşa türünü ve adımı seç; pergel ve çizgiliksiz cetvelle orta dikme ve açıortayın nasıl kurulduğunu adım adım izle.",
+    controls: [choice("kind", "Geometrik inşa", "perp", [["perp", "[AB] doğru parçasının orta dikmesi"], ["ang", "Açının açıortayı"]]), range("step", "İnşa adımı", 1, 3, 3)],
+    demo: [{ kind: "perp", step: 1 }, { kind: "perp", step: 2 }, { kind: "perp", step: 3 }, { kind: "ang", step: 1 }, { kind: "ang", step: 2 }, { kind: "ang", step: 3 }],
+    render(v) {
+      if (v.kind === "perp") {
+        const ax = 120, bx = 300, y = 105, r = 115, mx = 210, dy = Math.sqrt(r * r - 90 * 90);
+        const s1 = line(ax, y, bx, y, C.blue, 4) + dot(ax, y, C.blue, 6) + dot(bx, y, C.blue, 6) +
+          text(ax - 14, y + 5, "A", { size: 14, color: C.blue }) + text(bx + 14, y + 5, "B", { size: 14, color: C.blue });
+        const s2 = v.step >= 2
+          ? `<path d="${arcPath(ax, y, r, -55, 55)}" fill="none" stroke="${C.gold}" stroke-width="2.5" stroke-dasharray="6 4" ${draw()}/>` +
+            `<path d="${arcPath(bx, y, r, 125, 235)}" fill="none" stroke="${C.gold}" stroke-width="2.5" stroke-dasharray="6 4" ${draw(0.08)}/>` +
+            dot(mx, y - dy, C.red, 6, 0.12) + dot(mx, y + dy, C.red, 6, 0.12) +
+            text(mx + 16, y - dy + 4, "P", { size: 12, color: C.red }) + text(mx + 16, y + dy + 4, "Q", { size: 12, color: C.red })
+          : "";
+        const s3 = v.step >= 3
+          ? line(mx, 18, mx, 192, C.red, 3.5, draw(0.15)) + square(mx, y, 0, -90, 12, C.green) +
+            dot(mx, y, C.green, 6) + text(mx - 14, y + 18, "M", { size: 12, color: C.green }) +
+            line(ax, y - dy, mx, y - dy, C.green, 0) +
+            line(ax, y, mx, y - dy, C.green, 1.8, 'stroke-dasharray="4 3"') +
+            line(bx, y, mx, y - dy, C.green, 1.8, 'stroke-dasharray="4 3"') +
+            text(160, 62, "|PA| = |PB|", { size: 11, color: C.green })
+          : "";
+        return svg(s1 + s2 + s3, "Orta dikme inşası") +
+          badges([[`Adım ${v.step}/3`, C.blue], [`|AM| = |MB|`, C.green], [`PQ ⊥ [AB]`, C.red]]) +
+          cap(`1) A ve B merkezli, yarısından büyük eşit yarıçaplı iki yay çizilir. 2) Yayların kesişim noktaları P ve Q bulunur. 3) PQ doğrusu hem [AB]'yi <b>iki eş parçaya böler</b> hem de <b>dik</b> keser.`);
+      }
+      const ox = 95, oy = 152, a1 = 10, a2 = 64, mid = (a1 + a2) / 2;
+      const p1 = pt(ox, oy, a1, 210), p2 = pt(ox, oy, a2, 210);
+      const k1 = pt(ox, oy, a1, 105), k2 = pt(ox, oy, a2, 105), pm = pt(ox, oy, mid, 165), pb = pt(ox, oy, mid, 215);
+      const base = line(ox, oy, p1[0], p1[1], C.blue, 4) + line(ox, oy, p2[0], p2[1], C.blue, 4) + dot(ox, oy, C.blue, 6) + text(ox - 14, oy + 5, "O", { size: 14, color: C.blue });
+      const st1 = v.step >= 1
+        ? `<path d="${arcPath(ox, oy, 105, a1 - 6, a2 + 6)}" fill="none" stroke="${C.gold}" stroke-width="2.5" stroke-dasharray="6 4" ${draw()}/>` +
+          dot(k1[0], k1[1], C.gold, 6) + dot(k2[0], k2[1], C.gold, 6) +
+          text(k1[0] + 10, k1[1] + 14, "K", { size: 12, color: C.gold }) + text(k2[0] - 14, k2[1] - 6, "L", { size: 12, color: C.gold })
+        : "";
+      const st2 = v.step >= 2
+        ? `<circle cx="${f(k1[0])}" cy="${f(k1[1])}" r="74" fill="none" stroke="${C.green}" stroke-width="1.8" stroke-dasharray="4 4"/>` +
+          `<circle cx="${f(k2[0])}" cy="${f(k2[1])}" r="74" fill="none" stroke="${C.green}" stroke-width="1.8" stroke-dasharray="4 4"/>` +
+          dot(pm[0], pm[1], C.red, 7, 0.1) + text(pm[0] + 14, pm[1] + 4, "P", { size: 13, color: C.red })
+        : "";
+      const st3 = v.step >= 3
+        ? line(ox, oy, pb[0], pb[1], C.red, 3.5, draw(0.14)) +
+          `<path d="${arcPath(ox, oy, 52, a1, mid)}" fill="none" stroke="${C.red}" stroke-width="2.5"/>` +
+          `<path d="${arcPath(ox, oy, 58, mid, a2)}" fill="none" stroke="${C.red}" stroke-width="2.5"/>` +
+          text(ox + 72, oy - 14, "27°", { size: 11, color: C.red }) + text(ox + 52, oy - 48, "27°", { size: 11, color: C.red })
+        : "";
+      return svg(base + st1 + st2 + st3, "Açıortay inşası") +
+        badges([[`Adım ${v.step}/3`, C.blue], [`|OK| = |OL|`, C.gold], [`Açılar eş: 27° = 27°`, C.red]]) +
+        cap(`1) O merkezli yay kolları K ve L'de keser. 2) K ve L merkezli eş yaylar P'de kesişir. 3) [OP ışını açıyı <b>iki eş açıya</b> bölen <b>açıortaydır</b> ve kollara eşit uzaklıktadır.`);
+    }
+  });
+
   for (const [kind, spec] of Object.entries(models)) M.register(kind, spec);
 
   /* ---------- Adımları konulara bağla ---------- */
@@ -1271,7 +2152,10 @@
     cokgen: {
       up: { "Üç kenarla başla": up("im-build-poly", { n: 3 }), "Bir kenar daha": up("im-build-poly", { n: 4 }), "Beşe ulaş": up("im-build-poly", { n: 5 }),
         "Kapalı şekil": up("im-closed", { mode: "open" }), "Kenar, köşe, açı": up("im-build-poly", { n: 6 }), "Düzgün çokgen": up("im-regular", { mode: "rect" }), "Köşegen": up("im-polygon", { n: 5 }) },
-      extra: [extra("Düzgün çokgen", "Eşkenar dörtgen düzgün mü?", "Eşkenar dörtgenin dört kenarı da eşittir. Peki açıları? Karşılıklı açılar eşit ama komşu açılar farklıdır. Bu yüzden düzgün çokgen değildir. Kare ile karşılaştır.", "im-regular", { mode: "rh" }, ["Dikdörtgen neden düzgün çokgen değildir?", "Açıları eşit ama kenarları her zaman eşit değil."])]
+      extra: [
+        extra("Düzgün çokgen", "Eşkenar dörtgen düzgün mü?", "Eşkenar dörtgenin dört kenarı da eşittir. Peki açıları? Karşılıklı açılar eşit ama komşu açılar farklıdır. Bu yüzden düzgün çokgen değildir. Kare ile karşılaştır.", "im-regular", { mode: "rh" }, ["Dikdörtgen neden düzgün çokgen değildir?", "Açıları eşit ama kenarları her zaman eşit değil."]),
+        extra("Köşegen", "Köşegenlerle üçgenlere ayır", "Bir köşeden komşu olmayan köşelere köşegenler çizince çokgen üçgenlere bölünür. Beşgende 2 köşegen 3 üçgen, altıgende 3 köşegen 4 üçgen oluşturur.", "im-poly-tri", { n: 5, show: "tri" }, ["Altıgende bir köşeden çizilen köşegenler kaç üçgen oluşturur?", "6 − 2 = 4 üçgen."])
+      ]
     },
     ucgen: {
       up: { "180°ye tamamla": up("im-tear", { step: "line" }), "Açılarına göre": up("im-tri-shape", { k: 9, h: 4 }), "İç açılar toplamı": up("im-tear", { step: "tri" }), "Kenarlarına göre": up("im-sticks", { a: 5, b: 5, c: 8 }) },
@@ -1287,7 +2171,10 @@
     },
     okuma: {
       up: { "Bölüklere ad ver": up("read", { digits: "12345678" }), "Bölükler": up("im-bolukle", { n: 149597890 }), "Nasıl okunur?": up("read", { digits: "149597890" }), "Sıfırın yeri": up("read", { digits: "7005" }) },
-      extra: [extra("Sıfırın yeri", "Sıfırlı sayılar", "Sıfırları çok olan sayılarda bölükleri renkli paketlere ayır. Tamamı sıfır olan bölüğün adını söyleme. 2 030 405 060 sayısını dene.", "im-bolukle", { n: 2030405060 }, ["5 000 007 nasıl okunur?", "Beş milyon yedi. Binler bölüğü 000 olduğu için bin denmez."])]
+      extra: [
+        extra("Sıfırın yeri", "Sıfırlı sayılar", "Sıfırları çok olan sayılarda bölükleri renkli paketlere ayır. Tamamı sıfır olan bölüğün adını söyleme. 2 030 405 060 sayısını dene.", "im-bolukle", { n: 2030405060 }, ["5 000 007 nasıl okunur?", "Beş milyon yedi. Binler bölüğü 000 olduğu için bin denmez."]),
+        extra("Sıfırlı sayılar", "Abaküste boncuklarla kur", "Her çubuk bir basamağı temsil eder. Boncuk olmayan çubuğa 0 yazılır. Çubuklardaki boncuk sayılarını değiştirip sayının okunuşunu kontrol et.", "im-abacus", { m: 2, yb: 0, ob: 4, b: 3, y: 0, o: 5, bir: 6 }, ["Milyonlar çubuğunda 4, birler çubuğunda 9 boncuk varsa ve diğer çubuklar boşsa sayı kaçtır?", "4 000 009 (Dört milyon dokuz)."])
+      ]
     },
     basamak: {
       up: { "Birler evinde": up("im-shift", { d: 3, pos: 0 }), "Bir ev sola": up("im-shift", { d: 3, pos: 1 }), "Bir ev daha sola": up("im-shift", { d: 3, pos: 2 }),
@@ -1311,7 +2198,7 @@
     problem: {
       up: { "Önce tutarı hesapla": up("im-shop", { n: 3, price: 20, money: 100 }), "Sonra kalanı bul": up("im-shop", { n: 4, price: 20, money: 100 }),
         "Dört adım": up("im-steps4", { step: "1" }), "Tabloyu oku": up("im-table", { q: "total" }), "En fazla, en az": up("im-bus", { people: 50, cap: 11 }) },
-      extra: [extra("En fazla, en az", "Param yeter mi?", "Tanesi 40 TL olan 8 kitap için 200 TL yeter mi? Önce tutarı bul: 8 × 40 = 320 TL. Para yetmiyorsa en fazla kaç kitap alınacağını bölerek bul: 200 ÷ 40 = 5.", "im-shop", { n: 8, price: 40, money: 200 }, ["Tanesi 15 TL olan defterden 100 TL ile en fazla kaç tane alınır?", "100 ÷ 15 = 6, kalan 10. En fazla 6 defter."])]
+      extra: [extra("En fazla, en az", "Param yeter mi?", "Tanesi 15 TL olan defterden 100 TL ile en fazla kaç tane alınır? Önce tutarı ve kalanı modelde dene.", "im-shop", { n: 8, price: 40, money: 200 }, ["Tanesi 15 TL olan defterden 100 TL ile en fazla kaç tane alınır?", "100 ÷ 15 = 6, kalan 10. En fazla 6 defter."])]
     },
     cevre: {
       up: { "Bahçeyi tanı": up("im-walk", { w: 4, h: 3 }), "Çerçeve": up("im-walk", { w: 6, h: 3 }), "Aynı çevre, farklı dikdörtgen": up("im-fence", { P: "16", a: 1 }), "Tek sayı olmaz": up("im-odd", { P: 15 }) },
@@ -1325,12 +2212,214 @@
     iliski: {
       up: { "Uzun bir şekil kur": up("im-same-area", { A: "12", i: 1 }), "Kareleri yeniden diz": up("im-same-area", { A: "12", i: 2 }),
         "Aynı alan, başka çevre": up("im-same-area", { A: "24", i: 0 }), "Aynı çevre, başka alan": up("im-fence", { P: "20", a: 2 }), "İkisi birden": up("rect", { w: 6, h: 4 }, "Alanı 24, çevresi 20 olan dikdörtgeni kaydırıcılarla bul.") },
-      extra: [extra("İkisi birden", "36 kareyi diz", "36 birim kareyi farklı dikdörtgenler hâlinde diz: 36 × 1, 18 × 2, 12 × 3, 9 × 4 ve 6 × 6. Alan hep 36 kalır. Çevre en uzun 74, en kısa 24 birimdir; en kısa çevre karede.", "im-same-area", { A: "36", i: 0 }, ["Alanı 16 birim kare olan dikdörtgenlerden en kısa çevreli olanı hangisi?", "4 × 4 kare. Çevresi 16 birimdir."])]
+      extra: [
+        extra("İkisi birden", "36 kareyi diz", "36 birim kareyi farklı dikdörtgenler hâlinde diz: 36 × 1, 18 × 2, 12 × 3, 9 × 4 ve 6 × 6. Alan hep 36 kalır. Çevre en uzun 74, en kısa 24 birimdir; en kısa çevre karede.", "im-same-area", { A: "36", i: 0 }, ["Alanı 16 birim kare olan dikdörtgenlerden en kısa çevreli olanı hangisi?", "4 × 4 kare. Çevresi 16 birimdir."]),
+        extra("36 kareyi diz", "4 eş kareyle şekiller (Tetromino)", "4 birim kareyi farklı biçimlerde birbirine değdirerek O, I, L, T şekilleri kuralım. Alan hep 4 birim kare kalır ama kareler birbirine daha çok değdikçe dış çevre kısalır.", "im-polyomino", { shape: "O" }, ["4 birim karelik 2×2 kare şeklinin çevresi kaç birimdir?", "8 birim (Çubuk şeklinde ise 10 birimdir)."])
+      ]
+    }
+  };
+
+  const plan7 = {
+    "m7-tamsayilar": {
+      up: {
+        "Sıfır bir referanstır": up("im-m7-sea", { h: -8, opp: "0" }),
+        "Sayı doğrusunda yön": up("m7-number"),
+        "Karşıt sayılar": up("im-m7-sea", { h: -10, opp: "1" }),
+        "Asansör yolculuğu": up("im-m7-elevator", { start: 2, move: -5 }),
+        "Düşün ve açıkla": up("im-m7-sea", { h: 12, opp: "1" })
+      }
+    },
+    "m7-rasyonel": {
+      up: {
+        "Bütünü eş parçalara ayır": up("im-frac", { n: -3, d: 4, k: 1 }),
+        "İşareti taşı": up("im-m7-sign", { p: 3, q: 4, pos: "front" }),
+        "Eş kesirler": up("im-frac", { n: 2, d: 4, k: 2 }),
+        "Tam sayıya köprü": up("im-frac", { n: -6, d: 3, k: 1 }),
+        "Sıfırın yeri": up("im-frac", { n: 0, d: 5, k: 1 })
+      }
+    },
+    "m7-mutlakdeger": {
+      up: {
+        "Uzaklığın işareti yok": up("im-abs", { a: -7, b: 0 }),
+        "İki farklı sayı, aynı uzaklık": up("im-abs", { a: -8, b: 8 }),
+        "Paketleme kontrolü": up("im-m7-pack", { w: 494, tol: 5 }),
+        "İki nokta arası": up("im-abs", { a: -6, b: 4 }),
+        "Tolerans aralığı": up("im-m7-pack", { w: 503, tol: 5 })
+      }
+    },
+    "m7-temsiller": {
+      up: {
+        "Kesirden ondalığa": up("im-decimal", { n: 3, d: 4 }),
+        "Sonlu mu, devirli mi?": up("im-m7-rep", { p: 3, q: "4" }),
+        "Devir tekrar eder": up("im-m7-rep", { p: 4, q: "9" }),
+        "Devir sonradan başlarsa": up("im-m7-rep", { p: 5, q: "6" }),
+        "Sonsuz devir, tam değer": up("im-m7-rep", { p: 1, q: "3" })
+      }
+    },
+    "m7-siralama": {
+      up: {
+        "Arada yeni sayı": up("im-m7-dense", { pair: "0", zoom: 1 }),
+        "Sonsuz sayıda ara değer": up("im-m7-dense", { pair: "0", zoom: 3 })
+      }
+    },
+    "m7-tamsayiislemler": {
+      up: {
+        "Toplamada yön": up("im-m7-chips", { a: -3, op: "+", b: 5 }),
+        "Çıkarmayı toplamaya çevir": up("im-m7-chips", { a: 4, op: "-", b: -2 }),
+        "Çarpma ve bölme": up("m7-number"),
+        "Bakiye planı": up("im-m7-ledger", { start: 50, inc: 125, exp: 200 }),
+        "Sonucu kontrol et": up("im-m7-chips", { a: -4, op: "-", b: 3 })
+      }
+    },
+    "m7-rasyonelislemler": {
+      up: {
+        "Toplamada ortak payda": up("im-fracadd", { a: -1, b: 2, c: 3, d: 4 }),
+        "Çarpma ve bölme": up("im-m7-jugs", { tot: "6/4", cup: "1/4" }),
+        "İşlem özellikleri": up("im-fracadd", { a: 2, b: 3, c: -1, d: 6 }),
+        "Üs ve parantez": up("im-m7-pow", { p: 2, q: 3, exp: "2", par: "in" }),
+        "Kesirli yaşam problemi": up("im-m7-jugs", { tot: "9/4", cup: "3/8" })
+      }
+    },
+    "m7-cokadimli": {
+      up: {
+        "İşlem sırası": up("im-m7-tankstep", { mode: "order", step: 1 }),
+        "Aynı öncelikte soldan sağa": up("im-order", { a: 2, b: 3, c: 4 }),
+        "Kesir çizgisi gruplar": up("im-m7-tankstep", { mode: "bar", step: 2 }),
+        "Depoyu planla": up("im-m7-tankstep", { mode: "tank", step: 2 }),
+        "Hata avcısı": up("im-order", { a: 5, b: 2, c: 6 })
+      }
+    },
+    "m7-gorunumler": {
+      up: {
+        "Bakış yönü": up("im-m7-views3d", { b: "L", dir: "top" }),
+        "Üstten görünüm": up("im-m7-views3d", { b: "step", dir: "top" }),
+        "Önden görünüm": up("im-m7-views3d", { b: "L", dir: "front" }),
+        "Sağdan görünüm": up("im-m7-views3d", { b: "L", dir: "right" }),
+        "Görünümler yetmeyebilir": up("im-m7-views3d", { b: "amb", dir: "front" })
+      }
+    },
+    "m7-acinim": {
+      up: {
+        "Altı yüzü aç": up("im-m7-net", { type: "prism", fold: 0 }),
+        "Üç çift dikdörtgen": up("im-m7-net", { type: "prism", fold: 1 }),
+        "Kutuyu kapla": up("im-m7-net", { type: "prism", fold: 2 }),
+        "Açık kutu": up("im-m7-net", { type: "open", fold: 1 }),
+        "Küpün özel durumu": up("im-m7-net", { type: "cube", fold: 0 })
+      }
+    },
+    "m7-hacimyorum": {
+      up: {
+        "İçeriyi doldur": up("im-layers", { a: 3, b: 2, c: 2 }),
+        "Bir katmanı say": up("im-layers", { a: 4, b: 3, c: 1 }),
+        "Katmanları birleştir": up("im-layers", { a: 4, b: 3, c: 3 }),
+        "Birim büyürse sayı azalır": up("im-m7-unitcube", { unit: "2", cmp: "vol" }),
+        "Alanla karıştırma": up("im-m7-unitcube", { unit: "1", cmp: "area" })
+      }
+    },
+    "m7-hacim": {
+      up: {
+        "Taban alanından hacme": up("im-m7-scale3d", { a: 4, b: 3, c: 2, fill: "4" }),
+        "Örnek depo": up("m7-prism"),
+        "Eksik ayrıt": up("im-m7-scale3d", { a: 5, b: 3, c: 4, fill: "4" }),
+        "Boyutlar değişirse": up("im-m7-scale3d", { a: 6, b: 4, c: 4, fill: "4" }),
+        "Doluluk payı": up("im-m7-scale3d", { a: 4, b: 3, c: 4, fill: "3" })
+      }
+    },
+    "m7-birimler": {
+      up: {
+        "Küp birimlerde bin kat": up("im-m7-stairs", { sys: "cube", val: 3, step: 1 }),
+        "Litre köprüsü": up("im-units", { ml: 4000 }),
+        "Litre basamakları": up("im-m7-stairs", { sys: "litre", val: 2, step: 2 }),
+        "Dönüşümü uygula": up("im-units", { ml: 3000 }),
+        "Önce birimleri eşitle": up("im-m7-stairs", { sys: "cube", val: 5, step: 1 })
+      }
+    },
+    "m7-problemler": {
+      up: {
+        "Modeli seç": up("im-tank", { cap: 24, parts: 4, filled: 4 }),
+        "Akvaryum": up("im-tank", { cap: 36, parts: 4, filled: 4 }),
+        "Kısmi doluluk": up("im-tank", { cap: 36, parts: 4, filled: 3 }),
+        "Kutuya yerleştirme": up("im-m7-packbox", { W: 20, D: 15, H: 12, k: "4" }),
+        "Malzeme payı": up("im-m7-net", { type: "prism", fold: 0 })
+      }
+    },
+    "m7-dagilimlar": {
+      up: {
+        "Veri neyi anlatır?": up("im-m7-plants", { type: "cont", spread: "wide" }),
+        "Kesikli ve sürekli": up("im-m7-plants", { type: "disc", spread: "low" }),
+        "Sayı görünmesi yetmez": up("im-m7-plants", { type: "code", spread: "wide" }),
+        "Değişebilirlik": up("im-m7-plants", { type: "cont", spread: "low" }),
+        "Dağılıma bak": up("im-data", { mode: "sure" })
+      }
+    },
+    "m7-surec": {
+      up: {
+        "Soruyu kur": up("im-research", { mode: "sinif" }),
+        "Evren ve örneklem": up("im-m7-sample", { method: "fair", n: 30 }),
+        "Dört adımı izle": up("im-research", { mode: "boy" }),
+        "Ölçmeyi planla": up("im-research", { mode: "sayfa" }),
+        "Sınırını belirt": up("im-m7-sample", { method: "biased", n: 10 })
+      }
+    },
+    "m7-toplama": {
+      up: {
+        "Yöntem seç": up("im-privacy", { on: ["sure", "sube", "donem"] }),
+        "Tarafsız soru": up("im-m7-survey", { q: "neutral", priv: "safe", miss: "report" }),
+        "Gereken kadar veri": up("im-privacy", { on: ["sure", "sube", "donem", "kimlik"] }),
+        "Gönüllülük ve paylaşım": up("im-privacy", { on: ["sure", "sube", "donem", "adres"] }),
+        "Eksik veri": up("im-m7-survey", { q: "neutral", priv: "safe", miss: "fake" })
+      }
+    },
+    "m7-analiz": {
+      up: {
+        "Sütun grafiği": up("im-m7-charts", { type: "bar", hi: 2 }),
+        "Çizgi grafiği": up("im-m7-charts", { type: "line", hi: 3 }),
+        "Nokta grafiği": up("im-m7-charts", { type: "dot", hi: 2 }),
+        "Ölçek kontrolü": up("im-m7-axis", { mode: "zero" }),
+        "Grafikten hesaba": up("im-m7-charts", { type: "bar", hi: 4 })
+      }
+    },
+    "m7-yorumlama": {
+      up: {
+        "Ortalama ve ortanca": up("im-m7-seesaw", { x5: 9, band: "0" }),
+        "Tepe değer ve açıklık": up("m7-stats"),
+        "Ortalama mutlak sapma": up("im-m7-seesaw", { x5: 9, band: "1" }),
+        "İstikrarı karşılaştır": up("im-m7-seesaw", { x5: 6, band: "1" }),
+        "Referans bandı": up("im-m7-seesaw", { x5: 15, band: "1" })
+      }
+    },
+    "m7-inceleme": {
+      up: {
+        "İddiayı sorgula": up("im-media", { start: 80, end: 100 }),
+        "Kesilmiş eksen": up("im-m7-axis", { mode: "cut" }),
+        "İlişki ve neden": up("im-media", { start: 50, end: 75 }),
+        "Temsil sorunu": up("im-m7-sample", { method: "biased", n: 20 }),
+        "Raporu düzelt": up("im-m7-axis", { mode: "zero" })
+      }
+    },
+    "m7-yansima": {
+      up: {
+        "Aynanın iki yanı": up("im-m7-sym", { mode: "mirror", n: 4 }),
+        "Adım adım çiz": up("m7-mirror"),
+        "Eşlik korunur": up("im-m7-sym", { mode: "mirror", n: 5 }),
+        "Doğru üzerindeki noktalar": up("im-m7-sym", { mode: "mirror", n: 3 }),
+        "Simetri doğrusu sayısı": up("im-m7-sym", { mode: "poly", n: 5 })
+      }
+    },
+    "m7-insa": {
+      up: {
+        "Orta dikme": up("im-m7-bisect", { kind: "perp", step: 3 }),
+        "Pergelle kur": up("im-m7-bisect", { kind: "perp", step: 2 }),
+        "Açıortay": up("im-m7-bisect", { kind: "ang", step: 3 }),
+        "Açıortayı inşa et": up("im-m7-bisect", { kind: "ang", step: 2 }),
+        "İki özelliği birlikte kontrol et": up("im-m7-bisect", { kind: "perp", step: 3 })
+      }
     }
   };
 
   function toSlide(slide, sandbox, preset, hint) {
     delete slide.scene;
+    delete slide.figure;
     slide.sandbox = sandbox;
     if (sandbox === "read") slide.sandboxDigits = preset.digits;
     else if (sandbox === "circle") slide.sandboxR = slide.sandboxR || 4;
@@ -1340,21 +2429,28 @@
     slide.playHint = hint || (spec && spec.demo ? "Kendin değiştir ya da ▶ İzle düğmesine bas; model kendisi oynasın." : "Modeli değiştir ve ne olduğunu izle.");
   }
 
-  for (const topic of root.MatCurriculum.topics) {
-    const spec = plan[topic.id];
-    if (!spec) continue;
-    for (const [h, change] of Object.entries(spec.up || {})) {
-      const slide = topic.slides.find((s) => s.h === h && !s.teach);
-      if (!slide) throw new Error("Adım yok: " + topic.id + " / " + h);
-      toSlide(slide, change.sandbox, change.preset, change.hint);
-    }
-    for (const item of spec.extra || []) {
-      const at = topic.slides.findIndex((s) => s.h === item.after && !s.teach);
-      if (at < 0) throw new Error("Adım yok: " + topic.id + " / " + item.after);
-      const slide = { h: item.h, p: item.p, extraExample: true, check: item.check ? { ask: item.check[0], answer: item.check[1] } : null };
-      toSlide(slide, item.sandbox, item.preset, item.hint);
-      topic.slides.splice(at + 1, 0, slide);
+  function applyPlan(topics, planMap) {
+    if (!topics) return;
+    for (const topic of topics) {
+      const spec = planMap[topic.id];
+      if (!spec) continue;
+      for (const [h, change] of Object.entries(spec.up || {})) {
+        const slide = topic.slides.find((s) => s.h === h && !s.teach);
+        if (!slide) throw new Error("Adım yok: " + topic.id + " / " + h);
+        toSlide(slide, change.sandbox, change.preset, change.hint);
+      }
+      for (const item of spec.extra || []) {
+        const at = topic.slides.findIndex((s) => s.h === item.after && !s.teach);
+        if (at < 0) throw new Error("Adım yok: " + topic.id + " / " + item.after);
+        const slide = { h: item.h, p: item.p, extraExample: true, check: item.check ? { ask: item.check[0], answer: item.check[1] } : null };
+        toSlide(slide, item.sandbox, item.preset, item.hint);
+        topic.slides.splice(at + 1, 0, slide);
+      }
     }
   }
-  root.MatLessonPlay = { plan, sayNumber, ablative };
+
+  applyPlan(root.MatCurriculum && root.MatCurriculum.topics, plan);
+  applyPlan(root.MatCurricula && root.MatCurricula[7] && root.MatCurricula[7].topics, plan7);
+
+  root.MatLessonPlay = { plan, plan7, sayNumber, ablative };
 })(typeof window !== "undefined" ? window : globalThis);
