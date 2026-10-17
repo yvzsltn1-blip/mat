@@ -2757,21 +2757,22 @@
     const min = Math.min(...list.map((t) => st.uses.get(t) || 0));
     const leastUsed = list.filter(t => (st.uses.get(t) || 0) === min);
     const freshTemplates = leastUsed.filter(t => t.id !== st.lastTemplate);
-    const t = list.find((x) => x.id === opts.template) || pick(freshTemplates.length ? freshTemplates : leastUsed);
+    const t = list.find((x) => x.id === opts.template) || pick(opts.repeatable ? list : freshTemplates.length ? freshTemplates : leastUsed);
     for (let attempt = 0; attempt < 60; attempt++) {
       let cand = null;
       try { cand = t.make(level); } catch (err) { cand = null; if (typeof process !== "undefined" && process.env && process.env.LEVELGEN_DEBUG) console.error(err); }
       if (!valid(cand)) continue;
       cand.sig = signature(cand);
-      if (st.recent.includes(cand.sig) && attempt < 50) continue;
-      st.uses.set(t, min + 1);
-      st.lastTemplate = t.id;
+      if (!opts.repeatable && st.recent.includes(cand.sig) && attempt < 50) continue;
+      if (!opts.repeatable) { st.uses.set(t, min + 1); st.lastTemplate = t.id; }
       q = cand;
       break;
     }
     if (!q) throw new Error("Soru üretilemedi: " + key);
-    st.recent.push(q.sig); if (st.recent.length > 80) st.recent.shift();
-    save(key, list, st);
+    if (!opts.repeatable) {
+      st.recent.push(q.sig); if (st.recent.length > 80) st.recent.shift();
+      save(key, list, st);
+    }
     delete q.sig;
     q.level = level;
     q.points = lv.points;

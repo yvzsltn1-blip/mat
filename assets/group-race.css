@@ -1,0 +1,89 @@
+/* Grup Yarışı — lacivert saha, mavi ve mercan köşeler. */
+.gr-banner{display:flex;align-items:center;gap:18px;width:100%;margin:0 0 20px;padding:22px 28px;border:1px solid #cadadf;border-radius:20px;background:linear-gradient(115deg,#eef7fb,#fff5ec);color:#183b50;text-align:left;cursor:pointer}.gr-banner>span:first-child{font-size:38px}.gr-banner small,.gr-banner b,.gr-banner em{display:block}.gr-banner small{font-size:10px;letter-spacing:2px;font-weight:900}.gr-banner b{font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.3}.gr-banner em{font-style:normal;font-size:13px}.gr-banner strong{margin-left:auto;white-space:nowrap}.gr-banner:hover{border-color:#4e879d;box-shadow:0 5px 20px #204b5c13}
+.group-race{--gr-ink:#153448;--gr-line:#dce6eb;color:var(--gr-ink);padding-bottom:0}
+.group-race h1,.group-race h2,.group-race h3{color:inherit}
+.group-race button{touch-action:manipulation}
+/* İki kişinin oyun tuşlarındaki temasları pan/zoom hareketine dönüştürülmez. */
+.group-race .gr-answer-area,.group-race .gr-answer-area button,.group-race [data-gr-input]{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.group-race button:focus-visible,.group-race input:focus-visible,.group-race select:focus-visible{outline:3px solid #cc942e;outline-offset:3px}
+.gr-eyebrow{font-size:11px;font-weight:900;letter-spacing:2px;margin:0 0 12px}
+/* Turnuva başlığıyla aynı ölçekte, kısa tanıtım şeridi. */
+.gr-intro{display:flex;align-items:center;justify-content:space-between;gap:14px 28px;padding:20px 28px;border-radius:22px;background:#132f43;color:#f2f8fc}
+.gr-intro h1{font:800 clamp(24px,2.6vw,34px)/1.2 'Baloo 2',sans-serif;margin:4px 0 2px}
+.gr-intro h1 span{display:inline-block;margin-left:6px;font-size:.8em;vertical-align:middle}
+.gr-intro p:not(.gr-eyebrow){color:#cee2eb;font-size:15px;line-height:1.5;margin:0}
+.gr-intro .gr-eyebrow{color:#7bd4ce;font-size:10px;margin:0}
+.gr-rules{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px;font-size:12px;font-weight:800}
+.gr-rules>span{padding:6px 10px;border-radius:8px;background:#ffffff0d;white-space:nowrap}
+.gr-rules b{color:#7bd4ce;padding-right:5px}
+.gr-setup{display:grid;grid-template-columns:minmax(250px,.8fr) minmax(0,1.2fr);gap:16px;margin-top:14px}
+.gr-settings,.gr-teams-setup{padding:20px;border:1px solid var(--gr-line);border-radius:20px;background:#fff;min-width:0}
+.gr-settings>.gr-eyebrow{font-size:10px;margin:0 0 3px}
+.gr-settings h2{font-family:'Baloo 2',sans-serif;font-size:24px;line-height:1.2;margin:0 0 8px}
+.group-race label{display:block;font-size:13px;font-weight:800;margin:10px 0 5px}
+.group-race input,.group-race select{box-sizing:border-box;min-height:42px;width:100%;border:1px solid #c7d9e1;background:white;color:#153448;border-radius:11px;padding:8px 10px;font:inherit;font-size:14px}
+.gr-setting-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gr-mode-row{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;margin-top:10px}
+.gr-mode-row>label{margin:0}
+.gr-note{font-size:12px;line-height:1.5;color:#627b8b;margin:12px 0 0}
+.gr-team-inputs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gr-team-config{position:relative;min-width:0;margin:0;border:1px solid color-mix(in srgb,var(--team) 30%,white);border-radius:14px;padding:10px 14px 14px;background:var(--team-tint)}
+.gr-side-0{--team:#236ab2;--team-tint:#eff6fc}.gr-side-1{--team:#c15b3d;--team-tint:#fff3ec}
+.gr-team-config legend{font-size:10px;letter-spacing:2px;color:var(--team);font-weight:900;padding:0 6px}
+.gr-team-symbol{color:var(--team);font-size:32px}
+.gr-team-config>.gr-team-symbol{position:absolute;top:-3px;right:12px;font-size:18px;line-height:1}
+.gr-start{display:flex;align-items:center;justify-content:center;gap:20px;width:100%;padding:12px 20px;min-height:48px;border:0;border-radius:13px;background:#153e4c;color:#fff;font:inherit;font-weight:900;cursor:pointer}
+.gr-start:hover{background:#1b5566}.gr-teams-setup>.gr-start{margin-top:14px}
+.gr-error{padding:9px 12px;margin:10px 0 0;background:#fff1eb;color:#ab3622;border-radius:10px;font-size:13px;font-weight:800}
+.gr-match-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:6px 0 20px}.gr-match-head .gr-eyebrow{color:#587483;margin-bottom:6px}.gr-match-head h1{font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.2;margin:0}.gr-match-tools{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}.gr-match-tools .soft{padding:10px 14px;font-size:12px}.gr-time{font-variant-numeric:tabular-nums;font-weight:900;font-size:22px;margin-right:6px}.gr-race-status{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:900;padding:12px 18px;border-radius:12px;background:#17374a;color:white;margin-bottom:16px}.gr-arena{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:26px;align-items:stretch}.gr-vs{position:absolute;top:20px;left:50%;transform:translateX(-50%);border:6px solid #f6f4ef;border-radius:50%;background:#163a4f;color:#fff;font:bold 12px 'Nunito',sans-serif;width:39px;height:39px;display:grid;place-items:center;z-index:1}.gr-lane{position:relative;min-width:0;padding:22px;display:flex;flex-direction:column;border:2px solid color-mix(in srgb,var(--team) 35%,white);border-radius:24px;background:white;overflow:hidden}.gr-lane-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.gr-lane-head>div{display:flex;align-items:center;gap:12px;min-width:0}.gr-lane-head h2{font:800 25px 'Baloo 2',sans-serif;overflow-wrap:anywhere;margin:0}.gr-lane-head>b{font-size:30px;color:var(--team);white-space:nowrap}.gr-lane-head small{font-size:15px;font-weight:700;color:#8595a0}.gr-progress{height:7px;border-radius:20px;background:var(--team-tint);margin:13px 0 18px;overflow:hidden}.gr-progress i{display:block;background:var(--team);height:100%;transition:width .3s}.gr-task{flex:1}.gr-question-no{display:flex;justify-content:space-between;color:var(--team);font-size:11px;letter-spacing:1px;font-weight:900;margin:0 0 10px}.gr-question-no span{color:#78909d;letter-spacing:0}.gr-task h3{font:800 clamp(17px,1.55vw,24px)/1.5 'Nunito',sans-serif;margin:0 0 14px;white-space:pre-line;overflow-wrap:anywhere}.gr-scene{padding:12px!important;background:var(--team-tint);border-radius:16px;margin-bottom:18px;min-height:100px;overflow:auto}.gr-scene>svg,.gr-scene .ar-svg{display:block;width:100%;max-height:250px;margin:auto}.gr-answer-area{margin-top:auto}.gr-options{display:grid;grid-template-columns:1fr 1fr;gap:10px}.gr-options>button{display:flex;align-items:center;gap:10px;text-align:left;min-height:70px;padding:12px;border:1px solid #d5e1e7;border-radius:13px;background:white;color:#183b50;cursor:pointer;font:800 16px/1.4 'Nunito',sans-serif}.gr-options>button b{display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:9px;background:var(--team-tint);color:var(--team);font-size:12px}.gr-options>button span{overflow-wrap:anywhere;white-space:pre-line}.gr-options>button:hover{border-color:var(--team);background:var(--team-tint)}.gr-lane .gr-answer-label{font-size:11px;margin:0 0 6px}.gr-lane [data-gr-input]{font-size:25px;text-align:center;font-weight:900;min-height:55px;background:var(--team-tint);border-color:var(--team);font-variant-numeric:tabular-nums}.gr-keypad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}.gr-keypad button{min-height:45px;background:#fff;border:1px solid #d7e2e7;border-radius:10px;font:900 22px 'Nunito',sans-serif;color:#173c50;cursor:pointer}.gr-keypad button:active{background:var(--team-tint)}.gr-confirm{width:100%;padding:14px;background:var(--team);color:white;border:0;border-radius:12px;font:900 16px 'Nunito',sans-serif;cursor:pointer}.gr-penalty{position:absolute;inset:95px 0 0;background:#153448ed;backdrop-filter:blur(4px);color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:20px;font-size:14px;z-index:2}.gr-penalty[hidden]{display:none}.gr-penalty b{font-size:85px;line-height:1.2;font-variant-numeric:tabular-nums;color:#ffc887}.gr-pause-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(430px,calc(100vw - 48px));box-sizing:border-box;z-index:30;padding:30px;text-align:center;border:1px solid #9db5c6;border-radius:24px;background:white;box-shadow:0 0 0 100vmax #112d3ecc}.gr-pause-panel>b{font:800 28px 'Baloo 2',sans-serif}.gr-pause-panel p{font-size:14px;line-height:1.7;color:#5d7482}.gr-result{text-align:center;padding:36px;background:radial-gradient(ellipse at top,var(--team-tint),white 70%);border:1px solid var(--gr-line);border-radius:28px}.gr-result-trophy{font-size:90px;margin:20px}.gr-result h1{font:700 clamp(38px,5vw,70px) 'Fraunces',serif;margin:12px 0;color:var(--team)}.gr-result>p{line-height:1.7}.gr-result-teams{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:750px;margin:30px auto}.gr-result-teams>div{padding:25px;border-radius:18px;background:var(--team-tint);display:grid;gap:8px;color:var(--team)}.gr-result-teams strong{font-size:36px}.gr-result-teams small{font-size:14px}.gr-result-teams span{font-size:12px}.gr-result .actions{justify-content:center}.gr-result .gr-start{width:auto}
+/* Seviye 0 bütün konularda, oyun seçeneklerinin sonunda yer alır. */
+.foundation-section{margin-top:32px;padding:24px;border:1px solid #bad8d2;border-radius:20px;background:#f2f8f5}.foundation-section h3{margin:0;font:800 26px 'Baloo 2',sans-serif;color:#1b615b}.foundation-section>p{font-size:14px;color:#547b74;line-height:1.7}.foundation-section .foundation-empty{padding:16px;border:1px dashed #bad1cc;border-radius:12px;background:#ffffff9c;color:#6e8580}.foundation-section button{background:#187c78}.f0-cards{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px;padding:16px}.f0-cards span{padding:16px 22px;border:1px solid #c8dcd8;border-radius:14px;background:white;font-size:clamp(18px,2.2vw,30px);font-weight:900;color:#1b615b;white-space:pre-line}.f0-rods{display:grid;gap:18px;padding:20px;min-width:220px}.f0-rods>div{display:grid;gap:6px}.f0-rods i{display:block;height:14px;border-radius:3px;width:var(--rod);background:var(--rod-color)}.f0-rods b{font-size:15px;color:#284e58}.f0-urns{display:flex;gap:20px;justify-content:center;padding:20px;flex-wrap:wrap}.f0-urns>div{padding:20px 12px 14px;border:2px solid #b0cbd6;border-radius:10px 10px 35px 35px;max-width:240px;background:#ffffffb0}.f0-urns small{display:block;text-align:center;margin-bottom:12px;font-size:10px;font-weight:900;letter-spacing:2px}.f0-urns b{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#ffe0ac;color:#603b20;margin:4px;font-size:17px}.f0-heat{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}.f0-heat>span{padding:18px 10px;background:white;border-radius:12px;font-size:16px;font-weight:900;text-align:center}
+@media(min-width:900px){body.is-fs.group-race-active #app>.shell{max-width:none;width:100%}}
+@media(max-width:900px){.gr-arena{gap:16px}.gr-lane{padding:15px}.gr-lane-head h2{font-size:21px}.gr-lane-head .gr-team-symbol{display:none}.gr-options{grid-template-columns:1fr}.gr-options>button{min-height:52px;font-size:14px}.gr-match-head{flex-wrap:wrap}.gr-scene>svg,.gr-scene .ar-svg{max-height:220px}.gr-vs{width:30px;height:30px;top:16px;font-size:10px}}
+@media(max-width:760px){
+  .gr-intro{padding:16px 18px;gap:12px;flex-wrap:wrap}
+  .gr-rules{justify-content:flex-start}
+  .gr-setup{grid-template-columns:1fr;gap:12px;margin-top:12px}
+}
+@media(max-width:560px){.gr-banner{padding:18px}.gr-banner strong{display:none}.gr-intro{padding:12px 16px;gap:8px}.gr-intro h1{font-size:26px}.gr-intro p:not(.gr-eyebrow){font-size:13px}.gr-rules{gap:5px;font-size:10px}.gr-rules>span{padding:4px 6px}.gr-settings,.gr-teams-setup{padding:12px}.gr-settings>.gr-eyebrow{display:none}.gr-settings h2{font-size:20px;margin-bottom:4px}.gr-settings>.gr-note{display:none}.gr-team-inputs{gap:10px}.gr-team-config{padding:6px 10px 10px}.group-race label{font-size:12px;margin:7px 0 4px}.group-race select,.group-race input{font-size:12px;padding:8px 7px;min-height:40px}.gr-teams-setup>.gr-start{margin-top:10px;min-height:44px}.gr-teams-setup>.gr-note{font-size:11px;margin-top:8px}.gr-arena{gap:10px}.gr-lane{padding:10px;border-radius:16px}.gr-lane-head h2{font-size:16px}.gr-lane-head>b{font-size:20px}.gr-lane-head small{font-size:11px}.gr-lane-head{gap:5px}.gr-vs{display:none}.gr-task h3{font-size:14px;line-height:1.5}.gr-scene{padding:6px!important}.gr-options>button{padding:9px 6px;font-size:12px;gap:6px}.gr-options>button b{flex-basis:22px;height:24px;border-radius:6px;font-size:10px}.gr-keypad{gap:4px}.gr-keypad button{min-height:42px;font-size:18px}.gr-confirm{font-size:12px;padding:12px 5px}.gr-race-status{font-size:10px;padding:10px;flex-wrap:wrap}.gr-result{padding:24px 14px}.gr-result-teams{gap:10px}.gr-result-teams>div{padding:18px 10px}.gr-result-teams strong{font-size:25px}.gr-penalty{font-size:11px;inset:75px 0 0}.gr-penalty b{font-size:60px}.f0-heat{grid-template-columns:1fr}.f0-cards{gap:6px;padding:8px}.f0-cards span{padding:10px;font-size:18px}.foundation-section{padding:18px}}
+/* Hazırlık ekranında başlık, ayarlar ve başlat düğmesi birlikte görünür. */
+@media(min-width:760px) and (min-height:550px){
+  body.group-race-page{height:100dvh;min-height:0}
+  body.group-race-page #app{height:100%;display:flex;flex-direction:column}
+  body.group-race-page .topbar{position:relative;flex:none;gap:10px;padding:6px 16px;row-gap:6px;min-height:50px;box-sizing:border-box}
+  body.group-race-page .topbar .anka{width:36px;height:36px}
+  body.group-race-page .topbar .brand h1{font-size:21px}
+  body.group-race-page .topbar .brand small,body.group-race-page .sync-state{display:none}
+  body.group-race-page .topbar .top-actions>.tb{height:36px}
+  body.group-race-page .topbar .logout-button{width:36px;height:36px}
+  body.group-race-page #app>.shell{flex:1;min-height:0;display:flex;padding:12px 0;margin:0 auto}
+  body.group-race-page #groupRaceRoot{flex:1;min-width:0}
+}
+/* Tahtada sorular ve iki tuş takımı aynı görünür alana sığar. Uzun sorular kendi içinde kayar. */
+@media(min-width:900px) and (min-height:550px){
+  body.group-race-active .topbar{display:none}
+  body.group-race-active #app{height:100dvh;display:flex;flex-direction:column}
+  body.group-race-active #app>.practice-ribbon{flex:none}
+  body.group-race-active #app>.shell{flex:1;min-height:0;box-sizing:border-box;display:flex;padding:16px 22px;margin:0 auto}
+  body.group-race-active #groupRaceRoot{display:flex;flex-direction:column;flex:1;min-width:0;min-height:0;padding:0}
+  body.group-race-active .gr-match-head{flex:none;margin:0 0 12px}
+  body.group-race-active .gr-match-head h1{font-size:22px}
+  body.group-race-active .gr-match-head .gr-eyebrow{font-size:10px;margin-bottom:4px}
+  body.group-race-active .gr-race-status{flex:none;margin-bottom:12px;padding:9px 16px}
+  body.group-race-active .gr-arena{flex:1;min-height:0}
+  body.group-race-active .gr-lane{min-height:0;padding:16px 20px}
+  body.group-race-active .gr-lane-head h2{font-size:24px}
+  body.group-race-active .gr-lane-head>b{font-size:25px}
+  body.group-race-active .gr-progress{flex:none;margin:9px 0 12px}
+  body.group-race-active .gr-task{overflow:auto;min-height:0;margin-bottom:10px}
+  body.group-race-active .gr-task h3{font-size:clamp(16px,2.6dvh,23px);line-height:1.45;margin-bottom:10px}
+  body.group-race-active .gr-question-no{margin-bottom:6px}
+  .group-race .gr-scene>.ar-svg{max-height:clamp(100px,20dvh,210px);height:auto}
+  body.group-race-active .gr-scene{min-height:0;padding:8px!important;margin:0}
+  body.group-race-active .gr-answer-area{flex:none}
+  body.group-race-active .gr-keypad{gap:6px;margin:8px 0}
+  body.group-race-active .gr-keypad button{min-height:clamp(36px,5.4dvh,55px);font-size:22px}
+  body.group-race-active .gr-lane [data-gr-input]{min-height:44px;padding:5px 12px}
+  body.group-race-active .gr-confirm{padding:11px}
+}
+@media(prefers-reduced-motion:reduce){.gr-progress i{transition:none}}

@@ -4,7 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
 const root = path.resolve(__dirname, "..");
-const files = ["visuals.js", "angle-intersection.js", "angle-adjacent.js", "games.js", "curriculum.js", "lesson-stories.js", "curriculum7.js", "labs7.js", "compare7.js", "imagine.js", "lesson-teach.js", "lesson-play.js"];
+const files = ["scoreboard.js", "visuals.js", "angle-intersection.js", "angle-adjacent.js", "games.js", "curriculum.js", "lesson-stories.js", "curriculum7.js", "labs7.js", "compare7.js", "imagine.js", "lesson-teach.js", "lesson-play.js"];
 
 const app = { innerHTML: "", querySelector() { return null; }, querySelectorAll() { return []; } };
 const ctx = vm.createContext({

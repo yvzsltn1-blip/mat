@@ -1,0 +1,122 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
+const root = path.resolve(__dirname, "..");
+require(path.join(root, "assets/scoreboard.js"));
+const S = globalThis.MatScores;
+const at = value => Date.parse(value);
+const saturday = at("2026-10-17T15:00:00Z"), sunday = at("2026-10-17T21:00:00Z"), monday = at("2026-10-18T21:00:00Z");
+assert.deepEqual(S.keys(saturday), { day: "2026-10-17", week: "2026-10-12", month: "2026-10" });
+assert.deepEqual(S.keys(sunday), { day: "2026-10-18", week: "2026-10-12", month: "2026-10" });
+assert.deepEqual(S.keys(monday), { day: "2026-10-19", week: "2026-10-19", month: "2026-10" });
+assert.equal(S.keys(at("2026-12-31T21:00:00Z")).week, "2026-12-28");
+const student = { score: 500 };
+assert.equal(S.score(student, "day", saturday), 0, "Eski toplamın tarihi tahmin edilmemeli");
+S.add(student, 10, saturday); S.add(student, 20, saturday);
+assert.equal(student.score, 530);
+assert.equal(S.score(student, "day", saturday), 30);
+assert.equal(S.score(student, "day", sunday), 0);
+assert.equal(S.score(student, "week", sunday), 30);
+S.add(student, 5, sunday);
+S.reset(student, "day", sunday);
+assert.equal(S.score(student, "day", sunday), 0);
+assert.equal(S.score(student, "week", sunday), 35);
+assert.equal(S.score(student, "month", sunday), 35);
+assert.equal(student.score, 535);
+S.reset(student, "week", sunday);
+assert.equal(S.score(student, "month", sunday), 35);
+S.add(student, 7, monday);
+assert.equal(S.score(student, "week", monday), 7);
+assert.equal(S.score(student, "month", monday), 42);
+assert.equal(S.score(student, "month", at("2026-10-31T21:00:00Z")), 0);
+S.reset(student, "month", monday);
+assert.equal(S.score(student, "week", monday), 7);
+S.add(student, -1000, monday);
+assert.equal(student.score, 0); assert.equal(S.score(student, "week", monday), 0);
+S.add(student, 12, monday); S.reset(student, "total", monday);
+assert.equal(student.score, 0); assert.deepEqual(student.scorePeriods, {});
+assert.throws(() => S.reset(student, "constructor"));
+
+// Mevcut uygulama donanımı: gerçek olaylar, kalıcılık ve kontrollü şifre doğrulaması.
+const base = fs.readFileSync(path.join(__dirname, "verify.cjs"), "utf8");
+let harnessSource = base.slice(base.indexOf("function harness("), base.indexOf("function addStudent("));
+harnessSource = harnessSource.replace("ctx.window = ctx;", "ctx.window = ctx; if (opts.cloud) ctx.MatCloud = opts.cloud;");
+harnessSource = harnessSource.replace("applyLessonAngle, render };", "applyLessonAngle, render, quickLevels, scoreOf, arcadeAward, openScoreReset, confirmScoreReset, getReset: () => scoreReset, useCloud: () => {localMode = false;} };");
+const harness = vm.runInNewContext(harnessSource + "\nharness", { assert, vm, fs, path, root, console });
+const click = (h, act, data = {}) => h.onClick({ target: { closest: () => ({ dataset: { act, ...data }, disabled: false }) } });
+function seed(h) {
+  h.state.classId = "c1";
+  h.state.students = [{ id: "a", name: "Deneme A", groupId: "g", score: 100, stars: {} }];
+  h.state.groups = [{ id: "g", name: "Grup", icon: "✦", color: "#123456", score: 100 }];
+  h.state.selectedId = "a"; h.state.screen = "board";
+}
+const h = harness(new Map(), { gen: true }); seed(h);
+click(h, "quick-topics-clear");
+h.onChange({ target: { id: "quick-topic-aci", dataset: { quickTopic: "aci" }, checked: true } });
+click(h, "quick-levels-clear"); click(h, "start-quick");
+assert.equal(h.state.phase, "pick", "Boş seviye seçimi oyun başlatmamalı");
+h.onChange({ target: { id: "quick-level-2", dataset: { quickLevel: "2" }, checked: true } });
+for (let i = 0; i < 5; i++) {
+  click(h, "start-quick"); h.advance(1000);
+  assert.equal(h.currentQ().level, 2); assert.equal(h.state.topicId, "aci");
+  h.state.draft = "yanlış"; h.submit();
+  if (i < 4) { h.goNext(); h.advance(1000); assert.equal(h.currentQ().level, 2); }
+}
+click(h, "goto-board"); h.persist();
+const restored = harness(h.storage, { gen: true });
+assert.deepEqual([...restored.state.quickLevelIds], [2]);
+restored.activateClass("missing"); assert.equal(restored.state.quickLevelIds, null);
+click(h, "quick-levels-clear");
+h.onChange({ target: { id: "quick-level-8", dataset: { quickLevel: "8" }, checked: true } });
+click(h, "toggle-elite", { level: "8" });
+assert.equal(h.quickLevels().length, 0, "Seçili olsa da kapalı üst seviye gelmemeli");
+click(h, "question-source", { source: "bank" }); assert.equal(h.quickLevels().length, 0);
+click(h, "quick-levels-all"); assert.equal(h.quickLevels().length, 5);
+click(h, "student-points", { id: "a", d: "10" });
+assert.equal(h.ctx.MatScores.score(h.state.students[0], "day"), 10);
+assert.equal(h.ctx.MatScores.score(h.state.groups[0], "day"), 10);
+h.state.topicId = "aci"; h.arcadeAward("a", 20, true);
+assert.equal(h.ctx.MatScores.score(h.state.students[0], "day"), 30);
+h.state.practice = true; h.arcadeAward("a", 20, true);
+assert.equal(h.ctx.MatScores.score(h.state.students[0], "day"), 30);
+
+(async () => {
+  const saved = [], password = "Fixture-ş7!";
+  const cloud = { available: true, status: "saved", onStatus() {}, onAuth() {}, saveProfile(data) { saved.push(JSON.stringify(data)); }, saveClass(data) { saved.push(JSON.stringify(data)); }, async verifyPassword() { throw { code: "auth/wrong-password" }; } };
+  const a = harness(new Map(), { gen: true, cloud }); seed(a); a.useCloud();
+  a.ctx.MatScores.add(a.state.students[0], 20); a.ctx.MatScores.add(a.state.groups[0], 20);
+  for (const act of ["reset-scores", "reset-stats", "reset-group-scores"]) {
+    click(a, act); assert(a.getReset()); assert.equal(a.state.students[0].score, 120); click(a, "score-reset-close");
+  }
+  const enter = text => { for (const char of text) click(a, "score-reset-key", { code: String(char.codePointAt(0)) }); };
+  a.openScoreReset("day"); enter(password);
+  const dialog = a.app.innerHTML.slice(a.app.innerHTML.indexOf('<div class="score-reset-backdrop">'));
+  assert(!/<(?:input|form)\b/.test(dialog), "Sıfırlama bir şifre formu oluşturmamalı");
+  assert(!dialog.includes(password), "Şifre DOM'a yazılmamalı");
+  await a.confirmScoreReset();
+  assert.equal(a.state.students[0].score, 120); assert.equal(a.getReset().secret, ""); assert(a.getReset().error);
+  let accept, calls = 0;
+  cloud.verifyPassword = input => { calls++; assert.equal(input, password); return new Promise(resolve => { accept = resolve; }); };
+  enter(password); const pending = a.confirmScoreReset();
+  assert(a.getReset().busy); assert.equal(a.getReset().secret, "");
+  assert.equal(a.ctx.MatScores.score(a.state.students[0], "day"), 20, "Doğrulama bitmeden puan değişmemeli");
+  await a.confirmScoreReset(); assert.equal(calls, 1);
+  accept(); await pending;
+  assert.equal(a.getReset(), null); assert.equal(a.ctx.MatScores.score(a.state.students[0], "day"), 0);
+  assert.equal(a.ctx.MatScores.score(a.state.groups[0], "day"), 0);
+  assert.equal(a.ctx.MatScores.score(a.state.students[0], "week"), 20);
+  assert.equal(a.state.students[0].score, 120);
+  cloud.verifyPassword = async input => assert.equal(input, password);
+  a.openScoreReset("week"); enter(password); await a.confirmScoreReset();
+  assert.equal(a.ctx.MatScores.score(a.state.students[0], "month"), 20);
+  a.openScoreReset("month"); enter(password); await a.confirmScoreReset();
+  assert.equal(a.state.students[0].score, 120);
+  a.openScoreReset("total", "groups"); enter(password); await a.confirmScoreReset();
+  assert.equal(a.state.groups[0].score, 0); assert.equal(a.state.students[0].score, 120);
+  a.openScoreReset("total"); enter(password); await a.confirmScoreReset();
+  assert.equal(a.state.students[0].score, 0); assert.equal(a.state.groups[0].score, 0);
+  assert(saved.length && saved.every(value => !value.includes(password)), "Şifre kayıt katmanına ulaşmamalı");
+  a.openScoreReset("total"); enter(password); click(a, "score-reset-close"); assert.equal(a.getReset(), null);
+  console.log("OK: İstanbul gece yarısı, pazartesi/ay/yıl geçişleri, bağımsız dönem sayaçları, seviye filtresi, oyun/öğretmen/grup puanları, yanlış şifre, bekleyen doğrulama, ayrı sıfırlamalar ve şifrenin kaydedilmemesi.");
+})().catch(error => { console.error(error); process.exitCode = 1; });

@@ -20,6 +20,7 @@
   let passwordOpen = false;
   let passwordMsg = null;
   let passwordBusy = false;
+  let scoreReset = null;
   let autoTimer = 0;
   let flashToken = 0;
   let clockTimer = 0;
@@ -36,6 +37,7 @@
     archived: false,
     createdAt: 0,
     tournament: null,
+    groupRace: null,
     history: [],
     turnDone: [],
     turnRound: 1,
@@ -50,6 +52,12 @@
     autoRotate: true,
     rotateMode: "group",
     questionSource: "gen",
+    eliteLevels: [6, 7, 8],
+    quickTopicIds: null,
+    quickTopicsOpen: false,
+    quickLevelIds: null,
+    quickLevelsOpen: false,
+    quickGame: false,
     practice: false,
     callout: false,
     screen: "classes",
@@ -57,6 +65,7 @@
     classFilter: 0,
     showArchived: false,
     rankView: "students",
+    scorePeriod: "total",
     reportSort: "score",
     reportOpen: null,
     groupCount: 4,
@@ -140,6 +149,20 @@
     return g ? g.score || 0 : 0;
   }
 
+  function scoreOf(entity) { return MatScores.score(entity, state.scorePeriod); }
+
+  function scorePeriodsHtml() {
+    return `<div class="score-period-tabs" role="group" aria-label="Puan dönemi">${Object.entries(MatScores.PERIODS).map(([id, name]) => `<button type="button" data-act="score-period" data-period="${id}" class="${state.scorePeriod === id ? "on" : ""}" aria-pressed="${state.scorePeriod === id}">${name}</button>`).join("")}</div>`;
+  }
+
+  function scoreResetButtonsHtml(scope = "all") {
+    return `<div class="score-reset-options">${Object.entries(MatScores.PERIODS).map(([id, name]) => `<button type="button" data-act="score-reset-open" data-period="${id}" data-scope="${scope}"><span>${id === "total" ? "Tüm puanları" : name + " puanları"}</span><span>Sıfırla ↗</span></button>`).join("")}</div>`;
+  }
+
+  function scoreResetMenuHtml(scope = "all") {
+    return `<details class="score-reset-menu"><summary>🔒 Puanları sıfırla</summary><p>Öğretmen şifresiyle doğrulanır. ${scope === "groups" ? "Yalnız grup puanları sıfırlanır." : "Bu sınıfın öğrenci ve grup puanları sıfırlanır."}</p>${scoreResetButtonsHtml(scope)}</details>`;
+  }
+
   function present(list) {
     return list.filter((s) => !s.absent);
   }
@@ -167,7 +190,7 @@
   }
 
   function levelPointsText(level) {
-    if (unlimited()) return String(level.points);
+    if (unlimited() || level.id === "foundation") return String(level.points);
     const points = MatQuestionBank.get(state.topicId, level.id).map(q => q.points);
     const min = Math.min(...points), max = Math.max(...points);
     return min === max ? String(max) : min + "–" + max;
@@ -190,7 +213,10 @@
       turnDone: state.turnDone,
       turnRound: state.turnRound,
       usedQuestions: state.usedQuestions,
+      quickTopicIds: state.quickTopicIds,
+      quickLevelIds: state.quickLevelIds,
       tournament: state.tournament,
+      groupRace: state.groupRace,
       history: state.history,
       bankVersion: MatQuestionBank.version
     };
@@ -207,6 +233,8 @@
       autoRotate: state.autoRotate,
       rotateMode: state.rotateMode,
       questionSource: state.questionSource,
+      eliteLevels: state.eliteLevels,
+      scorePeriod: state.scorePeriod,
       practice: state.practice,
       callout: state.callout,
       activeClassId: state.classId
@@ -243,6 +271,8 @@
     state.autoRotate = data.autoRotate !== false;
     state.rotateMode = data.rotateMode === "class" ? "class" : "group";
     state.questionSource = data.questionSource === "bank" ? "bank" : "gen";
+    state.eliteLevels = Array.isArray(data.eliteLevels) ? [6, 7, 8].filter(id => data.eliteLevels.includes(id)) : [6, 7, 8];
+    state.scorePeriod = Object.keys(MatScores.PERIODS).includes(data.scorePeriod) ? data.scorePeriod : "total";
     state.practice = data.practice === true;
     state.callout = data.callout === true;
   }
@@ -254,9 +284,10 @@
 
   // Usta, Efsane ve Prestij yalnız sınırsız üreticide vardır; soru bankası ilk beş seviyededir.
   function levels() {
-    return unlimited() ? MatGames.LEVELS : MatGames.BANK_LEVELS;
+    return unlimited() ? MatGames.LEVELS.filter(l => !l.unlimitedOnly || state.eliteLevels.includes(l.id)) : MatGames.BANK_LEVELS;
   }
   const pointsRange = () => { const p = levels().map((l) => l.points); return Math.min(...p) + "–" + Math.max(...p); };
+  const levelInfo = id => id === "foundation" ? window.MatFoundation?.LEVEL : MatGames.LEVELS.find(l => l.id === id);
 
   function normalizeClass(c) {
     c.grade = GRADES.includes(Number(c.grade)) ? Number(c.grade) : 5;
@@ -289,7 +320,10 @@
       state.groups = [];
       state.history = [];
       state.tournament = null;
+      state.groupRace = null;
       state.usedQuestions = {};
+      state.quickTopicIds = null;
+      state.quickLevelIds = null;
       state.turnDone = [];
       state.className = "";
       return;
@@ -305,11 +339,16 @@
     state.groups = c.groups;
     state.history = c.history;
     state.tournament = c.tournament || null;
+    state.groupRace = c.groupRace || null;
     state.nextGroup = c.nextGroup || 0;
     state.selectedId = c.students.some((s) => s.id === c.selectedId) ? c.selectedId : null;
     state.turnDone = c.turnDone;
     state.turnRound = c.turnRound || 1;
     state.usedQuestions = c.usedQuestions;
+    state.quickTopicIds = Array.isArray(c.quickTopicIds) ? [...c.quickTopicIds] : null;
+    state.quickTopicsOpen = false;
+    state.quickLevelIds = Array.isArray(c.quickLevelIds) ? c.quickLevelIds.filter(id => MatGames.LEVELS.some(l => l.id === id)) : null;
+    state.quickLevelsOpen = false;
     state.className = classLabel(c);
     state.lastPick = "";
   }
@@ -528,15 +567,17 @@
     state.spinning = true;
     const final = pool[Math.floor(Math.random() * pool.length)];
     const g = groupById(final.groupId);
+    // Ekranda sırayı bekleyenler dahil herkes görünür; kazanan sıra kurallarından seçilir.
+    const reel = MatGames.shuffle(Math.random, present(list));
+    const fastSteps = Math.max(24, reel.length);
+    const steps = fastSteps + 6;
+    const fastDelay = Math.max(20, Math.min(35, 900 / reel.length));
     const overlay = document.createElement("div");
     overlay.className = "student-draw";
-    overlay.innerHTML = `<div><p>${esc(label || state.className || "Sınıf")}</p><h2></h2><span>çekiliş</span></div>`;
+    overlay.innerHTML = `<div><p>${esc(label || state.className || "Sınıf")}</p><h2></h2><span>${reel.length} isim · hızlı çekiliş</span></div>`;
     document.body.appendChild(overlay);
     const nameEl = overlay.querySelector("h2");
-    const steps = 22;
     let step = 0;
-    let delay = 40;
-    const reel = pool.length > 1 ? pool : present(list);
     const tick = () => {
       const show = step >= steps - 1 ? final : reel[step % reel.length];
       nameEl.textContent = show.name;
@@ -559,7 +600,7 @@
         return;
       }
       step += 1;
-      delay += 13;
+      const delay = step < fastSteps ? fastDelay : 65 + (step - fastSteps) * 35;
       setTimeout(tick, delay);
     };
     tick();
@@ -723,6 +764,7 @@
     state.reveal = null;
     state.paused = false;
     state.phase = "pick";
+    state.quickGame = false;
   }
 
   function clockText(ms) {
@@ -778,9 +820,9 @@
     state.phase = "reveal";
     const token = ++revealToken;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const pool = levels();
+    const pool = state.quickGame ? quickLevels() : levels();
     // Kaynak soru bankasına çevrildiyse bankada olmayan üst seviye son banka seviyesine iner.
-    const level = state.randomLevel ? pool[Math.floor(Math.random() * pool.length)].id : Math.min(state.level, pool[pool.length - 1].id);
+    const level = state.level === "foundation" ? "foundation" : state.randomLevel ? pool[Math.floor(Math.random() * pool.length)].id : (pool.find(l => l.id === state.level) || pool[pool.length - 1]).id;
     state.reveal = { step: state.randomLevel ? "level" : "question", level: state.randomLevel ? null : level };
     render();
     let frame = 0;
@@ -788,11 +830,11 @@
       if (token !== revealToken) return;
       state.level = level;
       const key = state.topicId + ":" + level;
-      const gen = unlimited();
+      const gen = level === "foundation" || unlimited();
       let used = Array.isArray(state.usedQuestions[key]) ? state.usedQuestions[key] : [];
       state.cycleRenewed = !gen && used.length >= MatQuestionBank.perLevel;
       if (state.cycleRenewed) used = [];
-      const q = gen ? MatLevelGen.generate(state.topicId, level) : MatGames.buildQuiz(state.topicId, level, Date.now() + Math.random() * 1e6, used, 1)[0];
+      const q = level === "foundation" ? MatFoundation.generate(state.topicId) : gen ? MatLevelGen.generate(state.topicId, level) : MatGames.buildQuiz(state.topicId, level, Date.now() + Math.random() * 1e6, used, 1)[0];
       state.questions[state.qIndex] = q;
       state.reveal = { step: "question", level };
       render();
@@ -815,7 +857,7 @@
     const spin = () => {
       if (token !== revealToken) return;
       const cards = document.querySelectorAll(".reveal-level");
-      cards.forEach((card, i) => card.classList.toggle("lit", i === frame % levels().length));
+      cards.forEach((card, i) => card.classList.toggle("lit", i === frame % pool.length));
       if (frame < (reduced ? 0 : 15)) {
         frame += 1;
         if (frame % 3 === 0) MatAudio.tick();
@@ -831,11 +873,13 @@
     spin();
   }
 
-  function beginLevel(level) {
+  function beginLevel(level, { quick = false } = {}) {
+    if (level === "foundation" && !window.MatFoundation?.has(state.topicId)) return;
     cancelRound();
+    state.quickGame = quick;
     state.randomLevel = level === 0;
     state.level = level || 1;
-    state.questions = Array(state.roundLength).fill(null);
+    state.questions = Array(quick ? 1 : state.roundLength).fill(null);
     state.roundSeconds = state.questionSeconds;
     state.qIndex = 0;
     state.topicTab = "play";
@@ -849,6 +893,36 @@
     state.gate = null;
     stopAuto();
     prepareQuestion();
+  }
+
+  function quickTopics() {
+    return curriculum().topics.filter(t => state.quickTopicIds === null || state.quickTopicIds.includes(t.id));
+  }
+
+  function quickLevels() {
+    return levels().filter(l => state.quickLevelIds === null || state.quickLevelIds.includes(l.id));
+  }
+
+  function startQuickGame(nextStudent = false) {
+    if (!state.classId || state.spinning) return;
+    const pool = quickTopics();
+    if (!pool.length) { flash("Hızlı oyun için en az bir konu seç."); return; }
+    if (!quickLevels().length) { flash("Hızlı oyun için en az bir açık seviye seç."); return; }
+    const start = () => {
+      stopAuto();
+      state.topicId = pool[Math.floor(Math.random() * pool.length)].id;
+      state.screen = "topic";
+      state.slide = 0;
+      beginLevel(0, { quick: true });
+    };
+    const who = selected();
+    if ((!who || who.absent || nextStudent) && present(state.students).length) {
+      if (autoPick(start)) return;
+      // Gruplara yerleştirilmemiş öğrenciler de hızlı oyuna katılabilir.
+      if (spinPick(state.students, state.className || "Sınıf", start)) return;
+    }
+    if (!who || who.absent) state.selectedId = null;
+    start();
   }
 
   function submit(timedOut = false) {
@@ -886,13 +960,17 @@
         if (ok) g.correct = (g.correct || 0) + 1;
       }
       if (ok) {
-        who.score += pts;
-        if (g) g.score = (g.score || 0) + pts;
+        MatScores.add(who, pts);
+        if (g) MatScores.add(g, pts);
         state.scoreEarned += pts;
       }
       newCycle = noteTurn(who.id);
-      persist();
     }
+    if (state.quickGame) {
+      if (counts && ok) who.stars[state.topicId] = Math.max(who.stars[state.topicId] || 0, 3);
+      logRound();
+    }
+    if (counts || state.quickGame) persist();
     if (ok) {
       state.correctCount += 1;
       MatAudio.correct();
@@ -906,6 +984,7 @@
 
   function goNext() {
     if (state.phase !== "quiz" || !state.locked || state.spinning) return;
+    if (state.quickGame) { startQuickGame(state.autoRotate && present(state.students).length > 1); return; }
     const last = state.qIndex + 1 >= state.questions.length;
     // "Her sorudan sonra yeni öğrenci" açıksa sıradaki öğrenci çekilir, soru ondan sonra açılır.
     if (!last && state.autoRotate && present(state.students).length > 1 && autoPick(() => { state.qIndex += 1; prepareQuestion(); })) return;
@@ -1133,6 +1212,7 @@
       `<button class="tb ${cls}" type="button" data-act="${act}" title="${title}" aria-label="${label}" ${attrs}><span class="tb-ico" aria-hidden="true">${icon}</span><span class="tb-label">${label}</span></button>`;
     const nav = state.classId ? [
       tb("goto-tournament", "🏆", "Turnuva", { cls: "tb-accent" }),
+      tb("goto-group-race", "🏁", "Grup Yarışı"),
       state.screen !== "board" ? tb("goto-board", "📚", "Konular") : "",
       state.screen !== "manage" ? tb("goto-manage", "👥", "Sınıf yönetimi") : ""
     ].join("") : "";
@@ -1271,7 +1351,7 @@
     </section>
     <section class="card danger-zone"><h3>Sınıf işlemleri</h3>
       <div class="actions">
-        <button class="danger" type="button" data-act="reset-scores">Puanları sıfırla</button>
+        ${scoreResetMenuHtml()}
         <button class="danger" type="button" data-act="reset-stats">Puan + istatistikleri sıfırla</button>
         <button class="soft" type="button" data-act="archive-class" data-id="${state.classId}">${state.archived ? "Arşivden çıkar" : "🗄 Arşivle"}</button>
         <button class="danger" type="button" data-act="delete-class" data-id="${state.classId}">Sınıfı sil</button>
@@ -1295,7 +1375,7 @@
         <div class="actions">
           <button class="solid" type="button" data-act="make-groups">${state.groups.length ? "Grupları yeniden kur" : "Grupları oluştur"}</button>
           <button class="soft" type="button" data-act="add-group">＋ Boş grup ekle</button>
-          ${state.groups.length ? `<button class="soft" type="button" data-act="reset-group-scores">Grup puanlarını sıfırla</button><button class="danger" type="button" data-act="clear-groups">Grupları kaldır</button>` : ""}
+          ${state.groups.length ? `${scoreResetMenuHtml("groups")}<button class="danger" type="button" data-act="clear-groups">Grupları kaldır</button>` : ""}
         </div>
         <p class="fine">Dengeli dağıtım öğrencileri puanlarına göre yılan sırasıyla dağıtır; böylece her grupta hem güçlü hem gelişen öğrenciler olur. Grup puanı, öğrenci o gruptayken kazandığı puanlardan oluşur.</p>
       </section>
@@ -1338,11 +1418,11 @@
   function renderRankingTab() {
     const groupsView = state.rankView === "groups" && state.groups.length;
     const items = groupsView
-      ? [...state.groups].map((g) => ({ name: g.name, icon: g.icon, color: g.color, score: groupScore(g.id), sub: members(g.id).length + " kişi · " + rate(g.correct || 0, g.asked || 0) + "% doğru" })).sort((a, b) => b.score - a.score)
+      ? [...state.groups].map((g) => ({ name: g.name, icon: g.icon, color: g.color, score: scoreOf(g), sub: members(g.id).length + " kişi · genel başarı " + rate(g.correct || 0, g.asked || 0) + "%" })).sort((a, b) => b.score - a.score)
       : [...state.students].map((s) => {
           const st = statsOf(s);
           const g = groupById(s.groupId);
-          return { name: s.name, color: g ? g.color : "", score: s.score, sub: "★ " + (s.tournamentStars || 0) + " turnuva / 🏆 " + Math.floor((s.tournamentStars || 0) / 3) + " kupa · " + st.asked + " soru · " + rate(st.correct, st.asked) + "% doğru" + (g ? " · " + g.icon + " " + g.name : "") };
+          return { name: s.name, color: g ? g.color : "", score: scoreOf(s), sub: "★ " + (s.tournamentStars || 0) + " turnuva / 🏆 " + Math.floor((s.tournamentStars || 0) / 3) + " kupa · toplam " + st.asked + " soru · " + rate(st.correct, st.asked) + "% doğru" + (g ? " · " + g.icon + " " + g.name : "") };
         }).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "tr"));
     const max = Math.max(1, ...items.map((i) => i.score));
     return `<div class="rank-toolbar"><div class="seg">
@@ -1350,10 +1430,12 @@
         <button type="button" class="${groupsView ? "on" : ""}" data-act="rank-view" data-view="groups" ${state.groups.length ? "" : "disabled"}>👥 Gruplar</button></div>
         <button type="button" class="soft" data-act="fullscreen">⛶ Tahtada göster</button></div>
       <section class="card rank-card">
+        <div class="rank-period-tools">${scorePeriodsHtml()}<span>${MatScores.PERIODS[state.scorePeriod]} puan durumu</span></div>
         ${items.length ? podiumHtml(items) : `<div class="empty-state small"><p>Sıralama için öğrenci ekle.</p></div>`}
         <ol class="rank-list">${items.map((it, i) => `<li style="--gc:${it.color || "#2c6bed"};--w:${Math.round(100 * it.score / max)}%">
           <span class="rank-no">${i + 1}</span><span class="rank-name"><b>${it.icon ? it.icon + " " : ""}${esc(it.name)}</b><small>${esc(it.sub)}</small></span>
           <span class="rank-bar"><i></i></span><b class="rank-score">${it.score}</b></li>`).join("")}</ol>
+        ${scoreResetMenuHtml()}
       </section>`;
   }
 
@@ -1379,7 +1461,7 @@
     const busiest = [...rows].sort((a, b) => b.st.asked - a.st.asked)[0];
     const th = (id, label) => `<th><button type="button" class="sort-btn ${state.reportSort === id ? "on" : ""}" data-act="report-sort" data-by="${id}">${label}${state.reportSort === id ? " ▾" : ""}</button></th>`;
     const titleOf = (id) => ((window.MatCurricula ? Object.values(MatCurricula).flatMap(c => c.topics) : curriculum().topics).find((t) => t.id === id) || { title: id }).title;
-    const levelName = (id) => typeof id === "string" ? id : id === 0 ? "Rastgele" : (MatGames.LEVELS.find((l) => l.id === id) || { name: "" }).name;
+    const levelName = (id) => id === "foundation" ? "Seviye 0" : typeof id === "string" ? id : id === 0 ? "Rastgele" : (MatGames.LEVELS.find((l) => l.id === id) || { name: "" }).name;
     return `<div class="stat-cards">
         <div class="stat"><small>Çözülen soru</small><b>${fNumber(asked)}</b></div>
         <div class="stat"><small>Doğru oranı</small><b>${rate(correct, asked)}%</b></div>
@@ -1395,7 +1477,7 @@
           <td class="num">${r.st.asked}</td><td class="num ok">${r.st.correct}</td><td class="num bad">${r.st.wrong}</td><td class="num">${r.st.timeout}</td>
           <td><span class="acc" style="--w:${r.acc}%"><i></i>${r.st.asked ? r.acc + "%" : "—"}</span></td><td class="num"><b>${r.s.score}</b></td><td>${fDate(r.s.lastAt)}</td></tr>
           ${state.reportOpen === r.s.id ? `<tr class="detail"><td colspan="10"><div class="detail-grid">
-            <div><h4>Seviyelere göre</h4>${MatGames.LEVELS.map((l) => { const v = r.st.levels[l.id] || { a: 0, c: 0 }; return `<p><span class="level-badge" style="--level-color:${l.color}">${l.icon} ${esc(l.name)}</span> ${v.c}/${v.a} doğru</p>`; }).join("")}</div>
+            <div><h4>Seviyelere göre</h4>${[...MatGames.LEVELS, ...(window.MatFoundation ? [MatFoundation.LEVEL] : [])].map((l) => { const v = r.st.levels[l.id] || { a: 0, c: 0 }; return `<p><span class="level-badge" style="--level-color:${l.color}">${l.icon} ${esc(l.name)}</span> ${v.c}/${v.a} doğru</p>`; }).join("")}</div>
             <div><h4>Konulara göre</h4>${Object.keys(r.st.topics).length ? Object.entries(r.st.topics).sort((a, b) => b[1].a - a[1].a).map(([id, v]) => `<p>${esc(titleOf(id))}: <b>${v.c}/${v.a}</b> <span class="fine">(${rate(v.c, v.a)}%)</span></p>`).join("") : `<p class="fine">Henüz soru çözmedi.</p>`}</div>
             <div><h4>Öğretmen puanı</h4><p class="fine">Davranış, katılım veya tahtadaki çözüm için elle puan ver.</p><div class="actions">${[-10, -5, 5, 10].map((d) => `<button type="button" class="mini" data-act="student-points" data-id="${esc(r.s.id)}" data-d="${d}">${d > 0 ? "+" + d : "−" + Math.abs(d)}</button>`).join("")}</div></div>
           </div></td></tr>` : ""}`).join("")}
@@ -1427,9 +1509,52 @@
     const here = present(state.students);
     const done = here.filter((s) => state.turnDone.includes(s.id)).length;
     return `<div class="turn-meter" title="Bu sıra turunda soru çözen öğrenciler">
-      <div><b>${state.turnRound}. sıra turu</b><span>${done}/${here.length} öğrenci oynadı</span></div>
-      <div class="meter"><i style="width:${here.length ? Math.round(100 * done / here.length) : 0}%"></i></div>
-      <button type="button" class="mini" data-act="reset-turns">Turu sıfırla</button></div>`;
+      <span class="turn-round"><b>${state.turnRound}</b><small>TUR</small></span>
+      <div class="turn-copy"><b>Herkese sıra</b><span>${done}/${here.length} öğrenci oynadı</span></div>
+      <button type="button" class="turn-reset" data-act="reset-turns" aria-label="Sıra turunu sıfırla" title="Sıra turunu sıfırla">↺</button>
+      <div class="meter" role="progressbar" aria-label="Bu tur oynayan öğrenciler" aria-valuemin="0" aria-valuemax="${here.length || 1}" aria-valuenow="${done}"><i style="width:${here.length ? Math.round(100 * done / here.length) : 0}%"></i></div></div>`;
+  }
+
+  function eliteSettingsHtml() {
+    const gen = unlimited();
+    return `<fieldset class="elite-settings"><legend>Üst seviyeler</legend>
+      <div class="elite-options">${MatGames.LEVELS.filter(l => l.unlimitedOnly).map(l => {
+        const on = gen && state.eliteLevels.includes(l.id);
+        return `<button type="button" class="elite-toggle ${on ? "on" : ""}" style="--elite-color:${l.color}" role="switch" aria-checked="${on}" aria-label="${esc(l.name)} seviyesini dahil et" data-act="toggle-elite" data-level="${l.id}" ${gen ? "" : "disabled"}><span aria-hidden="true">${on ? "✓" : "+"}</span> ${esc(l.name)}</button>`;
+      }).join("")}</div>
+      <p>${gen ? "Açık seviyeler oyunlarda seçilebilir ve rastgele gelebilir." : `Üst seviyeler için <button type="button" class="linkish" data-act="question-source" data-source="gen">sınırsız sorulara geç</button>.`}</p>
+    </fieldset>`;
+  }
+
+  function quickLevelPickerHtml() {
+    const available = levels(), selectedLevels = quickLevels();
+    return `<details class="quick-topics quick-levels" id="quickLevels" ${state.quickLevelsOpen ? "open" : ""}>
+      <summary><span>Seviyeler <b>${selectedLevels.length === available.length ? "Tümü" : selectedLevels.length + " seçili"}</b></span><span class="quick-topic-summary">${selectedLevels.length === 1 ? esc(selectedLevels[0].name) : selectedLevels.length + " seviye"}</span></summary>
+      <div class="quick-topic-tools"><button type="button" class="linkish" data-act="quick-levels-all">Tümünü seç</button><button type="button" class="linkish" data-act="quick-levels-clear">Seçimi temizle</button></div>
+      <div class="quick-topic-list quick-level-list" id="quickLevelList">${MatGames.LEVELS.map(l => {
+        const enabled = available.some(a => a.id === l.id);
+        return `<label for="quick-level-${l.id}" class="${enabled ? "" : "unavailable"}"><input id="quick-level-${l.id}" type="checkbox" data-quick-level="${l.id}" ${selectedLevels.some(a => a.id === l.id) ? "checked" : ""} ${enabled ? "" : "disabled"}><span class="quick-level-icon" style="color:${l.color}" aria-hidden="true">${l.icon}</span><span>${esc(l.name)}${enabled ? "" : `<small>${unlimited() ? "Üst seviye kapalı" : "Sınırsız modda açılır"}</small>`}</span><b>${l.points} puan</b></label>`;
+      }).join("")}</div>
+      <div class="quick-elite-controls">${eliteSettingsHtml()}</div>
+    </details>`;
+  }
+
+  function quickGameHtml() {
+    const all = curriculum().topics;
+    const pool = quickTopics();
+    const levelPool = quickLevels();
+    const who = selected();
+    return `<section class="quick-game" aria-labelledby="quickGameTitle">
+      <div class="quick-heading"><span aria-hidden="true">⚡</span><div><h3 id="quickGameTitle">Hızlı oyun</h3><p>Rastgele konu ve seviye · tek soru</p></div></div>
+      <details class="quick-topics" id="quickTopics" ${state.quickTopicsOpen ? "open" : ""}>
+        <summary><span>Konular <b>${pool.length === all.length ? "Tümü" : pool.length + " seçili"}</b></span><span class="quick-topic-summary">${pool.length === 1 ? esc(pool[0].title) : pool.length + " konu"}</span></summary>
+        <div class="quick-topic-tools"><button type="button" class="linkish" data-act="quick-topics-all">Tümünü seç</button><button type="button" class="linkish" data-act="quick-topics-clear">Seçimi temizle</button></div>
+        <div class="quick-topic-list" id="quickTopicList">${curriculum().worlds.map(w => `<fieldset><legend>${esc(w.name)}</legend>${all.filter(t => t.worldId === w.id).map(t => `<label for="quick-topic-${t.id}"><input id="quick-topic-${t.id}" type="checkbox" data-quick-topic="${t.id}" ${pool.some(p => p.id === t.id) ? "checked" : ""}><span>${t.no} · ${esc(t.title)}</span></label>`).join("")}</fieldset>`).join("")}</div>
+      </details>
+      ${quickLevelPickerHtml()}
+      <button class="solid quick-start" type="button" data-act="start-quick" ${pool.length && levelPool.length ? "" : "disabled"}>${!who || who.absent ? present(state.students).length ? "🎲 Öğrenci çek ve başla" : "▶ Puansız soru aç" : "▶ Rastgele soru aç"}<span aria-hidden="true">→</span></button>
+      ${!pool.length || !levelPool.length ? `<p class="quick-empty" role="status">Başlamak için en az bir ${!pool.length ? "konu" : "açık seviye"} seç.</p>` : ""}
+    </section>`;
   }
 
   function renderBoard() {
@@ -1439,36 +1564,37 @@
     }
     const who = selected();
     const g = who ? groupById(who.groupId) : null;
-    const ranked = [...state.students].sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "tr"));
+    const ranked = [...state.students].sort((a, b) => scoreOf(b) - scoreOf(a) || a.name.localeCompare(b.name, "tr"));
     const next = state.groups[state.nextGroup] || null;
     const absent = state.students.filter((s) => s.absent).length;
     return `${header()}<main class="shell">${flashHtml()}<div class="board">
       <div>
         <button class="tr-banner" type="button" data-act="goto-tournament"><span>🏆</span><span><small>SINIFIN BÜYÜK BULUŞMASI</small><b>Şampiyonlar Turnuvası</b><em>Hız elemeleri · Kapışmalar · Yıldızlar ve kupalar</em></span><strong>Katıl →</strong></button>
-        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div>${unlimited() ? `<b>♾️ Sınırsız görsel soru · 20 konu</b><span>Her konuda ${levels().length} seviye; her soru yeni sayılar ve yeni bir çizimle üretilir. Sıra şimdi sende!</span>` : `<b>${fNumber(curriculum().topics.length * MatQuestionBank.perTopic)} soru · 20 konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span>`}</div></div>
+        ${groupRaceBanner()}
+        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div>${unlimited() ? `<b>♾️ Sınırsız görsel soru · ${curriculum().topics.length} konu</b><span>Her konuda ${levels().length} açık seviye; her soru yeni sayılar ve yeni bir çizimle üretilir. Sıra şimdi sende!</span>` : `<b>${fNumber(curriculum().topics.length * MatQuestionBank.perTopic)} soru · ${curriculum().topics.length} konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span>`}</div></div>
         ${![5, 7].includes(state.grade) ? `<p class="note">${state.grade}. sınıf için bu sürümde 5. sınıf 1. kitap konuları kullanılır.</p>` : ""}
         ${state.tipHidden ? "" : `<div class="tip"><b>Nasıl kullanılır?</b> Konuya gir, önce anlat, sonra oyna. “Her sorudan sonra yeni öğrenci” açıkken her soruyu farklı bir öğrenci çözer. Yanlış cevap puan silmez. <button type="button" class="mini" data-act="hide-tip">Tamam</button></div>`}
         ${curriculum().worlds.map((w) => `<section class="world">
           <div class="world-head"><h2 style="color:${w.color}">${esc(w.name)}</h2><span class="fine">${esc(w.blurb)}</span></div>
           <div class="topic-grid">${curriculum().topics.filter((t) => t.worldId === w.id).map((t) => {
             const stars = who && who.stars ? (who.stars[t.id] || 0) : 0;
-            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">${unlimited() ? "♾️ sınırsız soru" : "75 soru"} · ${levels().length} seviye</span></div><h3>${esc(t.title)}</h3>${starHtml(stars)}
-              <div class="actions"><button class="soft" type="button" data-act="open" data-id="${t.id}" data-tab="lesson">Anlat</button><button class="solid" type="button" data-act="open" data-id="${t.id}" data-tab="play">Oyna</button></div></article>`;
+            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">${unlimited() ? "∞ soru" : "75 soru"} · ${levels().length} seviye</span></div><h3>${esc(t.title)}</h3>
+              <div class="topic-card-footer">${starHtml(stars)}<div class="actions"><button class="soft" type="button" data-act="open" data-id="${t.id}" data-tab="lesson" aria-label="${esc(t.title)} konusunu anlat">Anlat</button><button class="solid" type="button" data-act="open" data-id="${t.id}" data-tab="play" aria-label="${esc(t.title)} konusunu oyna">Oyna</button></div></div></article>`;
           }).join("")}</div>
         </section>`).join("")}
       </div>
-      <aside class="side">
+      <aside class="side" aria-label="Öğrenci ve hızlı oyun paneli">
         <div class="player-spot" style="--gc:${g ? g.color : "#e2a325"}">
           <span>ŞİMDİ TAHTADA</span>
           <strong>${who ? esc(who.name) : "Kimse seçilmedi"}</strong>
           <span>${who ? (g ? g.icon + " " + esc(g.name) + " · " : "") + who.score + " puan" : "Rastgele çek veya bir isme dokun"}</span>
-          ${who ? `<div class="spot-adjust">${[-5, 5, 10].map((d) => `<button type="button" class="mini" data-act="student-points" data-id="${esc(who.id)}" data-d="${d}">${d > 0 ? "+" + d : "−" + Math.abs(d)}</button>`).join("")}</div>` : ""}
+          <div class="spot-controls"><div class="spot-picker" role="group" aria-label="Tahtaya öğrenci seç">
+            <button class="spot-pick" type="button" data-act="random-any"><span aria-hidden="true">⚄</span> Öğrenci seç</button>
+            <button class="spot-pick spot-pick-group" type="button" data-act="next-group" aria-label="Sıradaki gruptan öğrenci seç" title="Sıradaki gruptan seç" ${state.groups.length ? "" : "disabled"}><span aria-hidden="true">👥</span> Grup</button>
+          </div>${who ? `<div class="spot-adjust" role="group" aria-label="Öğrenci puanını değiştir">${[-5, 5, 10].map((d) => `<button type="button" class="mini" data-act="student-points" data-id="${esc(who.id)}" data-d="${d}">${d > 0 ? "+" + d : "−" + Math.abs(d)}</button>`).join("")}</div>` : ""}</div>
         </div>
-        <div class="spot-actions">
-          <button class="solid" type="button" data-act="random-any">🎲 Rastgele seç</button>
-          <button class="soft" type="button" data-act="next-group" ${state.groups.length ? "" : "disabled"}>👥 Sıradaki grup</button>
-        </div>
-        <p class="fine">${state.lastPick ? "Son çekiliş: " + esc(state.lastPick) : next ? "Sıradaki grup: <b>" + next.icon + " " + esc(next.name) + "</b>" : "Çekilişte isimler döner, biri durur."}</p>
+        ${quickGameHtml()}
+        ${next ? `<p class="fine">Sıradaki grup: <b>${next.icon} ${esc(next.name)}</b></p>` : ""}
         ${state.fairTurns ? turnHtml() : ""}
         ${settingsHtml()}
         <details class="attendance"><summary>📋 Yoklama <small>${absent ? absent + " kişi yok" : "herkes burada"}</small></summary>
@@ -1480,10 +1606,20 @@
             <header><span><span class="g-emoji">${gr.icon}</span> ${esc(gr.name)}</span><b class="score">${i === 0 && groupScore(gr.id) ? "👑 " : ""}${groupScore(gr.id)}</b></header>
             <div class="members">${members(gr.id).map((s) => `<button type="button" class="mini ${s.id === state.selectedId ? "active" : ""} ${s.absent ? "is-absent" : ""} ${state.turnDone.includes(s.id) && state.fairTurns ? "played" : ""}" data-act="select" data-id="${esc(s.id)}">${esc(s.name)}</button>`).join("") || "<span class='fine'>boş</span>"}</div>
             <div class="actions"><button class="soft" type="button" data-act="random-group" data-gid="${esc(gr.id)}">Bu gruptan çek</button></div>
-          </article>`).join("")}` : `<p class="fine">Grup yarışı için <button type="button" class="linkish" data-act="goto-groups">grupları kur →</button></p>`}
-        <h3>Puan sırası</h3>
-        ${ranked.slice(0, 8).map((s, i) => `<button type="button" class="student-row ${s.id === state.selectedId ? "active" : ""} ${s.absent ? "is-absent" : ""}" data-act="select" data-id="${esc(s.id)}"><span>${["🥇", "🥈", "🥉"][i] || i + 1 + "."} ${esc(s.name)}</span><span>${s.score}</span></button>`).join("") || "<p class='fine'>Henüz öğrenci yok.</p>"}
-        <div class="actions"><button class="soft" type="button" data-act="goto-ranking">🏆 Tüm sıralama</button><button class="soft" type="button" data-act="goto-manage">👥 Sınıfı yönet</button></div>
+          </article>`).join("")}` : `<div class="side-group-invite"><span aria-hidden="true">👥</span><span>Birlikte yarışın<button type="button" class="linkish" data-act="goto-groups">Grupları oluştur →</button></span></div>`}
+        <section class="side-ranking" aria-labelledby="sideRankingTitle">
+          <header class="side-section-head"><div><span>SINIF TABLOSU</span><h3 id="sideRankingTitle">Puan sırası</h3></div><button type="button" class="side-more" data-act="goto-ranking" aria-label="Tüm öğrencilerin puan sırasını gör">Tümü ↗</button></header>
+          ${scorePeriodsHtml()}
+          <div class="side-rank-list">${ranked.slice(0, 5).map((s, i) => {
+            const gr = groupById(s.groupId);
+            const active = s.id === state.selectedId;
+            const detail = s.absent ? "Bugün yok" : active ? "Şimdi tahtada" : gr ? gr.icon + " " + gr.name : state.turnDone.includes(s.id) ? "Bu tur oynadı" : "Bu tur oynamadı";
+            return `<button type="button" class="side-rank-row ${active ? "active" : ""} ${s.absent ? "is-absent" : ""}" style="--rank-color:${gr ? gr.color : "#34755f"}" data-act="select" data-id="${esc(s.id)}" aria-pressed="${active}"><span class="rank-place ${i === 0 ? "first" : ""}">${i === 0 ? "♛" : String(i + 1).padStart(2, "0")}</span><span class="rank-avatar" aria-hidden="true">${esc(initials(s.name))}</span><span class="rank-person"><b>${esc(s.name)}</b><small>${esc(detail)}</small></span><span class="rank-points"><b>${fNumber(scoreOf(s))}</b><small>puan</small></span></button>`;
+          }).join("") || `<p class="fine">Henüz öğrenci yok.</p>`}</div>
+          <p class="side-rank-note">${ranked.length > 5 ? `İlk 5 öğrenci · sınıfta ${ranked.length} kişi` : `${ranked.length} öğrenci`} · İsimlere dokunarak seçebilirsin.</p>
+          ${scoreResetMenuHtml()}
+        </section>
+        <button class="side-manage" type="button" data-act="goto-manage"><span>👥 Sınıfı yönet</span><span aria-hidden="true">↗</span></button>
       </aside>
     </div><p class="footer-note">Doğru/yanlış 5 puan. Diğer sorular: ${MatGames.BANK_LEVELS.map((l) => l.name + " " + l.points).join(" · ")} puan. Sınırsız modda ayrıca ${MatGames.LEVELS.filter((l) => l.unlimitedOnly).map((l) => l.name + " " + l.points).join(" · ")} puan. Yanlışta ve süre dolduğunda puan silinmez.</p></main>`;
   }
@@ -1630,6 +1766,15 @@
         <span class="arcade-icon" aria-hidden="true">${g.icon}</span><small>${g.players === 2 ? "2 OYUNCU · YARIŞ" : "TEK OYUNCU · SIRAYLA"}</small><b>${esc(g.title)}</b><span class="fine">${esc(g.blurb)}</span></button>`).join("")}</div>`;
   }
 
+  function groupRaceBanner(topicId = "") {
+    return `<button class="gr-banner" type="button" data-act="goto-group-race" data-topic="${esc(topicId)}"><span aria-hidden="true">🏁</span><span><small>İKİ GRUP · TEK BİTİŞ ÇİZGİSİ</small><b>Grup Yarışı</b><em>Aynı veya farklı sayılar · bağımsız ilerleme · yanlışta 10 saniye ceza</em></span><strong>Yarışı hazırla →</strong></button>`;
+  }
+
+  function foundationHtml(t) {
+    const ready = window.MatFoundation?.has(t.id);
+    return `<section class="foundation-section" aria-label="Seviye 0"><h3>◎ Seviye 0</h3>${ready ? `<p>Karşılaştırma işaretleri, tam sayı sınırları, eksik değerler, çubuklar, sıcaklık ve fanuslarla sıralama. Örnek soru biçimlerinde sınırsız alıştırma.</p><button class="solid" type="button" data-act="start-level" data-level="foundation">Seviye 0'a başla → <span>· 5 puan / soru</span></button>` : `<p class="foundation-empty">Henüz hazırlanmadı. Bu konunun Seviye 0 soru biçimlerini öğretmen belirleyecek.</p>`}</section>`;
+  }
+
   // Görsel oyunların uygulamayla konuştuğu küçük arayüz.
   function arcadeCtx() {
     return {
@@ -1668,12 +1813,12 @@
     const tp = st.topics[state.topicId] || (st.topics[state.topicId] = { a: 0, c: 0 });
     tp.a += 1;
     if (ok) tp.c += 1;
-    s.score += pts;
+    MatScores.add(s, pts);
     s.lastAt = Date.now();
     if (g) {
       g.asked = (g.asked || 0) + 1;
       if (ok) g.correct = (g.correct || 0) + 1;
-      g.score = (g.score || 0) + pts;
+      MatScores.add(g, pts);
     }
     noteTurn(s.id);
     persist();
@@ -1681,7 +1826,7 @@
 
   function renderReveal(t) {
     const r = state.reveal;
-    const lv = MatGames.LEVELS.find(l => l.id === r.level);
+    const lv = levelInfo(r.level);
     const landed = r.step === "landed";
     const questionPoints = r.step === "question" && currentQ() ? currentQ().points : null;
     const who = selected();
@@ -1691,10 +1836,10 @@
       <div class="reveal-symbol" aria-hidden="true">${lv ? lv.icon : "✦"}</div>
       <h2 aria-live="polite">${r.step === "level" ? "Hangi seviye gelecek?" : landed ? esc(lv.name) + " seçildi!" : "Sıradaki soru açılıyor"}</h2>
       <p>${r.step === "level" ? "Önce şansın seviyeni belirlesin…" : questionPoints !== null ? questionPoints + " puanlık bir soru seni bekliyor." : "Seviye belli! Şimdi bu seviyenin sorusu geliyor."}</p>
-      <div class="reveal-levels" aria-hidden="true">${levels().map(l => `<div class="reveal-level ${r.level === l.id ? "lit" : ""}" style="--card-color:${l.color}"><span>${l.icon}</span><b>${esc(l.name)}</b><small>${levelPointsText(l)} puan</small></div>`).join("")}</div>
+      <div class="reveal-levels" aria-hidden="true">${(r.level === "foundation" ? [MatFoundation.LEVEL] : state.quickGame ? quickLevels() : levels()).map(l => `<div class="reveal-level ${r.level === l.id ? "lit" : ""}" style="--card-color:${l.color}"><span>${l.icon}</span><b>${esc(l.name)}</b><small>${levelPointsText(l)} puan</small></div>`).join("")}</div>
       <div class="reveal-steps"><span class="${r.step !== "question" ? "active" : "done"}">01 · Seviye</span><i></i><span class="${r.step === "question" ? "active" : ""}">02 · Soru</span><i></i><span>03 · Sıra sende</span></div>
       <p class="reveal-time">${state.roundSeconds ? "◷ " + state.roundSeconds + " saniyen soru gelince başlayacak" : "∞ Süresiz · düşünmek için zamanın var"}</p>
-      <button type="button" class="ghost" data-act="to-levels">Seviye seçimine dön</button></div>
+      <button type="button" class="ghost" data-act="${state.quickGame ? "goto-board" : "to-levels"}">${state.quickGame ? "Hızlı oyuna dön" : "Seviye seçimine dön"}</button></div>
     </div>`;
   }
 
@@ -1709,11 +1854,14 @@
         <button type="button" class="${gen ? "on" : ""}" data-act="question-source" data-source="gen" aria-pressed="${gen}">♾️ Sınırsız görsel</button>
         <button type="button" class="${gen ? "" : "on"}" data-act="question-source" data-source="bank" aria-pressed="${!gen}">📚 Soru bankası (75)</button></div>
         <small>${gen ? "Her soru yeni sayılar ve yeni bir çizimle anında üretilir; sorular hiç bitmez." : "Her seviyede 15 sabit soru; havuz bitince yeniden karıştırılır."}</small></div>
+      ${eliteSettingsHtml()}
       <h3>Seviyeni sen seç</h3>
       <div class="levels">${levels().map((lv) => `<button type="button" class="level-card${lv.unlimitedOnly ? " elite" : ""}" style="--level-color:${lv.color}" data-act="start-level" data-level="${lv.id}"><span class="level-icon" aria-hidden="true">${lv.icon}</span><small>SEVİYE ${lv.id}</small><b>${esc(lv.name)}</b><em>${levelPointsText(lv)} puan / soru</em><span class="fine">${esc(lv.blurb)}</span><span class="level-count">${gen ? "♾️ Sınırsız soru" : "15 farklı soru"}</span></button>`).join("")}
       <button type="button" class="level-card random-card" data-act="start-level" data-level="0"><span class="level-icon" aria-hidden="true">⚄</span><small>SÜRPRİZE HAZIR MISIN?</small><b>Şansına bırak</b><em>${gen ? pointsRange() : "5–80"} puan / soru</em><span class="fine">Her sorudan önce seviye çekilir, sonra o seviyeden bir soru gelir.</span><span class="level-count">${levels().length} seviyenin tamamı</span></button></div>
       ${arcadeCardsHtml(t)}
+      ${groupRaceBanner(t.id)}
       <p class="fine">${gen ? "Sınırsız modda her soru çizimli üretilir ve seviyenin puanını kazandırır. Kareli zeminde paralel/dik doğru, iletki, saat, abaküs, bloklar, bar modeli gibi farklı soru türleri karışık gelir." : "Doğru/yanlış soruları her zaman <b>5 puan</b>dır; yalnız ilk iki seviyede bulunur. Diğer sorular seviyenin puanını kazandırır. Bir seviyenin 15 sorusu bitene kadar aynı soru tekrar gelmez."}</p>
+      ${foundationHtml(t)}
       ${state.gate !== null ? `<div class="result gate"><h3>İlk soruyu kim çözsün?</h3>
         <div class="actions"><button class="solid" type="button" data-act="gate-random">🎲 Rastgele çek ve başla</button>${state.groups.length ? `<button class="soft" type="button" data-act="gate-group">👥 Sıradaki gruptan çek</button>` : ""}<button class="soft" type="button" data-act="gate-free">Puansız başla</button></div>
         <div class="chips">${present(state.students).map((s) => `<button type="button" class="chip ${state.turnDone.includes(s.id) && state.fairTurns ? "played" : ""}" data-act="gate-pick" data-id="${esc(s.id)}">${esc(s.name)}</button>`).join("")}</div></div>` : ""}`;
@@ -1724,7 +1872,7 @@
     const g = who ? groupById(who.groupId) : null;
     const dots = state.questions.map((_, i) => `<i class="${i < state.qIndex ? state.review[i] && state.review[i].ok ? "on" : "miss" : ""} ${i === state.qIndex ? "now" : ""}"></i>`).join("");
     return `<div class="game-bar">
-      <button type="button" class="g-btn" data-act="to-levels" aria-label="Seviye seçimine dön">←</button>
+      <button type="button" class="g-btn" data-act="${state.quickGame ? "goto-board" : "to-levels"}" aria-label="${state.quickGame ? "Hızlı oyuna dön" : "Seviye seçimine dön"}">←</button>
       <div class="g-player ${who ? "" : "nobody"}" style="--gc:${g ? g.color : "#8a94a6"}">
         <span class="g-avatar" aria-hidden="true">${who ? esc(initials(who.name)) : "?"}</span>
         <div><small>${who ? "SIRA SENDE" : "PUANSIZ TUR"}</small><b>${who ? esc(who.name) : "Öğrenci seç"}</b>${g ? `<em>${g.icon} ${esc(g.name)} · ${groupScore(g.id)} puan</em>` : who ? `<em>${who.score} puan</em>` : ""}</div>
@@ -1747,7 +1895,7 @@
 
   function renderQuiz(t) {
     const q = currentQ();
-    const lv = MatGames.LEVELS.find(l => l.id === q.level);
+    const lv = levelInfo(q.level);
     const praise = ["Süper!", "Tam isabet!", "İşte bu!", "Harikasın!", "Çok iyi!"][state.correctCount % 5];
     const fb = state.feedback;
     const scene = q.scene && q.kind !== "dial" && q.kind !== "rect" ? MatVisuals.renderScene(q.scene) : "";
@@ -1757,7 +1905,7 @@
       ${state.cycleRenewed ? `<p class="pool-notice">Bu seviyedeki 15 soru tamamlandı. Havuz yeniden karıştırıldı.</p>` : ""}
       <div class="game-stage ${scene ? "has-scene" : "no-scene"} kind-${q.kind}">
         <section class="g-question">
-          <span class="question-label">${q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>
+          <span class="question-label">${state.quickGame ? "⚡ HIZLI OYUN · " + esc(t.title) : q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>
           <h2 class="prompt" tabindex="-1">${MatVisuals.angleMarks(esc(q.prompt))}</h2>
           ${scene ? `<div class="g-scene">${scene}</div>` : `<div class="g-mascot" aria-hidden="true">${["🦉", "🦊", "🐢", "🐝", "🦁"][q.level - 1] || "✦"}<span>${["Düşün!", "Hadi!", "Adım adım!", "Dikkat!", "Ustalık zamanı!"][q.level - 1] || ""}</span></div>`}
           <div class="help-row">${q.hint ? `<button class="hint-btn ${state.hintOpen ? "open" : ""}" type="button" data-act="hint">💡 ${state.hintOpen ? esc(q.hint) : "İpucu"}</button>` : ""}<button class="hint-btn sol-btn" type="button" data-act="solution" ${state.locked ? "" : "disabled title=\"Cevap verildikten sonra açılır\""}>📖 Çözüm${state.locked ? "" : " 🔒"}</button></div>
@@ -1774,7 +1922,8 @@
             ${fb.ok ? `<p class="fb-points">+${fb.points} puan${fb.awarded ? "" : state.practice ? " · antrenman, yazılmadı" : " · öğrenci seçili değildi"}</p>` : `<p class="fb-answer">Doğru cevap: <b>${esc(fb.correctText)}</b></p>`}
             <p class="fb-explain">${esc(fb.explain)}</p>
             <button class="soft sol-open" type="button" data-act="solution">📖 Adım adım çözümü göster</button>
-            <button class="check-btn" type="button" data-act="next-q">${state.qIndex === state.questions.length - 1 ? "🏁 Sonucu gör" : state.autoRotate && present(state.students).length > 1 ? "🎲 Sıradaki öğrenci →" : "Sonraki soru →"}</button>
+            <button class="check-btn" type="button" data-act="next-q">${state.quickGame ? state.autoRotate && present(state.students).length > 1 ? "🎲 Sıradaki öğrenci ve soru →" : "🎲 Yeni rastgele soru →" : state.qIndex === state.questions.length - 1 ? "🏁 Sonucu gör" : state.autoRotate && present(state.students).length > 1 ? "🎲 Sıradaki öğrenci →" : "Sonraki soru →"}</button>
+            ${state.quickGame ? `<div class="quick-followup">${!state.autoRotate && present(state.students).length > 1 ? `<button class="soft" type="button" data-act="quick-next-student">Sıradaki öğrenci ve soru →</button>` : ""}<button class="soft" type="button" data-act="goto-board">← Hızlı oyuna dön</button></div>` : ""}
           </div>` : ""}
           ${renderSolution()}
           ${state.paused ? `<div class="g-feedback paused" role="status"><div class="fb-emoji" aria-hidden="true">⏸</div><h3>Oyun duraklatıldı</h3><button class="check-btn" type="button" data-act="pause-clock">▶ Devam et</button></div>` : ""}
@@ -1837,6 +1986,7 @@
           <button class="nav-btn ${state.topicTab === "play" ? "on" : ""}" type="button" data-act="to-play">Oyna</button>
         </div>
         ${state.topicTab === "lesson" ? t.slides.map((s, i) => `<button type="button" class="nav-btn ${i === state.slide ? "on" : ""}" data-act="goto-slide" data-i="${i}">${i + 1}. ${esc(s.h)}</button>`).join("") : levels().map((lv) => `<button type="button" class="nav-btn ${state.level === lv.id && state.phase !== "pick" && (!state.reveal || state.reveal.level === lv.id) ? "on" : ""}" data-act="start-level" data-level="${lv.id}">${esc(lv.name)} · ${levelPointsText(lv)}</button>`).join("")}
+        ${state.topicTab === "play" ? `<button type="button" class="nav-btn ${state.level === "foundation" && state.phase !== "pick" ? "on" : ""}" data-act="start-level" data-level="foundation" ${window.MatFoundation?.has(t.id) ? "" : "disabled"}>◎ Seviye 0${window.MatFoundation?.has(t.id) ? " · 5" : " · Yakında"}</button>` : ""}
         <button class="ghost" type="button" data-act="tahta" style="color:var(--ink);border-color:var(--line);margin-top:8px">${state.tahta ? "Tahta modunu kapat" : "Tahta modu"}</button>
       </aside>
       <section class="topic-main">${back}${body}</section>
@@ -1958,7 +2108,8 @@
 
   function render() {
     if (window.MatTournament) MatTournament.unmount();
-    MatAudio.setMusicScene(authenticated && (state.screen === "tournament" || isGameMode()));
+    if (window.MatGroupRace) MatGroupRace.unmount();
+    MatAudio.setMusicScene(authenticated && (["tournament", "group-race"].includes(state.screen) || isGameMode()));
     if (!authenticated) {
       renderLogin();
       return;
@@ -1970,8 +2121,20 @@
     document.body.classList.toggle("is-fs", !!document.fullscreenElement);
     document.body.classList.toggle("tahta", !!(state.tahta && state.screen === "topic" && !game));
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
-    const html = state.screen === "tournament" ? `${header()}<main class="shell"><div id="tournamentRoot"></div></main>` : state.screen === "classes" ? renderClasses() : state.screen === "manage" ? renderManage() : state.screen === "topic" ? renderTopic() : renderBoard();
-    app.innerHTML = (state.practice ? `<div class="practice-ribbon" role="status">🏋️ ANTRENMAN MODU · puan, istatistik ve sıralama değişmez <button type="button" data-act="toggle-practice">Kapat</button></div>` : "") + html + (passwordOpen ? passwordDialog() : "");
+    const html = state.screen === "group-race" ? `${header()}<main class="shell"><div id="groupRaceRoot"></div></main>` : state.screen === "tournament" ? `${header()}<main class="shell"><div id="tournamentRoot"></div></main>` : state.screen === "classes" ? renderClasses() : state.screen === "manage" ? renderManage() : state.screen === "topic" ? renderTopic() : renderBoard();
+    const sideScroll = document.querySelector(".board .side")?.scrollTop || 0;
+    const topicScroll = document.getElementById("quickTopicList")?.scrollTop || 0;
+    const levelScroll = document.getElementById("quickLevelList")?.scrollTop || 0;
+    const resetScroll = document.querySelector(".score-reset-dialog")?.scrollTop || 0;
+    app.innerHTML = (state.practice ? `<div class="practice-ribbon" role="status">🏋️ ANTRENMAN MODU · puan, istatistik ve sıralama değişmez <button type="button" data-act="toggle-practice">Kapat</button></div>` : "") + html + (passwordOpen ? passwordDialog() : "") + (scoreReset ? scoreResetDialogHtml() : "");
+    const side = document.querySelector(".board .side");
+    const topicList = document.getElementById("quickTopicList");
+    const levelList = document.getElementById("quickLevelList");
+    const resetDialog = document.querySelector(".score-reset-dialog");
+    if (side) side.scrollTop = sideScroll;
+    if (topicList) topicList.scrollTop = topicScroll;
+    if (levelList) levelList.scrollTop = levelScroll;
+    if (resetDialog) resetDialog.scrollTop = resetScroll;
     document.body.classList.toggle("practice-mode", state.practice);
     bindDynamic();
     watchLessonLayout();
@@ -1983,8 +2146,10 @@
   }
 
   function renderLogin(focusPassword) {
+    if (scoreReset) { scoreReset.secret = ""; scoreReset = null; }
     MatAudio.setMusicScene(false);
     if (window.MatTournament) MatTournament.unmount();
+    if (window.MatGroupRace) MatGroupRace.unmount();
     document.body.classList.add("login-mode");
     document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode", "practice-mode");
     if (cloud && !authReady) {
@@ -2029,6 +2194,7 @@
   function openFromHash() {
     const hash = decodeURIComponent(location.hash.replace("#", ""));
     if (!state.classId) { render(); return; }
+    if (hash === "grup-yarisi") { state.screen = "group-race"; render(); return; }
     if (hash.startsWith("konu-")) {
       const play = hash.endsWith("-oyna");
       const id = play ? hash.slice(5, -5) : hash.slice(5);
@@ -2036,9 +2202,10 @@
       else render();
     } else if (hash.startsWith("oyun-")) {
       const parts = hash.slice(5).split("-");
-      const requestedLevel = Number(parts.pop());
+      const token = parts.pop();
+      const requestedLevel = token === "temel" ? "foundation" : Number(token);
       const id = parts.join("-");
-      const level = [0, ...levels().map(l => l.id)].includes(requestedLevel) ? requestedLevel : 1;
+      const level = requestedLevel === "foundation" && window.MatFoundation?.has(id) ? "foundation" : [0, ...levels().map(l => l.id)].includes(requestedLevel) ? requestedLevel : 1;
       if (curriculum().topics.some((t) => t.id === id)) {
         state.screen = "topic";
         state.topicId = id;
@@ -2104,6 +2271,69 @@
       const pw = document.getElementById("loginPassword");
       if (pw) pw.value = password;
     }
+  }
+
+  // Puan silme şifresi yalnız bellekte tutulur; form, şifre alanı veya kayıt akışı yoktur.
+  function openScoreReset(period, scope = "all", stats = false) {
+    if (!state.classId || !Object.keys(MatScores.PERIODS).includes(period)) return;
+    scoreReset = { period, periodKey: MatScores.keys()[period] || "total", scope: scope === "groups" ? "groups" : "all", stats, classId: state.classId, secret: "", page: "digits", upper: false, busy: false, error: "" };
+    render();
+    document.querySelector(".score-reset-dialog")?.focus();
+  }
+
+  function scoreResetDialogHtml() {
+    const d = scoreReset;
+    const label = d.stats ? "Puanlar ve istatistikler" : d.period === "total" ? "Tüm puanlar" : MatScores.PERIODS[d.period] + " puanlar";
+    let chars = d.page === "digits" ? "1234567890" : d.page === "letters" ? "qwertyuıopğüasdfghjklşiözxcvbnmç" : "!@#$%^&*()-_=+[]{};:'\",.<>/?\\|`~€₺";
+    if (d.page === "letters" && d.upper) chars = chars.toLocaleUpperCase("tr");
+    const disabled = d.busy ? "disabled" : "";
+    return `<div class="score-reset-backdrop"><section class="score-reset-dialog" role="dialog" aria-modal="true" aria-labelledby="scoreResetTitle" aria-describedby="scoreResetHelp" tabindex="-1">
+      <header><span class="score-reset-lock" aria-hidden="true">🔒</span><button type="button" class="score-reset-close" data-act="score-reset-close" aria-label="İptal et ve kapat" ${disabled}>✕</button></header>
+      <p class="score-reset-eyebrow">ÖĞRETMEN ONAYI · ${esc(state.className)}</p><h2 id="scoreResetTitle">${label} sıfırlansın mı?</h2>
+      <p id="scoreResetHelp">${d.scope === "groups" ? "Bu sınıfın grup" : "Bu sınıfın öğrenci ve grup"} puanları sıfırlanacak.${d.stats ? " Konu yıldızları, soru istatistikleri ve tur geçmişi de temizlenecek." : d.period === "total" ? " Günlük, haftalık, aylık ve toplam puanların tamamı temizlenecek." : " Seçilen dönemin sayacı sıfırdan başlayacak."} Devam etmek için hesabının mevcut şifresini tuşlarla gir.</p>
+      <div class="score-reset-secret" role="status" aria-label="${d.secret.length} karakter girildi"><span aria-hidden="true">${d.secret.length ? "•".repeat(Math.min(24, d.secret.length)) : "Şifreni tuşla"}</span><small>${d.secret.length ? d.secret.length + " karakter" : "Öğretmen hesabının şifresi"}</small></div>
+      <div class="score-reset-key-tabs" role="group" aria-label="Tuş takımı">${[["digits", "123"], ["letters", "abc"], ["symbols", "#+="]].map(([id, name]) => `<button type="button" class="${d.page === id ? "on" : ""}" data-act="score-reset-page" data-page="${id}" aria-pressed="${d.page === id}" ${disabled}>${name}</button>`).join("")}${d.page === "letters" ? `<button type="button" data-act="score-reset-shift" aria-pressed="${d.upper}" ${disabled}>${d.upper ? "⇧ ABC" : "⇧ abc"}</button>` : ""}</div>
+      <div class="score-reset-keys ${d.page}">${[...chars].map(char => `<button type="button" data-act="score-reset-key" data-code="${char.codePointAt(0)}" ${disabled}>${esc(char)}</button>`).join("")}</div>
+      <div class="score-reset-edit"><button type="button" data-act="score-reset-clear" ${disabled}>Temizle</button><button type="button" data-act="score-reset-key" data-code="32" ${disabled}>Boşluk</button><button type="button" data-act="score-reset-backspace" aria-label="Son karakteri sil" ${disabled}>⌫ Sil</button></div>
+      ${d.error ? `<p class="score-reset-error" role="alert">${esc(d.error)}</p>` : ""}
+      ${!cloud || localMode ? `<p class="score-reset-error">Şifre doğrulamak için öğretmen hesabınla buluta giriş yap.</p>` : ""}
+      <div class="score-reset-actions"><button type="button" class="soft" data-act="score-reset-close" ${disabled}>Vazgeç</button><button type="button" class="solid" data-act="score-reset-confirm" ${!d.secret || d.busy || !cloud || localMode ? "disabled" : ""}>${d.busy ? "Şifre doğrulanıyor…" : "Şifreyi doğrula ve sıfırla"}</button></div>
+    </section></div>`;
+  }
+
+  function applyScoreReset(request) {
+    const entities = request.scope === "groups" ? state.groups : [...state.students, ...state.groups];
+    entities.forEach(entity => MatScores.reset(entity, request.period));
+    if (request.stats) {
+      state.students.forEach(s => { s.stars = {}; s.stats = blankStats(); s.lastAt = 0; });
+      state.groups.forEach(g => { g.asked = 0; g.correct = 0; });
+      state.history = []; state.turnDone = [];
+    }
+    persist();
+  }
+
+  async function confirmScoreReset() {
+    const d = scoreReset;
+    if (!d || d.busy || !d.secret || !cloud || localMode || d.classId !== state.classId) return;
+    let secret = d.secret;
+    d.secret = ""; d.busy = true; d.error = "";
+    render();
+    try {
+      await cloud.verifyPassword(secret);
+      if (scoreReset !== d || state.classId !== d.classId || !authenticated) return;
+      if (d.period !== "total" && d.periodKey !== MatScores.keys()[d.period]) {
+        d.busy = false; d.error = "Puan dönemi değişti. Pencereyi kapatıp dönemi yeniden seç."; render(); return;
+      }
+      applyScoreReset(d);
+      scoreReset = null;
+      flash(d.stats ? "Puanlar ve istatistikler sıfırlandı." : (d.period === "total" ? "Tüm puanlar" : MatScores.PERIODS[d.period] + " puanlar") + " sıfırlandı.");
+    } catch (err) {
+      if (scoreReset === d) {
+        d.error = ["auth/wrong-password", "auth/invalid-credential", "auth/invalid-login-credentials"].includes(err?.code) ? "Şifre hatalı. Puanlar değiştirilmedi; yeniden tuşlayabilirsin." : authMessage(err);
+        d.busy = false;
+        render();
+      }
+    } finally { secret = ""; }
   }
 
   // ---- Şifre değiştirme (giriş yaptıktan sonra) ----
@@ -2273,6 +2503,31 @@
   }
 
   function bindDynamic() {
+    const groupRaceRoot = document.getElementById("groupRaceRoot");
+    if (groupRaceRoot && window.MatGroupRace) {
+      const classId = state.classId;
+      let race = state.groupRace;
+      MatGroupRace.mount(groupRaceRoot, {
+        get: () => race,
+        save: value => {
+          race = value;
+          if (state.classId === classId) { state.groupRace = value; persist(); }
+          else if (state.classes[classId]) {
+            state.classes[classId].groupRace = value;
+            if (cloud && !localMode) cloud.saveClass(state.classes[classId]);
+            else persist();
+          }
+        },
+        topics: () => curriculum().topics,
+        levels: () => MatGames.LEVELS.filter(l => !l.unlimitedOnly || state.eliteLevels.includes(l.id)),
+        groups: () => state.groups,
+        initialTopic: state.groupRaceTopic || state.topicId
+      });
+    }
+    const quickPicker = document.getElementById("quickTopics");
+    if (quickPicker) quickPicker.addEventListener("toggle", () => { state.quickTopicsOpen = quickPicker.open; });
+    const levelPicker = document.getElementById("quickLevels");
+    if (levelPicker) levelPicker.addEventListener("toggle", () => { state.quickLevelsOpen = levelPicker.open; });
     const tournamentRoot = document.getElementById("tournamentRoot");
     if (tournamentRoot) {
       const classId = state.classId, students = state.students;
@@ -2388,6 +2643,29 @@
     if (!btn) return;
     if (btn.disabled || state.spinning) return;
     const act = btn.dataset.act;
+    if (scoreReset) {
+      if (!act.startsWith("score-reset-") || scoreReset.busy) return;
+      if (act === "score-reset-confirm") { confirmScoreReset(); return; }
+      if (act === "score-reset-close") {
+        scoreReset.secret = ""; scoreReset = null; render(); return;
+      }
+      if (act === "score-reset-key") {
+        const code = Number(btn.dataset.code);
+        if (Number.isInteger(code) && code >= 32 && code <= 0x10ffff && scoreReset.secret.length < 4096) scoreReset.secret += String.fromCodePoint(code);
+      } else if (act === "score-reset-backspace") scoreReset.secret = [...scoreReset.secret].slice(0, -1).join("");
+      else if (act === "score-reset-clear") scoreReset.secret = "";
+      else if (act === "score-reset-page" && ["digits", "letters", "symbols"].includes(btn.dataset.page)) scoreReset.page = btn.dataset.page;
+      else if (act === "score-reset-shift") scoreReset.upper = !scoreReset.upper;
+      scoreReset.error = "";
+      render();
+      return;
+    }
+    if (act === "score-reset-open") { openScoreReset(btn.dataset.period, btn.dataset.scope); return; }
+    if (act === "score-period") {
+      if (!Object.keys(MatScores.PERIODS).includes(btn.dataset.period)) return;
+      state.scorePeriod = btn.dataset.period;
+      persist(); render(); return;
+    }
     if (act === "pair-mode" && isPairLesson()) {
       stopAuto(); MatAudio.cancelSpeak();
       state.sandbox.pairTotal = Number(btn.dataset.total);
@@ -2416,6 +2694,8 @@
       return;
     }
     if (act === "logout") {
+      if (scoreReset) scoreReset.secret = "";
+      scoreReset = null;
       passwordOpen = false;
       stopAuto();
       cancelRound();
@@ -2432,6 +2712,12 @@
     }
     MatAudio.ensure();
     if (act === "toggle-music") { MatAudio.toggleMusic(); render(); return; }
+    if (act === "goto-group-race") {
+      if (!state.classId) return;
+      cancelRound(); stopAuto(); MatAudio.cancelSpeak();
+      state.groupRaceTopic = btn.dataset.topic || null;
+      state.screen = "group-race"; render(); window.scrollTo?.(0, 0); return;
+    }
     if (act === "goto-tournament") {
       if (!state.classId) return;
       stopClock(); stopAuto(); MatAudio.cancelSpeak();
@@ -2576,8 +2862,8 @@
       if (!s) return;
       const d = Number(btn.dataset.d);
       const g = groupById(s.groupId);
-      s.score = Math.max(0, s.score + d);
-      if (g) g.score = Math.max(0, (g.score || 0) + d);
+      MatScores.add(s, d);
+      if (g) MatScores.add(g, d);
       persist();
       if (d > 0) MatAudio.correct();
       flash(s.name + (d > 0 ? " +" + d : " " + d) + " puan");
@@ -2586,7 +2872,7 @@
     if (act === "group-points") {
       const g = groupById(btn.dataset.gid);
       if (!g) return;
-      g.score = Math.max(0, (g.score || 0) + Number(btn.dataset.d));
+      MatScores.add(g, Number(btn.dataset.d));
       persist();
       render();
       return;
@@ -2627,10 +2913,7 @@
       return;
     }
     if (act === "reset-group-scores") {
-      if (!confirm("Grup puanları sıfırlansın mı? Öğrencilerin kişisel puanları korunur.")) return;
-      state.groups.forEach((g) => { g.score = 0; g.asked = 0; g.correct = 0; });
-      persist();
-      render();
+      openScoreReset("total", "groups");
       return;
     }
     if (act === "pick-move") {
@@ -2651,6 +2934,31 @@
       return;
     }
     if (act === "export-csv") { exportCsv(); return; }
+    if (act === "toggle-elite") {
+      const id = Number(btn.dataset.level);
+      if (!unlimited() || !MatGames.LEVELS.some(l => l.id === id && l.unlimitedOnly)) return;
+      state.eliteLevels = state.eliteLevels.includes(id) ? state.eliteLevels.filter(l => l !== id) : [...state.eliteLevels, id].sort((a, b) => a - b);
+      persist();
+      render();
+      return;
+    }
+    if (act === "quick-topics-all" || act === "quick-topics-clear") {
+      state.quickTopicIds = act === "quick-topics-all" ? null : [];
+      state.quickTopicsOpen = true;
+      persist();
+      render();
+      return;
+    }
+    if (act === "quick-levels-all" || act === "quick-levels-clear") {
+      state.quickLevelIds = act === "quick-levels-all" ? null : [];
+      state.quickLevelsOpen = true;
+      persist(); render(); return;
+    }
+    if (act === "start-quick") { startQuickGame(); return; }
+    if (act === "quick-next-student") {
+      if (state.quickGame && state.locked) startQuickGame(true);
+      return;
+    }
     if (act === "toggle-setting") {
       const key = btn.dataset.key;
       if (!["autoRotate", "fairTurns", "practice", "callout"].includes(key)) return;
@@ -2797,16 +3105,7 @@
       return;
     }
     if (act === "reset-scores" || act === "reset-stats") {
-      const all = act === "reset-stats";
-      if (!confirm(all ? "Tüm puanlar, yıldızlar, soru istatistikleri ve tur geçmişi silinsin mi?" : "Öğrenci ve grup puanları sıfırlansın mı? Soru istatistikleri korunur.")) return;
-      state.students.forEach((s) => {
-        s.score = 0;
-        if (all) { s.stars = {}; s.stats = blankStats(); s.lastAt = 0; }
-      });
-      state.groups.forEach((g) => { g.score = 0; if (all) { g.asked = 0; g.correct = 0; } });
-      if (all) { state.history = []; state.turnDone = []; }
-      persist();
-      render();
+      openScoreReset("total", "all", act === "reset-stats");
       return;
     }
     if (act === "to-lesson") {
@@ -2868,10 +3167,10 @@
       return;
     }
     if (act === "start-level") {
-      const level = Number(btn.dataset.level);
+      const level = btn.dataset.level === "foundation" ? "foundation" : Number(btn.dataset.level);
       const customInput = document.getElementById("customSeconds");
       if (customInput && !customInput.reportValidity()) return;
-      if (level !== 0 && !levels().some(l => l.id === level)) return;
+      if (level === "foundation" ? !window.MatFoundation?.has(state.topicId) : level !== 0 && !levels().some(l => l.id === level)) return;
       const wasFinish = state.phase === "finish";
       if (wasFinish && state.autoRotate && present(state.students).length > 1) {
         autoPick(() => beginLevel(level));
@@ -3023,7 +3322,31 @@
 
   function onChange(e) {
     if (!authenticated) return;
+    if (scoreReset) return;
     const el = e.target;
+    if (el.dataset?.quickLevel) {
+      const id = Number(el.dataset.quickLevel);
+      if (!levels().some(l => l.id === id)) return;
+      const ids = new Set(state.quickLevelIds === null ? levels().map(l => l.id) : state.quickLevelIds);
+      if (el.checked) ids.add(id); else ids.delete(id);
+      state.quickLevelIds = [...ids];
+      state.quickLevelsOpen = true;
+      persist(); render();
+      document.getElementById(el.id)?.focus({ preventScroll: true });
+      return;
+    }
+    if (el.dataset?.quickTopic) {
+      const id = el.dataset.quickTopic;
+      if (!curriculum().topics.some(t => t.id === id)) return;
+      const ids = new Set(quickTopics().map(t => t.id));
+      if (el.checked) ids.add(id); else ids.delete(id);
+      state.quickTopicIds = ids.size === curriculum().topics.length ? null : [...ids];
+      state.quickTopicsOpen = true;
+      persist();
+      render();
+      document.getElementById(el.id)?.focus({ preventScroll: true });
+      return;
+    }
     if (el.id === "timeMode") {
       state.questionSeconds = el.value === "custom" ? 45 : Number(el.value);
       persist();
@@ -3097,6 +3420,16 @@
 
   function onKey(e) {
     if (!authenticated) return;
+    if (scoreReset) {
+      if (e.key === "Escape" && !scoreReset.busy) { scoreReset.secret = ""; scoreReset = null; render(); return; }
+      if (e.key === "Tab") {
+        const buttons = [...document.querySelectorAll(".score-reset-dialog button:not(:disabled)")];
+        const first = buttons[0], last = buttons[buttons.length - 1];
+        if (e.shiftKey && (document.activeElement === first || !buttons.includes(document.activeElement))) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && (document.activeElement === last || !buttons.includes(document.activeElement))) { e.preventDefault(); first?.focus(); }
+      }
+      return;
+    }
     if (e.key === "Escape" && passwordOpen) { passwordOpen = false; render(); return; }
     if (passwordOpen) return;
     if (state.solution) {

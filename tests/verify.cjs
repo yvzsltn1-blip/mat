@@ -84,8 +84,8 @@ function harness(storage = new Map(), opts = {}) {
     clearInterval: id => jobs.delete(id),
     MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "", angleMarks: (s) => s } });
   ctx.window = ctx;
-  for (const file of ["curriculum.js", "lesson-stories.js", "games.js", "question-bank.js", ...(opts.gen ? ["arcade-gen.js", "level-gen.js"] : [])]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
-  const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, persist, addMany, parseList, makeGroups, eligible, spinPick, members, groupScore, beginLevel, submit, goNext, currentQ, cancelRound, pauseClock, resumeClock, openTopic, onChange, onClick, isCorrect, ready, animateLessonAngle, applyLessonAngle, render };\n})();");
+  for (const file of ["scoreboard.js", "curriculum.js", "lesson-stories.js", ...(opts.grade7 ? ["curriculum7.js"] : []), "games.js", "question-bank.js", ...(opts.gen ? ["arcade-gen.js", "level-gen.js"] : []), ...(opts.grade7 ? ["questions7.js"] : [])]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
+  const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, persist, activateClass, addMany, parseList, makeGroups, eligible, spinPick, members, groupScore, beginLevel, submit, goNext, currentQ, cancelRound, pauseClock, resumeClock, openTopic, onChange, onClick, isCorrect, ready, animateLessonAngle, applyLessonAngle, render };\n})();");
   vm.runInContext(source, ctx);
   ctx.testApi.startLocal();
   ctx.testApi.state.autoRotate = false;
@@ -335,3 +335,102 @@ console.log(`OK: ${questionCount} benzersiz soru, ${tfCount} düşük puanlı D/
   }
   console.log("OK: adım adım çözüm cevaptan sonra açılıyor; adımlar, cevap ve kapanış çalışıyor (üretilen ve banka soruları).");
 }
+
+// Hızlı oyun: gerçek düğmeler, konu filtresi, seviye anahtarları ve tek soru kaydı.
+{
+  const click = (h, act, data = {}) => h.onClick({ target: { closest: () => ({ dataset: { act, ...data }, disabled: false }) } });
+  const selectTopic = (h, id, checked = true) => h.onChange({ target: { id: "quick-topic-" + id, dataset: { quickTopic: id }, checked } });
+  const startAt = (h, fraction = .999999) => {
+    const math = vm.runInContext("Math", h.ctx), original = math.random;
+    try { math.random = () => fraction; click(h, "start-quick"); }
+    finally { math.random = original; }
+    h.advance(1000);
+  };
+  for (const grade of [5, 7]) {
+    const h = harness(new Map(), { gen: true, grade7: grade === 7 }); addStudent(h); addStudent(h, "b");
+    h.state.grade = grade;
+    const topics = (h.ctx.MatCurriculum.forGrade ? h.ctx.MatCurriculum.forGrade(grade) : h.ctx.MatCurriculum).topics;
+    click(h, "quick-topics-clear");
+    const previousTopic = h.state.topicId;
+    click(h, "start-quick");
+    assert.equal(h.state.topicId, previousTopic, "Boş konu seçimi oyun başlatmamalı");
+    selectTopic(h, topics[0].id); selectTopic(h, topics[1].id);
+    for (const id of [6, 7, 8]) click(h, "toggle-elite", { level: String(id) });
+    h.openTopic(topics[0].id, "play");
+    click(h, "start-level", { level: "8" });
+    assert.equal(h.state.phase, "pick", "Kapalı üst seviye konu oyununda da başlatılmamalı");
+    const oldRoundLength = h.state.roundLength;
+    startAt(h);
+    assert.equal(h.state.topicId, topics[1].id, "Yalnız seçili konudan soru gelmeli");
+    assert.equal(h.state.level, 5, "Kapalı üst seviyeler rastgele gelmemeli");
+    assert(h.state.quickGame && h.state.questions.length === 1);
+    assert.equal(h.state.roundLength, oldRoundLength, "Hızlı oyun normal tur uzunluğunu değiştirmemeli");
+    const who = h.state.students.find(s => s.id === h.state.selectedId), points = h.currentQ().points;
+    answer(h); h.submit();
+    assert.equal(who.score, points);
+    assert.equal(who.stats.topics[topics[1].id].a, 1);
+    assert.equal(h.state.history.length, 1, "Hızlı soru cevaplanınca bir kez kaydedilmeli");
+    click(h, "goto-board");
+    assert(!h.state.quickGame && h.state.screen === "board");
+    assert.equal(h.state.history.length, 1, "Ana ekrana dönmek kaydı çoğaltmamalı");
+    click(h, "toggle-elite", { level: "7" });
+    startAt(h);
+    assert.equal(h.currentQ().level, 7, "Açılan üst seviye rastgele gelebilmeli");
+    answer(h);
+    const score = who.score;
+    h.state.students[0].absent = true;
+    click(h, "quick-next-student"); h.advance(15000);
+    assert.equal(h.state.selectedId, "b", "Gelmemiş öğrenci çekilmemeli");
+    assert(h.state.quickGame && h.state.phase === "quiz");
+    assert.equal(h.state.students[0].score, 0);
+    assert.equal(who.score, score);
+    answer(h); h.goNext(); h.advance(1000);
+    assert(h.state.quickGame && h.state.phase === "quiz", "Yeni soru sonuç ekranına uğramadan açılmalı");
+    h.state.practice = true;
+    const historyCount = h.state.history.length, practiceScore = who.score;
+    answer(h);
+    assert.equal(h.state.history.length, historyCount);
+    assert.equal(who.score, practiceScore);
+    h.cancelRound(); h.persist();
+    const restored = harness(h.storage, { gen: true, grade7: grade === 7 });
+    assert.deepEqual([...restored.state.quickTopicIds], [topics[0].id, topics[1].id]);
+    assert.deepEqual([...restored.state.eliteLevels], [7]);
+    restored.state.classes.other = { id: "other", grade, students: [], groups: [] };
+    restored.activateClass("other"); assert.equal(restored.state.quickTopicIds, null);
+    restored.activateClass("c1"); assert.deepEqual([...restored.state.quickTopicIds], [topics[0].id, topics[1].id]);
+    click(restored, "question-source", { source: "bank" });
+    restored.state.selectedId = "b"; startAt(restored);
+    assert.equal(restored.currentQ().level, 5, "Soru bankasında üst seviyeler gelmemeli");
+    assert(!restored.currentQ().generated);
+    click(restored, "goto-board"); click(restored, "quick-topics-all");
+    assert.equal(restored.state.quickTopicIds, null);
+  }
+  const h = harness(new Map(), { gen: true }); addStudent(h);
+  h.state.selectedId = null; click(h, "start-quick"); h.advance(15000);
+  assert.equal(h.state.selectedId, "a", "Seçili öğrenci yoksa otomatik çekilmeli");
+  assert(h.state.quickGame && h.state.phase === "quiz");
+  h.cancelRound(); h.state.students = []; startAt(h, 0);
+  assert.equal(h.state.selectedId, null); answer(h);
+  assert.equal(h.state.history[0].points, 0, "Öğrencisiz hızlı soru puansız olmalı");
+  console.log("OK: 5/7. sınıf hızlı oyun, konu filtresi, üst seviye anahtarları, banka sınırı, tek soru puanı/geçmişi, yeni öğrenci, yoklama, antrenman ve sınıfa göre kalıcılık.");
+}
+
+// İsim çekilişi: büyük sınıfta da her mevcut isim animasyondan geçer; sıra adaleti korunur.
+for (const count of [1, 25, 120]) {
+  const h = harness(), names = [];
+  h.state.students = Array.from({ length: count }, (_, i) => ({ id: "s" + i, name: "Öğrenci " + i, score: 0, stars: {}, groupId: null, absent: count > 1 && i === 1 }));
+  h.state.selectedId = "s0";
+  h.state.turnDone = h.state.students.slice(0, -1).map(s => s.id);
+  h.ctx.document.createElement = () => ({
+    classList: { add() {} }, remove() {},
+    querySelector: selector => selector === "h2" ? { set textContent(value) { names.push(value); } } : { textContent: "" }
+  });
+  assert(h.spinPick(h.state.students, "Sınıf"));
+  h.advance(6000);
+  const shown = new Set(names);
+  for (const student of h.state.students) assert.equal(shown.has(student.name), !student.absent, "Her mevcut isim görünmeli, gelmeyen görünmemeli: " + student.name);
+  assert.equal(names.at(-1), "Öğrenci " + (count - 1));
+  assert.equal(h.state.selectedId, "s" + (count - 1), "Gösterilen tüm isimlere rağmen kazanan sıra kurallarına uymalı");
+  assert.equal(h.state.spinning, false);
+}
+console.log("OK: 1, 25 ve 120 kişilik çekilişte tüm mevcut isimler hızla gösteriliyor; yoklama ve sıra kuralları korunuyor.");

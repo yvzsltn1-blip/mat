@@ -988,14 +988,17 @@
     const least=st.uses.map((n,i)=>n===min?i:-1).filter(i=>i>=0);
     const fresh=least.filter(i=>i!==st.last),pool=fresh.length?fresh:least;
     const forced=String(opts.template||'').startsWith(key+'#')?Number(opts.template.slice(key.length+1)):-1;
-    const slot=forced>=0&&forced<5?forced:pool[Math.floor(rng()*pool.length)];
+    const candidates=opts.repeatable?[0,1,2,3,4]:pool;
+    const slot=forced>=0&&forced<5?forced:candidates[Math.floor(rng()*candidates.length)];
     const history=recent.get(key);let q,mark;
-    for(let i=0;i<100;i++) { q=make(id,level,slot,rng);mark=root.MatLevelGen.hashText(q.prompt).toString(36);if(!history.includes(mark))break; }
-    history.push(mark);if(history.length>80)history.shift();
-    st.uses[slot]++;st.last=slot;
-    const floor=Math.min(...st.uses);
-    saved[key]={recent:history,uses:st.uses.map(n=>n-floor),last:slot};
-    try{root.localStorage.setItem(STORE_KEY,JSON.stringify(saved));}catch(err){/* depolama yoksa yalnız bellekte kalır */}
+    for(let i=0;i<100;i++) { q=make(id,level,slot,rng);mark=root.MatLevelGen.hashText(q.prompt).toString(36);if(opts.repeatable||!history.includes(mark))break; }
+    if(!opts.repeatable) {
+      history.push(mark);if(history.length>80)history.shift();
+      st.uses[slot]++;st.last=slot;
+      const floor=Math.min(...st.uses);
+      saved[key]={recent:history,uses:st.uses.map(n=>n-floor),last:slot};
+      try{root.localStorage.setItem(STORE_KEY,JSON.stringify(saved));}catch(err){/* depolama yoksa yalnız bellekte kalır */}
+    }
     return {...q,templateId:key+'#'+slot};
   }
   root.Mat7Questions={get,generate,frac,topics:topics.map(t=>t.id)};

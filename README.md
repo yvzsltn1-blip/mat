@@ -1,5 +1,39 @@
 # Matematik Atölyesi
 
+## Grup Yarışı ve Seviye 0
+
+- Ana ekranın **Grup Yarışı** kartı, üst çubuktaki **🏁 Grup Yarışı** düğmesi veya konunun Oyna alanından ayrı yarış sayfası açılır. Şampiyonlar Turnuvası ve Kapışma da kullanılmaya devam eder.
+- Öğretmen konu, seviye, grup başına **1–100 soru** ve **Aynı sorular / Farklı sorular** seçer. İki farklı sınıf grubu veya özel takım adları kullanılabilir. Aynı sorularda iki gruba birebir aynı soru dizisi gelir. Farklı sorularda aynı soru kalıbında yalnız sayılar değişir; soru metninin yapısı, işlem türü ve görseldeki adlandırmalar korunur. Cevaplar ve çizimler mevcut üreticilerle yeni sayılara göre hesaplanır. İki grup aynı sırada, kendi hızında ilerler.
+- Doğru cevap ilgili grubu hemen sonraki soruya geçirir. Yanlışta yalnız o grup **10 saniye** cevap veremez; sürenin sonunda aynı soru devam eder. Bütün soruları ilk tamamlayan grup kazanır; yarış sonucu bu maça aittir, öğrenci/sınıf puanına otomatik ödül eklenmez.
+- Yarış saati, soru ilerlemesi ve ceza sayaçları gösterilir. Sayfadan ayrılma veya sekmeyi gizleme yarışı duraklatır; soru biçimi, kalan ceza, cevap taslakları ve ilerleme sınıf kaydıyla saklanır. Soru gövdeleri yerine tekrar üretilebilir tohumlar tutulur; iki grubun sorusu yeniden açılışta değişmez. Eski yarış kayıtları Aynı sorular olarak devam eder. Dokunmatik iki tuş takımı birbirinden bağımsız çalışır.
+- **İki kişi aynı anda dokunabilir:** tuş takımı, seçenekler ve cevap gönderme her temas için ayrı çalışır; ilk parmak kalkmadan ikinci kişi de giriş yapabilir. Bir tarafın soru/ceza güncellemesi diğerinin dokunuşunu veya yazısını kesmez. Oyun tuşları üzerinde kaydırma, yakınlaştırma ve metin seçimi devreye girmez; dokunuştan gelen ek tıklama ikinci kez işlenmez. Ekrandaki sayı tuşları kullanılır, cihazın sanal klavyesi açılmaz; fiziksel klavye ve klavyeyle düğme kullanımı da desteklenir.
+- Bütün **42 konunun** Oyna ekranının en altında **Seviye 0** alanı vardır. Yalnız 7. sınıf **Rasyonel sayıları karşılaştırma ve sıralama** konusunda hazırdır; diğer konular öğretmenin soru biçimlerini belirlemesi için boş bırakılmıştır.
+- Hazır Seviye 0 havuzunda 20 dengeli kalıp bulunur: eş pay/payda ve farklı paydalarla karşılaştırma; tam sayılar, ondalıklar, mutlak değer ve tam sayılı kesirler; eşit kesirler; sıkı tam sayı sınırları; çift/tek ve basamak koşulları; eşitsizlikte eksik pay/payda; çubuklar; donma sıcaklığı; ısı akışı ve fanuslardan kesir sıralaması. Her soruda ipucu ve çözüm vardır. Doğru cevap **5 puandır**. Bu ayrı havuz soru bankası seçiliyken de sınırsız üretir ve Grup Yarışı'nda da seçilebilir.
+- Eski rastgele seviye korunur; Seviye 0'ın iç kimliği `foundation` olarak ayrıdır. Doğrudan bağlantı: `#oyun-m7-siralama-temel`; yarış sayfası: `#grup-yarisi` (sınıf açık olmalı).
+
+Kontroller: `node tests/foundation.cjs` ve `node tests/group-race.cjs`.
+
+## Ana ekran ve hızlı oyun
+
+- **Şimdi tahtada** kartının altında küçük **Öğrenci seç / Grup** kontrolü bulunur. Çekilişte yoklamada bulunan bütün isimler hızlıca gösterilir; sonucu herkese sıra ve grup kuralları belirler. 120 kişilik sınıfta da isim atlanmaz.
+- **Hızlı oyun** panelinde tüm konular veya işaretlenen konular arasından rastgele konu, açık seviyelerden rastgele seviye ve tek soru seçilir. Konu seçimi her sınıf için ayrı saklanır. Öğrenci seçilmemişse önce çekilir; öğrencisiz kullanım puansızdır.
+- **Seviyeler** menüsü konuların hemen altındadır. Bir veya daha fazla seviye işaretlenir; hızlı sorular yalnız seçili konu ve seçili açık seviyelerden gelir. Konu ve seviye filtreleri sınıfa göre hatırlanır. Boş seçimde oyun başlamaz; kapalı üst seviyeler seçili olsalar da havuza katılmaz.
+- **Usta, Efsane, Prestij** ayrı anahtarlarla açılır veya kapatılır. Ayar hem hızlı oyunda hem konuların normal seviye seçiminde geçerlidir; kapalı seviyeler rastgele havuzuna katılmaz. Soru bankası ilk beş seviyede kalır.
+- Hızlı sorunun puanı, istatistiği ve tur kaydı cevap verildiğinde yazılır. Sonraki soruya aynı öğrenciyle veya sıradaki öğrenciyle geçilebilir; otomatik öğrenci değişimi, süre, yoklama ve antrenman ayarları uygulanır.
+- Konu kartları kompakt düzen kullanır. Sağ panelde tur ilerlemesi, açılır ayarlar/yoklama ve ilk beş öğrencinin puan kartları bulunur; **Tümü** tam sıralamayı açar.
+
+Akış ve kalıcılık kontrolü: `node tests/verify.cjs`.
+
+## Dönem puanları ve şifreli sıfırlama
+
+- Sağ paneldeki ve tam sıralamadaki **Günlük / Haftalık / Aylık / Toplam** seçenekleri öğrenci ve grup puanlarını gösterir. İstanbul saati kullanılır; gün gece yarısında, hafta pazartesi, ay takvim ayının başında yenilenir. Oyun, hızlı oyun, görsel oyun ve öğretmenin elle verdiği puanlar sayaçlara işlenir. Antrenmanda puan yazılmaz.
+- Önceden birikmiş puanların tamamı Toplam'da korunur. Eski puanların kazanılma tarihleri bulunmadığından dönem sayaçları bu güncellemeden sonra birikmeye başlar. Son 60 turluk raporun silinmesi dönem puanlarını etkilemez.
+- **🔒 Puanları sıfırla** menüsünde günlük, haftalık, aylık ve tüm puanlar için ayrı işlemler vardır. Bir dönemi sıfırlamak diğer sayaçları değiştirmez; tüm puanları sıfırlamak dört sayacı da temizler. İşlem mevcut sınıfa uygulanır; grup yönetimindeki menü yalnız grupları sıfırlar.
+- İşlem öğretmenin mevcut Firebase hesabı şifresiyle doğrulanır. Sayı, Türkçe küçük/büyük harf, sembol ve boşluk tuşlarıyla giriş yapılır. Şifre alanı/formu oluşturulmaz, şifre kaydetme akışı açılmaz; şifre yerel veya bulut kayıtlarına yazılmaz. Hatalı şifrede puanlar korunur. Doğrulama bulut hesabıyla giriş gerektirir.
+- Eski genel puan, grup puanı ve puan+istatistik sıfırlama düğmeleri de aynı doğrulamayı kullanır.
+
+Sayaç sınırları, seviye filtresi ve şifreli sıfırlama kontrolü: `node tests/scoreboard.cjs`.
+
 ## Şampiyonlar Turnuvası
 
 Ana ekrandaki büyük turnuva kartından veya üstteki **🏆 Turnuva** düğmesinden açılır. Öğretmenin yönettiği ortak ekranda çalışır. Yoklamada bulunan öğrenciler katılır. Öğretmen konu seçer; eleme, son 32/16, çeyrek final, yarı final ve final için ayrı süre (5–300 saniye) ve Keşif–Prestij arası ayrı seviye belirler. Turnuva sırasında sorular arasında **Aşama ayarları** düğmesiyle sonraki soruların ayarları değiştirilebilir.

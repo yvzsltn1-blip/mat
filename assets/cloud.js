@@ -64,6 +64,11 @@
       auth.onAuthStateChanged((user) => { uid = user ? user.uid : null; cb(user); });
     },
     signIn(email, password) { return auth.signInWithEmailAndPassword(email, password); },
+    async verifyPassword(password) {
+      const user = auth.currentUser;
+      if (!user) throw { code: "auth/no-current-user" };
+      await user.reauthenticateWithCredential(fb.auth.EmailAuthProvider.credential(user.email, password));
+    },
     async changePassword(current, next) {
       const user = auth.currentUser;
       if (!user) throw { code: "auth/no-current-user" };

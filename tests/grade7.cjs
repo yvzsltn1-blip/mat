@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
-const modules = ['curriculum.js','lesson-stories.js','curriculum7.js','games.js','question-bank.js','arcade-gen.js','level-gen.js','questions7.js'];
+const modules = ['scoreboard.js','curriculum.js','lesson-stories.js','curriculum7.js','games.js','question-bank.js','arcade-gen.js','level-gen.js','questions7.js'];
 for (const file of [...modules, 'labs7.js']) require(path.join(root,'assets',file));
 assert.equal(MatCurriculum.forGrade(5).topics.length,20);
 assert.equal(MatCurriculum.forGrade(7).topics.length,22);

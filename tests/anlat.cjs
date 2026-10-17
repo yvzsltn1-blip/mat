@@ -143,7 +143,7 @@ function boot() {
     MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, speak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {} }
   });
   ctx.window = ctx;
-  for (const file of ["visuals.js", "games.js", "curriculum.js", "lesson-stories.js", "curriculum7.js", "labs7.js", "compare7.js", "imagine.js", "lesson-teach.js", "lesson-play.js"]) {
+  for (const file of ["scoreboard.js", "visuals.js", "games.js", "curriculum.js", "lesson-stories.js", "curriculum7.js", "labs7.js", "compare7.js", "imagine.js", "lesson-teach.js", "lesson-play.js"]) {
     vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
   }
   const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, openTopic, render };\n})();");
