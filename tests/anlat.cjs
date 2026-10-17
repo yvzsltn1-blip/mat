@@ -140,7 +140,7 @@ function boot() {
     localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
     setTimeout: () => 0, clearTimeout() {}, setInterval: () => 0, clearInterval() {},
     matchMedia: () => ({ matches: false }),
-    MatAudio: { cancelSpeak() {}, speak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {} }
+    MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, speak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {} }
   });
   ctx.window = ctx;
   for (const file of ["visuals.js", "games.js", "curriculum.js", "lesson-stories.js", "curriculum7.js", "labs7.js", "compare7.js", "imagine.js", "lesson-teach.js", "lesson-play.js"]) {

@@ -39,6 +39,8 @@ for(const topic of MatCurricula[7].topics){
     const rng=MatGames.makeRng(level*71);
     for(let i=0;i<60;i++)validate(MatLevelGen.generate(topic.id,level,rng));
   }
+  // Usta, Efsane, Prestij yalnız üreticide vardır.
+  for(let level=6;level<=8;level++){const rng=MatGames.makeRng(level*71);for(let i=0;i<80;i++)validate(MatLevelGen.generate(topic.id,level,rng));assert.throws(()=>MatQuestionBank.get(topic.id,level));}
   for(let d=1;d<=3;d++)for(const numeric of [false,true]){
     const q=MatArcadeGen.generate(topic.id,MatGames.makeRng(71+d),d,numeric);
     assert(q.svg&&q.choices.includes(String(q.answer)));
@@ -83,7 +85,7 @@ h.state.questionSource='bank';
 assert(h.renderBoard().includes('1.650'));
 assert(!h.renderBoard().includes('bu sürümde 5. sınıf'));
 let turns=0;
-for(const source of ['bank','gen'])for(const topic of MatCurricula[7].topics)for(let level=1;level<=5;level++){
+for(const source of ['bank','gen'])for(const topic of MatCurricula[7].topics)for(let level=1;level<=(source==='gen'?8:5);level++){
   h.state.questionSource=source;h.openTopic(topic.id,'play');h.beginLevel(level);
   for(let i=0;i<5;i++){
     h.advance(500);const q=h.currentQ();assert(q&&q.id.startsWith('m7-'));

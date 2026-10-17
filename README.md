@@ -1,5 +1,20 @@
 # Matematik Atölyesi
 
+## Şampiyonlar Turnuvası
+
+Ana ekrandaki büyük turnuva kartından veya üstteki **🏆 Turnuva** düğmesinden açılır. Öğretmenin yönettiği ortak ekranda çalışır. Yoklamada bulunan öğrenciler katılır. Öğretmen konu seçer; eleme, son 32/16, çeyrek final, yarı final ve final için ayrı süre (5–300 saniye) ve Keşif–Prestij arası ayrı seviye belirler. Turnuva sırasında sorular arasında **Aşama ayarları** düğmesiyle sonraki soruların ayarları değiştirilebilir.
+
+- Elemede herkes sırayla seçilen seviyenin sorusunu cevaplar. Varsayılan cevap biçimi dört büyük seçenek düğmesidir; öğretmen sayı girişi de seçebilir. Açılır cevap menüsü kullanılmaz. Önce doğruluk, sonra 0,01 saniye hassasiyetindeki süre sıralanır. Yanlış/boş cevaplar süre sınırında değerlendirilir; tam eşitlik başlangıç kurasıyla çözülür.
+- Öğrenci sayısını aşmayan en büyük 2 kuvveti kullanılır: 13 kişiden 8, 25 kişiden 16, 33 kişiden 32 ilerler. Sayı zaten 2, 4, 8, 16, 32 veya 64 ise eleme atlanır, doğrudan kura çekilir. Eski sürümde başlamış turnuvaların tablosu korunur.
+- Yaklaşık üç saniyelik kura animasyonu rakipleri belirler. Sonraki turlar ağacın sırasını izler. Kapışmalar sayı girişiyle oynanır: üç sütunlu büyük tuş takımı, Sil, geri sil ve yeşil cevap kontrol düğmesi. 7. sınıf soruları için eksi, ondalık ve kesir tuşları da bulunur.
+- Maçta ilk doğru cevap bir puandır; iki puana ulaşan hemen kazanır. Yanlış ve süre aşımı dahil **üç soru** sayılır. Üçüncü sorudan sonra önde olan öğrenci (1–0 dahil) ilerler. 0–0 veya 1–1 durumunda **süresiz uzatma** başlar: ilk doğru cevap kazanır. Uzatmada iki yanlış olursa yeni soru açılır; süre sınırı uygulanmaz.
+- **Turnuva ağacı** düğmesi ağacı ayrı görünümde açıp kapatır. Sorunun altında ağaç gösterilmez. Soru sırasında ağacı açmak sayacı durdurur; geri dönüp Devam et denildiğinde süre ve yazılan cevap korunur.
+- Şampiyon bir turnuva yıldızı alır. Her üç yıldız bir kupa kazandırır; toplam yıldızlar korunur. Ödüller ve devam eden turnuva mevcut sınıf kaydıyla Firestore'a, yerel modda tarayıcıya kaydedilir. Antrenmanda ödül verilmez.
+- Ekrandan ayrılmak veya sekmeyi gizlemek soruyu duraklatır. Turnuva ekranından devam edilebilir. Ödüller ayrıca sınıf sıralamasında gösterilir.
+- Oyunlar ve turnuva için tarayıcıda üretilen ritmik fon müziği bulunur. **♫ Müzik** düğmesi tercihi hatırlar; ders ekranına dönünce müzik durur.
+
+Turnuva akış kontrolü: `node tests/tournament.cjs`. Tüm 42 konu ve sekiz seviyede sayı girişi/dört seçenek kontrolü: `node tests/tournament-questions.cjs`.
+
 Başlatmak için `index.html` dosyasını tarayıcıda açın. Önceden açık sayfada güncellemeleri görmek için Ctrl+F5 kullanın.
 
 - 20 konu, konu başına 75 farklı soru; 5 seviyenin her birinde 15 soru, toplam 1.500 soru.
@@ -45,10 +60,14 @@ Kontrol komutu: `node tests/verify.cjs`. Harici bağımlılık olmadan 1.500 sor
 Konunun “Oyna” ekranında **♾️ Sınırsız görsel** (varsayılan) ve **📚 Soru bankası (75)** arasında seçim yapılır; seçim kalıcıdır.
 
 - Sınırsız modda her soru `assets/level-gen.js` tarafından o anda üretilir: yeni sayılar, yeni çizim, çözüm ve ipucu. Sorular bitmez; son 80 soru tekrar etmez.
-- 20 konunun her birinde 5 seviyeye göre zorlaşan 5–10 farklı soru kalıbı vardır (toplam 133 kalıp). Çizimler yalnız verilenleri gösterir, aranan değer “?” ile işaretlenir.
+- 5. sınıfın 20 konusunda toplam 258 soru kalıbı vardır. Keşif seviyesinde 185 kalıp bulunur; her konuda en az 8, nokta–doğru–doğru parçası–ışın konusunda 14 kalıp vardır. Tanıma, adlandırma, konum/yön okuma, eksik bilgiyi tamamlama, hata bulma, günlük yaşam ve hesaplama soruları birlikte kullanılır.
+- Kalıplar eşit sıklıkta seçilir; havuzdaki tüm kalıplar kullanılmadan aynı kalıp yeniden seçilmez ve döngü sınırında da peş peşe tekrar önlenir. Bu geçmiş sayfa yenilendiğinde korunur. Aynı dengeleme 7. sınıfın mevcut beş kalıbına da uygulanır. Genişletilmiş üretici hem sınırsız oyunda hem turnuvada kullanılır; sabit soru bankası ayrıdır.
+- Kalıp dağılımı ve yeniden açılış kontrolü: `node tests/discovery-variety.cjs`.
 - Soru türleri: cetvel, sayı doğrusu, iletki, saat kadranı, abaküs, onluk bloklar, basamak kartları, bar modeli, kareli zemin, pergelle inşa, kesişen/paralel doğrular, çokgenler, hikâye kutuları…
 - Çalışma kâğıdı tarzı **kareli zemin** soruları: d doğrusuna paralel/dik olanı bulma, kaç doğrunun paralel/dik olduğunu sayma, “a ⊥ e”, “d // f” ifadelerinden doğru olanı seçme, siyah noktadan geçen paralel/dik doğruyu seçme, iki doğrunun durumunu belirleme.
 - Her soru seviyenin puanını kazandırır (10/20/35/50/80). Üretici kontrolü: `node tests/level-gen.cjs`.
+- **Üst seviyeler (yalnız sınırsız modda):** Özel zor'un üstünde **Usta** (120 puan), **Efsane** (180 puan) ve **Prestij** (300 puan) vardır. Usta çok adımlı ve tersinden kurulan soruları, Efsane sistemli sayma ve koşul birleştirmeyi, Prestij olimpiyat tarzı soruları (sayma ilkeleri, güvercin yuvası, değişmezler, en iyi değer, örüntü ve kalan) içerir. 5. sınıfın 20 konusu ve 7. sınıfın 22 konusunun her birinde bu üç seviye için ayrı kalıplar vardır; cevaplar kodla hesaplanır. Soru bankası ilk beş seviyeyle sınırlıdır; banka modunda üst seviye kartları görünmez.
+- **Adım adım çözüm:** Oyun ekranında İpucu düğmesinin yanında **📖 Çözüm** düğmesi vardır. Cevap verilene kadar kilitlidir (cevabı ele vermesin diye); cevaptan sonra açılan panelde önce "Ana fikir", sonra adımlar tek tek gösterilir (Sonraki adım / Hepsini göster, klavyede ← → ve Esc). Usta, Efsane ve Prestij sorularının hepsinde elle yazılmış, çizimli ya da tablolu çözümler vardır (ızgarada yol sayıları, boyanan kareler, en şanssız top çekilişi, sayma tabloları…). Diğer sorularda açıklama otomatik olarak adımlara bölünür. Tur sonundaki "Birlikte tekrar edelim" listesinden de çözüm açılabilir. Kontrol: `node tests/verify.cjs`.
 
 ## Anlat sekmesinin ileri adımları
 

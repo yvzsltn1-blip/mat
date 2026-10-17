@@ -846,3 +846,64 @@ body.login-mode::before {display:none}
 .pl-story mark {background:#ffe08a;padding:0 3px;border-radius:4px}
 @media(max-width:600px){.pl-place small{font-size:.55rem}.pl-place b,.pl-place span{font-size:1.15rem}.pl-group i{font-size:1.2rem}}
 @media(prefers-reduced-motion:reduce){.pl-draw,.pl-pop,.pl-fade,.pl-swing,.pl-move,.pl-group,.pl-term,.pl-zero,.pl-steps p{animation:none;stroke-dashoffset:0;opacity:1;transform:none}.pl-pulse{animation:none}}
+
+/* Usta, Efsane, Prestij: yalnız sınırsız modda açılan üst seviyeler. */
+.level-card.elite { background: linear-gradient(160deg, color-mix(in srgb, var(--level-color) 9%, #fffdf8), #fffdf8 60%); border-color: color-mix(in srgb, var(--level-color) 35%, #e6d9c6); }
+.level-card.elite .level-icon { color: var(--level-color); }
+.level-card.elite small::after { content: " · ÜST SEVİYE"; color: var(--level-color); }
+.reveal-levels:has(> :nth-child(6)) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ---- Adım adım çözüm ---- */
+.help-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; align-items: flex-start; }
+.help-row .hint-btn { margin-top: 0; }
+.sol-btn { border-color: #9fc3ee; color: #1f4f8f; }
+.sol-btn:hover:not(:disabled) { background: #eef5ff; }
+.sol-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+.sol-open { margin: 4px 0 10px; }
+.sol-backdrop { position: fixed; inset: 0; background: #14352fb3; z-index: 60; animation: sol-fade .2s ease; }
+.sol-sheet {
+  position: fixed; z-index: 61; inset: 3vh 50% auto auto; transform: translateX(50%);
+  width: min(1180px, 96vw); max-height: 94vh; display: flex; flex-direction: column;
+  background: var(--paper-2); border-radius: 24px; box-shadow: 0 30px 80px #0006; overflow: hidden; animation: sol-up .25s ease;
+}
+.sol-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 22px; background: var(--board); color: #fff; }
+.sol-kicker { font-weight: 900; letter-spacing: .12em; font-size: .85rem; }
+.sol-x { border: 0; background: #ffffff22; color: #fff; width: 38px; height: 38px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; }
+.sol-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 22px; padding: 20px 24px; overflow: auto; min-height: 0; }
+.sol-question { position: sticky; top: 0; align-self: start; }
+.sol-question > p { font-weight: 800; font-size: 1.15rem; line-height: 1.4; margin: 0 0 12px; }
+.sol-scene .stage, .sol-fig { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 8px; }
+.sol-scene svg, .sol-fig svg { width: 100%; height: auto; max-height: 46vh; display: block; }
+.sol-idea { background: #fff7dc; border: 2px solid #f4d27f; border-radius: 16px; padding: 12px 16px; margin-bottom: 12px; }
+.sol-idea b { color: #8a6412; }
+.sol-idea p { margin: 4px 0 0; font-size: 1.05rem; }
+.sol-steps ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.sol-step { display: flex; gap: 12px; align-items: flex-start; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; animation: sol-up .3s ease; }
+.sol-step.now { border-color: var(--teal); box-shadow: 0 0 0 3px #1c8c7426; }
+.sol-step > div { flex: 1; min-width: 0; }
+.sol-step p { margin: 3px 0; font-size: 1.08rem; line-height: 1.5; }
+.sol-step .sol-fig { margin-top: 8px; }
+.sol-step .sol-fig svg { max-height: 28vh; }
+.sol-no { flex: none; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--teal); color: #fff; font-weight: 900; }
+.sol-step .sn, .sol-idea .sn { color: #1f4f8f; background: #eaf2ff; border-radius: 6px; padding: 0 4px; font-weight: 900; }
+.sol-answer { margin-top: 12px; padding: 14px 18px; border-radius: 16px; background: #e6f6ef; border: 2px solid var(--teal); font-size: 1.2rem; animation: sol-up .3s ease; }
+.sol-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; padding: 12px 22px; border-top: 1px solid var(--line); background: #fff; }
+.sol-actions .sol-count { margin-right: auto; color: var(--muted); font-weight: 800; }
+.sol-actions .check-btn { width: auto; margin: 0; }
+@keyframes sol-up { from { opacity: 0; transform: translateY(10px); } }
+.sol-sheet { animation-name: sol-in; }
+@keyframes sol-in { from { opacity: 0; } }
+@keyframes sol-fade { from { opacity: 0; } }
+body.tahta .sol-step p, body.tahta .sol-question > p { font-size: 1.4rem; }
+@media (max-width: 760px) {
+  .sol-body { grid-template-columns: 1fr; padding: 14px; }
+  .sol-question { position: static; }
+  .sol-sheet { inset: 1vh 50% auto auto; max-height: 98vh; }
+  .sol-actions { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) { .sol-step, .sol-answer, .sol-backdrop, .sol-sheet { animation: none; } }
+.sol-table { border-collapse: collapse; margin: 4px auto; font-size: 1rem; background: #fff; }
+.sol-table th, .sol-table td { border: 1px solid #d9cdb8; padding: 5px 10px; text-align: center; }
+.sol-table th { background: #f3ecdf; font-weight: 800; }
+.sol-table tr.sum td { background: #e6f6ef; font-weight: 900; color: #0f5f4e; }
+.sol-fig .ar-cards, .sol-fig .ar-boxes { margin: 0; }

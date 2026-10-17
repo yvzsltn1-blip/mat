@@ -630,11 +630,11 @@
 
   const cache = new Map();
   function get(topicId, level) {
-    if (!builders[topicId] || !G.LEVELS.some(l => l.id === level)) throw new Error("Geçersiz konu veya seviye");
+    if (!builders[topicId] || !G.BANK_LEVELS.some(l => l.id === level)) throw new Error("Geçersiz konu veya seviye");
     const key = topicId + ":" + level;
     if (!cache.has(key)) {
       const prompts = new Set();
-      for (const lv of G.LEVELS) {
+      for (const lv of G.BANK_LEVELS) {
         const bankKey = topicId + ":" + lv.id;
         const rng = G.makeRng([...bankKey].reduce((sum, c) => sum * 31 + c.charCodeAt(0), 7) % 2147483646);
         const rows = lv.id >= 4 ? advanced(topicId, lv.id) : builders[topicId](lv.id);

@@ -16,7 +16,7 @@ const ctx = vm.createContext({
   },
   location: { hash: "" }, localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
   setTimeout: () => 0, clearTimeout() {}, setInterval: () => 0, clearInterval() {}, matchMedia: () => ({ matches: false }),
-  MatAudio: { cancelSpeak() {}, speak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {} }
+  MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, speak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {} }
 });
 ctx.window = ctx;
 for (const file of files) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);

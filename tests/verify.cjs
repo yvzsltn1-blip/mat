@@ -10,7 +10,7 @@ let questionCount = 0, tfCount = 0;
 const kinds = new Set();
 for (const topic of MatCurriculum.topics) {
   const prompts = new Set(), ids = new Set();
-  for (const level of MatGames.LEVELS) {
+  for (const level of MatGames.BANK_LEVELS) {
     const bank = MatQuestionBank.get(topic.id, level.id);
     assert.equal(bank.length, 15);
     for (const q of bank) {
@@ -82,7 +82,7 @@ function harness(storage = new Map(), opts = {}) {
     clearTimeout: id => jobs.delete(id),
     setInterval: (fn, delay) => { const id = ++serial; jobs.set(id, { fn, at: now + delay, interval: delay }); return id; },
     clearInterval: id => jobs.delete(id),
-    MatAudio: { cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "" } });
+    MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "" } });
   ctx.window = ctx;
   for (const file of ["curriculum.js", "lesson-stories.js", "games.js", "question-bank.js", ...(opts.gen ? ["arcade-gen.js", "level-gen.js"] : [])]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
   const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, persist, addMany, parseList, makeGroups, eligible, spinPick, members, groupScore, beginLevel, submit, goNext, currentQ, cancelRound, pauseClock, resumeClock, openTopic, onChange, onClick, isCorrect, ready, animateLessonAngle, applyLessonAngle, render };\n})();");
@@ -116,7 +116,7 @@ function answer(h) {
 }
 
 // Tüm konularda turların tamamlanması, puanlar ve tekrar etmeyen seçim.
-for (const topic of MatCurriculum.topics) for (const level of MatGames.LEVELS) {
+for (const topic of MatCurriculum.topics) for (const level of MatGames.BANK_LEVELS) {
   const h = harness(); addStudent(h);
   h.openTopic(topic.id, "play"); h.beginLevel(level.id);
   let expected = 0; const seen = new Set();
@@ -308,4 +308,30 @@ console.log(`OK: ${questionCount} benzersiz soru, ${tfCount} düşük puanlı D/
   assert.equal(restored.state.practice, true);
   assert.equal(restored.state.callout, false);
   console.log("OK: antrenman modu puan yazmıyor; çekiliş sesi varsayılan kapalı.");
+}
+
+// Adım adım çözüm: cevaptan önce kilitli; sonra adımlar ilerler, sonunda cevap görünür. Banka sorusunda açıklamadan adım üretilir.
+{
+  const click = (h, act, data = {}) => h.onClick({ target: { closest: () => ({ dataset: { act, ...data }, disabled: false }) } });
+  for (const [gen, level] of [[true, 8], [true, 6], [false, 3]]) {
+    const h = harness(new Map(), { gen });
+    h.state.questionSource = gen ? "gen" : "bank";
+    h.openTopic("nokta", "play"); h.beginLevel(level); h.advance(2000);
+    assert.equal(h.state.phase, "quiz");
+    click(h, "solution");
+    assert.equal(h.state.solution, null, "Çözüm cevaptan önce açılmamalı");
+    const q = h.currentQ();
+    h.state.draft = String(q.answer); h.submit();
+    click(h, "solution");
+    const so = h.state.solution;
+    assert(so && so.sol.steps.length >= 1, "Çözüm adımları olmalı");
+    if (gen) assert(q.solution && q.solution.idea, "Üst seviye sorunun elle yazılmış çözümü olmalı");
+    assert(h.app.innerHTML.includes("sol-sheet") && !h.app.innerHTML.includes("sol-answer"));
+    click(h, "sol-next"); assert.equal(h.state.solution.step, 1);
+    click(h, "sol-all"); assert.equal(h.state.solution.step, so.sol.steps.length);
+    assert(h.app.innerHTML.includes("sol-answer"));
+    click(h, "sol-close"); assert.equal(h.state.solution, null);
+    h.goNext(); assert.equal(h.state.solution, null);
+  }
+  console.log("OK: adım adım çözüm cevaptan sonra açılıyor; adımlar, cevap ve kapanış çalışıyor (üretilen ve banka soruları).");
 }

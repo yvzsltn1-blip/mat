@@ -35,6 +35,7 @@
     year: schoolYear(),
     archived: false,
     createdAt: 0,
+    tournament: null,
     history: [],
     turnDone: [],
     turnRound: 1,
@@ -79,6 +80,7 @@
     finishStars: 0,
     review: [],
     hintOpen: false,
+    solution: null,
     gate: null,
     tahta: false,
     flash: "",
@@ -188,6 +190,7 @@
       turnDone: state.turnDone,
       turnRound: state.turnRound,
       usedQuestions: state.usedQuestions,
+      tournament: state.tournament,
       history: state.history,
       bankVersion: MatQuestionBank.version
     };
@@ -249,6 +252,12 @@
     return state.questionSource !== "bank" && !!window.MatLevelGen;
   }
 
+  // Usta, Efsane ve Prestij yalnız sınırsız üreticide vardır; soru bankası ilk beş seviyededir.
+  function levels() {
+    return unlimited() ? MatGames.LEVELS : MatGames.BANK_LEVELS;
+  }
+  const pointsRange = () => { const p = levels().map((l) => l.points); return Math.min(...p) + "–" + Math.max(...p); };
+
   function normalizeClass(c) {
     c.grade = GRADES.includes(Number(c.grade)) ? Number(c.grade) : 5;
     c.section = String(c.section || "").slice(0, 12);
@@ -279,6 +288,7 @@
       state.students = [];
       state.groups = [];
       state.history = [];
+      state.tournament = null;
       state.usedQuestions = {};
       state.turnDone = [];
       state.className = "";
@@ -294,6 +304,7 @@
     state.students = c.students;
     state.groups = c.groups;
     state.history = c.history;
+    state.tournament = c.tournament || null;
     state.nextGroup = c.nextGroup || 0;
     state.selectedId = c.students.some((s) => s.id === c.selectedId) ? c.selectedId : null;
     state.turnDone = c.turnDone;
@@ -608,6 +619,47 @@
     return "uygun kenarlar";
   }
 
+  // Adım adım çözüm. Üretici "solution" yazdıysa onu kullanır; yazmadıysa açıklamayı cümlelere böler,
+  // böylece bütün sorularda (soru bankası dahil) Çözüm düğmesi çalışır.
+  function solutionOf(q) {
+    if (q.solution && Array.isArray(q.solution.steps) && q.solution.steps.length) return q.solution;
+    const parts = String(q.explain || "").split(/(?<=[.!?])\s+(?=[A-ZÇĞİÖŞÜ0-9(∠|−“])/).map((t) => t.trim()).filter(Boolean);
+    const generic = /^(Çizimdeki verilenleri|Verilenleri sıraya|Tanımı ve verilen)/.test(q.hint || "");
+    return { idea: q.hint && !generic ? q.hint : "", steps: parts.map((t) => ({ t })) };
+  }
+  function openSolution(q, review) {
+    state.solution = { sol: review ? review.solution : solutionOf(q), prompt: review ? review.prompt : q.prompt, answer: review ? review.answer : showAnswer(q), scene: review ? review.scene : q.scene, step: 0 };
+  }
+  // Sayıları öne çıkar; HTML varlıklarındaki rakamlara (&#39;) dokunma.
+  const solText = (t) => esc(t).replace(/(?<![#\w&])(\d+(?:[.,]\d+)*)/g, '<b class="sn">$1</b>');
+  // Yeni açılan adım (ya da cevap kutusu) görünür alana kaydırılır.
+  function revealSolutionStep() {
+    (window.requestAnimationFrame || setTimeout)(() => document.querySelector(".sol-answer, .sol-step.now")?.scrollIntoView?.({ block: "nearest", behavior: "smooth" }));
+  }
+  function renderSolution() {
+    const so = state.solution;
+    if (!so) return "";
+    const steps = so.sol.steps, shown = Math.min(so.step, steps.length), done = shown >= steps.length;
+    const sceneHtml = so.scene && so.scene.html ? MatVisuals.renderScene(so.scene) : "";
+    return `<div class="sol-backdrop" data-act="sol-close"></div>
+      <section class="sol-sheet" role="dialog" aria-modal="true" aria-label="Adım adım çözüm">
+        <header class="sol-head"><span class="sol-kicker">📖 ADIM ADIM ÇÖZÜM</span><button type="button" class="sol-x" data-act="sol-close" aria-label="Çözümü kapat">✕</button></header>
+        <div class="sol-body">
+          <div class="sol-question"><p>${esc(so.prompt)}</p>${sceneHtml ? `<div class="sol-scene">${sceneHtml}</div>` : ""}</div>
+          <div class="sol-steps">
+            ${so.sol.idea ? `<div class="sol-idea"><b>💡 Ana fikir</b><p>${solText(so.sol.idea)}</p></div>` : ""}
+            <ol>${steps.slice(0, shown).map((st, i) => `<li class="sol-step${i === shown - 1 ? " now" : ""}"><span class="sol-no">${i + 1}</span><div><p>${solText(st.t)}</p>${st.fig ? `<div class="sol-fig stage art-stage">${st.fig}</div>` : ""}</div></li>`).join("")}</ol>
+            ${done ? `<div class="sol-answer">✔ Cevap: <b>${esc(so.answer)}</b></div>` : ""}
+          </div>
+        </div>
+        <footer class="sol-actions">
+          <button type="button" class="soft" data-act="sol-prev" ${so.step ? "" : "disabled"}>◀ Geri</button>
+          <span class="sol-count">${shown} / ${steps.length} adım</span>
+          ${done ? `<button type="button" class="check-btn" data-act="sol-close">Anladım ✔</button>` : `<button type="button" class="soft" data-act="sol-all">Hepsini göster</button><button type="button" class="check-btn" data-act="sol-next">${shown ? "Sonraki adım ▶" : "Çözüme başla ▶"}</button>`}
+        </footer>
+      </section>`;
+  }
+
   function showAnswer(q) {
     if (q.kind === "mc") return q.answer;
     if (q.kind === "num") return MatGames.groupDigits(q.answer) + (q.unit ? " " + q.unit : "");
@@ -721,11 +773,14 @@
     state.locked = false;
     state.feedback = null;
     state.hintOpen = false;
+    state.solution = null;
     state.paused = false;
     state.phase = "reveal";
     const token = ++revealToken;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const level = state.randomLevel ? 1 + Math.floor(Math.random() * MatGames.LEVELS.length) : state.level;
+    const pool = levels();
+    // Kaynak soru bankasına çevrildiyse bankada olmayan üst seviye son banka seviyesine iner.
+    const level = state.randomLevel ? pool[Math.floor(Math.random() * pool.length)].id : Math.min(state.level, pool[pool.length - 1].id);
     state.reveal = { step: state.randomLevel ? "level" : "question", level: state.randomLevel ? null : level };
     render();
     let frame = 0;
@@ -760,7 +815,7 @@
     const spin = () => {
       if (token !== revealToken) return;
       const cards = document.querySelectorAll(".reveal-level");
-      cards.forEach((card, i) => card.classList.toggle("lit", i === frame % MatGames.LEVELS.length));
+      cards.forEach((card, i) => card.classList.toggle("lit", i === frame % levels().length));
       if (frame < (reduced ? 0 : 15)) {
         frame += 1;
         if (frame % 3 === 0) MatAudio.tick();
@@ -790,6 +845,7 @@
     state.locked = false;
     state.feedback = null;
     state.hintOpen = false;
+    state.solution = null;
     state.gate = null;
     stopAuto();
     prepareQuestion();
@@ -810,7 +866,7 @@
     state.locked = true;
     const counts = !!who && !state.practice;
     state.feedback = { ok, timedOut, explain: q.explain, correctText: showAnswer(q), points: pts, name: who ? who.name : "", awarded: counts };
-    state.review.push({ prompt: q.prompt, ok, timedOut, explain: q.explain, studentId: who ? who.id : null, points: who ? pts : 0, level: q.level });
+    state.review.push({ prompt: q.prompt, ok, timedOut, explain: q.explain, studentId: who ? who.id : null, points: who ? pts : 0, level: q.level, solution: solutionOf(q), answer: showAnswer(q), scene: q.scene && q.scene.html ? q.scene : null });
     let newCycle = false;
     if (counts) {
       const st = statsOf(who);
@@ -1073,6 +1129,7 @@
   function header() {
     const status = cloud && !localMode ? cloud.status : "local";
     const nav = state.classId ? [
+      `<button class="solid tournament-nav" type="button" data-act="goto-tournament">🏆 Turnuva</button>`,
       state.screen !== "board" ? `<button class="ghost" type="button" data-act="goto-board">📚 Konular</button>` : "",
       state.screen !== "manage" ? `<button class="ghost" type="button" data-act="goto-manage">👥 Sınıf yönetimi</button>` : ""
     ].join("") : "";
@@ -1091,6 +1148,7 @@
       <span class="sync-state" id="syncState" data-s="${status}">${syncText(status)}</span>
       <div class="top-actions">
         ${nav}
+        <button class="ghost" type="button" data-act="toggle-music" aria-pressed="${MatAudio.musicEnabled}">♫ Müzik ${MatAudio.musicEnabled ? "açık" : "kapalı"}</button>
         ${state.tahta && state.screen === "topic" ? `<button class="ghost" type="button" data-act="tahta" aria-pressed="true">Tahta modunu kapat</button>` : ""}
         <button class="ghost practice-btn ${state.practice ? "on" : ""}" type="button" data-act="toggle-practice" title="Antrenman modunda puan ve istatistik yazılmaz" aria-pressed="${state.practice}">🏋️ ${state.practice ? "Antrenman açık" : "Antrenman"}</button>
         <button class="ghost icon" type="button" data-act="toggle-voice" title="${state.voice ? "Sesli anlatım açık" : "Sesli anlatım kapalı"}" aria-label="${state.voice ? "Sesli anlatımı kapat" : "Sesli anlatımı aç"}">${state.voice ? "🗣️" : "🤐"}</button>
@@ -1281,7 +1339,7 @@
       : [...state.students].map((s) => {
           const st = statsOf(s);
           const g = groupById(s.groupId);
-          return { name: s.name, color: g ? g.color : "", score: s.score, sub: st.asked + " soru · " + rate(st.correct, st.asked) + "% doğru" + (g ? " · " + g.icon + " " + g.name : "") };
+          return { name: s.name, color: g ? g.color : "", score: s.score, sub: "★ " + (s.tournamentStars || 0) + " turnuva / 🏆 " + Math.floor((s.tournamentStars || 0) / 3) + " kupa · " + st.asked + " soru · " + rate(st.correct, st.asked) + "% doğru" + (g ? " · " + g.icon + " " + g.name : "") };
         }).sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, "tr"));
     const max = Math.max(1, ...items.map((i) => i.score));
     return `<div class="rank-toolbar"><div class="seg">
@@ -1383,14 +1441,15 @@
     const absent = state.students.filter((s) => s.absent).length;
     return `${header()}<main class="shell">${flashHtml()}<div class="board">
       <div>
-        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div>${unlimited() ? `<b>♾️ Sınırsız görsel soru · 20 konu</b><span>Her konuda 5 seviye; her soru yeni sayılar ve yeni bir çizimle üretilir. Sıra şimdi sende!</span>` : `<b>${fNumber(curriculum().topics.length * MatQuestionBank.perTopic)} soru · 20 konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span>`}</div></div>
+        <button class="tr-banner" type="button" data-act="goto-tournament"><span>🏆</span><span><small>SINIFIN BÜYÜK BULUŞMASI</small><b>Şampiyonlar Turnuvası</b><em>Hız elemeleri · Kapışmalar · Yıldızlar ve kupalar</em></span><strong>Katıl →</strong></button>
+        <div class="bank-banner"><span class="bank-icon" aria-hidden="true">✦</span><div>${unlimited() ? `<b>♾️ Sınırsız görsel soru · 20 konu</b><span>Her konuda ${levels().length} seviye; her soru yeni sayılar ve yeni bir çizimle üretilir. Sıra şimdi sende!</span>` : `<b>${fNumber(curriculum().topics.length * MatQuestionBank.perTopic)} soru · 20 konu</b><span>Her konuda 5 seviye, her seviyede 15 soru. Sıra şimdi sende!</span>`}</div></div>
         ${![5, 7].includes(state.grade) ? `<p class="note">${state.grade}. sınıf için bu sürümde 5. sınıf 1. kitap konuları kullanılır.</p>` : ""}
         ${state.tipHidden ? "" : `<div class="tip"><b>Nasıl kullanılır?</b> Konuya gir, önce anlat, sonra oyna. “Her sorudan sonra yeni öğrenci” açıkken her soruyu farklı bir öğrenci çözer. Yanlış cevap puan silmez. <button type="button" class="mini" data-act="hide-tip">Tamam</button></div>`}
         ${curriculum().worlds.map((w) => `<section class="world">
           <div class="world-head"><h2 style="color:${w.color}">${esc(w.name)}</h2><span class="fine">${esc(w.blurb)}</span></div>
           <div class="topic-grid">${curriculum().topics.filter((t) => t.worldId === w.id).map((t) => {
             const stars = who && who.stars ? (who.stars[t.id] || 0) : 0;
-            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">${unlimited() ? "♾️ sınırsız soru" : "75 soru"} · 5 seviye</span></div><h3>${esc(t.title)}</h3>${starHtml(stars)}
+            return `<article class="topic-card" style="--accent:${w.color}"><div class="no">${t.no} <span class="topic-count">${unlimited() ? "♾️ sınırsız soru" : "75 soru"} · ${levels().length} seviye</span></div><h3>${esc(t.title)}</h3>${starHtml(stars)}
               <div class="actions"><button class="soft" type="button" data-act="open" data-id="${t.id}" data-tab="lesson">Anlat</button><button class="solid" type="button" data-act="open" data-id="${t.id}" data-tab="play">Oyna</button></div></article>`;
           }).join("")}</div>
         </section>`).join("")}
@@ -1423,7 +1482,7 @@
         ${ranked.slice(0, 8).map((s, i) => `<button type="button" class="student-row ${s.id === state.selectedId ? "active" : ""} ${s.absent ? "is-absent" : ""}" data-act="select" data-id="${esc(s.id)}"><span>${["🥇", "🥈", "🥉"][i] || i + 1 + "."} ${esc(s.name)}</span><span>${s.score}</span></button>`).join("") || "<p class='fine'>Henüz öğrenci yok.</p>"}
         <div class="actions"><button class="soft" type="button" data-act="goto-ranking">🏆 Tüm sıralama</button><button class="soft" type="button" data-act="goto-manage">👥 Sınıfı yönet</button></div>
       </aside>
-    </div><p class="footer-note">Doğru/yanlış 5 puan. Diğer sorular: Keşif 10 · Alıştırma 20 · Problem 35 · Meydan okuma 50 · Özel zor 80 puan. Yanlışta ve süre dolduğunda puan silinmez.</p></main>`;
+    </div><p class="footer-note">Doğru/yanlış 5 puan. Diğer sorular: ${MatGames.BANK_LEVELS.map((l) => l.name + " " + l.points).join(" · ")} puan. Sınırsız modda ayrıca ${MatGames.LEVELS.filter((l) => l.unlimitedOnly).map((l) => l.name + " " + l.points).join(" · ")} puan. Yanlışta ve süre dolduğunda puan silinmez.</p></main>`;
   }
 
   function highlightTerms(text, terms) {
@@ -1629,7 +1688,7 @@
       <div class="reveal-symbol" aria-hidden="true">${lv ? lv.icon : "✦"}</div>
       <h2 aria-live="polite">${r.step === "level" ? "Hangi seviye gelecek?" : landed ? esc(lv.name) + " seçildi!" : "Sıradaki soru açılıyor"}</h2>
       <p>${r.step === "level" ? "Önce şansın seviyeni belirlesin…" : questionPoints !== null ? questionPoints + " puanlık bir soru seni bekliyor." : "Seviye belli! Şimdi bu seviyenin sorusu geliyor."}</p>
-      <div class="reveal-levels" aria-hidden="true">${MatGames.LEVELS.map(l => `<div class="reveal-level ${r.level === l.id ? "lit" : ""}" style="--card-color:${l.color}"><span>${l.icon}</span><b>${esc(l.name)}</b><small>${levelPointsText(l)} puan</small></div>`).join("")}</div>
+      <div class="reveal-levels" aria-hidden="true">${levels().map(l => `<div class="reveal-level ${r.level === l.id ? "lit" : ""}" style="--card-color:${l.color}"><span>${l.icon}</span><b>${esc(l.name)}</b><small>${levelPointsText(l)} puan</small></div>`).join("")}</div>
       <div class="reveal-steps"><span class="${r.step !== "question" ? "active" : "done"}">01 · Seviye</span><i></i><span class="${r.step === "question" ? "active" : ""}">02 · Soru</span><i></i><span>03 · Sıra sende</span></div>
       <p class="reveal-time">${state.roundSeconds ? "◷ " + state.roundSeconds + " saniyen soru gelince başlayacak" : "∞ Süresiz · düşünmek için zamanın var"}</p>
       <button type="button" class="ghost" data-act="to-levels">Seviye seçimine dön</button></div>
@@ -1640,7 +1699,7 @@
     const who = selected();
     const seen = MatGames.LEVELS.reduce((sum, l) => sum + (Array.isArray(state.usedQuestions[t.id + ":" + l.id]) ? state.usedQuestions[t.id + ":" + l.id].length : 0), 0);
     const gen = unlimited();
-    return `<p class="kicker">${gen ? "♾️ Sınırsız görsel soru · 5 seviye" : `75 soru · 5 seviye · ${seen} soru bu havuz turunda açıldı`}</p><h2>${esc(t.title)}</h2>
+    return `<p class="kicker">${gen ? `♾️ Sınırsız görsel soru · ${levels().length} seviye` : `75 soru · 5 seviye · ${seen} soru bu havuz turunda açıldı`}</p><h2>${esc(t.title)}</h2>
       <p class="say">${who ? esc(who.name) + " oynayacak. Puan ona" + (who.groupId ? " ve grubuna" : "") + " yazılacak." : "İstersen önce bir öğrenci çek. Çekmeden de puansız oynanır."}</p>
       ${settingsHtml(true)}
       <div class="source-pick"><span>Sorular</span><div class="seg" role="group" aria-label="Soru kaynağı">
@@ -1648,8 +1707,8 @@
         <button type="button" class="${gen ? "" : "on"}" data-act="question-source" data-source="bank" aria-pressed="${!gen}">📚 Soru bankası (75)</button></div>
         <small>${gen ? "Her soru yeni sayılar ve yeni bir çizimle anında üretilir; sorular hiç bitmez." : "Her seviyede 15 sabit soru; havuz bitince yeniden karıştırılır."}</small></div>
       <h3>Seviyeni sen seç</h3>
-      <div class="levels">${MatGames.LEVELS.map((lv) => `<button type="button" class="level-card" style="--level-color:${lv.color}" data-act="start-level" data-level="${lv.id}"><span class="level-icon" aria-hidden="true">${lv.icon}</span><small>SEVİYE ${lv.id}</small><b>${esc(lv.name)}</b><em>${levelPointsText(lv)} puan / soru</em><span class="fine">${esc(lv.blurb)}</span><span class="level-count">${gen ? "♾️ Sınırsız soru" : "15 farklı soru"}</span></button>`).join("")}
-      <button type="button" class="level-card random-card" data-act="start-level" data-level="0"><span class="level-icon" aria-hidden="true">⚄</span><small>SÜRPRİZE HAZIR MISIN?</small><b>Şansına bırak</b><em>${gen ? "10–80" : "5–80"} puan / soru</em><span class="fine">Her sorudan önce seviye çekilir, sonra o seviyeden bir soru gelir.</span><span class="level-count">5 seviyenin tamamı</span></button></div>
+      <div class="levels">${levels().map((lv) => `<button type="button" class="level-card${lv.unlimitedOnly ? " elite" : ""}" style="--level-color:${lv.color}" data-act="start-level" data-level="${lv.id}"><span class="level-icon" aria-hidden="true">${lv.icon}</span><small>SEVİYE ${lv.id}</small><b>${esc(lv.name)}</b><em>${levelPointsText(lv)} puan / soru</em><span class="fine">${esc(lv.blurb)}</span><span class="level-count">${gen ? "♾️ Sınırsız soru" : "15 farklı soru"}</span></button>`).join("")}
+      <button type="button" class="level-card random-card" data-act="start-level" data-level="0"><span class="level-icon" aria-hidden="true">⚄</span><small>SÜRPRİZE HAZIR MISIN?</small><b>Şansına bırak</b><em>${gen ? pointsRange() : "5–80"} puan / soru</em><span class="fine">Her sorudan önce seviye çekilir, sonra o seviyeden bir soru gelir.</span><span class="level-count">${levels().length} seviyenin tamamı</span></button></div>
       ${arcadeCardsHtml(t)}
       <p class="fine">${gen ? "Sınırsız modda her soru çizimli üretilir ve seviyenin puanını kazandırır. Kareli zeminde paralel/dik doğru, iletki, saat, abaküs, bloklar, bar modeli gibi farklı soru türleri karışık gelir." : "Doğru/yanlış soruları her zaman <b>5 puan</b>dır; yalnız ilk iki seviyede bulunur. Diğer sorular seviyenin puanını kazandırır. Bir seviyenin 15 sorusu bitene kadar aynı soru tekrar gelmez."}</p>
       ${state.gate !== null ? `<div class="result gate"><h3>İlk soruyu kim çözsün?</h3>
@@ -1698,7 +1757,7 @@
           <span class="question-label">${q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>
           <h2 class="prompt" tabindex="-1">${esc(q.prompt)}</h2>
           ${scene ? `<div class="g-scene">${scene}</div>` : `<div class="g-mascot" aria-hidden="true">${["🦉", "🦊", "🐢", "🐝", "🦁"][q.level - 1] || "✦"}<span>${["Düşün!", "Hadi!", "Adım adım!", "Dikkat!", "Ustalık zamanı!"][q.level - 1] || ""}</span></div>`}
-          ${q.hint ? `<button class="hint-btn ${state.hintOpen ? "open" : ""}" type="button" data-act="hint">💡 ${state.hintOpen ? esc(q.hint) : "İpucu"}</button>` : ""}
+          <div class="help-row">${q.hint ? `<button class="hint-btn ${state.hintOpen ? "open" : ""}" type="button" data-act="hint">💡 ${state.hintOpen ? esc(q.hint) : "İpucu"}</button>` : ""}<button class="hint-btn sol-btn" type="button" data-act="solution" ${state.locked ? "" : "disabled title=\"Cevap verildikten sonra açılır\""}>📖 Çözüm${state.locked ? "" : " 🔒"}</button></div>
         </section>
         <section class="g-answer">
           <fieldset class="answer-area" ${state.paused || state.locked ? "disabled" : ""}><legend class="sr-only">Cevabın</legend>
@@ -1711,8 +1770,10 @@
             <h3>${fb.ok ? praise + (fb.name ? " " + esc(fb.name) : "") : fb.timedOut ? "Süre doldu!" : "Birlikte çözelim"}</h3>
             ${fb.ok ? `<p class="fb-points">+${fb.points} puan${fb.awarded ? "" : state.practice ? " · antrenman, yazılmadı" : " · öğrenci seçili değildi"}</p>` : `<p class="fb-answer">Doğru cevap: <b>${esc(fb.correctText)}</b></p>`}
             <p class="fb-explain">${esc(fb.explain)}</p>
+            <button class="soft sol-open" type="button" data-act="solution">📖 Adım adım çözümü göster</button>
             <button class="check-btn" type="button" data-act="next-q">${state.qIndex === state.questions.length - 1 ? "🏁 Sonucu gör" : state.autoRotate && present(state.students).length > 1 ? "🎲 Sıradaki öğrenci →" : "Sonraki soru →"}</button>
           </div>` : ""}
+          ${renderSolution()}
           ${state.paused ? `<div class="g-feedback paused" role="status"><div class="fb-emoji" aria-hidden="true">⏸</div><h3>Oyun duraklatıldı</h3><button class="check-btn" type="button" data-act="pause-clock">▶ Devam et</button></div>` : ""}
         </section>
       </div>
@@ -1734,7 +1795,7 @@
         <div class="finish-body">
           <div><h3>Bu turun oyuncuları</h3>${scorers.length ? `<ul class="finish-players">${scorers.map((s, i) => `<li><span>${["🥇", "🥈", "🥉"][i] || "⭐"} ${esc(s.name)}</span><span>${s.ok}/${s.asked} doğru</span><b>+${s.points}</b></li>`).join("")}</ul>` : `<p class="fine">Bu tur puansız oynandı.</p>`}
             ${state.groups.length ? `<h3>Grup yarışı</h3><div class="finish-groups">${[...state.groups].sort((a, b) => groupScore(b.id) - groupScore(a.id)).map((g) => `<span style="--gc:${g.color}">${g.icon} ${esc(g.name)} <b>${groupScore(g.id)}</b></span>`).join("")}</div>` : ""}</div>
-          <div>${missed.length ? `<h3>Birlikte tekrar edelim</h3><ul class="review">${missed.map((r) => `<li>${r.timedOut ? "⏰ " : ""}<b>${esc(r.prompt)}</b><br>${esc(r.explain)}</li>`).join("")}</ul>` : `<h3>Hepsi doğru!</h3><p>Bütün sorular doğru. Yeni bir meydan okumaya hazırsın!</p>`}</div>
+          <div>${missed.length ? `<h3>Birlikte tekrar edelim</h3><ul class="review">${missed.map((r) => `<li>${r.timedOut ? "⏰ " : ""}<b>${esc(r.prompt)}</b><br>${esc(r.explain)}${r.solution ? `<br><button class="soft sol-open" type="button" data-act="review-solution" data-i="${state.review.indexOf(r)}">📖 Adım adım çözüm</button>` : ""}</li>`).join("")}</ul>` : `<h3>Hepsi doğru!</h3><p>Bütün sorular doğru. Yeni bir meydan okumaya hazırsın!</p>`}</div>
         </div>
         <div class="actions finish-actions">
           <button class="check-btn" type="button" data-act="start-level" data-level="${state.randomLevel ? 0 : state.level}">${state.randomLevel ? "🎲 Yeni rastgele tur" : "▶ Bu seviyede yeni tur"}</button>
@@ -1743,6 +1804,7 @@
           <button class="soft" type="button" data-act="goto-ranking">🏆 Sıralama</button>
         </div>
       </div>
+      ${renderSolution()}
     </div>`;
   }
 
@@ -1771,7 +1833,7 @@
           <button class="nav-btn ${state.topicTab === "lesson" ? "on" : ""}" type="button" data-act="to-lesson">Anlat</button>
           <button class="nav-btn ${state.topicTab === "play" ? "on" : ""}" type="button" data-act="to-play">Oyna</button>
         </div>
-        ${state.topicTab === "lesson" ? t.slides.map((s, i) => `<button type="button" class="nav-btn ${i === state.slide ? "on" : ""}" data-act="goto-slide" data-i="${i}">${i + 1}. ${esc(s.h)}</button>`).join("") : MatGames.LEVELS.map((lv) => `<button type="button" class="nav-btn ${state.level === lv.id && state.phase !== "pick" && (!state.reveal || state.reveal.level === lv.id) ? "on" : ""}" data-act="start-level" data-level="${lv.id}">${esc(lv.name)} · ${levelPointsText(lv)}</button>`).join("")}
+        ${state.topicTab === "lesson" ? t.slides.map((s, i) => `<button type="button" class="nav-btn ${i === state.slide ? "on" : ""}" data-act="goto-slide" data-i="${i}">${i + 1}. ${esc(s.h)}</button>`).join("") : levels().map((lv) => `<button type="button" class="nav-btn ${state.level === lv.id && state.phase !== "pick" && (!state.reveal || state.reveal.level === lv.id) ? "on" : ""}" data-act="start-level" data-level="${lv.id}">${esc(lv.name)} · ${levelPointsText(lv)}</button>`).join("")}
         <button class="ghost" type="button" data-act="tahta" style="color:var(--ink);border-color:var(--line);margin-top:8px">${state.tahta ? "Tahta modunu kapat" : "Tahta modu"}</button>
       </aside>
       <section class="topic-main">${back}${body}</section>
@@ -1892,6 +1954,8 @@
   }
 
   function render() {
+    if (window.MatTournament) MatTournament.unmount();
+    MatAudio.setMusicScene(authenticated && (state.screen === "tournament" || isGameMode()));
     if (!authenticated) {
       renderLogin();
       return;
@@ -1903,7 +1967,7 @@
     document.body.classList.toggle("is-fs", !!document.fullscreenElement);
     document.body.classList.toggle("tahta", !!(state.tahta && state.screen === "topic" && !game));
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
-    const html = state.screen === "classes" ? renderClasses() : state.screen === "manage" ? renderManage() : state.screen === "topic" ? renderTopic() : renderBoard();
+    const html = state.screen === "tournament" ? `${header()}<main class="shell"><div id="tournamentRoot"></div></main>` : state.screen === "classes" ? renderClasses() : state.screen === "manage" ? renderManage() : state.screen === "topic" ? renderTopic() : renderBoard();
     app.innerHTML = (state.practice ? `<div class="practice-ribbon" role="status">🏋️ ANTRENMAN MODU · puan, istatistik ve sıralama değişmez <button type="button" data-act="toggle-practice">Kapat</button></div>` : "") + html + (passwordOpen ? passwordDialog() : "");
     document.body.classList.toggle("practice-mode", state.practice);
     bindDynamic();
@@ -1916,6 +1980,8 @@
   }
 
   function renderLogin(focusPassword) {
+    MatAudio.setMusicScene(false);
+    if (window.MatTournament) MatTournament.unmount();
     document.body.classList.add("login-mode");
     document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode", "practice-mode");
     if (cloud && !authReady) {
@@ -1969,7 +2035,7 @@
       const parts = hash.slice(5).split("-");
       const requestedLevel = Number(parts.pop());
       const id = parts.join("-");
-      const level = [0, ...MatGames.LEVELS.map(l => l.id)].includes(requestedLevel) ? requestedLevel : 1;
+      const level = [0, ...levels().map(l => l.id)].includes(requestedLevel) ? requestedLevel : 1;
       if (curriculum().topics.some((t) => t.id === id)) {
         state.screen = "topic";
         state.topicId = id;
@@ -2204,6 +2270,32 @@
   }
 
   function bindDynamic() {
+    const tournamentRoot = document.getElementById("tournamentRoot");
+    if (tournamentRoot) {
+      const classId = state.classId, students = state.students;
+      let tournament = state.tournament;
+      MatTournament.mount(tournamentRoot, {
+        get: () => tournament,
+        save: value => {
+          tournament = value;
+          if (state.classId === classId) { state.tournament = value; persist(); }
+          else if (state.classes[classId]) {
+            state.classes[classId].tournament = value;
+            if (cloud && !localMode) cloud.saveClass(state.classes[classId]);
+          }
+        },
+        students: all => all ? students : present(students),
+        topics: () => curriculum().topics.filter(t => MatLevelGen.topics.includes(t.id)),
+        practice: () => state.practice,
+        award: (id, practice) => {
+          const student = students.find(s => s.id === id);
+          if (student && !practice) {
+            student.tournamentStars = (student.tournamentStars || 0) + 1;
+            student.tournamentCups = Math.floor(student.tournamentStars / 3);
+          }
+        }
+      });
+    }
     if (window.Mat7Labs) Mat7Labs.bind(app);
     if (window.MatImagine) MatImagine.bind(app);
     const arcadeRoot = document.getElementById("arcadeRoot");
@@ -2335,6 +2427,13 @@
       return;
     }
     MatAudio.ensure();
+    if (act === "toggle-music") { MatAudio.toggleMusic(); render(); return; }
+    if (act === "goto-tournament") {
+      if (!state.classId) return;
+      stopClock(); stopAuto(); MatAudio.cancelSpeak();
+      if (window.MatArcade) MatArcade.stop();
+      state.screen = "tournament"; render(); return;
+    }
     if (act === "add-one") {
       const input = document.getElementById("oneName");
       const noInput = document.getElementById("oneNo");
@@ -2768,7 +2867,7 @@
       const level = Number(btn.dataset.level);
       const customInput = document.getElementById("customSeconds");
       if (customInput && !customInput.reportValidity()) return;
-      if (level !== 0 && !MatGames.LEVELS.some(l => l.id === level)) return;
+      if (level !== 0 && !levels().some(l => l.id === level)) return;
       const wasFinish = state.phase === "finish";
       if (wasFinish && state.autoRotate && present(state.students).length > 1) {
         autoPick(() => beginLevel(level));
@@ -2822,6 +2921,27 @@
       return;
     }
     if (act === "next-q") { goNext(); return; }
+    if (act === "solution") {
+      const q = currentQ();
+      if (!q || !state.locked) return;
+      openSolution(q);
+      render();
+      return;
+    }
+    if (act === "review-solution") {
+      const r = state.review[Number(btn.dataset.i)];
+      if (r && r.solution) { openSolution(null, r); render(); }
+      return;
+    }
+    if (act === "sol-next" || act === "sol-prev" || act === "sol-all" || act === "sol-close") {
+      const so = state.solution;
+      if (!so) return;
+      if (act === "sol-close") state.solution = null;
+      else so.step = act === "sol-all" ? so.sol.steps.length : Math.max(0, Math.min(so.sol.steps.length, so.step + (act === "sol-next" ? 1 : -1)));
+      render();
+      if (state.solution) revealSolutionStep();
+      return;
+    }
     if (act === "hint") {
       state.hintOpen = !state.hintOpen;
       render();
@@ -2975,6 +3095,16 @@
     if (!authenticated) return;
     if (e.key === "Escape" && passwordOpen) { passwordOpen = false; render(); return; }
     if (passwordOpen) return;
+    if (state.solution) {
+      const so = state.solution, map = { Escape: "close", ArrowRight: 1, ArrowLeft: -1, " ": 1 };
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      if (map[e.key] === "close") state.solution = null;
+      else so.step = Math.max(0, Math.min(so.sol.steps.length, so.step + map[e.key]));
+      render();
+      if (state.solution) revealSolutionStep();
+      return;
+    }
     if (e.key === "Enter" && e.target.id === "lessonAngle") { e.preventDefault(); applyLessonAngle(); return; }
     const tag = document.activeElement && document.activeElement.tagName;
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") {

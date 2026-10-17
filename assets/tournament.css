@@ -1,0 +1,132 @@
+.tr-banner{width:100%;display:flex;align-items:center;gap:20px;text-align:left;border:0;border-radius:22px;padding:24px 28px;margin:0 0 24px;background:linear-gradient(115deg,#182743,#304c78);color:#fff;cursor:pointer;box-shadow:0 8px 24px #18274320}.tr-banner>span:first-child{font-size:48px}.tr-banner small,.tr-banner b,.tr-banner em{display:block}.tr-banner small,.tr-kicker{font-size:11px;letter-spacing:2px;font-weight:800}.tr-banner b{font-size:28px;font-family:'Baloo 2',sans-serif}.tr-banner em{font-style:normal;color:#d5e2f5;font-size:14px}.tr-banner strong{margin-left:auto;white-space:nowrap;color:#ffda86}.tournament-nav{background:#243d63!important;color:white!important}.tr-hero{position:relative;overflow:hidden;background:radial-gradient(ellipse at 90% 0%,#496386,transparent 55%),#172a46;color:white;padding:44px;border-radius:26px;margin-bottom:24px}.tr-hero h1{font-family:'Baloo 2',sans-serif;font-size:clamp(30px,4vw,52px);line-height:1.15;margin:16px 0}.tr-hero h1 span{color:#ffd274}.tr-hero p{color:#d9e4f3;font-size:19px}.tr-kicker{color:#a96b16}.tr-hero .tr-kicker{color:#ffda86}.tr-steps{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.tr-steps span{border:1px solid #ffffff30;border-radius:30px;padding:10px 16px;font-size:14px}.tr-setup{display:grid;grid-template-columns:1.1fr 1fr;gap:24px}.tr-card{background:#fffdf8;border:1px solid #e5dfd4;border-radius:22px;padding:28px;margin-bottom:22px}.tr-card h2{margin-top:0}.tr-card label{display:block;font-weight:800;margin:16px 0}.tr-card select,.tr-card input{display:block;width:100%;padding:14px;border:1px solid #bec8d4;border-radius:10px;background:white;font:inherit;margin-top:8px}.tr-roster{margin:14px 0}.tr-roster>div{display:flex;justify-content:space-between;align-items:center;gap:14px;border-bottom:1px solid #e9e4d9;padding:12px 8px}.tr-roster b{font-size:14px}.tr-qualified{background:#e8f4ec;color:#186047}.tr-title{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:20px 0}.tr-title h2{margin:6px 0}.tr-center{text-align:center;padding:42px 24px}.tr-center h2{font-size:30px}.tr-question-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.tr-question-head>b{font-size:32px;font-variant-numeric:tabular-nums;color:#b36217}.tr-prompt{text-align:center;font-size:clamp(22px,3vw,32px);margin:24px auto!important;max-width:900px}.tr-figure{max-width:440px;max-height:280px;overflow:auto;margin:0 auto 20px}.tr-figure svg{width:100%;max-height:260px}.tr-answers{display:flex;gap:24px}.tr-answer{flex:1;min-width:0;border-top:5px solid #356bbe;background:#eff5ff;border-radius:16px;padding:20px}.tr-answer:nth-child(2){border-color:#d56d41;background:#fff2e9}.tr-answer h3{margin:0}.tr-answer button{width:100%;min-height:52px}.tr-answer [data-feedback]{display:block;min-height:24px;margin-top:10px}.tr-bracket{display:flex;overflow-x:auto;gap:32px;padding:20px 2px;align-items:center}.tr-bracket>section{min-width:240px;flex:1}.tr-bracket h3{text-align:center}.tr-match{position:relative;border:1px solid #d6deea;border-radius:14px;background:white;margin:18px 0;padding:8px;box-shadow:0 4px 10px #243d6308}.tr-match:after{content:'';position:absolute;width:32px;height:2px;background:#c2cddd;left:100%;top:50%}.tr-bracket>section:last-child .tr-match:after{display:none}.tr-match>div{display:flex;justify-content:space-between;gap:12px;padding:12px 8px;border-radius:8px}.tr-match .tr-winner{background:#e5f3e9;color:#216f4c;font-weight:bold}.tr-orb{font-size:100px;color:#c28a22;animation:tr-spin 1s ease-in-out infinite}.tr-drawing{background:radial-gradient(circle,#fff1cb,#fffdf8 65%)}.tr-trophy{font-size:84px;animation:tr-pop .8s ease-out}.tr-hero .solid{background:#ffda86;color:#172a46}@keyframes tr-spin{50%{transform:rotate(180deg) scale(.75)}100%{transform:rotate(360deg)}}@keyframes tr-pop{from{transform:scale(.3) rotate(-20deg);opacity:0}to{transform:scale(1);opacity:1}}@media(max-width:760px){.tr-setup{grid-template-columns:1fr}.tr-roster>div{align-items:flex-start;flex-wrap:wrap}.tr-hero{padding:28px 22px}.tr-banner{padding:20px;gap:12px}.tr-banner b{font-size:22px}.tr-banner strong{display:none}.tr-card{padding:18px}.tr-answers{gap:12px}.tr-answer{padding:12px}.tr-question-head{flex-wrap:wrap}.tr-title{flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){.tr-orb,.tr-trophy{animation:none}}
+.tr-phase-settings{display:grid;gap:14px;margin:20px 0}.tr-phase-settings fieldset{min-width:0;border:1px solid #dfd7ef;border-radius:16px;padding:4px 18px 12px}.tr-phase-settings legend{font-size:17px;font-weight:800;padding:0 8px;color:#49337e}.tr-setting-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(85px,1fr);gap:14px}.tr-phase-settings label{font-size:14px;margin:10px 0}.tr-phase-settings .fine{margin:4px 0}.tr-format-note{background:#f1ecff;color:#4a327d;border-radius:12px;padding:16px;font-weight:800}.tr-question-head small{display:block;margin-top:5px;color:#75648f}.tr-answer{border:3px solid #e9e1fb;background:#fff;border-radius:26px;padding:20px;box-shadow:0 5px 0 #ded5ec}.tr-answer:nth-child(2){border-color:#d9e6fb;background:white}.tr-answer h3{margin-bottom:18px;color:#332664}.tr-answer .tr-entry-label{font-size:12px;letter-spacing:1.5px;color:#7651d9;margin:0 0 12px}.tr-answer .tr-number-display{background:#f5f1ff;border:3px dashed #cdbdf8;border-radius:18px;min-height:80px;font-size:34px;font-weight:800;color:#403080;text-align:center;margin:0 0 12px;padding:12px}.tr-number-display::placeholder{color:#5c42a0;opacity:1}.tr-keypad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 16px}.tr-keypad button{min-height:clamp(60px,9vh,100px);padding:12px;border:2px solid #e6def6;border-radius:18px;box-shadow:0 4px 0 #ded5ef;background:#fff;color:#30235f;font-size:28px;font-weight:900;touch-action:manipulation}.tr-keypad button:hover,.tr-keypad button:focus-visible{background:#f3edff;border-color:#bda8f4}.tr-keypad button:active{transform:translateY(3px);box-shadow:0 1px 0 #ded5ef}.tr-keypad .tr-erase{background:#fff4f0;color:#c53529}.tr-answer .tr-confirm{background:linear-gradient(#38cf91,#22aa77);color:white;border:0;border-bottom:5px solid #15905f;border-radius:20px;min-height:64px;font-size:19px;font-weight:900;box-shadow:0 5px 12px #20a96d24}.tr-answer button:disabled{opacity:.45;cursor:not-allowed}.tr-extra-keys{display:flex;gap:10px;margin-bottom:14px}.tr-extra-keys button{background:#f3eeff;border:1px solid #d8cbf5;border-radius:12px;font-size:23px;min-height:44px}.tr-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0 22px}.tr-choice{display:flex;align-items:center;gap:14px;min-height:92px!important;text-align:left;padding:18px;background:#faf8ff;border:2px solid #e1d7f4;border-radius:18px;font-size:20px;color:#352859;touch-action:manipulation}.tr-choice>b{display:grid;place-items:center;flex:0 0 40px;height:40px;border-radius:12px;background:#eae1fb;color:#5f3ba0}.tr-choice.selected{background:#efe7ff;border-color:#8154d4;box-shadow:0 0 0 2px #8154d422}.tr-choice.selected>b{background:#7950c9;color:white}.tr-choice>span{overflow-wrap:anywhere}.tr-tree-view{min-height:400px}.tr-tree-view .tr-bracket{max-height:72vh}.tr-title .actions{flex-wrap:wrap}@media(max-width:600px){.tr-choices{grid-template-columns:1fr}.tr-choice{font-size:17px;min-height:74px!important}.tr-keypad{gap:7px}.tr-keypad button{border-radius:12px;padding:8px;font-size:23px}.tr-answer{padding:12px}.tr-answer .tr-number-display{font-size:28px;min-height:68px}.tr-answer .tr-confirm{font-size:15px}.tr-answers{gap:10px}.tr-setting-row{gap:8px}.tr-phase-settings fieldset{padding:4px 12px 10px}}
+.tr-exit-fullscreen { display: none; }
+
+/* A fullscreen question owns the viewport; setup, results and the tree keep
+   their normal scrolling layout. All content stays in the same DOM on resize. */
+html:has(body.is-fs.tournament-question) { height: 100%; overflow: hidden; }
+body.is-fs.tournament-question { height: 100dvh; min-height: 0; overflow: hidden; }
+body.is-fs.tournament-question #app {
+  height: 100%; min-height: 0; display: flex; flex-direction: column;
+}
+body.is-fs.tournament-question .topbar { display: none; }
+body.is-fs.tournament-question .practice-ribbon { flex: none; padding: 4px 12px; font-size: 13px; }
+body.is-fs.tournament-question .shell {
+  flex: 1; min-height: 0; width: 100%; max-width: none; margin: 0;
+  padding: clamp(6px, 1.2dvh, 14px) clamp(8px, 1.2vw, 20px); display: flex;
+}
+body.is-fs.tournament-question #tournamentRoot {
+  flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column;
+  gap: clamp(6px, 1dvh, 12px);
+}
+body.is-fs.tournament-question .tr-title { flex: none; margin: 0; gap: 12px; flex-wrap: nowrap; }
+body.is-fs.tournament-question .tr-title > div:first-child { min-width: 0; }
+body.is-fs.tournament-question .tr-title .tr-kicker { display: none; }
+body.is-fs.tournament-question .tr-title h2 { font-size: clamp(16px, 2.5dvh, 25px); line-height: 1.15; margin: 0; }
+body.is-fs.tournament-question .tr-title .actions { flex: none; margin: 0; gap: 6px; }
+body.is-fs.tournament-question .tr-title button,
+body.is-fs.tournament-question .tr-question-head button { padding: 7px 12px; font-size: clamp(12px, 1.8dvh, 17px); }
+body.is-fs.tournament-question .tr-exit-fullscreen { display: inline-flex; }
+body.is-fs.tournament-question #tournamentRoot > details { display: none; }
+body.is-fs.tournament-question #tournamentRoot > [data-message] { flex: none; margin: 0; font-size: 14px; }
+body.is-fs.tournament-question #tournamentRoot > [data-message]:empty { display: none; }
+body.is-fs.tournament-question .tr-question-card {
+  flex: 1; min-height: 0; min-width: 0; margin: 0; padding: clamp(10px, 1.6dvh, 20px);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas: "status status" "model answers";
+  gap: clamp(10px, 1.8dvh, 22px);
+}
+body.is-fs.tournament-question .tr-duel-question { grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); }
+body.is-fs.tournament-question .tr-question-head { grid-area: status; min-width: 0; flex-wrap: nowrap; font-size: clamp(13px, 2dvh, 20px); }
+body.is-fs.tournament-question .tr-question-head small { font-size: .8em; margin-top: 2px; }
+body.is-fs.tournament-question [data-clock] { flex: none; font-size: clamp(23px, 4dvh, 40px); }
+body.is-fs.tournament-question .tr-question-main {
+  grid-area: model; display: flex; flex-direction: column; justify-content: center;
+  min-width: 0; min-height: 0; gap: 12px;
+}
+body.is-fs.tournament-question .tr-prompt {
+  flex: none; width: 100%; font-size: clamp(18px, 3.1dvh, 34px);
+  line-height: 1.25; margin: 0 !important; overflow-wrap: anywhere;
+}
+body.is-fs.tournament-question .tr-figure {
+  flex: 0 1 auto; min-width: 0; min-height: 0; width: 100%; max-width: none; max-height: none;
+  margin: 0; display: flex; align-items: center; justify-content: center; overflow: visible;
+}
+body.is-fs.tournament-question .tr-figure:empty { display: none; }
+body.is-fs.tournament-question .tr-figure > svg { width: 100%; height: auto; max-height: 100%; object-fit: contain; }
+body.is-fs.tournament-question .tr-figure > div { max-width: 100%; max-height: 100%; }
+body.is-fs.tournament-question .tr-figure .formula { padding: 0; }
+body.is-fs.tournament-question .tr-figure .formula p { font-size: clamp(17px, 2.6dvh, 28px); margin: .25em 0; overflow-wrap: anywhere; }
+body.is-fs.tournament-question .tr-figure :is(.ar-cards, .ar-boxes) { height: auto; gap: 6px; padding: 4px; }
+body.is-fs.tournament-question .tr-answers { grid-area: answers; min-width: 0; min-height: 0; gap: clamp(8px, 1.2vw, 18px); }
+body.is-fs.tournament-question .tr-answer {
+  min-height: 0; min-width: 0; display: flex; flex-direction: column;
+  padding: clamp(8px, 1.4dvh, 16px); border-radius: 18px;
+}
+body.is-fs.tournament-question .tr-answer h3 { flex: none; font-size: clamp(15px, 2.5dvh, 25px); line-height: 1.15; margin: 0 0 8px; overflow-wrap: anywhere; }
+body.is-fs.tournament-question .tr-entry-label { flex: none; margin: 0 0 5px; font-size: clamp(10px, 1.5dvh, 13px); }
+body.is-fs.tournament-question .tr-number-display {
+  flex: none; height: clamp(40px, 8dvh, 78px); min-height: 0; padding: 6px;
+  margin: 0 0 8px; font-size: clamp(22px, 4dvh, 38px); border-radius: 12px;
+}
+body.is-fs.tournament-question .tr-keypad {
+  flex: 1; min-height: 0; grid-template-rows: repeat(4, minmax(0, 1fr));
+  margin: 0 0 10px; gap: clamp(5px, 1.2dvh, 12px);
+}
+body.is-fs.tournament-question .tr-keypad button {
+  min-height: 0; padding: 4px; border-radius: 12px; font-size: clamp(18px, 3.5dvh, 32px);
+}
+body.is-fs.tournament-question .tr-extra-keys { flex: none; margin: 0 0 8px; gap: 8px; }
+body.is-fs.tournament-question .tr-extra-keys button { min-height: 0; height: clamp(28px, 5dvh, 44px); padding: 3px; font-size: 20px; }
+body.is-fs.tournament-question .tr-confirm {
+  flex: none; min-height: 0; height: clamp(40px, 7dvh, 64px); padding: 6px 8px;
+  border-radius: 14px; font-size: clamp(14px, 2.4dvh, 21px);
+}
+body.is-fs.tournament-question [data-feedback] { flex: none; min-height: 0; font-size: clamp(12px, 1.8dvh, 17px); margin-top: 6px; }
+body.is-fs.tournament-question [data-feedback]:empty { display: none; }
+body.is-fs.tournament-question .tr-choices {
+  flex: 1; min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr)); gap: clamp(8px, 1.5dvh, 16px); margin: 0 0 12px;
+}
+body.is-fs.tournament-question .tr-choice {
+  min-height: 0 !important; padding: clamp(8px, 1.5dvh, 16px); gap: 10px;
+  font-size: clamp(16px, 2.6dvh, 27px); line-height: 1.25;
+}
+body.is-fs.tournament-question .tr-choice > b { flex-basis: 32px; height: 32px; }
+@media (max-width: 900px) and (orientation: portrait) {
+  body.is-fs.tournament-question .tr-question-card {
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, .8fr) minmax(0, 1.2fr);
+    grid-template-areas: "status" "model" "answers";
+  }
+  body.is-fs.tournament-question .tr-title h2 { font-size: 16px; }
+  body.is-fs.tournament-question .tr-title .actions { max-width: 65%; }
+  body.is-fs.tournament-question .tr-prompt { font-size: clamp(16px, 2.3dvh, 25px); }
+  body.is-fs.tournament-question .tr-question-main { gap: 4px; }
+  body.is-fs.tournament-question .tr-number-display { height: 40px; font-size: 24px; }
+  body.is-fs.tournament-question .tr-confirm { height: 40px; font-size: 14px; }
+  body.is-fs.tournament-question .tr-answer h3 { font-size: 16px; margin-bottom: 4px; }
+}
+
+/* Roster fits without scrolling: compact two-column rows with a toggle per student. */
+.tr-pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; }
+.tr-pick > label {
+  display: flex; align-items: center; gap: 8px; margin: 0; padding: 6px 4px;
+  border-bottom: 1px solid #e9e4d9; font-weight: 600; font-size: 15px; cursor: pointer; min-width: 0;
+}
+.tr-pick > label > input { display: inline-block; width: 18px; height: 18px; margin: 0; padding: 0; flex: none; accent-color: #5b3fa0; }
+.tr-pick > label > span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tr-pick > label > b { flex: none; font-size: 12px; color: #6b5d80; }
+.tr-pick > label.tr-out span { text-decoration: line-through; color: #a49bb1; }
+.tr-pick > label.tr-out b { opacity: .4; }
+@media (max-width: 480px) { .tr-pick { grid-template-columns: minmax(0, 1fr); } }
+/* Measure figures at their final pose, not mid-animation. */
+.tr-measure, .tr-measure * { animation: none !important; transition: none !important; }
+
+/* Topic range: first and last topic side by side. */
+.tr-topic-range { border: 1px solid #dfd7ef; border-radius: 16px; padding: 4px 18px 12px; margin: 16px 0; min-width: 0; }
+.tr-topic-range legend { font-size: 17px; font-weight: 800; padding: 0 8px; color: #49337e; }
+.tr-topic-range label { display: inline-block; width: calc(50% - 8px); margin: 10px 0 6px; font-size: 14px; vertical-align: top; }
+.tr-topic-range label + label { margin-left: 16px; }
+.tr-topic-range .fine { margin: 4px 0 0; }
+@media (max-width: 480px) { .tr-topic-range label { display: block; width: 100%; } .tr-topic-range label + label { margin-left: 0; } }
