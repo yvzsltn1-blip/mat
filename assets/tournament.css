@@ -180,3 +180,47 @@ body.is-fs.tournament-question .tr-choice > b { flex-basis: 32px; height: 32px; 
 .tr-topic-range label + label { margin-left: 16px; }
 .tr-topic-range .fine { margin: 4px 0 0; }
 @media (max-width: 480px) { .tr-topic-range label { display: block; width: 100%; } .tr-topic-range label + label { margin-left: 0; } }
+
+/* Setup hero: a slim banner, title on the left and the four steps on the right. */
+.tr-hero-compact {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 14px 28px; padding: 20px 28px; border-radius: 22px; margin-bottom: 18px;
+}
+.tr-hero-compact h1 { font-size: clamp(24px, 2.6vw, 34px); margin: 4px 0 2px; }
+.tr-hero-compact p { font-size: 15px; margin: 0; }
+.tr-hero-compact .tr-steps { margin: 0; gap: 8px; }
+.tr-hero-compact .tr-steps span { padding: 6px 12px; font-size: 13px; background: #ffffff0d; }
+@media (max-width: 760px) { .tr-hero-compact { padding: 16px 18px; } }
+
+/* Phase settings: each round is its own compact tinted panel with a coloured edge,
+   rounds split by a soft hairline. The opening round is the lightest. */
+.tr-phase-settings { gap: 0; margin: 14px 0; }
+.tr-phase-settings fieldset {
+  --ph: #8c79c9; --ph-bg: #fdfcff;
+  position: relative; margin: 0; padding: 2px 14px 10px; border: 1px solid #e6e0f3;
+  border-left: 4px solid var(--ph); border-radius: 14px; background: var(--ph-bg);
+}
+.tr-phase-settings fieldset + fieldset { margin-top: 19px; }
+.tr-phase-settings fieldset + fieldset::before {
+  content: ""; position: absolute; left: 12%; right: 12%; top: -11px; height: 1px;
+  background: linear-gradient(90deg, transparent, #c9bde6, transparent);
+}
+.tr-phase-settings fieldset[data-phase="16"] { --ph: #4f7fd1; --ph-bg: #f4f8ff; }
+.tr-phase-settings fieldset[data-phase="8"] { --ph: #2f9d78; --ph-bg: #f2faf6; }
+.tr-phase-settings fieldset[data-phase="4"] { --ph: #d9822b; --ph-bg: #fff7ee; }
+.tr-phase-settings fieldset[data-phase="2"] { --ph: #c9485b; --ph-bg: #fff3f5; }
+.tr-phase-settings legend { font-size: 15px; padding: 0 6px; color: var(--ph); background: var(--ph-bg); border-radius: 6px; }
+.tr-phase-settings .tr-setting-row {
+  grid-template-columns: minmax(0, 1.25fr) minmax(70px, .6fr) minmax(0, 1.4fr); gap: 10px; align-items: end;
+}
+.tr-card .tr-phase-settings label, .tr-phase-settings .tr-format-fixed { margin: 4px 0 0; font-size: 12px; }
+.tr-card .tr-phase-settings :is(select, input) { margin-top: 4px; padding: 8px 10px; border-radius: 9px; }
+.tr-phase-settings .tr-format-fixed { font-weight: 800; }
+.tr-phase-settings .tr-format-fixed span {
+  display: block; margin-top: 4px; padding: 8px 10px; border: 1px dashed #cfc6e3; border-radius: 9px;
+  color: #6b5d8c; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+@media (max-width: 600px) {
+  .tr-phase-settings .tr-setting-row { grid-template-columns: minmax(0, 1fr) minmax(70px, .6fr); }
+  .tr-phase-settings .tr-setting-row > :last-child { grid-column: 1 / -1; }
+}
