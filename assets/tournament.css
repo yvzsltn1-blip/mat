@@ -219,3 +219,15 @@ body.is-fs.tournament-question .tr-choice > b { flex-basis: 32px; height: 32px; 
   .tr-phase-settings .tr-setting-row { grid-template-columns: minmax(0, 1fr) minmax(70px, .6fr); }
   .tr-phase-settings .tr-setting-row > :last-child { grid-column: 1 / -1; }
 }
+
+/* Choice values never break mid-number; fitChoices() shrinks a panel's options together instead. */
+.tr-choice > span { flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow-wrap: normal; overflow: hidden; }
+.tr-choice > span.tr-wrap { white-space: normal; overflow-wrap: break-word; }
+@media (max-width: 600px) and (orientation: portrait) {
+  /* The letter becomes a corner tag so the value gets the full width of the narrow option. */
+  body.is-fs.tournament-question .tr-choice { position: relative; justify-content: center; padding: 6px 4px 6px 12px; gap: 0; }
+  body.is-fs.tournament-question .tr-choice > b {
+    position: absolute; top: 4px; left: 4px; width: 17px; height: 17px; border-radius: 6px; font-size: 10px;
+  }
+  body.is-fs.tournament-question .tr-choice > span { flex: 0 1 auto; text-align: center; }
+}

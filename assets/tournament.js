@@ -138,7 +138,7 @@
     const t = current(), disabled = t.answers[side] ? "disabled" : "", draft = t.drafts[side] || "";
     let entry;
     if (q.kind === "mc") {
-      entry = `<input type="hidden" data-answer="${side}" value="${esc(draft)}"><div class="tr-choices" role="group" aria-label="Cevap seçenekleri">${q.choices.map((choice,i) => `<button type="button" class="tr-choice ${draft === String(choice) ? "selected" : ""}" data-choice="${i}" data-side="${side}" aria-pressed="${draft === String(choice)}" ${disabled}><b>${"ABCD"[i]}</b><span>${MatVisuals.angleMarks(esc(choice))}</span></button>`).join("")}</div>`;
+      entry = `<input type="hidden" data-answer="${side}" value="${esc(draft)}"><div class="tr-choices" role="group" aria-label="Cevap seçenekleri">${q.choices.map((choice,i) => `<button type="button" class="tr-choice ${draft === String(choice) ? "selected" : ""}" data-choice="${i}" data-side="${side}" aria-pressed="${draft === String(choice)}" ${disabled}><b>${"ABCD"[i]}</b><span>${MatVisuals.angleMarks(esc(String(choice).replace(/(\d) (?=\d)/g, "$1\u00a0")))}</span></button>`).join("")}</div>`;
     } else {
       // Keep the keypad stable: its keys must not reveal the answer's sign/type.
       const extra = t.topics.some(id => id.startsWith("m7-")) ? ["−",",","/"] : [];
@@ -200,6 +200,23 @@
     }
     host.innerHTML = `<div class="tr-title"><div><span class="tr-kicker">ŞAMPİYONLAR TURNUVASI</span><h2>${esc(t.topicName)}</h2></div><div class="actions"><button type="button" class="soft tr-exit-fullscreen" data-act="fullscreen" aria-label="Tam ekrandan çık">⛶<span> Tam ekrandan çık</span></button>${t.rounds.length && t.stage !== "drawing" ? button("tree",t.view === "bracket" ? "✕ Ağacı kapat" : "🏆 Turnuva ağacı",`aria-expanded="${t.view === "bracket"}"`) : ""}${["ready","result","ranking"].includes(t.stage) && !t.view ? button("settings","⚙ Aşama ayarları") : ""}${t.stage !== "champion" ? button("reset","Turnuvayı bitir") : ""}</div></div>${body}<p data-message role="status"></p>${!t.view && !t.rounds.length ? `<details class="tr-card"><summary>Tüm katılımcılar (${t.players.length})</summary><div class="tr-roster">${t.players.map(p => `<div>${esc(p.name)}<span>${t.results.some(r=>r.id===p.id) ? "Tamamladı" : "Sırasını bekliyor"}</span></div>`).join("")}</div></details>` : ""}`;
     fitFigures();
+    fitChoices();
+  }
+  // Choice values stay on one line: each panel's options shrink together to the size of
+  // the widest one; text that still cannot fit at the floor size wraps between words.
+  function fitChoices() {
+    for (const group of host.querySelectorAll(".tr-choices")) {
+      const spans = [...group.querySelectorAll(".tr-choice > span")];
+      spans.forEach(s => { s.style.fontSize = ""; s.classList.remove("tr-wrap"); });
+      if (!spans.length || !spans[0].clientWidth) continue;
+      let size = parseFloat(getComputedStyle(spans[0]).fontSize);
+      const overflows = () => spans.some(s => s.scrollWidth > s.clientWidth + 1);
+      while (overflows() && size > 10) {
+        size -= 1;
+        spans.forEach(s => { s.style.fontSize = size + "px"; });
+      }
+      spans.forEach(s => s.classList.toggle("tr-wrap", s.scrollWidth > s.clientWidth + 1));
+    }
   }
   // Figures are drawn on a fixed canvas with empty margins; crop each one to its drawing
   // so the picture sits right under the question and can grow into the free space.
@@ -314,5 +331,7 @@
       };
     }
   };
+  // Fullscreen and rotation change the panel width, so the choices fit again.
+  root.addEventListener?.("resize",()=>{if(host)fitChoices();});
   document.addEventListener("visibilitychange",()=>{if(document.hidden && host && current()?.stage==="question"){pause();paint();}});
 })(window);
