@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const R = root.MatTournamentRules;
-  let host, ctx, timer, drawTimer, started = 0, baseline = 0;
+  let host, ctx, timer, drawTimer, started = 0, baseline = 0, treeRound = null;
   // Students the teacher removed on the setup screen (e.g. not in class today).
   const excluded = new Set();
   const entrants = () => ctx.students().filter(p => !excluded.has(p.id));
@@ -186,13 +186,37 @@
     (Object.keys(t.answers).length ? MatAudio.correct : MatAudio.wrong).call(MatAudio);
     save(); paint();
   }
+  // The tree shows one round per screen; tabs and the next/previous buttons move between rounds.
   function bracket(t) {
     const display = [...t.rounds];
     while (display.length && display[display.length - 1].length > 1) {
       const previous = display[display.length - 1];
       display.push(Array.from({length:previous.length / 2}, (_,i) => ({ids:[previous[i*2].winner || null,previous[i*2+1].winner || null],scores:["—","—"]})));
     }
-    return `<section class="tr-card tr-tree-view"><h2>Şampiyonluk yolu</h2><p class="fine">${t.stage === "paused" ? "Soru duraklatıldı. Döndüğünüzde Devam et ile süreyi başlatabilirsiniz." : "Eşleşmeler ve maç sonuçları"}</p><div class="tr-bracket">${display.map(round => `<section><h3>${R.phaseName(String(round.length*2))}</h3>${round.map(m => `<div class="tr-match">${m.ids.map((id,j) => `<div class="${id && m.winner === id ? "tr-winner" : ""}"><span>${name(id)}</span><b>${m.scores[j]} ${id && m.winner === id ? "✓" : ""}</b></div>`).join("")}</div>`).join("")}</section>`).join("")}</div></section>`;
+    const at = Math.min(Math.max(treeRound ?? t.round ?? 0, 0), display.length - 1), round = display[at] || [];
+    const live = at === t.round && t.mode === "duel" ? match() : null;
+    const roundName = r => R.phaseName(String(r.length * 2));
+    const player = (m, j) => {
+      const id = m.ids[j], won = !!m.winner && m.winner === id, lost = !!m.winner && !won;
+      return `<div class="tr-mp ${won ? "win" : lost ? "lose" : ""} ${id ? "" : "tbd"}"><span class="tr-mn">${won ? "👑 " : ""}${name(id)}</span><b>${m.scores[j]}</b></div>`;
+    };
+    const card = (m, j) => `<div class="tr-m ${m === live ? "live" : ""} ${m.winner ? "done" : ""}" style="--i:${j}">${m === live ? '<span class="tr-live">SIRADAKİ MAÇ</span>' : ""}${player(m, 0)}<i class="tr-vs" aria-hidden="true">VS</i>${player(m, 1)}</div>`;
+    const step = (r, label, cls) => r >= 0 && r < display.length ? `<button type="button" class="tr-step ${cls}" data-t="tree-round" data-r="${r}">${label}</button>` : "";
+    return `<section class="tr-board tr-tree"><header class="tr-board-head"><span class="tr-kicker">ŞAMPİYONLUK YOLU</span><h2>${roundName(round)}</h2><p>${t.stage === "paused" ? "Soru duraklatıldı. Ağacı kapatınca Devam et ile süre kaldığı yerden başlar." : `${round.length} maç · kazananlar ${at < display.length - 1 ? roundName(display[at + 1]).toLocaleLowerCase("tr") + " turuna çıkar" : "şampiyon olur"}`}</p></header>
+      <nav class="tr-tabs" aria-label="Turlar">${display.map((r,i) => `<button type="button" class="${i === at ? "on" : ""} ${i < t.round || r.every(m => m.winner) ? "past" : ""}" data-t="tree-round" data-r="${i}" aria-current="${i === at}">${roundName(r)}</button>`).join("")}</nav>
+      <div class="tr-round ${round.length === 1 ? "tr-round-final" : ""}" data-round="${at}">${round.map(card).join("")}</div>
+      ${at === display.length - 1 && t.champion ? `<div class="tr-champ-plate"><span>🏆</span><small>ŞAMPİYON</small><b>${name(t.champion)}</b></div>` : ""}
+      <div class="tr-steps-nav">${step(at - 1, "‹ Önceki tur", "back")}${step(at + 1, "Sonraki tur ›", "next")}</div></section>`;
+  }
+  // Elimination standings: game-style plates, the qualifying line drawn between the last
+  // student going up and the first one out.
+  function standings(t) {
+    const list = ranks(t);
+    const value = r => !r.ok ? ["", r.err === null ? "Tahmin yok" : "Yanlış / süre doldu"] : r.err != null ? ["FARK", deg(r.err)] : ["SÜRE", seconds(r.ms)];
+    const row = (r, i) => { const [label, v] = value(r), up = i < t.cut; return `<li class="tr-row ${up ? "up" : "out"} ${i < 3 ? "top" + (i + 1) : ""}" style="--i:${Math.min(i, 18)}"><b class="tr-rk">${i + 1}</b><span class="tr-rn">${name(r.id)}</span><span class="tr-rv">${label ? `<small>${label}</small>` : ""}${v}${r.ok && r.err != null ? `<small>${seconds(r.ms)}</small>` : ""}</span><em>${up ? "ÜST TUR" : "ELENDİ"}</em></li>`; };
+    return `<section class="tr-board tr-standings"><header class="tr-board-head"><span class="tr-kicker">İLK TUR · ELEME</span><h2>Puan durumu</h2><p>İlk ${t.cut} öğrenci üst tura çıkar · ${t.players.length - t.cut} öğrenci elenir</p></header>
+      <ol class="tr-ranks">${list.map((r,i) => (i === t.cut ? '<li class="tr-cut" aria-hidden="true"><span>ÜST TUR SINIRI</span></li>' : "") + row(r,i)).join("")}</ol>
+      <div class="tr-steps-nav">${button("draw","Eşleşme kurasını çek ✦")}</div></section>`;
   }
   function answerPanel(id, side, q) {
     const t = current(), disabled = t.answers[side] ? "disabled" : "", draft = t.drafts[side] || "";
@@ -255,7 +279,7 @@
         body = `<section class="tr-card tr-question-card ${t.mode === "duel" ? "tr-duel-question" : "tr-single-question"}"><div class="tr-question-head"><span>${R.phaseName(phaseKey())} · ${t.mode === "qualify" ? `${t.results.length+1}/${t.players.length}` : m.overtime ? "UZATMA" : `Soru ${m.questions+1}/3`}<small>${t.q.eye ? "🎯 Göz kararı · " + R.EYE_NAMES[t.q.eye] : R.levels[config.level-1]}${t.topics.length > 1 && !t.q.eye ? " · " + esc(topicTitle(t.q.topic)) : ""}${m ? " · Skor " + m.scores.join(" : ") : ""}</small></span><b data-clock>${cap === Infinity ? "∞ Süresiz" : seconds(remaining)}</b>${button("pause","Duraklat")}</div><div class="tr-question-main"><h2 class="tr-prompt">${MatVisuals.angleMarks(esc(t.q.prompt))}</h2><div class="tr-figure">${t.q.scene?.html || ""}</div></div><div class="tr-answers">${(t.mode === "qualify" ? [t.players[t.results.length].id] : m.ids).map((id,i) => answerPanel(id,i,t.q)).join("")}</div></section>`;
       }
     } else if (t.stage === "ranking") {
-      body = `<section class="tr-card"><h2>Eleme sonuçları · İlk ${t.cut} üst turda</h2><div class="tr-roster">${ranks(t).map((r,i) => `<div class="${i<t.cut ? "tr-qualified" : ""}"><b>${i+1}. ${name(r.id)}</b><span>${r.ok ? (r.err != null ? `fark ${deg(r.err)} · ${seconds(r.ms)}` : "✓ " + seconds(r.ms)) : r.err === null ? "Tahmin yok" : "Yanlış / süre doldu"} · ${i<t.cut ? "Üst tur" : "Elendi"}</span></div>`).join("")}</div>${button("draw","Eşleşme kurasını çek ✦")}</section>`;
+      body = standings(t);
     } else if (t.stage === "drawing") body = `<section class="tr-card tr-center tr-drawing"><div class="tr-orb">✦</div><h2>Eşleşmeler hazırlanıyor…</h2><p data-draw>Şans, heyecan ve matematik!</p></section>`;
     else if (t.stage === "champion") {
       const p = ctx.students(true).find(x => x.id === t.champion);
@@ -386,12 +410,13 @@
           if(!(e.detail > 0))press(key||choice);
           return;
         }
-        const act=e.target.closest("[data-t]")?.dataset.t;if(!act)return;
+        const actEl=e.target.closest("[data-t]"), act=actEl?.dataset.t;if(!act)return;
+        if(act==="tree-round"){treeRound=Number(actEl.dataset.r);paint();return;}
         if(act==="question")beginQuestion();
         if(act==="pause"){pause();paint();}
         if(act==="resume"){t.stage="question";t.startedAt=Date.now();save();paint();clock();}
         if(act==="draw")draw();
-        if(act==="tree"){if(t.stage==="question")pause();t.view=t.view==="bracket"?null:"bracket";save();paint();}
+        if(act==="tree"){if(t.stage==="question")pause();treeRound=null;t.view=t.view==="bracket"?null:"bracket";save();paint();}
         if(act==="settings" && ["ready","result","ranking"].includes(t.stage)){t.view="settings";paint();}
         if(act==="settings-cancel"){t.view=null;paint();}
         if(act==="new" || act==="reset" && confirm("Bu turnuva sonlandırılsın mı? Tamamlanmamış turnuva için yıldız verilmez.")){stop();ctx.save(null);paint();}

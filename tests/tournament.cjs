@@ -80,7 +80,7 @@ assert(h.host.innerHTML.includes('data-key="Sil"'));assert(h.host.innerHTML.incl
 h.inputs[0].value='12';h.advance(2345);h.click('tree');
 assert.equal(h.data.stage,'paused');assert.equal(h.data.elapsed,2345);assert.equal(h.data.drafts[0],'12');
 assert(!h.bodyClasses.has('tournament-question'));
-assert(h.host.innerHTML.includes('class="tr-bracket"'));assert(!h.host.innerHTML.includes('tr-number-display'));
+assert(h.host.innerHTML.includes('class="tr-board tr-tree"'));assert(!h.host.innerHTML.includes('tr-number-display'));
 h.remount();h.click('tree');assert.equal(h.data.stage,'paused');h.click('resume');assert.equal(h.inputs[0].value,'12');
 assert(h.bodyClasses.has('tournament-question'));
 h.control('[data-key]',{key:'Sil',side:'0'});assert.equal(h.inputs[0].value,'');
@@ -141,6 +141,12 @@ assert.equal(edit.data.q.level,2);edit.advance(17001);edit.tick();assert.equal(e
 // The teacher's last setup is remembered: a new tournament opens with the same values.
 {const m=harness(2);m.start({2:{seconds:75,eye:true}});const next=harness(2);next.api.mount(next.host,next.context);
   assert(next.host.innerHTML.includes('name="seconds_2" type="number" value="75"'));assert(next.host.innerHTML.includes('name="eye_2" checked'));}
+// The tree shows one round per screen and steps to the next round with a button.
+{const b=harness(8);b.start();b.draw();b.click('tree');const html=()=>b.host.innerHTML;
+  assert(html().includes('<h2>Çeyrek final</h2>'));assert.equal(html().split('class="tr-m ').length-1,4);assert(html().includes('SIRADAKİ MAÇ'));
+  assert(html().includes('data-r="1">Sonraki tur ›'));b.control('[data-t]',{t:'tree-round',r:'1'});
+  assert(html().includes('<h2>Yarı final</h2>'));assert.equal(html().split('class="tr-m ').length-1,2);
+  b.click('tree');b.click('tree');assert(html().includes('<h2>Çeyrek final</h2>'));}
 // Saved v1 tournaments retain their bracket/scores, replacing an incompatible active question.
 const legacy=harness(16);legacy.start();legacy.draw();legacy.data.rounds[0][0].scores[0]=1;
 legacy.click('question');delete legacy.data.settings;legacy.data.seconds=23;
