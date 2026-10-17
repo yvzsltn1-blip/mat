@@ -907,3 +907,7 @@ body.tahta .sol-step p, body.tahta .sol-question > p { font-size: 1.4rem; }
 .sol-table th { background: #f3ecdf; font-weight: 800; }
 .sol-table tr.sum td { background: #e6f6ef; font-weight: 900; color: #0f5f4e; }
 .sol-fig .ar-cards, .sol-fig .ar-boxes { margin: 0; }
+
+/* Drawn ∠ (see MatVisuals.angleMarks): same weight and colour as the text around it. */
+.angle-mark { display: inline-block; width: .86em; height: .73em; margin: 0 .1em 0 .02em; vertical-align: 0; fill: none; stroke: currentColor; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.angle-mark path + path { stroke-width: 2.4; }

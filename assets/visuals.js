@@ -285,8 +285,14 @@
     return dialSvg(deg, { pair: true }).replace('<path d=', `<g id="pairSectors">${pairParts(deg,total,hideMissing)}</g><path d=`);
   }
 
+  // The text fonts have no ∠ glyph, so phones fall back to a thin, cramped one.
+  // Swap it in already-escaped text for a drawn mark that follows the text colour.
+  const ANGLE_MARK = '<svg class="angle-mark" viewBox="0 0 26 22" role="img" aria-label="açı"><path d="M19 1.5 L3 20.5 H24"/><path d="M11 20.5 A8 8 0 0 0 8.2 14.3"/></svg>';
+  const angleMarks = (html) => String(html).replace(/∠/g, ANGLE_MARK);
+
   root.MatVisuals = {
     pairSvg, pairParts,
+    angleMarks,
     renderScene,
     dialSvg,
     ray,

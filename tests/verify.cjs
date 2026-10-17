@@ -82,7 +82,7 @@ function harness(storage = new Map(), opts = {}) {
     clearTimeout: id => jobs.delete(id),
     setInterval: (fn, delay) => { const id = ++serial; jobs.set(id, { fn, at: now + delay, interval: delay }); return id; },
     clearInterval: id => jobs.delete(id),
-    MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "" } });
+    MatAudio: { setMusicScene() {}, toggleMusic() {}, musicEnabled: true, cancelSpeak() {}, correct() {}, wrong() {}, fanfare() {}, tick() {}, ensure() {}, speak() {} }, MatVisuals: { renderScene: () => "", dialSvg: () => "", pairSvg: () => "", angleMarks: (s) => s } });
   ctx.window = ctx;
   for (const file of ["curriculum.js", "lesson-stories.js", "games.js", "question-bank.js", ...(opts.gen ? ["arcade-gen.js", "level-gen.js"] : [])]) vm.runInContext(fs.readFileSync(path.join(root, "assets", file), "utf8"), ctx);
   const source = fs.readFileSync(path.join(root, "assets/app.js"), "utf8").replace(/\}\)\(\);\s*$/, "globalThis.testApi = { state, startLocal, persist, addMany, parseList, makeGroups, eligible, spinPick, members, groupScore, beginLevel, submit, goNext, currentQ, cancelRound, pauseClock, resumeClock, openTopic, onChange, onClick, isCorrect, ready, animateLessonAngle, applyLessonAngle, render };\n})();");

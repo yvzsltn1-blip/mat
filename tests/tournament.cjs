@@ -13,7 +13,7 @@ function harness(count=13) {
   }});
   const sandbox={window:null,document:{addEventListener(){},body:{classList:{toggle:(key,on)=>on?bodyClasses.add(key):bodyClasses.delete(key),remove:key=>bodyClasses.delete(key)}}},performance:{now:()=>now},Date,Math,confirm:()=>true,
     setInterval:f=>{timers.set(++serial,f);return serial;},clearInterval:i=>timers.delete(i),
-    MatAudio:{correct(){},wrong(){},fanfare(){}},MatGames:{shuffle:(_,a)=>[...a].reverse()},
+    MatAudio:{correct(){},wrong(){},fanfare(){}},MatVisuals:{angleMarks:s=>s},MatGames:{shuffle:(_,a)=>[...a].reverse()},
     MatLevelGen:{generate:(topic,level)=>({kind:'num',prompt:'2 + 2?',answer:4,level,unit:'°'})}};
   sandbox.window=sandbox;vm.createContext(sandbox);code.forEach(s=>vm.runInContext(s,sandbox));
   const context={get:()=>data,save:t=>{data=t;},students:()=>players,topics:()=>[{id:'sum',no:'01',title:'Sum'},{id:'diff',no:'02',title:'Diff'},{id:'prod',no:'03',title:'Prod'}],practice:()=>false,award:()=>awarded++};

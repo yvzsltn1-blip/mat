@@ -1755,7 +1755,7 @@
       <div class="game-stage ${scene ? "has-scene" : "no-scene"} kind-${q.kind}">
         <section class="g-question">
           <span class="question-label">${q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>
-          <h2 class="prompt" tabindex="-1">${esc(q.prompt)}</h2>
+          <h2 class="prompt" tabindex="-1">${MatVisuals.angleMarks(esc(q.prompt))}</h2>
           ${scene ? `<div class="g-scene">${scene}</div>` : `<div class="g-mascot" aria-hidden="true">${["🦉", "🦊", "🐢", "🐝", "🦁"][q.level - 1] || "✦"}<span>${["Düşün!", "Hadi!", "Adım adım!", "Dikkat!", "Ustalık zamanı!"][q.level - 1] || ""}</span></div>`}
           <div class="help-row">${q.hint ? `<button class="hint-btn ${state.hintOpen ? "open" : ""}" type="button" data-act="hint">💡 ${state.hintOpen ? esc(q.hint) : "İpucu"}</button>` : ""}<button class="hint-btn sol-btn" type="button" data-act="solution" ${state.locked ? "" : "disabled title=\"Cevap verildikten sonra açılır\""}>📖 Çözüm${state.locked ? "" : " 🔒"}</button></div>
         </section>
