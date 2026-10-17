@@ -147,14 +147,14 @@
     return `<form data-side="${side}" class="tr-answer"><h3>${name(id)}</h3>${entry}<button class="tr-confirm" ${disabled}>✓ Cevabı kontrol et</button><span data-feedback role="status">${disabled ? "Yanlış cevap. Rakibin yanıtı bekleniyor." : ""}</span></form>`;
   }
   function settingsFields(configs) {
-    return `<div class="tr-phase-settings">${Object.entries(configs).sort(([a],[b]) => a === "qualify" ? -1 : b === "qualify" ? 1 : Number(b)-Number(a)).map(([key,c]) => `<fieldset data-phase="${key}"><legend>${R.phaseName(key)}</legend><div class="tr-setting-row"><label>Soru seviyesi<select name="level_${key}">${R.levels.map((label,i) => `<option value="${i+1}" ${c.level === i+1 ? "selected" : ""}>${label}</option>`).join("")}</select></label><label>Süre (sn)<input name="seconds_${key}" type="number" value="${c.seconds}" min="5" max="300" required></label>${key === "qualify" ? `<label>Cevap biçimi<select name="format_qualify"><option value="choice" ${c.format === "choice" ? "selected" : ""}>4 şıklı test</option><option value="number" ${c.format === "number" ? "selected" : ""}>Sayı gir · tuş takımı</option></select></label>` : `<div class="tr-format-fixed">Cevap biçimi<span>Sayı gir · tuş takımı</span></div>`}</div></fieldset>`).join("")}</div>`;
+    return `<div class="tr-phase-settings">${Object.entries(configs).sort(([a],[b]) => a === "qualify" ? -1 : b === "qualify" ? 1 : Number(b)-Number(a)).map(([key,c]) => `<fieldset data-phase="${key}"><legend>${R.phaseName(key)}</legend><div class="tr-setting-row"><label>Soru seviyesi<select name="level_${key}">${R.levels.map((label,i) => `<option value="${i+1}" ${c.level === i+1 ? "selected" : ""}>${label}</option>`).join("")}</select></label><label>Süre (sn)<input name="seconds_${key}" type="number" value="${c.seconds}" min="5" max="300" required></label><label>Cevap biçimi<select name="format_${key}"><option value="number" ${c.format !== "choice" ? "selected" : ""}>Sayı gir · tuş takımı</option><option value="choice" ${c.format === "choice" ? "selected" : ""}>4 şıklı test</option></select></label></div></fieldset>`).join("")}</div>`;
   }
   function readSettings(form, configs) {
     const updated = {};
     for (const key of Object.keys(configs)) {
       const level = Number(form.elements[`level_${key}`].value), duration = Number(form.elements[`seconds_${key}`].value);
       if (!Number.isInteger(level) || level < 1 || level > R.levels.length || !Number.isInteger(duration) || duration < 5 || duration > 300) return null;
-      updated[key] = {level, seconds:duration, format:key === "qualify" && form.elements.format_qualify.value === "choice" ? "choice" : "number"};
+      updated[key] = {level, seconds:duration, format:form.elements["format_" + key]?.value === "choice" ? "choice" : "number"};
     }
     return updated;
   }

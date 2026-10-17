@@ -24,7 +24,7 @@ function harness(count=13) {
     const elements={topicFrom:{value:'sum'},topicTo:{value:'sum'}};
     for(const [key,c] of Object.entries(config)) {
       elements['level_'+key]={value:String(c.level)};elements['seconds_'+key]={value:String(c.seconds)};
-      if(key==='qualify')elements.format_qualify={value:c.format};
+      elements['format_'+key]={value:c.format};
     }
     return elements;
   };
@@ -106,6 +106,9 @@ const edit=harness(4);edit.start();edit.draw();edit.click('settings');
 const changed=JSON.parse(JSON.stringify(edit.data.settings));changed[4]={level:2,seconds:17,format:'number'};
 edit.formSubmit('[data-settings]',edit.fields(changed));edit.remount();edit.click('question');
 assert.equal(edit.data.q.level,2);edit.advance(17001);edit.tick();assert.equal(edit.data.stage,'result');
+// Duel phases default to keypad entry, but the teacher can switch a phase to four choices.
+{const mc=harness(2);assert.equal(R.defaults(2)[2].format,'number');mc.start({2:{format:'choice'}});mc.draw();mc.click('question');
+  assert.equal(mc.data.settings[2].format,'choice');assert.equal(mc.data.q.kind,'mc');assert(mc.host.innerHTML.includes('tr-choices'));}
 // Saved v1 tournaments retain their bracket/scores, replacing an incompatible active question.
 const legacy=harness(16);legacy.start();legacy.draw();legacy.data.rounds[0][0].scores[0]=1;
 legacy.click('question');delete legacy.data.settings;legacy.data.seconds=23;

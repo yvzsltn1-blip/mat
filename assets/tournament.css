@@ -213,13 +213,8 @@ body.is-fs.tournament-question .tr-choice > b { flex-basis: 32px; height: 32px; 
 .tr-phase-settings .tr-setting-row {
   grid-template-columns: minmax(0, 1.25fr) minmax(70px, .6fr) minmax(0, 1.4fr); gap: 10px; align-items: end;
 }
-.tr-card .tr-phase-settings label, .tr-phase-settings .tr-format-fixed { margin: 4px 0 0; font-size: 12px; }
+.tr-card .tr-phase-settings label { margin: 4px 0 0; font-size: 12px; }
 .tr-card .tr-phase-settings :is(select, input) { margin-top: 4px; padding: 8px 10px; border-radius: 9px; }
-.tr-phase-settings .tr-format-fixed { font-weight: 800; }
-.tr-phase-settings .tr-format-fixed span {
-  display: block; margin-top: 4px; padding: 8px 10px; border: 1px dashed #cfc6e3; border-radius: 9px;
-  color: #6b5d8c; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
 @media (max-width: 600px) {
   .tr-phase-settings .tr-setting-row { grid-template-columns: minmax(0, 1fr) minmax(70px, .6fr); }
   .tr-phase-settings .tr-setting-row > :last-child { grid-column: 1 / -1; }
