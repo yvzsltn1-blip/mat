@@ -5,7 +5,12 @@
 /* A fullscreen question owns the viewport; setup, results and the tree keep
    their normal scrolling layout. All content stays in the same DOM on resize. */
 html:has(body.is-fs.tournament-question) { height: 100%; overflow: hidden; }
-body.is-fs.tournament-question { height: 100dvh; min-height: 0; overflow: hidden; }
+/* Pinned to the visible viewport instead of 100dvh: on phones (iOS) dvh can count the
+   status bar and home-indicator strips, which pushed the header and the confirm button off-screen. */
+body.is-fs.tournament-question {
+  position: fixed; inset: 0; height: auto; min-height: 0; overflow: hidden; box-sizing: border-box;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
 body.is-fs.tournament-question #app {
   height: 100%; min-height: 0; display: flex; flex-direction: column;
 }

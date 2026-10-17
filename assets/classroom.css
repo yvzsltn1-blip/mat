@@ -482,3 +482,57 @@ body.game-mode .reveal-content { padding: 2vh 22px; }
 body.practice-mode .g-points, body.practice-mode .fb-points { filter: grayscale(.7); opacity: .75; }
 .modal-icon { font-size: 2.4rem; }
 .pw-ok { background: #e2f4ea; color: #1c6e55; border-radius: 12px; padding: 10px 12px; font-weight: 700; }
+
+/* Top toolbar: one rounded bar whose segments are split by hairlines; exit stands apart as a door. */
+.topbar .top-actions {
+  display: flex; flex-wrap: nowrap; align-items: stretch; gap: 0; min-width: 0;
+  border: 1px solid rgba(255,255,255,.22); border-radius: 14px;
+  background: rgba(255,255,255,.06); box-shadow: inset 0 1px 0 rgba(255,255,255,.08); overflow: hidden;
+}
+.topbar .top-actions > .tb {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 40px; height: 40px; padding: 0 11px; margin: 0;
+  border: 0; border-radius: 0; background: transparent; color: #f6f1e4;
+  font-size: .84rem; font-weight: 800; white-space: nowrap;
+}
+.topbar .top-actions > .tb + .tb { border-left: 1px solid rgba(255,255,255,.16); }
+.topbar .top-actions > .tb:hover { background: rgba(255,255,255,.11); }
+.topbar .top-actions > .tb:focus-visible { outline-offset: -3px; }
+.topbar .top-actions > .tb:not(:disabled):active { transform: none; background: rgba(255,255,255,.18); }
+.topbar .tb-ico { font-size: 1.05rem; line-height: 1; }
+.topbar .tb-icon { padding: 0 10px; }
+.topbar .tb-icon .tb-label { display: none; }
+.topbar .top-actions > .tb-accent { background: rgba(255,207,74,.15); color: #ffe39a; }
+.topbar .top-actions > .tb-accent:hover { background: rgba(255,207,74,.26); }
+.topbar .top-actions > .practice-btn.on { background: #ffcf4a; color: #4a3200; }
+.topbar .tb-music[aria-pressed="false"] .tb-ico { opacity: .45; text-decoration: line-through; }
+.topbar .logout-button {
+  flex: none; display: inline-grid; place-items: center; width: 42px; height: 42px; padding: 0;
+  border: 1px solid rgba(255,255,255,.22); border-radius: 14px;
+  background: rgba(255,255,255,.06); color: #f6f1e4;
+}
+.topbar .logout-button:hover { background: #e25b45; border-color: #e25b45; color: #fff; }
+.topbar .logout-button svg {
+  width: 21px; height: 21px; fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+body.game-mode .topbar .top-actions > .tb { height: 36px; }
+body.game-mode .topbar .logout-button { width: 38px; height: 38px; }
+/* Narrow screens: brand, save state and exit share the first row; the toolbar fills the second. */
+@media (max-width: 1320px) {
+  .topbar .class-pill { margin-left: 4px; }
+  .topbar .sync-state, body.game-mode .topbar .logout-button { margin-left: auto; }
+  .topbar .top-actions { order: 5; width: 100%; }
+  .topbar .top-actions > .tb { flex: 1 1 auto; }
+}
+@media (max-width: 640px) {
+  .topbar { row-gap: 10px; }
+  /* The brand gives way first, so the exit door never drops to its own row. */
+  .topbar .brand { flex: 1 1 0; min-width: 0; gap: 8px; }
+  .topbar .brand > div { min-width: 0; }
+  .topbar .brand h1, .topbar .brand small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .topbar .anka { width: 40px; height: 40px; }
+  .topbar .top-actions > .tb { flex: 1 1 0; min-width: 0; padding: 0 4px; }
+  .topbar .top-actions .tb-label { display: none; }
+  .topbar .tb-ico { font-size: 1.12rem; }
+}

@@ -1128,10 +1128,13 @@
 
   function header() {
     const status = cloud && !localMode ? cloud.status : "local";
+    // One toolbar segment; on phones only the icon shows, so the label also names the button.
+    const tb = (act, icon, label, { cls = "", attrs = "", title = label } = {}) =>
+      `<button class="tb ${cls}" type="button" data-act="${act}" title="${title}" aria-label="${label}" ${attrs}><span class="tb-ico" aria-hidden="true">${icon}</span><span class="tb-label">${label}</span></button>`;
     const nav = state.classId ? [
-      `<button class="solid tournament-nav" type="button" data-act="goto-tournament">🏆 Turnuva</button>`,
-      state.screen !== "board" ? `<button class="ghost" type="button" data-act="goto-board">📚 Konular</button>` : "",
-      state.screen !== "manage" ? `<button class="ghost" type="button" data-act="goto-manage">👥 Sınıf yönetimi</button>` : ""
+      tb("goto-tournament", "🏆", "Turnuva", { cls: "tb-accent" }),
+      state.screen !== "board" ? tb("goto-board", "📚", "Konular") : "",
+      state.screen !== "manage" ? tb("goto-manage", "👥", "Sınıf yönetimi") : ""
     ].join("") : "";
     return `<header class="topbar">
       <div class="brand">
@@ -1146,17 +1149,17 @@
       </div>
       ${state.classId ? `<button class="class-pill" type="button" data-act="goto-classes" title="Sınıf değiştir">${esc(state.className)} · ${present(state.students).length}/${state.students.length} öğrenci <span aria-hidden="true">▾</span></button>` : `<button class="class-pill" type="button" data-act="goto-classes">Sınıflarım</button>`}
       <span class="sync-state" id="syncState" data-s="${status}">${syncText(status)}</span>
-      <div class="top-actions">
+      <div class="top-actions" role="toolbar" aria-label="Araçlar">
         ${nav}
-        <button class="ghost" type="button" data-act="toggle-music" aria-pressed="${MatAudio.musicEnabled}">♫ Müzik ${MatAudio.musicEnabled ? "açık" : "kapalı"}</button>
-        ${state.tahta && state.screen === "topic" ? `<button class="ghost" type="button" data-act="tahta" aria-pressed="true">Tahta modunu kapat</button>` : ""}
-        <button class="ghost practice-btn ${state.practice ? "on" : ""}" type="button" data-act="toggle-practice" title="Antrenman modunda puan ve istatistik yazılmaz" aria-pressed="${state.practice}">🏋️ ${state.practice ? "Antrenman açık" : "Antrenman"}</button>
-        <button class="ghost icon" type="button" data-act="toggle-voice" title="${state.voice ? "Sesli anlatım açık" : "Sesli anlatım kapalı"}" aria-label="${state.voice ? "Sesli anlatımı kapat" : "Sesli anlatımı aç"}">${state.voice ? "🗣️" : "🤐"}</button>
-        <button class="ghost icon" type="button" data-act="toggle-mute" title="${state.muted ? "Efektler kapalı" : "Efektler açık"}" aria-label="${state.muted ? "Sesi aç" : "Sesi kapat"}">${state.muted ? "🔇" : "🔊"}</button>
-        <button class="ghost icon" type="button" data-act="fullscreen" title="Tam ekran" aria-label="Tam ekran">⛶</button>
-        ${cloud && !localMode ? `<button class="ghost icon" type="button" data-act="open-password" title="Şifreyi değiştir" aria-label="Şifreyi değiştir">🔑</button>` : ""}
-        <button class="ghost logout-button" type="button" data-act="logout">Çıkış</button>
+        ${tb("toggle-music", "♫", MatAudio.musicEnabled ? "Müzik açık" : "Müzik kapalı", { cls: "tb-music", attrs: `aria-pressed="${MatAudio.musicEnabled}"` })}
+        ${state.tahta && state.screen === "topic" ? tb("tahta", "✕", "Tahta modunu kapat", { attrs: `aria-pressed="true"` }) : ""}
+        ${tb("toggle-practice", "🏋️", state.practice ? "Antrenman açık" : "Antrenman", { cls: `practice-btn ${state.practice ? "on" : ""}`, attrs: `aria-pressed="${state.practice}"`, title: "Antrenman modunda puan ve istatistik yazılmaz" })}
+        ${tb("toggle-voice", state.voice ? "🗣️" : "🤐", state.voice ? "Sesli anlatımı kapat" : "Sesli anlatımı aç", { cls: "tb-icon", title: state.voice ? "Sesli anlatım açık" : "Sesli anlatım kapalı" })}
+        ${tb("toggle-mute", state.muted ? "🔇" : "🔊", state.muted ? "Sesi aç" : "Sesi kapat", { cls: "tb-icon", title: state.muted ? "Efektler kapalı" : "Efektler açık" })}
+        ${tb("fullscreen", "⛶", "Tam ekran", { cls: "tb-icon" })}
+        ${cloud && !localMode ? tb("open-password", "🔑", "Şifreyi değiştir", { cls: "tb-icon" }) : ""}
       </div>
+      <button class="logout-button" type="button" data-act="logout" title="Çıkış" aria-label="Çıkış"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3.5H5.5a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1H13"/><circle cx="10.5" cy="12" r="1.1" fill="currentColor" stroke="none"/><path d="M15 12h6.5M18.5 9l3 3-3 3"/></svg></button>
     </header>`;
   }
 
@@ -3191,6 +3194,8 @@
     if (!authenticated) return;
     document.body.classList.toggle("is-fs", !!document.fullscreenElement);
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
+    // A page scrolled before entering fullscreen would keep its offset and hide the top row.
+    window.scrollTo(0, 0);
     scheduleLessonFit();
   });
   window.addEventListener?.("resize", scheduleLessonFit);
