@@ -2,6 +2,8 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const code = ['tournament-rules','tournament'].map(n=>fs.readFileSync('assets/'+n+'.js','utf8'));
+// Shared like a browser's localStorage, so a later harness sees what an earlier one remembered.
+const store=new Map(),localStorage={getItem:k=>store.has(k)?store.get(k):null,setItem:(k,v)=>store.set(k,String(v))};
 function harness(count=13) {
   let now=0,data=null,awarded=0,serial=0,markup='';
   const timers=new Map(),inputs={},messages={textContent:''},bodyClasses=new Set();
@@ -11,7 +13,7 @@ function harness(count=13) {
     markup=html;Object.keys(inputs).forEach(k=>delete inputs[k]);
     for(const m of html.matchAll(/<input[^>]*data-answer="(\d+)"[^>]*value="([^"]*)"[^>]*>/g)) inputs[m[1]]={value:m[2],focus(){}};
   }});
-  const sandbox={window:null,document:{addEventListener(){},body:{classList:{toggle:(key,on)=>on?bodyClasses.add(key):bodyClasses.delete(key),remove:key=>bodyClasses.delete(key)}}},performance:{now:()=>now},Date,Math,confirm:()=>true,
+  const sandbox={window:null,localStorage,document:{addEventListener(){},body:{classList:{toggle:(key,on)=>on?bodyClasses.add(key):bodyClasses.delete(key),remove:key=>bodyClasses.delete(key)}}},performance:{now:()=>now},Date,Math,confirm:()=>true,
     setInterval:f=>{timers.set(++serial,f);return serial;},clearInterval:i=>timers.delete(i),
     MatAudio:{correct(){},wrong(){},fanfare(){}},MatVisuals:{angleMarks:s=>s},MatGames:{shuffle:(_,a)=>[...a].reverse()},
     MatLevelGen:{generate:(topic,level)=>({kind:'num',prompt:'2 + 2?',answer:4,level,unit:'°'})}};
@@ -24,7 +26,7 @@ function harness(count=13) {
     const elements={topicFrom:{value:'sum'},topicTo:{value:'sum'}};
     for(const [key,c] of Object.entries(config)) {
       elements['level_'+key]={value:String(c.level)};elements['seconds_'+key]={value:String(c.seconds)};
-      elements['format_'+key]={value:c.format};
+      elements['format_'+key]={value:c.format};elements['eye_'+key]={checked:!!c.eye};
     }
     return elements;
   };
@@ -109,6 +111,36 @@ assert.equal(edit.data.q.level,2);edit.advance(17001);edit.tick();assert.equal(e
 // Duel phases default to keypad entry, but the teacher can switch a phase to four choices.
 {const mc=harness(2);assert.equal(R.defaults(2)[2].format,'number');mc.start({2:{format:'choice'}});mc.draw();mc.click('question');
   assert.equal(mc.data.settings[2].format,'choice');assert.equal(mc.data.q.kind,'mc');assert(mc.host.innerHTML.includes('tr-choices'));}
+// Both students answer at once: keys, choices and confirm act on pointerdown, side by side.
+{const p=harness(2);p.start();p.draw();p.click('question');
+  const ctl=(sel,dataset)=>({dataset,disabled:false,matches:s=>s===sel,closest:s=>s==='[data-side]'?{dataset:{side:dataset.side}}:null});
+  const down=(sel,dataset)=>p.host.onpointerdown({button:0,preventDefault(){},target:{closest:s=>s.includes(sel)?ctl(sel,dataset):null}});
+  down('[data-key]',{key:'4',side:'0'});down('[data-key]',{key:'5',side:'1'});
+  assert.equal(p.inputs[0].value,'4');assert.equal(p.inputs[1].value,'5');
+  down('.tr-confirm',{side:'1'});assert.equal(p.data.answers[1].ok,false);assert.equal(p.data.stage,'question');
+  down('[data-key]',{key:'9',side:'1'});assert.equal(p.data.drafts[1],'5');
+  down('.tr-confirm',{side:'0'});assert.equal(p.data.stage,'result');}
+// Göz kararı elimination: one kind for everybody; closest estimate first, equal distance goes to the faster.
+{const e=harness(3);e.start({qualify:{eye:true,seconds:20}});const kinds=new Set();
+  const offsets=[[5,500],[2,1000],[-2,3000]];
+  for(const [off,wait] of offsets){e.click('question');kinds.add(e.data.q.eye);assert.equal(e.data.q.unit,'°');
+    e.advance(wait);e.submit(0,String(e.data.q.answer+off));if(e.data.stage==='result')e.click('next');}
+  assert.equal(kinds.size,1);assert(R.EYE_KINDS.includes([...kinds][0]));assert.equal(e.data.stage,'ranking');
+  const [slow,near,tied]=e.data.results;assert.equal(slow.err,5);assert.equal(near.err,2);assert.equal(tied.err,2);
+  e.click('draw');e.draw();assert.deepEqual([...e.data.rounds[0][0].ids].sort(),[near.id,tied.id].sort());
+  const sorted=[...e.data.results].sort((a,b)=>Number(b.ok)-Number(a.ok)||(a.err??0)-(b.err??0)||a.ms-b.ms);assert.equal(sorted[0].id,near.id);}
+// Göz kararı duel: the question waits for both estimates; closer wins, equal distance goes to the faster.
+{const d=harness(2);d.start({2:{eye:true,seconds:30}});d.draw();
+  d.click('question');assert(R.EYE_KINDS.includes(d.data.q.eye));let a=d.data.q.answer;
+  d.advance(400);d.submit(0,String(a+3));assert.equal(d.data.stage,'question');assert(d.host.innerHTML.includes('Tahminin alındı'));
+  d.advance(400);d.submit(1,String(a-1));assert.equal(d.data.stage,'result');assert.deepEqual([...d.data.rounds[0][0].scores],[0,1]);
+  d.click('question');a=d.data.q.answer;d.advance(500);d.submit(0,String(a+2));d.advance(400);d.submit(1,String(a-2));
+  assert.deepEqual([...d.data.rounds[0][0].scores],[1,1]);
+  d.click('question');a=d.data.q.answer;d.advance(500);d.submit(1,String(a));d.advance(30000);d.tick();
+  assert.equal(d.data.stage,'champion');assert.equal(d.data.champion,d.data.rounds[0][0].ids[1]);}
+// The teacher's last setup is remembered: a new tournament opens with the same values.
+{const m=harness(2);m.start({2:{seconds:75,eye:true}});const next=harness(2);next.api.mount(next.host,next.context);
+  assert(next.host.innerHTML.includes('name="seconds_2" type="number" value="75"'));assert(next.host.innerHTML.includes('name="eye_2" checked'));}
 // Saved v1 tournaments retain their bracket/scores, replacing an incompatible active question.
 const legacy=harness(16);legacy.start();legacy.draw();legacy.data.rounds[0][0].scores[0]=1;
 legacy.click('question');delete legacy.data.settings;legacy.data.seconds=23;

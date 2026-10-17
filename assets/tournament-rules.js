@@ -111,5 +111,39 @@
     if (fallback) return fallback.q;
     throw new Error(`${levels[level-1]} seviyesinde ${format === "number" ? "sayı girişine" : "dört seçeneğe"} uygun soru bulunamadı. Turnuva ayarlarından seviyeyi değiştirin.`);
   }
-  root.MatTournamentRules = {levels, bracketSize, phaseName, phases, defaults, createMatch, recordQuestion, numericValue, numericQuestion, fourChoices, question, pickShape, familyOf, shapeOf};
+  // Göz kararı: one angle is drawn; students estimate the angle itself, its complement or its
+  // supplement and type it in degrees. The closest estimate wins; equal distance goes to the faster one.
+  const EYE_KINDS = ["angle", "complement", "supplement"];
+  const EYE_NAMES = {angle:"Açı tahmini", complement:"Tümleyen", supplement:"Bütünleyen"};
+  const EYE_PROMPTS = {
+    angle: "Kırmızı kol ile siyah kol arasındaki açı kaç derece? Göz kararı tahmin et.",
+    complement: "Bu açının tümleyeni kaç derece? Göz kararı tahmin et.",
+    supplement: "Bu açının bütünleyeni kaç derece? Göz kararı tahmin et."
+  };
+  function eyeScene(kind, deg, flip) {
+    const cx = 210, cy = 190, rad = d => d * Math.PI / 180;
+    const pt = (d, r) => [(cx + r * Math.cos(rad(d))).toFixed(1), (cy - r * Math.sin(rad(d))).toFixed(1)];
+    const [ax, ay] = pt(deg, 170), [sx, sy] = pt(deg, 58);
+    // A faint guide shows what the angle is measured against: the right angle or the straight line.
+    const guide = kind === "complement" ? 90 : kind === "supplement" ? 180 : null;
+    let s = `<path d="M${cx} ${cy} L${cx + 58} ${cy} A58 58 0 0 0 ${sx} ${sy} Z" fill="#ffdcb0"/>`;
+    if (guide !== null) { const [gx, gy] = pt(guide, 170); s += `<line x1="${cx}" y1="${cy}" x2="${gx}" y2="${gy}" stroke="#a3abbd" stroke-width="3" stroke-dasharray="9 8" stroke-linecap="round"/>`; }
+    s += `<line x1="${cx}" y1="${cy}" x2="${cx + 170}" y2="${cy}" stroke="#1b2430" stroke-width="6" stroke-linecap="round"/>`;
+    s += `<line x1="${cx}" y1="${cy}" x2="${ax}" y2="${ay}" stroke="#e25b45" stroke-width="6" stroke-linecap="round"/>`;
+    s += `<circle cx="${cx}" cy="${cy}" r="7" fill="#1b2430"/>`;
+    return `<svg viewBox="0 0 420 210" role="img" aria-label="Tahmin edilecek açı"><g${flip ? ` transform="translate(${2 * cx} 0) scale(-1 1)"` : ""}>${s}</g></svg>`;
+  }
+  function eyeQuestion(kind, rnd = Math.random) {
+    const span = {angle:[10, 170], complement:[8, 82], supplement:[15, 165]}[kind];
+    const deg = span[0] + Math.floor(rnd() * (span[1] - span[0] + 1));
+    const answer = kind === "complement" ? 90 - deg : kind === "supplement" ? 180 - deg : deg;
+    return {kind:"num", eye:kind, deg, answer, unit:"°", prompt:EYE_PROMPTS[kind], scene:{html:eyeScene(kind, deg, rnd() < .5)}};
+  }
+  // Duel question of a göz kararı phase: side 0/1 for the closer (then faster) estimate, null for none.
+  function eyeWinner(a0, a1) {
+    if (a0 && a1) return a0.err !== a1.err ? (a0.err < a1.err ? 0 : 1) : a0.ms !== a1.ms ? (a0.ms < a1.ms ? 0 : 1) : null;
+    return a0 ? 0 : a1 ? 1 : null;
+  }
+  root.MatTournamentRules = {levels, bracketSize, phaseName, phases, defaults, createMatch, recordQuestion, numericValue, numericQuestion, fourChoices, question, pickShape, familyOf, shapeOf,
+    EYE_KINDS, EYE_NAMES, eyeQuestion, eyeWinner};
 })(typeof window !== "undefined" ? window : globalThis);

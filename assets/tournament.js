@@ -16,7 +16,30 @@
   const match = () => current().rounds[current().round]?.find(m => !m.winner);
   const phaseKey = () => current().mode === "qualify" ? "qualify" : String(current().rounds[current().round].length * 2);
   const settings = () => current().settings[phaseKey()];
-  const limit = () => current().mode === "duel" && match()?.overtime ? Infinity : settings().seconds * 1000;
+  // Göz kararı keeps its time limit in overtime: the question waits for both estimates.
+  const limit = () => current().mode === "duel" && match()?.overtime && !settings().eye ? Infinity : settings().seconds * 1000;
+  const deg = v => String(Math.round(v * 100) / 100).replace(".", ",") + "°";
+  // Setup values the teacher entered last time (topics and each phase), kept in this browser.
+  const STORE = "mat.tournament.setup";
+  function remembered() { try { return JSON.parse(root.localStorage.getItem(STORE)) || {}; } catch (e) { return {}; } }
+  function remember(patch) { try { root.localStorage.setItem(STORE, JSON.stringify({...remembered(), ...patch})); } catch (e) { /* private mode: nothing to keep */ } }
+  function withRemembered(configs) {
+    const kept = remembered().phases || {};
+    for (const key of Object.keys(configs)) {
+      const c = kept[key];
+      if (!c) continue;
+      if (Number.isInteger(c.level) && c.level >= 1 && c.level <= R.levels.length) configs[key].level = c.level;
+      if (Number.isInteger(c.seconds) && c.seconds >= 5 && c.seconds <= 300) configs[key].seconds = c.seconds;
+      if (["choice","number"].includes(c.format)) configs[key].format = c.format;
+      configs[key].eye = !!c.eye;
+    }
+    return configs;
+  }
+  function rememberForm(form, configs) {
+    const config = readSettings(form, configs);
+    if (config) remember({phases:{...(remembered().phases || {}), ...config}});
+    if (form.elements.topicFrom) remember({topicFrom:form.elements.topicFrom.value, topicTo:form.elements.topicTo.value});
+  }
   const elapsed = () => Math.min(limit(), baseline + performance.now() - started);
   function stop() { clearInterval(timer); clearInterval(drawTimer); timer = drawTimer = null; }
   function captureDrafts() {
@@ -45,7 +68,11 @@
   }
   function beginQuestion() {
     const t = current(), config = settings();
-    try {
+    if (config.eye) {
+      // The whole elimination gets one kind, so every student solves the same task; duels draw one per question.
+      if (t.mode === "qualify") t.eyeKind ||= R.EYE_KINDS[Math.floor(Math.random() * R.EYE_KINDS.length)];
+      t.q = R.eyeQuestion(t.mode === "qualify" ? t.eyeKind : R.EYE_KINDS[Math.floor(Math.random() * R.EYE_KINDS.length)]);
+    } else try {
       let lock;
       if (t.mode === "qualify") {
         // Same kind of question for every student in the elimination, so times are comparable.
@@ -74,7 +101,8 @@
     t.stage = "question"; t.elapsed = 0; t.startedAt = Date.now(); t.answers = {}; t.drafts = {}; t.message = "";
     save(); paint(); clock();
   }
-  const ranks = t => [...t.results].sort((a,b) => Number(b.ok)-Number(a.ok) || a.ms-b.ms || a.tie-b.tie);
+  // Göz kararı results also carry err (distance to the true value): closer first, then faster.
+  const ranks = t => [...t.results].sort((a,b) => Number(b.ok)-Number(a.ok) || (a.err ?? 0)-(b.err ?? 0) || a.ms-b.ms || a.tie-b.tie);
   function advance(m) {
     const t = current();
     t.message += ` ${playerName(m.winner)} ${phaseKey() === "2" ? "şampiyon oldu!" : "üst tura çıktı!"} (${m.scores.join("–")})`;
@@ -93,6 +121,7 @@
     if (t.stage !== "question" || t.view === "bracket" || t.answers[side]) return;
     const cap = limit(), rawMs = elapsed(), ms = Math.round(rawMs / 10) * 10;
     if (rawMs >= cap) { timeout = true; side = null; }
+    if (t.q.eye) { settleEye(side, timeout, ms, cap); return; }
     let ok = false;
     if (!timeout) {
       captureDrafts();
@@ -126,6 +155,37 @@
     (ok ? MatAudio.correct : MatAudio.wrong).call(MatAudio);
     save(); paint();
   }
+  function settleEye(side, timeout, ms, cap) {
+    const t = current(), m = t.mode === "duel" ? match() : null;
+    if (!timeout) {
+      captureDrafts();
+      const raw = String(t.drafts[side] || "").trim();
+      if (!raw) { host.querySelector(`[data-answer="${side}"]`)?.focus(); return; }
+      const guess = R.numericValue(raw);
+      if (guess === null) { host.querySelector("[data-message]").textContent = "Geçerli bir sayı yazın."; return; }
+      t.answers[side] = {guess, err:Math.abs(guess - t.q.answer), ms};
+      // A duel question closes only when both rivals have estimated (or time runs out).
+      if (m && Object.keys(t.answers).length < 2) { save(); paint(); return; }
+    }
+    clearInterval(timer); timer = null;
+    const ids = m ? m.ids : [t.players[t.results.length].id];
+    t.message = `Gerçek değer ${deg(t.q.answer)}. ` + ids.map((id,i) => { const a = t.answers[i]; return `${playerName(id)}: ${a ? `${deg(a.guess)} · fark ${deg(a.err)}` : "tahmin yok"}`; }).join(" · ") + ".";
+    t.stage = "result";
+    if (!m) {
+      const p = t.players[t.results.length], a = t.answers[0];
+      t.results.push({id:p.id, ok:!!a, err:a ? a.err : null, ms:a ? a.ms : cap, tie:p.tie});
+      if (t.results.length === t.players.length) t.stage = "ranking";
+    } else {
+      const win = R.eyeWinner(t.answers[0], t.answers[1]);
+      R.recordQuestion(m, win);
+      t.message += win === null ? " Bu soru berabere." : ` ${playerName(m.ids[win])} soruyu aldı${t.answers[0] && t.answers[1] && t.answers[0].err === t.answers[1].err ? " (fark eşit, daha hızlı cevap verdi)" : ""}.`;
+      if (m.winner) advance(m);
+      else if (m.overtime) t.message += " Beraberlik: uzatma sorusu. Soruyu alan kazanır.";
+      else t.message += ` ${m.questions}/3 soru tamamlandı. Skor ${m.scores.join("–")}.`;
+    }
+    (Object.keys(t.answers).length ? MatAudio.correct : MatAudio.wrong).call(MatAudio);
+    save(); paint();
+  }
   function bracket(t) {
     const display = [...t.rounds];
     while (display.length && display[display.length - 1].length > 1) {
@@ -144,17 +204,17 @@
       const extra = t.topics.some(id => id.startsWith("m7-")) ? ["−",",","/"] : [];
       entry = `<label class="tr-entry-label" for="trAnswer${side}">SONUCU YAZ${q.unit ? " · " + esc(q.unit) : ""}</label><input id="trAnswer${side}" class="tr-number-display" data-answer="${side}" value="${esc(draft)}" autocomplete="off" inputmode="decimal" maxlength="40" placeholder="…${q.unit ? " " + esc(q.unit) : ""}" ${disabled}><div class="tr-keypad">${[1,2,3,4,5,6,7,8,9,"Sil",0,"⌫"].map(k => `<button type="button" class="${typeof k === "string" ? "tr-erase" : ""}" data-key="${k}" data-side="${side}" aria-label="${k === "⌫" ? "Son rakamı sil" : k === "Sil" ? "Tümünü sil" : k}" ${disabled}>${k}</button>`).join("")}</div>${extra.length ? `<div class="tr-extra-keys">${extra.map(k => `<button type="button" data-key="${k}" data-side="${side}" ${disabled}>${k}</button>`).join("")}</div>` : ""}`;
     }
-    return `<form data-side="${side}" class="tr-answer"><h3>${name(id)}</h3>${entry}<button class="tr-confirm" ${disabled}>✓ Cevabı kontrol et</button><span data-feedback role="status">${disabled ? "Yanlış cevap. Rakibin yanıtı bekleniyor." : ""}</span></form>`;
+    return `<form data-side="${side}" class="tr-answer"><h3>${name(id)}</h3>${entry}<button class="tr-confirm" ${disabled}>✓ Cevabı kontrol et</button><span data-feedback role="status">${disabled ? (q.eye ? "Tahminin alındı. Rakibin bekleniyor." : "Yanlış cevap. Rakibin yanıtı bekleniyor.") : ""}</span></form>`;
   }
   function settingsFields(configs) {
-    return `<div class="tr-phase-settings">${Object.entries(configs).sort(([a],[b]) => a === "qualify" ? -1 : b === "qualify" ? 1 : Number(b)-Number(a)).map(([key,c]) => `<fieldset data-phase="${key}"><legend>${R.phaseName(key)}</legend><div class="tr-setting-row"><label>Soru seviyesi<select name="level_${key}">${R.levels.map((label,i) => `<option value="${i+1}" ${c.level === i+1 ? "selected" : ""}>${label}</option>`).join("")}</select></label><label>Süre (sn)<input name="seconds_${key}" type="number" value="${c.seconds}" min="5" max="300" required></label><label>Cevap biçimi<select name="format_${key}"><option value="number" ${c.format !== "choice" ? "selected" : ""}>Sayı gir · tuş takımı</option><option value="choice" ${c.format === "choice" ? "selected" : ""}>4 şıklı test</option></select></label></div></fieldset>`).join("")}</div>`;
+    return `<div class="tr-phase-settings">${Object.entries(configs).sort(([a],[b]) => a === "qualify" ? -1 : b === "qualify" ? 1 : Number(b)-Number(a)).map(([key,c]) => `<fieldset data-phase="${key}" class="${c.eye ? "is-eye" : ""}"><legend>${R.phaseName(key)}</legend><label class="tr-eye"><input type="checkbox" name="eye_${key}" ${c.eye ? "checked" : ""}><span>🎯 Göz kararı</span><small>${key === "qualify" ? "Tümleyen, bütünleyen veya açı tahmini · herkese aynı tür" : "Tümleyen, bütünleyen, açı tahmini karışık"}</small></label><div class="tr-setting-row"><label>Soru seviyesi<select name="level_${key}">${R.levels.map((label,i) => `<option value="${i+1}" ${c.level === i+1 ? "selected" : ""}>${label}</option>`).join("")}</select></label><label>Süre (sn)<input name="seconds_${key}" type="number" value="${c.seconds}" min="5" max="300" required></label><label>Cevap biçimi<select name="format_${key}"><option value="number" ${c.format !== "choice" ? "selected" : ""}>Sayı gir · tuş takımı</option><option value="choice" ${c.format === "choice" ? "selected" : ""}>4 şıklı test</option></select></label></div></fieldset>`).join("")}</div>`;
   }
   function readSettings(form, configs) {
     const updated = {};
     for (const key of Object.keys(configs)) {
       const level = Number(form.elements[`level_${key}`].value), duration = Number(form.elements[`seconds_${key}`].value);
       if (!Number.isInteger(level) || level < 1 || level > R.levels.length || !Number.isInteger(duration) || duration < 5 || duration > 300) return null;
-      updated[key] = {level, seconds:duration, format:form.elements["format_" + key]?.value === "choice" ? "choice" : "number"};
+      updated[key] = {level, seconds:duration, format:form.elements["format_" + key]?.value === "choice" ? "choice" : "number", eye:!!form.elements["eye_" + key]?.checked};
     }
     return updated;
   }
@@ -168,12 +228,15 @@
   }
   const topicSummary = topics => topics.length > 1 ? `${topics.length} konu karışık sorulur: ${topics[0].no || 1}–${topics[topics.length-1].no || topics.length}.` : "Tek konu.";
   function topicRange() {
-    const options = ctx.topics().map(x => `<option value="${esc(x.id)}">${esc(topicLabel(x))}</option>`).join("");
-    return `<fieldset class="tr-topic-range"><legend>Konular</legend><label>İlk konu<select name="topicFrom">${options}</select></label><label>Son konu<select name="topicTo">${options}</select></label><p class="fine" data-topic-summary>Tek konu.</p></fieldset>`;
+    const list = ctx.topics(), kept = remembered();
+    const at = id => Math.max(0, list.findIndex(x => x.id === id));
+    const from = at(kept.topicFrom), to = Math.max(from, at(kept.topicTo));
+    const options = sel => list.map((x,i) => `<option value="${esc(x.id)}" ${i === sel ? "selected" : ""}>${esc(topicLabel(x))}</option>`).join("");
+    return `<fieldset class="tr-topic-range"><legend>Konular</legend><label>İlk konu<select name="topicFrom">${options(from)}</select></label><label>Son konu<select name="topicTo">${options(to)}</select></label><p class="fine" data-topic-summary>${topicSummary(list.slice(from, to + 1))}</p></fieldset>`;
   }
   function paintSetup() {
     const all = ctx.students(), players = all.filter(p => !excluded.has(p.id)), cut = R.bracketSize(players.length);
-    host.innerHTML = `<section class="tr-hero tr-hero-compact"><div><span class="tr-kicker">SINIFIN BÜYÜK BULUŞMASI</span><h1>Şampiyonlar Turnuvası <span>✦</span></h1><p>Keşfet. Eşleş. Kapış. Yıldızını kazan.</p></div><div class="tr-steps"><span>01 · ${players.length === cut ? "Doğrudan kura" : "Hız elemeleri"}</span><span>02 · Üç soruluk maç</span><span>03 · Beraberlikte uzatma</span><span>★ × 3 = 🏆</span></div></section><div class="tr-setup"><section class="tr-card"><h2>Turnuvayı hazırla</h2><form data-setup>${topicRange()}<p class="tr-format-note">${players.length < 2 ? "En az iki öğrenci gerekir." : players.length === cut ? `${players.length} öğrenci · Eleme yok. Doğrudan ${R.phaseName(String(cut)).toLocaleLowerCase("tr")} kurası.` : `${players.length} öğrenci · İlk ${cut} ilerler, ${players.length-cut} öğrenci elenir.`}</p>${settingsFields(R.defaults(players.length))}<p class="fine">Elemede önce doğruluk, sonra 0,01 saniye hassasiyetinde süre sıralanır. Yanlış/boş cevaplar sona kalır. Tam eşitlikte başlangıç kurası geçerlidir.</p><p class="fine">Maçta 2 puana ulaşan hemen kazanır. Yanlış/boş sorular dahil 3 soru sonunda önde olan ilerler. Beraberlikte süre sınırı kalkar; ilk doğru cevap kazanır. İki yanlış olursa yeni uzatma sorusu açılır.</p>${ctx.practice() ? '<p class="note">Antrenman açık: yıldız ve kupa verilmez.</p>' : ""}<button class="solid big" ${players.length < 2 ? "disabled" : ""}>Turnuvayı başlat →</button><p data-message role="alert"></p></form></section><section class="tr-card"><h2>Katılımcılar <small>${players.length}${players.length < all.length ? ` / ${all.length}` : ""}</small></h2><div class="tr-roster tr-pick">${all.map(p => `<label class="${excluded.has(p.id) ? "tr-out" : ""}"><input type="checkbox" data-roster="${esc(p.id)}" ${excluded.has(p.id) ? "" : "checked"}><span>${esc(p.name)}</span><b>★ ${p.tournamentStars || 0} · 🏆 ${Math.floor((p.tournamentStars || 0)/3)}</b></label>`).join("") || "Sınıf yönetiminden öğrenci ekleyin."}</div><p class="fine">Sınıfta olmayan öğrencinin işaretini kaldırarak onu turnuvadan çıkarın. Yoklamada bulunmayan öğrenciler zaten katılmaz. Her 3 şampiyonluk yıldızı bir kupa kazandırır.</p></section></div>`;
+    host.innerHTML = `<section class="tr-hero tr-hero-compact"><div><span class="tr-kicker">SINIFIN BÜYÜK BULUŞMASI</span><h1>Şampiyonlar Turnuvası <span>✦</span></h1><p>Keşfet. Eşleş. Kapış. Yıldızını kazan.</p></div><div class="tr-steps"><span>01 · ${players.length === cut ? "Doğrudan kura" : "Hız elemeleri"}</span><span>02 · Üç soruluk maç</span><span>03 · Beraberlikte uzatma</span><span>★ × 3 = 🏆</span></div></section><div class="tr-setup"><section class="tr-card"><h2>Turnuvayı hazırla</h2><form data-setup>${topicRange()}<p class="tr-format-note">${players.length < 2 ? "En az iki öğrenci gerekir." : players.length === cut ? `${players.length} öğrenci · Eleme yok. Doğrudan ${R.phaseName(String(cut)).toLocaleLowerCase("tr")} kurası.` : `${players.length} öğrenci · İlk ${cut} ilerler, ${players.length-cut} öğrenci elenir.`}</p>${settingsFields(withRemembered(R.defaults(players.length)))}<p class="fine">Göz kararı işaretli turda öğrenciler açıyı tahmin edip derece yazar; gerçeğe en yakın olan önde olur, fark eşitse hızlı olan geçer.</p><p class="fine">Elemede önce doğruluk, sonra 0,01 saniye hassasiyetinde süre sıralanır. Yanlış/boş cevaplar sona kalır. Tam eşitlikte başlangıç kurası geçerlidir.</p><p class="fine">Maçta 2 puana ulaşan hemen kazanır. Yanlış/boş sorular dahil 3 soru sonunda önde olan ilerler. Beraberlikte süre sınırı kalkar; ilk doğru cevap kazanır. İki yanlış olursa yeni uzatma sorusu açılır.</p>${ctx.practice() ? '<p class="note">Antrenman açık: yıldız ve kupa verilmez.</p>' : ""}<button class="solid big" ${players.length < 2 ? "disabled" : ""}>Turnuvayı başlat →</button><p data-message role="alert"></p></form></section><section class="tr-card"><h2>Katılımcılar <small>${players.length}${players.length < all.length ? ` / ${all.length}` : ""}</small></h2><div class="tr-roster tr-pick">${all.map(p => `<label class="${excluded.has(p.id) ? "tr-out" : ""}"><input type="checkbox" data-roster="${esc(p.id)}" ${excluded.has(p.id) ? "" : "checked"}><span>${esc(p.name)}</span><b>★ ${p.tournamentStars || 0} · 🏆 ${Math.floor((p.tournamentStars || 0)/3)}</b></label>`).join("") || "Sınıf yönetiminden öğrenci ekleyin."}</div><p class="fine">Sınıfta olmayan öğrencinin işaretini kaldırarak onu turnuvadan çıkarın. Yoklamada bulunmayan öğrenciler zaten katılmaz. Her 3 şampiyonluk yıldızı bir kupa kazandırır.</p></section></div>`;
   }
   function paint() {
     const t = current();
@@ -184,15 +247,15 @@
     if (t.view === "bracket") body = bracket(t);
     else if (t.view === "settings") body = `<section class="tr-card"><h2>Aşama ayarları</h2><p class="fine">Değişiklikler sonraki sorudan itibaren uygulanır.</p><form data-settings>${settingsFields(t.settings)}<button class="solid">Ayarları kaydet</button>${button("settings-cancel","Geri dön")}<p data-settings-message role="alert"></p></form></section>`;
     else if (["ready","result"].includes(t.stage)) {
-      body = `<section class="tr-card tr-center"><p role="status">${esc(t.message || "")}</p><h2>${t.mode === "qualify" ? `${name(t.players[t.results.length].id)}, sıra sende!` : m.ids.map(name).join(" <span>⚔</span> ")}</h2><p>${t.mode === "qualify" ? `${t.results.length+1} / ${t.players.length} öğrenci` : `Skor ${m.scores.join(" – ")} · ${m.overtime ? "Süresiz uzatma · İlk doğru cevap kazanır" : `Soru ${m.questions+1}/3`}`}</p><p class="fine">${R.levels[config.level-1]} · ${m?.overtime ? "Süre sınırı yok" : config.seconds + " saniye"}</p>${button("question","Hazırım · Soruyu aç")}</section>`;
+      body = `<section class="tr-card tr-center"><p role="status">${esc(t.message || "")}</p><h2>${t.mode === "qualify" ? `${name(t.players[t.results.length].id)}, sıra sende!` : m.ids.map(name).join(" <span>⚔</span> ")}</h2><p>${t.mode === "qualify" ? `${t.results.length+1} / ${t.players.length} öğrenci` : `Skor ${m.scores.join(" – ")} · ${m.overtime ? "Süresiz uzatma · İlk doğru cevap kazanır" : `Soru ${m.questions+1}/3`}`}</p><p class="fine">${config.eye ? "🎯 Göz kararı" : R.levels[config.level-1]} · ${m?.overtime && !config.eye ? "Süre sınırı yok" : config.seconds + " saniye"}</p>${button("question","Hazırım · Soruyu aç")}</section>`;
     } else if (["question","paused"].includes(t.stage)) {
       if (t.stage === "paused") body = `<section class="tr-card tr-center"><h2>Turnuva duraklatıldı</h2><p>Süreniz, yazdığınız cevap ve cevap haklarınız korunuyor.</p>${button("resume","Devam et")}</section>`;
       else {
         const cap = limit(), remaining = Math.max(0, cap - (timer ? elapsed() : t.elapsed || 0));
-        body = `<section class="tr-card tr-question-card ${t.mode === "duel" ? "tr-duel-question" : "tr-single-question"}"><div class="tr-question-head"><span>${R.phaseName(phaseKey())} · ${t.mode === "qualify" ? `${t.results.length+1}/${t.players.length}` : m.overtime ? "UZATMA" : `Soru ${m.questions+1}/3`}<small>${R.levels[config.level-1]}${t.topics.length > 1 ? " · " + esc(topicTitle(t.q.topic)) : ""}${m ? " · Skor " + m.scores.join(" : ") : ""}</small></span><b data-clock>${cap === Infinity ? "∞ Süresiz" : seconds(remaining)}</b>${button("pause","Duraklat")}</div><div class="tr-question-main"><h2 class="tr-prompt">${MatVisuals.angleMarks(esc(t.q.prompt))}</h2><div class="tr-figure">${t.q.scene?.html || ""}</div></div><div class="tr-answers">${(t.mode === "qualify" ? [t.players[t.results.length].id] : m.ids).map((id,i) => answerPanel(id,i,t.q)).join("")}</div></section>`;
+        body = `<section class="tr-card tr-question-card ${t.mode === "duel" ? "tr-duel-question" : "tr-single-question"}"><div class="tr-question-head"><span>${R.phaseName(phaseKey())} · ${t.mode === "qualify" ? `${t.results.length+1}/${t.players.length}` : m.overtime ? "UZATMA" : `Soru ${m.questions+1}/3`}<small>${t.q.eye ? "🎯 Göz kararı · " + R.EYE_NAMES[t.q.eye] : R.levels[config.level-1]}${t.topics.length > 1 && !t.q.eye ? " · " + esc(topicTitle(t.q.topic)) : ""}${m ? " · Skor " + m.scores.join(" : ") : ""}</small></span><b data-clock>${cap === Infinity ? "∞ Süresiz" : seconds(remaining)}</b>${button("pause","Duraklat")}</div><div class="tr-question-main"><h2 class="tr-prompt">${MatVisuals.angleMarks(esc(t.q.prompt))}</h2><div class="tr-figure">${t.q.scene?.html || ""}</div></div><div class="tr-answers">${(t.mode === "qualify" ? [t.players[t.results.length].id] : m.ids).map((id,i) => answerPanel(id,i,t.q)).join("")}</div></section>`;
       }
     } else if (t.stage === "ranking") {
-      body = `<section class="tr-card"><h2>Eleme sonuçları · İlk ${t.cut} üst turda</h2><div class="tr-roster">${ranks(t).map((r,i) => `<div class="${i<t.cut ? "tr-qualified" : ""}"><b>${i+1}. ${name(r.id)}</b><span>${r.ok ? "✓ " + seconds(r.ms) : "Yanlış / süre doldu"} · ${i<t.cut ? "Üst tur" : "Elendi"}</span></div>`).join("")}</div>${button("draw","Eşleşme kurasını çek ✦")}</section>`;
+      body = `<section class="tr-card"><h2>Eleme sonuçları · İlk ${t.cut} üst turda</h2><div class="tr-roster">${ranks(t).map((r,i) => `<div class="${i<t.cut ? "tr-qualified" : ""}"><b>${i+1}. ${name(r.id)}</b><span>${r.ok ? (r.err != null ? `fark ${deg(r.err)} · ${seconds(r.ms)}` : "✓ " + seconds(r.ms)) : r.err === null ? "Tahmin yok" : "Yanlış / süre doldu"} · ${i<t.cut ? "Üst tur" : "Elendi"}</span></div>`).join("")}</div>${button("draw","Eşleşme kurasını çek ✦")}</section>`;
     } else if (t.stage === "drawing") body = `<section class="tr-card tr-center tr-drawing"><div class="tr-orb">✦</div><h2>Eşleşmeler hazırlanıyor…</h2><p data-draw>Şans, heyecan ve matematik!</p></section>`;
     else if (t.stage === "champion") {
       const p = ctx.students(true).find(x => x.id === t.champion);
@@ -201,6 +264,24 @@
     host.innerHTML = `<div class="tr-title"><div><span class="tr-kicker">ŞAMPİYONLAR TURNUVASI</span><h2>${esc(t.topicName)}</h2></div><div class="actions"><button type="button" class="soft tr-exit-fullscreen" data-act="fullscreen" aria-label="Tam ekrandan çık">⛶<span> Tam ekrandan çık</span></button>${t.rounds.length && t.stage !== "drawing" ? button("tree",t.view === "bracket" ? "✕ Ağacı kapat" : "🏆 Turnuva ağacı",`aria-expanded="${t.view === "bracket"}"`) : ""}${["ready","result","ranking"].includes(t.stage) && !t.view ? button("settings","⚙ Aşama ayarları") : ""}${t.stage !== "champion" ? button("reset","Turnuvayı bitir") : ""}</div></div>${body}<p data-message role="status"></p>${!t.view && !t.rounds.length ? `<details class="tr-card"><summary>Tüm katılımcılar (${t.players.length})</summary><div class="tr-roster">${t.players.map(p => `<div>${esc(p.name)}<span>${t.results.some(r=>r.id===p.id) ? "Tamamladı" : "Sırasını bekliyor"}</span></div>`).join("")}</div></details>` : ""}`;
     fitFigures();
     fitChoices();
+  }
+  // A key or choice changes only its own side, so the other student's touch is never re-rendered away.
+  function press(control) {
+    const t = current(), side = control.dataset.side;
+    if (!t || t.stage !== "question" || t.view || control.disabled || t.answers[side]) return;
+    captureDrafts();
+    if (control.dataset.choice !== undefined) {
+      t.drafts[side] = String(t.q.choices[Number(control.dataset.choice)]);
+      for (const b of host.querySelectorAll(`[data-choice][data-side="${side}"]`)) {
+        const on = b === control || b.dataset.choice === control.dataset.choice;
+        b.classList.toggle("selected", on); b.setAttribute("aria-pressed", String(on));
+      }
+    } else {
+      const value = t.drafts[side] || "", k = control.dataset.key;
+      t.drafts[side] = k === "Sil" ? "" : k === "⌫" ? value.slice(0, -1) : (value + k).slice(0, 40);
+    }
+    const input = host.querySelector(`[data-answer="${side}"]`);
+    if (input) input.value = t.drafts[side];
   }
   // Choice values stay on one line: each panel's options shrink together to the size of
   // the widest one; text that still cannot fit at the floor size wraps between words.
@@ -276,6 +357,8 @@
           form.querySelector("[data-topic-summary]").textContent=topicSummary(chosenTopics(form));
           return;
         }
+        if(/^eye_/.test(e.target.name||""))e.target.closest("fieldset")?.classList.toggle("is-eye",e.target.checked);
+        const setupForm=e.target.closest("[data-setup]");if(setupForm && !current())rememberForm(setupForm,withRemembered(R.defaults(entrants().length)));
         const box=e.target.closest("[data-roster]");if(!box||current())return;
         if(box.checked)excluded.delete(box.dataset.roster);else excluded.add(box.dataset.roster);
         // Re-render for the new count, keeping the teacher's form choices.
@@ -286,18 +369,21 @@
         window.scrollTo(0,y);
       };
       host.oninput = e => {if(e.target.matches("[data-answer]") && current()?.stage === "question") current().drafts[e.target.dataset.answer]=e.target.value;};
+      // Answer controls act on pointerdown, as in the arcade duel: when two students touch at
+      // the same moment the browser drops one of the clicks. Click stays for keyboard (detail 0).
+      host.onpointerdown = e => {
+        if(e.button > 0)return;
+        const control=e.target.closest("[data-key], [data-choice], .tr-confirm");
+        if(!control || control.disabled || current()?.stage !== "question")return;
+        e.preventDefault();
+        if(control.matches(".tr-confirm")) {const side=control.closest("[data-side]").dataset.side;if(!current().answers[side])settle(side,false);}
+        else press(control);
+      };
       host.onclick = e => {
         const t=current(), key=e.target.closest("[data-key]"), choice=e.target.closest("[data-choice]");
+        if(e.detail > 0 && e.target.closest(".tr-confirm"))e.preventDefault(); // already settled on pointerdown
         if ((key || choice) && t?.stage === "question" && !t.view) {
-          const control=key||choice, side=control.dataset.side;
-          if(control.disabled || t.answers[side])return;
-          captureDrafts();
-          if(choice) {t.drafts[side]=String(t.q.choices[Number(choice.dataset.choice)]);paint();}
-          else {
-            const value=t.drafts[side]||"", k=key.dataset.key;
-            t.drafts[side]=k === "Sil" ? "" : k === "⌫" ? value.slice(0,-1) : (value+k).slice(0,40);
-            host.querySelector(`[data-answer="${side}"]`).value=t.drafts[side];
-          }
+          if(!(e.detail > 0))press(key||choice);
           return;
         }
         const act=e.target.closest("[data-t]")?.dataset.t;if(!act)return;
@@ -316,6 +402,7 @@
           if(!form.reportValidity())return;
           const players=entrants().map(p=>({id:p.id,name:p.name}));if(players.length<2)return;
           const config=readSettings(form,R.defaults(players.length));if(!config)return;
+          rememberForm(form,config);
           const chosen=chosenTopics(form);if(!chosen.length)return;
           const topics=chosen.map(x=>x.id), first=chosen[0], last=chosen[chosen.length-1];
           const topicName=chosen.length===1?first.title||first.name||first.id:`Konular ${first.no||1}–${last.no||chosen.length} · ${chosen.length} konu`;
@@ -326,7 +413,7 @@
         } else if(form.matches("[data-settings]")) {
           if(!form.reportValidity())return;
           const config=readSettings(form,current().settings);if(!config)return;
-          current().settings=config;current().view=null;save();paint();
+          current().settings=config;current().view=null;remember({phases:{...(remembered().phases || {}), ...config}});save();paint();
         } else if(form.matches("[data-side]") && !current().answers[form.dataset.side]) settle(form.dataset.side,false);
       };
     }
