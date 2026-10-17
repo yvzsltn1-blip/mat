@@ -2290,6 +2290,7 @@
         students: all => all ? students : present(students),
         topics: () => curriculum().topics.filter(t => MatLevelGen.topics.includes(t.id)),
         practice: () => state.practice,
+        solution: q => solutionOf(q),
         award: (id, practice) => {
           const student = students.find(s => s.id === id);
           if (student && !practice) {

@@ -147,6 +147,15 @@ assert.equal(edit.data.q.level,2);edit.advance(17001);edit.tick();assert.equal(e
   assert(html().includes('data-r="1">Sonraki tur ›'));b.control('[data-t]',{t:'tree-round',r:'1'});
   assert(html().includes('<h2>Yarı final</h2>'));assert.equal(html().split('class="tr-m ').length-1,2);
   b.click('tree');b.click('tree');assert(html().includes('<h2>Çeyrek final</h2>'));}
+// After a question the step-by-step solution opens on the result screen and closes with the next question.
+{const s=harness(2);s.context.solution=q=>({idea:'Topla.',steps:[{t:'2 ile 2 toplanır.'},{t:'Sonuç 4.'}]});s.start();s.draw();
+  s.click('question');assert(!s.host.innerHTML.includes('data-t="sol-open"'));s.submit(0);assert.equal(s.data.stage,'result');
+  assert(s.host.innerHTML.includes('data-t="sol-open"'));s.click('sol-open');assert(s.host.innerHTML.includes('0 / 2 adım'));
+  s.click('sol-next');assert(s.host.innerHTML.includes('1 / 2 adım'));s.click('sol-all');assert(s.host.innerHTML.includes('✔ Cevap: <b>4 °</b>'));
+  s.click('question');assert(!s.host.innerHTML.includes('sol-sheet'));}
+// Göz kararı gets its own solution: the drawn angle and the 90°/180° rule.
+{const g=harness(2);g.start({2:{eye:true}});g.draw();g.click('question');const q=g.data.q;g.submit(0,'1');g.submit(1,'2');
+  g.click('sol-open');g.click('sol-all');assert(g.host.innerHTML.includes(`açı <b class="sn">${q.deg}</b>°`));}
 // Saved v1 tournaments retain their bracket/scores, replacing an incompatible active question.
 const legacy=harness(16);legacy.start();legacy.draw();legacy.data.rounds[0][0].scores[0]=1;
 legacy.click('question');delete legacy.data.settings;legacy.data.seconds=23;

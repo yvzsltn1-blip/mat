@@ -1,7 +1,7 @@
 (function (root) {
   "use strict";
   const R = root.MatTournamentRules;
-  let host, ctx, timer, drawTimer, started = 0, baseline = 0, treeRound = null;
+  let host, ctx, timer, drawTimer, started = 0, baseline = 0, treeRound = null, sheet = null;
   // Students the teacher removed on the setup screen (e.g. not in class today).
   const excluded = new Set();
   const entrants = () => ctx.students().filter(p => !excluded.has(p.id));
@@ -39,6 +39,48 @@
     const config = readSettings(form, configs);
     if (config) remember({phases:{...(remembered().phases || {}), ...config}});
     if (form.elements.topicFrom) remember({topicFrom:form.elements.topicFrom.value, topicTo:form.elements.topicTo.value});
+  }
+  // Step-by-step solution of the question just played, shown with the game's solution sheet.
+  function solutionOf(q) {
+    if (q.eye) {
+      const rule = {complement:"Tümler açıların ölçüleri toplamı 90°'dir.", supplement:"Bütünler açıların ölçüleri toplamı 180°'dir."}[q.eye];
+      const steps = [{t:`Kırmızı kol ile siyah kol arasındaki açı ${q.deg}°'dir.`}];
+      if (rule) steps.push({t:rule}, {t:`${q.eye === "complement" ? 90 : 180}° − ${q.deg}° = ${q.answer}°`});
+      return {idea:rule || "Açıyı dik açı (90°) ve doğru açı (180°) ile karşılaştırarak tahmin et.", steps};
+    }
+    return ctx.solution?.(q) || {idea:"", steps:[]};
+  }
+  const hasSolution = q => !!q && solutionOf(q).steps.length > 0;
+  const solutionButton = t => hasSolution(t.q) ? `<button type="button" class="soft tr-sol-open" data-t="sol-open">📖 Adım adım çözüm</button>` : "";
+  // Numbers stand out; digits inside HTML entities (&#39;) are left alone.
+  const solText = s => esc(s).replace(/(?<![#\w&])(\d+(?:[.,]\d+)*)/g, '<b class="sn">$1</b>');
+  function solutionSheet() {
+    const q = current()?.q;
+    if (!sheet || !q) return "";
+    const steps = sheet.sol.steps, shown = Math.min(sheet.step, steps.length), done = shown >= steps.length;
+    return `<div class="sol-backdrop" data-t="sol-close"></div>
+      <section class="sol-sheet" role="dialog" aria-modal="true" aria-label="Adım adım çözüm">
+        <header class="sol-head"><span class="sol-kicker">📖 ADIM ADIM ÇÖZÜM</span><button type="button" class="sol-x" data-t="sol-close" aria-label="Çözümü kapat">✕</button></header>
+        <div class="sol-body">
+          <div class="sol-question"><p>${MatVisuals.angleMarks(esc(q.prompt))}</p>${q.scene?.html ? `<div class="sol-scene"><div class="stage">${q.scene.html}</div></div>` : ""}</div>
+          <div class="sol-steps">
+            ${sheet.sol.idea ? `<div class="sol-idea"><b>💡 Ana fikir</b><p>${solText(sheet.sol.idea)}</p></div>` : ""}
+            <ol>${steps.slice(0, shown).map((st, i) => `<li class="sol-step${i === shown - 1 ? " now" : ""}"><span class="sol-no">${i + 1}</span><div><p>${solText(st.t)}</p>${st.fig ? `<div class="sol-fig stage art-stage">${st.fig}</div>` : ""}</div></li>`).join("")}</ol>
+            ${done ? `<div class="sol-answer">✔ Cevap: <b>${esc(q.eye ? deg(q.answer) : q.answer + (q.unit ? " " + q.unit : ""))}</b></div>` : ""}
+          </div>
+        </div>
+        <footer class="sol-actions">
+          <button type="button" class="soft" data-t="sol-prev" ${sheet.step ? "" : "disabled"}>◀ Geri</button>
+          <span class="sol-count">${shown} / ${steps.length} adım</span>
+          ${done ? `<button type="button" class="check-btn" data-t="sol-close">Anladım ✔</button>` : `<button type="button" class="soft" data-t="sol-all">Hepsini göster</button><button type="button" class="check-btn" data-t="sol-next">${shown ? "Sonraki adım ▶" : "Çözüme başla ▶"}</button>`}
+        </footer>
+      </section>`;
+  }
+  function moveSheet(act) {
+    if (act === "sol-close") sheet = null;
+    else sheet.step = act === "sol-all" ? sheet.sol.steps.length : Math.max(0, Math.min(sheet.sol.steps.length, sheet.step + (act === "sol-next" ? 1 : -1)));
+    paint();
+    if (sheet) root.requestAnimationFrame?.(() => host?.querySelector(".sol-answer, .sol-step.now")?.scrollIntoView?.({block:"nearest", behavior:"smooth"}));
   }
   const elapsed = () => Math.min(limit(), baseline + performance.now() - started);
   function stop() { clearInterval(timer); clearInterval(drawTimer); timer = drawTimer = null; }
@@ -98,6 +140,7 @@
       if (lock) { lock.asked.push(t.q.seen); lock.uses[t.q.shape] = (lock.uses[t.q.shape] || 0) + 1; }
     }
     catch (e) { host.querySelector("[data-message]").textContent = e.message; return; }
+    sheet = null;
     t.stage = "question"; t.elapsed = 0; t.startedAt = Date.now(); t.answers = {}; t.drafts = {}; t.message = "";
     save(); paint(); clock();
   }
@@ -216,7 +259,7 @@
     const row = (r, i) => { const [label, v] = value(r), up = i < t.cut; return `<li class="tr-row ${up ? "up" : "out"} ${i < 3 ? "top" + (i + 1) : ""}" style="--i:${Math.min(i, 18)}"><b class="tr-rk">${i + 1}</b><span class="tr-rn">${name(r.id)}</span><span class="tr-rv">${label ? `<small>${label}</small>` : ""}${v}${r.ok && r.err != null ? `<small>${seconds(r.ms)}</small>` : ""}</span><em>${up ? "ÜST TUR" : "ELENDİ"}</em></li>`; };
     return `<section class="tr-board tr-standings"><header class="tr-board-head"><span class="tr-kicker">İLK TUR · ELEME</span><h2>Puan durumu</h2><p>İlk ${t.cut} öğrenci üst tura çıkar · ${t.players.length - t.cut} öğrenci elenir</p></header>
       <ol class="tr-ranks">${list.map((r,i) => (i === t.cut ? '<li class="tr-cut" aria-hidden="true"><span>ÜST TUR SINIRI</span></li>' : "") + row(r,i)).join("")}</ol>
-      <div class="tr-steps-nav">${button("draw","Eşleşme kurasını çek ✦")}</div></section>`;
+      <div class="tr-steps-nav">${solutionButton(t)}${button("draw","Eşleşme kurasını çek ✦")}</div></section>`;
   }
   function answerPanel(id, side, q) {
     const t = current(), disabled = t.answers[side] ? "disabled" : "", draft = t.drafts[side] || "";
@@ -271,7 +314,7 @@
     if (t.view === "bracket") body = bracket(t);
     else if (t.view === "settings") body = `<section class="tr-card"><h2>Aşama ayarları</h2><p class="fine">Değişiklikler sonraki sorudan itibaren uygulanır.</p><form data-settings>${settingsFields(t.settings)}<button class="solid">Ayarları kaydet</button>${button("settings-cancel","Geri dön")}<p data-settings-message role="alert"></p></form></section>`;
     else if (["ready","result"].includes(t.stage)) {
-      body = `<section class="tr-card tr-center"><p role="status">${esc(t.message || "")}</p><h2>${t.mode === "qualify" ? `${name(t.players[t.results.length].id)}, sıra sende!` : m.ids.map(name).join(" <span>⚔</span> ")}</h2><p>${t.mode === "qualify" ? `${t.results.length+1} / ${t.players.length} öğrenci` : `Skor ${m.scores.join(" – ")} · ${m.overtime ? "Süresiz uzatma · İlk doğru cevap kazanır" : `Soru ${m.questions+1}/3`}`}</p><p class="fine">${config.eye ? "🎯 Göz kararı" : R.levels[config.level-1]} · ${m?.overtime && !config.eye ? "Süre sınırı yok" : config.seconds + " saniye"}</p>${button("question","Hazırım · Soruyu aç")}</section>`;
+      body = `<section class="tr-card tr-center"><p role="status">${esc(t.message || "")}</p><h2>${t.mode === "qualify" ? `${name(t.players[t.results.length].id)}, sıra sende!` : m.ids.map(name).join(" <span>⚔</span> ")}</h2><p>${t.mode === "qualify" ? `${t.results.length+1} / ${t.players.length} öğrenci` : `Skor ${m.scores.join(" – ")} · ${m.overtime ? "Süresiz uzatma · İlk doğru cevap kazanır" : `Soru ${m.questions+1}/3`}`}</p><p class="fine">${config.eye ? "🎯 Göz kararı" : R.levels[config.level-1]} · ${m?.overtime && !config.eye ? "Süre sınırı yok" : config.seconds + " saniye"}</p><div class="tr-result-actions">${t.stage === "result" ? solutionButton(t) : ""}${button("question","Hazırım · Soruyu aç")}</div></section>`;
     } else if (["question","paused"].includes(t.stage)) {
       if (t.stage === "paused") body = `<section class="tr-card tr-center"><h2>Turnuva duraklatıldı</h2><p>Süreniz, yazdığınız cevap ve cevap haklarınız korunuyor.</p>${button("resume","Devam et")}</section>`;
       else {
@@ -283,9 +326,9 @@
     } else if (t.stage === "drawing") body = `<section class="tr-card tr-center tr-drawing"><div class="tr-orb">✦</div><h2>Eşleşmeler hazırlanıyor…</h2><p data-draw>Şans, heyecan ve matematik!</p></section>`;
     else if (t.stage === "champion") {
       const p = ctx.students(true).find(x => x.id === t.champion);
-      body = `<section class="tr-hero tr-center"><div class="tr-trophy">🏆</div><span class="tr-kicker">TURNUVA ŞAMPİYONU</span><h1>${name(t.champion)}</h1><p>${t.practice ? "Antrenman tamamlandı." : `+1 şampiyonluk yıldızı · Toplam ★ ${p?.tournamentStars || 0} · 🏆 ${Math.floor((p?.tournamentStars || 0)/3)} kupa`}</p>${button("new","Yeni turnuva")}</section>`;
+      body = `<section class="tr-hero tr-center"><div class="tr-trophy">🏆</div><span class="tr-kicker">TURNUVA ŞAMPİYONU</span><h1>${name(t.champion)}</h1><p>${t.practice ? "Antrenman tamamlandı." : `+1 şampiyonluk yıldızı · Toplam ★ ${p?.tournamentStars || 0} · 🏆 ${Math.floor((p?.tournamentStars || 0)/3)} kupa`}</p><div class="tr-result-actions">${solutionButton(t)}${button("new","Yeni turnuva")}</div></section>`;
     }
-    host.innerHTML = `<div class="tr-title"><div><span class="tr-kicker">ŞAMPİYONLAR TURNUVASI</span><h2>${esc(t.topicName)}</h2></div><div class="actions"><button type="button" class="soft tr-exit-fullscreen" data-act="fullscreen" aria-label="Tam ekrandan çık">⛶<span> Tam ekrandan çık</span></button>${t.rounds.length && t.stage !== "drawing" ? button("tree",t.view === "bracket" ? "✕ Ağacı kapat" : "🏆 Turnuva ağacı",`aria-expanded="${t.view === "bracket"}"`) : ""}${["ready","result","ranking"].includes(t.stage) && !t.view ? button("settings","⚙ Aşama ayarları") : ""}${t.stage !== "champion" ? button("reset","Turnuvayı bitir") : ""}</div></div>${body}<p data-message role="status"></p>${!t.view && !t.rounds.length ? `<details class="tr-card"><summary>Tüm katılımcılar (${t.players.length})</summary><div class="tr-roster">${t.players.map(p => `<div>${esc(p.name)}<span>${t.results.some(r=>r.id===p.id) ? "Tamamladı" : "Sırasını bekliyor"}</span></div>`).join("")}</div></details>` : ""}`;
+    host.innerHTML = `<div class="tr-title"><div><span class="tr-kicker">ŞAMPİYONLAR TURNUVASI</span><h2>${esc(t.topicName)}</h2></div><div class="actions"><button type="button" class="soft tr-exit-fullscreen" data-act="fullscreen" aria-label="Tam ekrandan çık">⛶<span> Tam ekrandan çık</span></button>${t.rounds.length && t.stage !== "drawing" ? button("tree",t.view === "bracket" ? "✕ Ağacı kapat" : "🏆 Turnuva ağacı",`aria-expanded="${t.view === "bracket"}"`) : ""}${["ready","result","ranking"].includes(t.stage) && !t.view ? button("settings","⚙ Aşama ayarları") : ""}${t.stage !== "champion" ? button("reset","Turnuvayı bitir") : ""}</div></div>${body}<p data-message role="status"></p>${!t.view && !t.rounds.length ? `<details class="tr-card"><summary>Tüm katılımcılar (${t.players.length})</summary><div class="tr-roster">${t.players.map(p => `<div>${esc(p.name)}<span>${t.results.some(r=>r.id===p.id) ? "Tamamladı" : "Sırasını bekliyor"}</span></div>`).join("")}</div></details>` : ""}${solutionSheet()}`;
     fitFigures();
     fitChoices();
   }
@@ -365,7 +408,7 @@
     t.drafts ||= {}; t.answers ||= {}; t.version = 2;
   }
   root.MatTournament = {
-    unmount() { if (ctx && host) pause(); document.body?.classList.remove("tournament-question"); host = null; ctx = null; },
+    unmount() { sheet = null; if (ctx && host) pause(); document.body?.classList.remove("tournament-question"); host = null; ctx = null; },
     mount(el, context) {
       host=el;ctx=context;stop();
       const t=current();migrate(t);
@@ -411,6 +454,8 @@
           return;
         }
         const actEl=e.target.closest("[data-t]"), act=actEl?.dataset.t;if(!act)return;
+        if(act==="sol-open" && hasSolution(t?.q)){sheet={sol:solutionOf(t.q),step:0};paint();return;}
+        if(/^sol-/.test(act)){if(sheet)moveSheet(act);return;}
         if(act==="tree-round"){treeRound=Number(actEl.dataset.r);paint();return;}
         if(act==="question")beginQuestion();
         if(act==="pause"){pause();paint();}
@@ -445,5 +490,11 @@
   };
   // Fullscreen and rotation change the panel width, so the choices fit again.
   root.addEventListener?.("resize",()=>{if(host)fitChoices();});
+  // The open solution follows the arrow keys like the game's: → / space next, ← back, Esc close.
+  document.addEventListener("keydown",e=>{
+    if(!sheet || !host?.isConnected)return;
+    const act={Escape:"sol-close",ArrowRight:"sol-next"," ":"sol-next",ArrowLeft:"sol-prev"}[e.key];
+    if(act){e.preventDefault();moveSheet(act);}
+  });
   document.addEventListener("visibilitychange",()=>{if(document.hidden && host && current()?.stage==="question"){pause();paint();}});
 })(window);

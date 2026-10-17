@@ -383,3 +383,7 @@ body.is-fs.tournament-question .tr-choice > b { flex-basis: 32px; height: 32px; 
 @media (prefers-reduced-motion: reduce) {
   .tr-board, .tr-row, .tr-cut, .tr-m, .tr-m.live, .tr-step.next, .tr-champ-plate { animation: none; }
 }
+/* Result screens: the step-by-step solution sits next to the main action. */
+.tr-result-actions { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.tr-sol-open { border-color: #9fc3ee; color: #1f4f8f; }
+.tr-hero .tr-sol-open { background: #ffffff; }
