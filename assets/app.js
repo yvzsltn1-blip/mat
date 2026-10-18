@@ -675,7 +675,7 @@
   const solText = (t) => esc(t).replace(/(?<![#\w&])(\d+(?:[.,]\d+)*)/g, '<b class="sn">$1</b>');
   // Yeni açılan adım (ya da cevap kutusu) görünür alana kaydırılır.
   function revealSolutionStep() {
-    (window.requestAnimationFrame || setTimeout)(() => document.querySelector(".sol-answer, .sol-step.now")?.scrollIntoView?.({ block: "nearest", behavior: "smooth" }));
+    (window.requestAnimationFrame || setTimeout)(() => (document.querySelector(".sol-answer") || document.querySelector(".sol-step.now"))?.scrollIntoView?.({ block: "nearest", behavior: "smooth" }));
   }
   function renderSolution() {
     const so = state.solution;
@@ -1900,12 +1900,12 @@
     const fb = state.feedback;
     const scene = q.scene && q.kind !== "dial" && q.kind !== "rect" ? MatVisuals.renderScene(q.scene) : "";
     const longChoices = q.kind === "mc" && q.choices.some((c) => String(c).length > 28);
-    return `<div class="game" style="--lv:${lv.color}">
+    return `<div class="game${state.quickGame ? " quick-quiz" : ""}${fb ? " has-feedback" : ""}" style="--lv:${lv.color}">
       ${gameBar(q, lv)}
       ${state.cycleRenewed ? `<p class="pool-notice">Bu seviyedeki 15 soru tamamlandı. Havuz yeniden karıştırıldı.</p>` : ""}
       <div class="game-stage ${scene ? "has-scene" : "no-scene"} kind-${q.kind}">
         <section class="g-question">
-          <span class="question-label">${state.quickGame ? "⚡ HIZLI OYUN · " + esc(t.title) : q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>
+          ${state.quickGame ? `<div class="question-meta"><span class="question-label">⚡ HIZLI OYUN</span><span class="question-topic">${esc(t.title)}</span></div>` : `<span class="question-label">${q.scoringType === "true-false" ? "DOĞRU MU, YANLIŞ MI?" : "SORU " + (state.qIndex + 1)}</span>`}
           <h2 class="prompt" tabindex="-1">${MatVisuals.angleMarks(esc(q.prompt))}</h2>
           ${scene ? `<div class="g-scene">${scene}</div>` : `<div class="g-mascot" aria-hidden="true">${["🦉", "🦊", "🐢", "🐝", "🦁"][q.level - 1] || "✦"}<span>${["Düşün!", "Hadi!", "Adım adım!", "Dikkat!", "Ustalık zamanı!"][q.level - 1] || ""}</span></div>`}
           <div class="help-row">${q.hint ? `<button class="hint-btn ${state.hintOpen ? "open" : ""}" type="button" data-act="hint">💡 ${state.hintOpen ? esc(q.hint) : "İpucu"}</button>` : ""}<button class="hint-btn sol-btn" type="button" data-act="solution" ${state.locked ? "" : "disabled title=\"Cevap verildikten sonra açılır\""}>📖 Çözüm${state.locked ? "" : " 🔒"}</button></div>
@@ -2118,6 +2118,7 @@
     clearTimeout(angleTimer);
     const game = isGameMode();
     document.body.classList.toggle("game-mode", game);
+    document.body.classList.toggle("quick-game-mode", game && state.quickGame && state.phase === "quiz");
     document.body.classList.toggle("is-fs", !!document.fullscreenElement);
     document.body.classList.toggle("tahta", !!(state.tahta && state.screen === "topic" && !game));
     document.body.classList.toggle("classroom-fullscreen", !!document.fullscreenElement && state.screen === "topic" && state.topicTab === "lesson");
@@ -2151,7 +2152,7 @@
     if (window.MatTournament) MatTournament.unmount();
     if (window.MatGroupRace) MatGroupRace.unmount();
     document.body.classList.add("login-mode");
-    document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode", "practice-mode");
+    document.body.classList.remove("tahta", "classroom-fullscreen", "game-mode", "quick-game-mode", "practice-mode");
     if (cloud && !authReady) {
       renderLoading("Bağlanılıyor…");
       return;
